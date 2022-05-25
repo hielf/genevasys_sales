@@ -1,13 +1,13 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.16.0"
 
-set :repo_url, "git@github.com:hielf/panda_quant2.git"
-set :application, "panda_quant2"
+set :repo_url, "git@github.com:hielf/genevasys_sales.git"
+set :application, "genevasys_sales"
 # set :user, "deploy"
 set :puma_threads, [4, 16]
 set :puma_workers, 0
 set :rails_env, 'production'
-# set :rvm_ruby_version, '2.4.0@panda_quant2'
+# set :rvm_ruby_version, '2.4.0@genevasys_sales'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

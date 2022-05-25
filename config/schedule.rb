@@ -22,9 +22,9 @@
 # every :reboot do
 #   command "service ssh start"
 #   command "service nginx start"
-#   command "cd /var/www/panda_quant2/current && /usr/local/rvm/bin/rvm 2.4.0@panda_quant2 do bundle exec puma -C /var/www/panda_quant2/shared/puma.rb --daemon"
-#   command "cd /var/www/panda_quant2/current && /usr/local/rvm/bin/rvm 2.4.0@panda_quant2 do bundle exec pumactl -S /var/www/panda_quant2/shared/tmp/pids/puma.state -F /var/www/panda_quant2/shared/puma.rb restart"
-#   command "cd /var/www/panda_quant2-frontend/ && pm2 start server/app.js"
+#   command "cd /var/www/genevasys_sales/current && /usr/local/rvm/bin/rvm 2.4.0@genevasys_sales do bundle exec puma -C /var/www/genevasys_sales/shared/puma.rb --daemon"
+#   command "cd /var/www/genevasys_sales/current && /usr/local/rvm/bin/rvm 2.4.0@genevasys_sales do bundle exec pumactl -S /var/www/genevasys_sales/shared/tmp/pids/puma.state -F /var/www/genevasys_sales/shared/puma.rb restart"
+#   command "cd /var/www/genevasys_sales-frontend/ && pm2 start server/app.js"
 # end
 
 

@@ -7,4 +7,4 @@ test:
 production:
   adapter: redis
   url: redis://localhost:6379/1
-  channel_prefix: panda_quant2_production
+  channel_prefix: genevasys_sales_production

@@ -16,7 +16,7 @@ default: &default
 
 development:
   <<: *default
-  database: panda_quant2_dev
+  database: genevasys_sales_dev
 
 
 
@@ -25,7 +25,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: panda_quant2_test_local
+  database: genevasys_sales_test_local
 
 production:
   <<: *default

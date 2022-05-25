@@ -21,15 +21,17 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 20
-  # username: root
-  # password: root
-  # host: 192.168.1.5
-  username: admin
-  password: wood123
-  host: hielf.mynetgear.com
+  host: crm.genevasys.com
+  port: 8036
+  username: panda
+  password: pjIFkirejk743Kf
   reconnect: true
   wait_timeout: 30
 
 development:
   <<: *default
-  database: panda_quant2_development
+  database: genevasys_sales_development
+
+production:
+  <<: *default
+  database: genevasys_sales_production

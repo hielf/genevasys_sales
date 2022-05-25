@@ -18,7 +18,7 @@ God.contact(:email) do |c|
   c.to_email = 'hielf@qq.com'
 end
 
-["panda_quant2"].each do |app_name|
+["genevasys_sales"].each do |app_name|
 
   app_root = "/var/www/#{app_name}"
 
