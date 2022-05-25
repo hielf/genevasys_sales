@@ -1,0 +1,60 @@
+button:
+ -
+  type: "click"
+  name: "帮助说明"
+  key: "HELP"
+ -
+  name: "波段监测"
+  sub_button:
+   -
+    type: "click"
+    name: "个股订阅"
+    key:  "SUBSCRIBE"
+   -
+    type: "click"
+    name: "选择套餐"
+    key:  "PACKAGE"
+ -
+  name: "联系反馈"
+  sub_button:
+   -
+    type: "click"
+    name: "新用户礼包"
+    key:  "NEWUSER"
+   -
+    type: "click"
+    name: "微信反馈"
+    key:  "WECHAT"
+   -
+    type: "click"
+    name: "抖音"
+    key:  "TIKTOK"
+
+
+# button:
+#  -
+#   type: "view"
+#   name: "历史推荐"
+#   url: "http://quant.ripple-tech.com/history"
+#  -
+#   type: "click"
+#   name: "订阅"
+#   key: "SUBSCRIBE"
+#  -
+#   type: "miniprogram"
+#   name: "熊猫研报"
+#   url:  "http://quant.ripple-tech.com"
+#   appid: "wx33c286af210b412d"
+#   pagepath: "pages/main/home/home"
+
+
+# -
+#  type: "view"
+#  name: "测试"
+#  url: "http://quant.ripple-tech.com/#/recommends"
+
+# RAILS_ENV=production bundle exec  wechat menu_create /var/www/panda_quant2/shared/config/wechat_menu.yml
+
+# path = "/var/www/panda_quant2/shared/config/wechat_menu.yml"
+# template = YAML.load(File.read(path))
+# Wechat.api.menu_create template

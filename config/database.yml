@@ -1,0 +1,35 @@
+# MySQL.  Versions 5.0+ are recommended.
+#
+# Install the MYSQL driver
+#   gem install mysql2
+#
+# Ensure the MySQL gem is defined in your Gemfile
+#   gem 'mysql2'
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+#
+# default: &default
+#   adapter: postgresql
+#   encoding: utf8
+#   pool: 5
+#   username: postgres
+#   password: wood123
+#   host: hielf.myqnapcloud.com
+#   port: 5432
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 20
+  # username: root
+  # password: root
+  # host: 192.168.1.5
+  username: admin
+  password: wood123
+  host: hielf.mynetgear.com
+  reconnect: true
+  wait_timeout: 30
+
+development:
+  <<: *default
+  database: panda_quant2_development

@@ -1,0 +1,33 @@
+development:
+  SMS_APPID: "22002"
+  SMS_APPKEY: 10bad57df936ee10411356826e5e7cbf
+  SMS_PROJECT: gMbMk
+  SMS_PROJECT2: 0qzxe1
+  path_to_root: /Users/hielf/workspace/projects/panda_quant2
+  wechat_appid: wx74920a351435caa9
+  wechat_pay_key: 7b7b0d84b13f7c2e3644218093dbeb46
+  wechat_pay_mch: "1499153332"
+  wachat_appsecret: 0f2b02ae2380227a1f1f9c6e295e85c5
+  qiniu_accesskey: wBJp1E8ZAw9fYJSngXwwE9PeXDpfWBSNTWwXeeqL
+  qiniu_serect: agdZfWFxUBwn435RoHwLA-f9Sl3cu22w44f8rP2i
+  qiniu_bucket: pandastatic
+  qiniu_cname: pandastatic.ripple-tech.com
+  jq_data_username: "18018559077"
+  jq_data_password: "jerry1"
+  tushare_token: "5d0b02420eb59fee8379a45d44b115d66dd387abaf70e690db88f41e"
+  tushare_token2: "3da860686588f7627659ef2d94242c0bb133f6f37d58453c4d7207f0"
+
+production:
+  SMS_APPID: "22002"
+  SMS_APPKEY: 10bad57df936ee10411356826e5e7cbf
+  SMS_PROJECT: gMbMk
+  SMS_PROJECT2: 0qzxe1
+  path_to_root: /Users/hielf/workspace/projects/panda_quant2
+  wechat_appid: wx74920a351435caa9
+  wechat_pay_key: 7b7b0d84b13f7c2e3644218093dbeb46
+  wechat_pay_mch: "1499153332"
+  wachat_appsecret: 0f2b02ae2380227a1f1f9c6e295e85c5
+  qiniu_accesskey: wBJp1E8ZAw9fYJSngXwwE9PeXDpfWBSNTWwXeeqL
+  qiniu_serect: agdZfWFxUBwn435RoHwLA-f9Sl3cu22w44f8rP2i
+  qiniu_bucket: pandastatic
+  qiniu_cname: pandastatic.ripple-tech.com

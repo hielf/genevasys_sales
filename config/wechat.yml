@@ -1,0 +1,67 @@
+default: &default
+  appid: "wxff2f9c9c5dd71de7"
+  secret: "bade4a65bc9cdfb17637b0d1bc5ffccd"
+  token:    "wechat"
+  access_token: "/var/tmp/wechat_access_token"
+  jsapi_ticket: "/var/tmp/wechat_jsapi_ticket"
+  encrypt_mode: true # if true must fill encoding_aes_key
+  encoding_aes_key:  "EWIVUccUQ4kPslUqbKpxyWu9LrAA2UNCLH8MpnLAtiM"
+  mini_appid: "wx33c286af210b412d"
+  mini_secret: "ee277b6f7bfe46bcaeee249d3afa0276"
+
+production:
+  appid: "wxff2f9c9c5dd71de7"
+  secret: "bade4a65bc9cdfb17637b0d1bc5ffccd"
+  token: "wechat"
+  skip_verify_ssl: true
+  access_token: "/var/tmp/wechat_access_token"
+  jsapi_ticket: "/var/tmp/wechat_jsapi_ticket"
+  encrypt_mode: true # if true must fill encoding_aes_key
+  encoding_aes_key:  "EWIVUccUQ4kPslUqbKpxyWu9LrAA2UNCLH8MpnLAtiM"
+  oauth2_cookie_duration: 7200 # seconds
+  mini_appid: "wx33c286af210b412d"
+  mini_secret: "ee277b6f7bfe46bcaeee249d3afa0276"
+
+development:
+  <<: *default
+  trusted_domain_fullname: "http://your_dev.proxy.qqbrowser.cc"
+
+test:
+  <<: *default
+
+# Multiple Accounts
+#
+# wx2_development:
+#  <<: *default
+#  appid: "my_appid"
+#  secret: "my_secret"
+#  access_token: "tmp/wechat_access_token2"
+#  jsapi_ticket: "tmp/wechat_jsapi_ticket2"
+#
+# wx2_test:
+#  <<: *default
+#  appid: "my_appid"
+#  secret: "my_secret"
+#
+# wx2_production:
+#  <<: *default
+#  appid: "my_appid"
+#  secret: "my_secret"
+#
+# wx3_development:
+#  <<: *default
+#  appid: "my_appid"
+#  secret: "my_secret"
+#  access_token: "tmp/wechat_access_token3"
+#  jsapi_ticket: "tmp/wechat_jsapi_ticket3"
+#
+# wx3_test:
+#  <<: *default
+#  appid: "my_appid"
+#  secret: "my_secret"
+#
+# wx3_production:
+#  <<: *default
+#  appid: "my_appid"
+#  secret: "my_secret"
+#
