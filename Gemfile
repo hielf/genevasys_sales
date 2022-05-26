@@ -1,6 +1,5 @@
-# source 'https://rubygems.org'
-# source 'https://ruby.taobao.org'
-source 'https://gems.ruby-china.com'
+source 'https://rubygems.org'
+# source 'https://gems.ruby-china.com'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -76,7 +75,6 @@ gem 'timeout-extensions'
 gem 'parallel'
 gem 'state_machines-activerecord'
 gem 'validates_lengths_from_database'
-gem 'pycall'
 gem 'rb-readline'
 gem 'ruby-pinyin'
 gem 'tzinfo-data'
