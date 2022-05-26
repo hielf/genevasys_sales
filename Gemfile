@@ -74,20 +74,14 @@ gem 'ransack'
 gem 'whenever', :require => false
 gem 'timeout-extensions'
 gem 'parallel'
-gem 'wechat'
-gem 'wx_pay'
-gem 'httparty'
 gem 'state_machines-activerecord'
 gem 'validates_lengths_from_database'
 gem 'pycall'
 gem 'rb-readline'
 gem 'ruby-pinyin'
-gem 'qiniu', '>= 6.9.0'
 gem 'tzinfo-data'
 # gem 'postgres-copy'
 # gem 'dbf'
-gem 'clockwork'
-gem 'daemons'
 gem "webpacker", "~> 5.3"
 gem "react_on_rails", "= 12.2.0"
 gem 'mini_racer', platforms: :ruby
