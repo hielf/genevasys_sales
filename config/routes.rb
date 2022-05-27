@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     root 'root#home'
     post 'accounts/sign_in', to: 'accounts#sign_in'
-    post 'accounts/miniprogram_sign_in', to: 'accounts#miniprogram_sign_in'
-    post 'accounts/simple_sign_in', to: 'accounts#simple_sign_in'
     post 'accounts/sign_out', to: 'accounts#sign_out'
     resources :users, except: [:edit, :new] do
       collection do
