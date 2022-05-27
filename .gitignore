@@ -30,17 +30,10 @@
 /public/uploads
 /config/application.yml
 
-config/wechat.yml
-
 # Ignore application configuration
 /config/application.yml
 
 public/js/config.js
-
-config/wechat_menu.yml
-lib/python/easytrader/*.json
-
-lib/python/easytrader/ht_client_1.json
 *.pyc
 lib/python/__pycache__/*
 public/cert/apiclient_cert.p12

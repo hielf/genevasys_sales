@@ -17,8 +17,8 @@ class Rack::Attack
     [ 429, {}, ["Server Error\n"]]
   end
 
-  Rack::Attack.throttle('wechat api', limit: 1, period: 1.seconds) do |req|
-    if req.path == '/wechat' && req.post?
+  Rack::Attack.throttle('api', limit: 10, period: 1.seconds) do |req|
+    if req.path == '/products' && req.post?
       req.ip
     end
   end
