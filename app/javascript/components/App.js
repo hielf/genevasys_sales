@@ -7,6 +7,7 @@ import Stockanalysis from './Stockanalysis/Stockanalysis'
 const App = () => {
   return (
     <Switch>
+      <Route exact path="/products" component={Product}/>
       <Route exact path="/package/:id" component={Package}/>
       <Route exact path="/subscribtion/:id" component={Subscribtion}/>
       <Route exact path="/stockanalysis/:id" component={Stockanalysis}/>
@@ -15,3 +16,5 @@ const App = () => {
 }
 
 export default App
+
+// https://demos.creative-tim.com/material-kit-react/#/presentation
