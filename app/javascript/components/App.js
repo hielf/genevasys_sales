@@ -7,10 +7,11 @@ import Stockanalysis from './Stockanalysis/Stockanalysis'
 const App = () => {
   return (
     <Switch>
-      <Route exact path="/products" component={Product}/>
-      <Route exact path="/package/:id" component={Package}/>
-      <Route exact path="/subscribtion/:id" component={Subscribtion}/>
-      <Route exact path="/stockanalysis/:id" component={Stockanalysis}/>
+      <Route exact path="/products" component={Products}/>
+      <Route exact path="/order/:productId" component={Product}/>
+      // <Route exact path="/package/:id" component={Package}/>
+      // <Route exact path="/subscribtion/:id" component={Subscribtion}/>
+      // <Route exact path="/stockanalysis/:id" component={Stockanalysis}/>
     </Switch>
   )
 }
