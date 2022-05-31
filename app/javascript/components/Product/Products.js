@@ -1,35 +1,72 @@
 import React from 'react';
-import { Space, Layout, List, Typography, Divider } from 'antd';
+import { Space, Layout, List, Typography, Divider, Checkbox } from 'antd';
+import { Row, Col } from 'antd';
+import { Button, Radio } from 'antd';
+import NextButton from '../Utils/NextButton'
 
 const { Header, Footer, Sider, Content } = Layout;
+const { Title, Paragraph, Text, Link } = Typography;
 
-const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
+const onChange = (checkedValues) => {
+  console.log('checked = ', checkedValues);
+};
+
+const optionsInternet = [
+  {
+    label: 'Internet 75: $55.95/month',
+    value: 'A1',
+  },
+  {
+    label: 'Internet 300: $85.95/month',
+    value: 'A2',
+  },
+  {
+    label: 'Internet 750: $105.95/month',
+    value: 'A3',
+  },
+  {
+    label: 'Internet 750: $105.95/month',
+    value: 'A4',
+  },
+  {
+    label: 'Internet 750: $105.95/month',
+    value: 'A5',
+  },
+  {
+    label: 'Internet 750: $105.95/month',
+    value: 'A6',
+  },
 ];
 
 const Products = () => (
   <>
-    <Layout>
+    <Layout style={{ minHeight: "100vh" }}>
       <Header style={{ backgroundColor: "#69c0ff", }}>
-        <div className="logo" />
+        <Divider style={{ color: "#ffffff", borderTopColor: "#69c0ff", }}>Service Request</Divider>
       </Header>
       <Content style={{ padding: '0 50px', backgroundColor:"#ffffff" }}>
-        <Divider orientation="left">Default Size</Divider>
-        <List
-          header={<div>Header</div>}
-          footer={<div>Footer</div>}
-          bordered
-          dataSource={data}
-          renderItem={(item) => (
-            <List.Item>
-              <Typography.Text mark>[ITEM]</Typography.Text> {item}
-            </List.Item>
-          )}
-        />
+        <Divider orientation="left">Bundle</Divider>
+        <Checkbox.Group options={optionsInternet} onChange={onChange} />
+        <br />
+        <Divider orientation="left">Internet</Divider>
+        <Checkbox.Group options={optionsInternet} onChange={onChange} />
+        <br />
+        <Divider orientation="left">TV Box</Divider>
+        <Checkbox.Group options={optionsInternet} onChange={onChange} />
+        <br />
+        <Divider orientation="left">IP Phone</Divider>
+        <Checkbox.Group options={optionsInternet} onChange={onChange} />
+        <br />
+        <br />
+        <Row>
+          <Col span={8}></Col>
+          <Col span={8}>{
+            <NextButton
+            /> }
+          </Col>
+          <Col span={8}></Col>
+        </Row>
+
       </Content>
       <Footer style={{ textAlign: 'center', backgroundColor:"#ffffff" }}> ©2022 Geneva Systems Ltd.</Footer>
     </Layout>
