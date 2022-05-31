@@ -1,7 +1,8 @@
 import React from 'react';
-import { Layout, List, Typography, Divider } from 'antd';
+import { Space, Layout, List, Typography, Divider } from 'antd';
 
 const { Header, Footer, Sider, Content } = Layout;
+
 const data = [
   'Racing car sprays burning fuel into crowd.',
   'Japanese princess to wed commoner.',
@@ -13,8 +14,10 @@ const data = [
 const Products = () => (
   <>
     <Layout>
-      <Header>Header</Header>
-      <Content>
+      <Header style={{ backgroundColor: "#69c0ff", }}>
+        <div className="logo" />
+      </Header>
+      <Content style={{ padding: '0 50px', backgroundColor:"#ffffff" }}>
         <Divider orientation="left">Default Size</Divider>
         <List
           header={<div>Header</div>}
@@ -28,7 +31,7 @@ const Products = () => (
           )}
         />
       </Content>
-      <Footer>Footer</Footer>
+      <Footer style={{ textAlign: 'center', backgroundColor:"#ffffff" }}> ©2022 Geneva Systems Ltd.</Footer>
     </Layout>
 
   </>
