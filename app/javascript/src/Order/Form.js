@@ -2,7 +2,8 @@ import React from 'react';
 import { Space, Layout, List, Typography, Divider, Checkbox } from 'antd';
 import { Row, Col } from 'antd';
 import { Button, Radio } from 'antd';
-import NextButton from '../Utils/NextButton'
+import NextButton from '../Components/NextButton'
+import PrevButton from '../Components/PreviousButton'
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Title, Paragraph, Text, Link } = Typography;
@@ -59,12 +60,17 @@ const OrderForm = () => (
         <br />
         <br />
         <Row>
-          <Col span={8}></Col>
-          <Col span={8}>{
+          <Col span={6}></Col>
+          <Col span={5}>{
+            <PrevButton
+            /> }
+          </Col>
+          <Col span={2}></Col>
+          <Col span={5}>{
             <NextButton
             /> }
           </Col>
-          <Col span={8}></Col>
+          <Col span={6}></Col>
         </Row>
 
       </Content>
