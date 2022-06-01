@@ -38,7 +38,7 @@ const optionsInternet = [
   },
 ];
 
-const Products = () => (
+const OrderForm = () => (
   <>
     <Layout style={{ minHeight: "100vh" }}>
       <Header style={{ backgroundColor: "#69c0ff", }}>
@@ -74,4 +74,4 @@ const Products = () => (
   </>
 );
 
-export default Products;
+export default OrderForm;
