@@ -1,83 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Space, Layout, List, Typography, Divider, Checkbox } from 'antd';
 import { Row, Col } from 'antd';
 import { Button, Radio } from 'antd';
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
+import ProductInfo from './ProductInfo'
+import ServiceInfo from './ServiceInfo'
+import CustomerInfo from './CustomerInfo'
+import PaymentInfo from './PaymentInfo'
 
-const { Header, Footer, Sider, Content } = Layout;
-const { Title, Paragraph, Text, Link } = Typography;
+function OrderForm() {
+  const { Header, Footer, Sider, Content } = Layout;
+  const { Title, Paragraph, Text, Link } = Typography;
+  const [step, setStep] = useState(0);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    firstName: "",
+    lastName: "",
+    username: "",
+    nationality: "",
+    other: "",
+  });
 
-const onChange = (checkedValues) => {
-  console.log('checked = ', checkedValues);
-};
+  const FormTitles = ["Service Request", "Service Request", "Customer Info", "Payment Info"];
 
-const optionsInternet = [
-  {
-    label: 'Internet 75: $55.95/month',
-    value: 'A1',
-  },
-  {
-    label: 'Internet 300: $85.95/month',
-    value: 'A2',
-  },
-  {
-    label: 'Internet 750: $105.95/month',
-    value: 'A3',
-  },
-  {
-    label: 'Internet 750: $105.95/month',
-    value: 'A4',
-  },
-  {
-    label: 'Internet 750: $105.95/month',
-    value: 'A5',
-  },
-  {
-    label: 'Internet 750: $105.95/month',
-    value: 'A6',
-  },
-];
+  const NextButtonClick = () => {
+    return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} />;
+  };
 
-const OrderForm = () => (
-  <>
-    <Layout style={{ minHeight: "100vh" }}>
-      <Header style={{ backgroundColor: "#69c0ff", }}>
-        <Divider style={{ color: "#ffffff", borderTopColor: "#69c0ff", }}>Service Request</Divider>
-      </Header>
-      <Content style={{ padding: '0 50px', backgroundColor:"#ffffff" }}>
-        <Divider orientation="left">Bundle</Divider>
-        <Checkbox.Group options={optionsInternet} onChange={onChange} />
-        <br />
-        <Divider orientation="left">Internet</Divider>
-        <Checkbox.Group options={optionsInternet} onChange={onChange} />
-        <br />
-        <Divider orientation="left">TV Box</Divider>
-        <Checkbox.Group options={optionsInternet} onChange={onChange} />
-        <br />
-        <Divider orientation="left">IP Phone</Divider>
-        <Checkbox.Group options={optionsInternet} onChange={onChange} />
-        <br />
-        <br />
-        <Row>
-          <Col span={6}></Col>
-          <Col span={5}>{
-            <PrevButton
-            /> }
-          </Col>
-          <Col span={2}></Col>
-          <Col span={5}>{
-            <NextButton
-            /> }
-          </Col>
-          <Col span={6}></Col>
-        </Row>
+  const PrevButtonClick = () => {
+    return <PrevButton step={step} setStep={setStep} FormTitles={FormTitles} />;
+  };
 
-      </Content>
-      <Footer style={{ textAlign: 'center', backgroundColor:"#ffffff" }}> ©2022 Geneva Systems Ltd.</Footer>
-    </Layout>
+  const PageDisplay = () => {
+    if (step === 0) {
+      return <ProductInfo formData={formData} setFormData={setFormData} />;
+    } else if (step === 1) {
+      return <ServiceInfo formData={formData} setFormData={setFormData} />;
+    } else if (step === 2) {
+      return <CustomerInfo formData={formData} setFormData={setFormData} />;
+    } else if (step === 3) {
+      return <PaymentInfo formData={formData} setFormData={setFormData} />;;
+    }
+  };
 
-  </>
-);
+  return (
+    <>
+      <Layout style={{ minHeight: "100vh" }}>
+        <Header style={{ backgroundColor: "#90BA75", }}>
+          <Divider style={{ color: "#ffffff", borderTopColor: "#90BA75", }}>
+            { FormTitles[step] }
+          </Divider>
+        </Header>
+        <Content style={{ padding: '0 50px', backgroundColor:"#ffffff", }}>
+          { PageDisplay() }
+          <br />
+          <br />
+          <br />
+          <Row gutter={[16, 16]} justify="center">
+            <Col span={8}>{ PrevButtonClick() }</Col>
+            <Col span={8}>{ NextButtonClick() }</Col>
+          </Row>
+        </Content>
+        <Footer style={{ textAlign: 'center', backgroundColor:"#ffffff" }}> ©2022 Geneva Systems Ltd.</Footer>
+      </Layout>
+    </>
+
+  );
+}
+
 
 export default OrderForm;
