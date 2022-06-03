@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Space, Layout, List, Typography, Divider, Checkbox } from 'antd';
 import { Row, Col } from 'antd';
 import { Button, Radio } from 'antd';
+import StepBar from '../Components/StepBar'
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
 import ProductInfo from './ProductInfo'

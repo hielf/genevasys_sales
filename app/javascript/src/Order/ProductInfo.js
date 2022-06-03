@@ -89,8 +89,8 @@ const ProductInfo = () => (
     {
       Object.keys(list).map(p => {
         return (
-          <Space direction='vertical' size='middle' style={{ display: 'flex' }}>
-            <Divider orientation='left' key={ p }>{p}</Divider>
+          <Space direction='vertical' size='middle' key={ 'space_key_' + p } style={{ display: 'flex' }}>
+            <Divider orientation='left'>{p}</Divider>
             {
               list[p].map(d => {
                 return (
