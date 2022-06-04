@@ -84,8 +84,7 @@ const list = {
 
 const ProductInfo = () => (
   <>
-  <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-    <Checkbox.Group onChange={onChange}>
+    <Checkbox.Group onChange={onChange} style={{ width: '100%' }}>
     {
       Object.keys(list).map(p => {
         return (
@@ -107,7 +106,6 @@ const ProductInfo = () => (
       })
     }
     </Checkbox.Group>
-  </Space>
   </>
 );
 

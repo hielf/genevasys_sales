@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Space, Layout, List, Typography, Divider, Checkbox } from 'antd';
 import { Row, Col } from 'antd';
 import { Button, Radio } from 'antd';
-import StepBar from '../Components/StepBar'
+import ProgressBar from '../Components/ProgressBar'
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
 import ProductInfo from './ProductInfo'
@@ -47,6 +47,10 @@ function OrderForm() {
     }
   };
 
+  const ProgressDisplay = () => {
+    return <ProgressBar progress={step} FormTitles={FormTitles} />;
+  };
+
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
@@ -56,6 +60,7 @@ function OrderForm() {
           </Divider>
         </Header>
         <Content style={{ padding: '0 50px', backgroundColor:"#ffffff", }}>
+          { ProgressDisplay() }
           { PageDisplay() }
           <br />
           <br />
