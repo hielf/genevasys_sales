@@ -20,15 +20,15 @@
     },
     "react": {
       "js": [
-        "/packs/js/react-8fa0354ef2abb7d1fdc7.js"
+        "/packs/js/react-26e9ec1f5a8a99b84447.js"
       ],
       "js.map": [
-        "/packs/js/react-8fa0354ef2abb7d1fdc7.js.map"
+        "/packs/js/react-26e9ec1f5a8a99b84447.js.map"
       ]
     }
   },
   "hello-world-bundle.js": "/packs/js/hello-world-bundle-0f11cc7a4276b9395000.js",
   "hello-world-bundle.js.map": "/packs/js/hello-world-bundle-0f11cc7a4276b9395000.js.map",
-  "react.js": "/packs/js/react-8fa0354ef2abb7d1fdc7.js",
-  "react.js.map": "/packs/js/react-8fa0354ef2abb7d1fdc7.js.map"
+  "react.js": "/packs/js/react-26e9ec1f5a8a99b84447.js",
+  "react.js.map": "/packs/js/react-26e9ec1f5a8a99b84447.js.map"
 }
