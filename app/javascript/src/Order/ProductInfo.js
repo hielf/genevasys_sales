@@ -85,26 +85,28 @@ const list = {
 const ProductInfo = ({formData, setFormData}) => (
   <>
     <Checkbox.Group onChange={onChange} style={{ width: '100%' }}>
-    {
-      Object.keys(list).map(p => {
-        return (
-          <Space direction='vertical' size='middle' key={ 'space_key_' + p } style={{ display: 'flex' }}>
-            <Divider orientation='left'>{p}</Divider>
-            {
-              list[p].map(d => {
-                return (
-                  <Row key={d.value}>
-                    <Col span={24}>
-                      <Checkbox value={d.value}>{d.label}</Checkbox>
-                    </Col>
-                  </Row>
-                )
-              })
-            }
-          </Space>
-        )
-      })
-    }
+      <Space direction='vertical' size='middle' style={{ display: 'flex' }}>
+        {
+          Object.keys(list).map(p => {
+            return (
+              <Space direction='vertical' size='middle' key={ 'space_key_' + p } style={{ display: 'flex' }}>
+                <Divider orientation='left'>{p}</Divider>
+                {
+                  list[p].map(d => {
+                    return (
+                      <Row key={d.value}>
+                        <Col span={24}>
+                          <Checkbox value={d.value}>{d.label}</Checkbox>
+                        </Col>
+                      </Row>
+                    )
+                  })
+                }
+              </Space>
+            )
+          })
+        }
+      </Space>
     </Checkbox.Group>
   </>
 );

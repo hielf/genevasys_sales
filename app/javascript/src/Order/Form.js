@@ -4,6 +4,7 @@ import { Row, Col } from 'antd';
 import { Button, Radio } from 'antd';
 import HeaderTitle from '../Components/HeaderTitle'
 import ProgressBar from '../Components/ProgressBar'
+import AlertBar from '../Components/Alert'
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
 import ProductInfo from './ProductInfo'
@@ -56,6 +57,10 @@ function OrderForm() {
     return <ProgressBar progress={step} FormTitles={FormTitles} />;
   };
 
+  const AlertDisplay = () => {
+    return <AlertBar />;
+  };
+
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
@@ -63,10 +68,15 @@ function OrderForm() {
           { HeaderTitleDisplay() }
         </Header>
         <Content style={{ padding: '0 50px', backgroundColor:"#ffffff", marginTop: 64 }}>
+          {
+            // AlertDisplay() 
+          }
           { PageDisplay() }
           <br />
           <br />
           <br />
+        </Content>
+        <Content style={{ backgroundColor:"#ffffff", }}>
           <Row gutter={[16, 16]} justify="center">
             <Col span={8}>{ PrevButtonClick() }</Col>
             <Col span={8}>{ NextButtonClick() }</Col>
