@@ -5,11 +5,17 @@ import { Row, Col } from 'antd';
 import { Radio } from 'antd';
 import { Input, Select } from 'antd';
 
-const onChange = (checkedValues) => {
-  console.log('checked = ', checkedValues);
-};
+const onChange1 = ({ target: { value } }) => {
+    console.log('radio1 checked', value);
+    // setValue3(value);
+  };
 
-const CustomerInfo = () => (
+const onChange2 = ({ target: { value } }) => {
+    console.log('radio2 checked', value);
+    // setValue3(value);
+  };
+
+const CustomerInfo = ({formData, setFormData}) => (
   <>
   <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
     <Divider orientation="left">Customer Name</Divider>
@@ -54,26 +60,67 @@ const CustomerInfo = () => (
     <Divider orientation="left">Unit Type</Divider>
     <Row justify="space-around" align="middle">
       <Col span={12}>
-        <Radio.Group name="optionsUnitType" defaultValue={1}>
-          <Radio value={1}>Main</Radio>
-          <Radio value={2}>Basement</Radio>
-          <Radio value={3}>Other</Radio>
+        <Radio.Group name="optionsUnitType" defaultValue={1} onChange={onChange1}>
+          <Radio
+            value={1}
+            onChange={(e) => {
+              setFormData({ ...formData, optionsUnitType: e.target.value });
+            }}>
+            Main
+          </Radio>
+          <Radio
+            value={2}
+            onChange={(e) => {
+              setFormData({ ...formData, optionsUnitType: e.target.value });
+            }}>
+            Basement
+          </Radio>
+          <Radio
+            value={3}
+            onChange={(e) => {
+              setFormData({ ...formData, optionsUnitType: e.target.value });
+            }}>
+            Other
+          </Radio>
         </Radio.Group>
       </Col>
       <Col span={12}>
-        <Input placeholder="UnitType" disabled={ true } />
+        <Input
+            placeholder="UnitType"
+            disabled={formData.optionsUnitType === 3 ? false : true}
+            onChange={(e) => {
+              setFormData({ ...formData, UnitType: e.target.value });
+            }}
+          />
       </Col>
     </Row>
 
     <Input placeholder="Buzz" />
 
     <Divider orientation="left">Billing Address</Divider>
-    <Radio.Group name="optionsSameAddress" defaultValue={1}>
-      <Radio value={1}>Same As Installation Address</Radio>
-      <Radio value={2}>Different From Installation Address</Radio>
+    <Radio.Group name="optionsSameAddress" defaultValue={1} onChange={onChange2}>
+      <Radio
+        value={1}
+        onChange={(e) => {
+          setFormData({ ...formData, optionsSameAddress: e.target.value });
+        }}>
+        Same As Installation Address
+      </Radio>
+      <Radio
+        value={2}
+        onChange={(e) => {
+          setFormData({ ...formData, optionsSameAddress: e.target.value });
+        }}>
+        Different From Installation Address
+      </Radio>
     </Radio.Group>
-    <Input placeholder="Billing Address" disabled={ true } />
-
+    <Input
+        placeholder="Billing Address"
+        disabled={formData.optionsSameAddress === 2 ? false : true}
+        onChange={(e) => {
+          setFormData({ ...formData, BillingAddress: e.target.value });
+        }}
+      />
   </Space>
   </>
 );

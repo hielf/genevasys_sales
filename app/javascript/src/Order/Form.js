@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Space, Layout, List, Typography, Divider, Checkbox } from 'antd';
+import { Space, Layout, List, Typography, Checkbox } from 'antd';
 import { Row, Col } from 'antd';
 import { Button, Radio } from 'antd';
+import HeaderTitle from '../Components/HeaderTitle'
 import ProgressBar from '../Components/ProgressBar'
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
@@ -15,7 +16,7 @@ function OrderForm() {
   const { Title, Paragraph, Text, Link } = Typography;
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
-    email: "",
+    products: [""],
     password: "",
     confirmPassword: "",
     firstName: "",
@@ -25,10 +26,10 @@ function OrderForm() {
     other: "",
   });
 
-  const FormTitles = ["Service Request", "Service Request", "Customer Info", "Payment Info"];
+  const FormTitles = ["Service Request", "Service Time", "Customer Info", "Payment Info"];
 
   const NextButtonClick = () => {
-    return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} />;
+    return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} formData={formData} />;
   };
 
   const PrevButtonClick = () => {
@@ -47,6 +48,10 @@ function OrderForm() {
     }
   };
 
+  const HeaderTitleDisplay = () => {
+    return <HeaderTitle step={step} FormTitles={FormTitles} />;
+  };
+
   const ProgressDisplay = () => {
     return <ProgressBar progress={step} FormTitles={FormTitles} />;
   };
@@ -54,13 +59,10 @@ function OrderForm() {
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
-        <Header style={{ backgroundColor: "#90BA75", }}>
-          <Divider style={{ color: "#ffffff", borderTopColor: "#90BA75", }}>
-            { FormTitles[step] }
-          </Divider>
+        <Header style={{ backgroundColor: "#90BA75", position: 'fixed', zIndex: 1, width: '100%', }}>
+          { HeaderTitleDisplay() }
         </Header>
-        <Content style={{ padding: '0 50px', backgroundColor:"#ffffff", }}>
-          { ProgressDisplay() }
+        <Content style={{ padding: '0 50px', backgroundColor:"#ffffff", marginTop: 64 }}>
           { PageDisplay() }
           <br />
           <br />

@@ -4,7 +4,7 @@ import { Space } from 'antd';
 import { Row, Col } from 'antd';
 
 const onChange = (checkedValues) => {
-  console.log('checked = ', checkedValues);
+  console.log('products = ', checkedValues);
 };
 
 const list = {
@@ -82,7 +82,7 @@ const list = {
   ],
 };
 
-const ProductInfo = () => (
+const ProductInfo = ({formData, setFormData}) => (
   <>
     <Checkbox.Group onChange={onChange} style={{ width: '100%' }}>
     {
