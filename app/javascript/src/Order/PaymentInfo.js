@@ -4,7 +4,7 @@ import { Space } from 'antd';
 import { Row, Col } from 'antd';
 import { Radio } from 'antd';
 import { Input, Tooltip } from 'antd';
-import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons';
+import { GlobalOutlined, CreditCardOutlined, UserOutlined, DollarOutlined } from '@ant-design/icons';
 
 const PaymentInfo = ({formData, setFormData}) => {
 
@@ -46,14 +46,23 @@ const PaymentInfo = ({formData, setFormData}) => {
 
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-      <Divider orientation="left">Card Type</Divider>
+      <Divider orientation="left">
+        <Space direction='horizontal' size='small' >
+          <GlobalOutlined />Card Type
+        </Space>
+      </Divider>
+
       <Radio.Group name="optionsCardType" defaultValue={1} onChange={onChange1}>
         <Radio value={1}>Visa</Radio>
         <Radio value={2}>MasterCard</Radio>
         <Radio value={3}>UniPay</Radio>
       </Radio.Group>
 
-      <Divider orientation="left">Card Holder's Name</Divider>
+      <Divider orientation="left">
+        <Space direction='horizontal' size='small' >
+          <UserOutlined />Card Holder's Name
+        </Space>
+      </Divider>
       <Row gutter={[16, 16]}>
         <Col span={12}>
           <Input placeholder="First Name" onChange={onChange2} />
@@ -63,7 +72,11 @@ const PaymentInfo = ({formData, setFormData}) => {
         </Col>
       </Row>
 
-      <Divider orientation="left">Credit Card Info</Divider>
+      <Divider orientation="left">
+        <Space direction='horizontal' size='small' >
+          <CreditCardOutlined />Credit Card Info
+        </Space>
+      </Divider>
       <Input placeholder="Card Number" onChange={onChange4} />
       <Row gutter={[16, 16]} align="middle">
         <Col span={6}>
@@ -78,7 +91,11 @@ const PaymentInfo = ({formData, setFormData}) => {
         </Col>
       </Row>
 
-      <Divider orientation="left">Payment Schedule</Divider>
+      <Divider orientation="left">
+        <Space direction='horizontal' size='small' >
+          <DollarOutlined />Payment Schedule
+        </Space>
+      </Divider>
       <Row gutter={[16, 16]}>
         <Col span={12}>
           <Input prefix="$" suffix="CAD" placeholder="First Initial Payment" onChange={onChange8} />

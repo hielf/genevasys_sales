@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {isMobile} from 'react-device-detect';
 import { Space, Layout, List, Typography, Checkbox } from 'antd';
 import { Row, Col } from 'antd';
 import { Button, Radio } from 'antd';
@@ -101,7 +102,9 @@ function OrderForm() {
             <Col span={8}>{ NextButtonClick() }</Col>
           </Row>
         </Content>
-        <Footer style={{ textAlign: 'center', backgroundColor:"#ffffff" }}> ©2022 Geneva Systems Ltd.</Footer>
+        <Footer style={{ textAlign: 'center', backgroundColor:"#ffffff" }}>
+          {!isMobile ? ('©2022 Geneva Systems Ltd.') : null}
+        </Footer>
       </Layout>
     </>
 
