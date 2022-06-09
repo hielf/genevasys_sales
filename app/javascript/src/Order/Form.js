@@ -35,6 +35,15 @@ function OrderForm() {
     buzz: "",
     optionsSameAddress: 1,
     billingAddress: "",
+    optionsCardType: 1,
+    cardFirstName: "",
+    cardLastName: "",
+    cardNumber: "",
+    mm: "",
+    yy: "",
+    cvv: "",
+    firstInitialPayment: "",
+    recurrentPayment: "",
   });
 
   const FormTitles = ["Service Request", "Service Time", "Customer Info", "Payment Info"];
