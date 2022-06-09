@@ -17,14 +17,24 @@ function OrderForm() {
   const { Title, Paragraph, Text, Link } = Typography;
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
-    products: [""],
-    password: "",
-    confirmPassword: "",
+    products: [],
+    installationTime: 1,
+    dateRequest: "",
     firstName: "",
+    middleName: "",
     lastName: "",
-    username: "",
-    nationality: "",
-    other: "",
+    contactPhone: "",
+    altPhone: "",
+    email: "",
+    installationAddress: "",
+    city: "VANCOUVER",
+    province: "BC",
+    postalCode: "",
+    optionsUnitType: 1,
+    unitType: "",
+    buzz: "",
+    optionsSameAddress: 1,
+    billingAddress: "",
   });
 
   const FormTitles = ["Service Request", "Service Time", "Customer Info", "Payment Info"];
@@ -69,7 +79,7 @@ function OrderForm() {
         </Header>
         <Content style={{ padding: '0 50px', backgroundColor:"#ffffff", marginTop: 64 }}>
           {
-            // AlertDisplay() 
+            // AlertDisplay()
           }
           { PageDisplay() }
           <br />

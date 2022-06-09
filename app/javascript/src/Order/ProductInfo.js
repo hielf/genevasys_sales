@@ -84,7 +84,13 @@ const list = {
 
 const ProductInfo = ({formData, setFormData}) => (
   <>
-    <Checkbox.Group onChange={onChange} style={{ width: '100%' }}>
+    <Checkbox.Group
+    onChange={
+      (checkedValues) => {
+        setFormData({ ...formData, products: checkedValues })
+      }
+    }
+    style={{ width: '100%' }}>
       <Space direction='vertical' size='middle' style={{ display: 'flex' }}>
         {
           Object.keys(list).map(p => {
