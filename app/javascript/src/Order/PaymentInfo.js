@@ -5,6 +5,8 @@ import { Row, Col } from 'antd';
 import { Radio } from 'antd';
 import { Input, Tooltip } from 'antd';
 import { GlobalOutlined, CreditCardOutlined, UserOutlined, DollarOutlined } from '@ant-design/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCcMastercard, faCcVisa } from '@fortawesome/free-brands-svg-icons'
 
 const PaymentInfo = ({formData, setFormData}) => {
 
@@ -53,9 +55,9 @@ const PaymentInfo = ({formData, setFormData}) => {
       </Divider>
 
       <Radio.Group name="optionsCardType" defaultValue={1} onChange={onChange1}>
-        <Radio value={1}>Visa</Radio>
+        <Radio value={1}>VISA</Radio>
         <Radio value={2}>MasterCard</Radio>
-        <Radio value={3}>UniPay</Radio>
+        <Radio value={3}>UnionPay</Radio>
       </Radio.Group>
 
       <Divider orientation="left">

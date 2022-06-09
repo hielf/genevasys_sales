@@ -4,6 +4,7 @@ import { Space } from 'antd';
 import { Row, Col } from 'antd';
 import { HomeOutlined, WifiOutlined, PlaySquareOutlined, PhoneOutlined } from '@ant-design/icons';
 
+
 const ProductInfo = ({formData, setFormData}) => {
 
   const onChange = (checkedValues) => {

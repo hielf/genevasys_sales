@@ -4,6 +4,7 @@ import { Space } from 'antd';
 import { Row, Col } from 'antd';
 import { Radio } from 'antd';
 import { Input, Select } from 'antd';
+import { UserAddOutlined, ContactsOutlined, AimOutlined, HomeOutlined, CarryOutOutlined } from '@ant-design/icons';
 
 const CustomerInfo = ({formData, setFormData}) => {
 
@@ -69,17 +70,29 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-      <Divider orientation="left">Customer Name</Divider>
+      <Divider orientation="left">
+        <Space direction='horizontal' size='small' >
+          <UserAddOutlined />Customer Name
+        </Space>
+      </Divider>
       <Input placeholder="First Name" onChange={onChange1} />
       <Input placeholder="Middle Name" onChange={onChange2} />
       <Input placeholder="Last Name" onChange={onChange3} />
 
-      <Divider orientation="left">Contact Information</Divider>
+      <Divider orientation="left">
+        <Space direction='horizontal' size='small' >
+          <ContactsOutlined />Contact Information
+        </Space>
+      </Divider>
       <Input placeholder="Contact Phone" onChange={onChange4} />
       <Input placeholder="Alt. Phone" onChange={onChange5} />
       <Input placeholder="E-mail" onChange={onChange6} />
 
-      <Divider orientation="left">Address Information</Divider>
+      <Divider orientation="left">
+        <Space direction='horizontal' size='small' >
+          <AimOutlined />Address Information
+        </Space>
+      </Divider>
       <Input placeholder="Installation Address" onChange={onChange7} />
       <Row>
         <Col span={12}>
@@ -108,7 +121,11 @@ const CustomerInfo = ({formData, setFormData}) => {
         </Col>
       </Row>
 
-      <Divider orientation="left">Unit Type</Divider>
+      <Divider orientation="left">
+        <Space direction='horizontal' size='small' >
+          <HomeOutlined />Unit Type
+        </Space>
+      </Divider>
       <Row justify="space-around" align="middle">
         <Col span={12}>
           <Radio.Group name="optionsUnitType" defaultValue={1} onChange={onChange11}>
@@ -134,7 +151,11 @@ const CustomerInfo = ({formData, setFormData}) => {
 
       <Input placeholder="Buzz" onChange={onChange13} />
 
-      <Divider orientation="left">Billing Address</Divider>
+      <Divider orientation="left">
+        <Space direction='horizontal' size='small' >
+          <CarryOutOutlined />Billing Address
+        </Space>
+      </Divider>
       <Radio.Group name="optionsSameAddress" defaultValue={1} onChange={onChange14}>
         <Radio value={1}>
           Same As Installation Address
