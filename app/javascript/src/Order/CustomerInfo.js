@@ -161,7 +161,7 @@ const CustomerInfo = ({formData, setFormData}) => {
         </Col>
       </Row>
 
-      <Input placeholder="Buzz" onChange={onChange13} value={formData.buzz} />
+      <Input placeholder="#Buzz" onChange={onChange13} value={formData.buzz} />
 
       <Divider orientation="left">
         <Space direction='horizontal' size='small' >

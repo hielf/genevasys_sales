@@ -54,7 +54,7 @@ const PaymentInfo = ({formData, setFormData}) => {
         </Space>
       </Divider>
 
-      <Radio.Group name="optionsCardType" defaultValue={1} onChange={onChange1}>
+      <Radio.Group name="optionsCardType" defaultValue={1} onChange={onChange1} value={formData.optionsCardType}>
         <Radio value={1}>VISA</Radio>
         <Radio value={2}>MasterCard</Radio>
         <Radio value={3}>UnionPay</Radio>
@@ -67,10 +67,10 @@ const PaymentInfo = ({formData, setFormData}) => {
       </Divider>
       <Row gutter={[16, 16]}>
         <Col span={12}>
-          <Input placeholder="First Name" onChange={onChange2} />
+          <Input placeholder="First Name" onChange={onChange2} value={formData.cardFirstName} />
         </Col>
         <Col span={12}>
-          <Input placeholder="Last Name" onChange={onChange3} />
+          <Input placeholder="Last Name" onChange={onChange3} value={formData.cardLastName} />
         </Col>
       </Row>
 
@@ -82,6 +82,7 @@ const PaymentInfo = ({formData, setFormData}) => {
       <Input
         placeholder="Card Number"
         onChange={onChange4}
+        value={formData.cardNumber}
         onKeyPress={(event) => {
           if (!/[0-9]/.test(event.key)) {
             event.preventDefault();
@@ -93,6 +94,7 @@ const PaymentInfo = ({formData, setFormData}) => {
           <Input placeholder="MM"
             style={{ width: '100%' }}
             onChange={onChange5}
+            value={formData.mm}
             onKeyPress={(event) => {
               if (!/[0-9]/.test(event.key)) {
                 event.preventDefault();
@@ -106,6 +108,7 @@ const PaymentInfo = ({formData, setFormData}) => {
             placeholder="YY"
             style={{ width: '100%' }}
             onChange={onChange6}
+            value={formData.yy}
             onKeyPress={(event) => {
               if (!/[0-9]/.test(event.key)) {
                 event.preventDefault();
@@ -117,6 +120,7 @@ const PaymentInfo = ({formData, setFormData}) => {
           <Input placeholder="CVV"
             style={{ width: '100px' }}
             onChange={onChange7}
+            value={formData.cvv}
             onKeyPress={(event) => {
               if (!/[0-9]/.test(event.key)) {
                 event.preventDefault();
@@ -133,10 +137,16 @@ const PaymentInfo = ({formData, setFormData}) => {
       </Divider>
       <Row gutter={[16, 16]}>
         <Col span={12}>
-          <Input prefix="$" suffix="CAD" placeholder="First Initial Payment" onChange={onChange8} />
+          <Input prefix="$" suffix="CAD"
+            placeholder="First Initial Payment"
+            onChange={onChange8}
+            value={formData.firstInitialPayment} />
         </Col>
         <Col span={12}>
-          <Input prefix="$" suffix="CAD" placeholder="Recurrent Payment" onChange={onChange9} />
+          <Input prefix="$" suffix="CAD"
+            placeholder="Recurrent Payment"
+            onChange={onChange9}
+            value={formData.recurrentPayment} />
         </Col>
       </Row>
     </Space>
