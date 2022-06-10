@@ -75,28 +75,28 @@ const CustomerInfo = ({formData, setFormData}) => {
           <UserAddOutlined />Customer Name
         </Space>
       </Divider>
-      <Input placeholder="First Name" onChange={onChange1} />
-      <Input placeholder="Middle Name" onChange={onChange2} />
-      <Input placeholder="Last Name" onChange={onChange3} />
+      <Input placeholder="First Name" onChange={onChange1} value={formData.firstName} />
+      <Input placeholder="Middle Name" onChange={onChange2} value={formData.middleName} />
+      <Input placeholder="Last Name" onChange={onChange3} value={formData.lastName} />
 
       <Divider orientation="left">
         <Space direction='horizontal' size='small' >
           <ContactsOutlined />Contact Information
         </Space>
       </Divider>
-      <Input placeholder="Contact Phone" onChange={onChange4} />
-      <Input placeholder="Alt. Phone" onChange={onChange5} />
-      <Input placeholder="E-mail" onChange={onChange6} />
+      <Input placeholder="Contact Phone" onChange={onChange4} value={formData.contactPhone} />
+      <Input placeholder="Alt. Phone" onChange={onChange5} value={formData.altPhone} />
+      <Input placeholder="E-mail" onChange={onChange6} value={formData.email} />
 
       <Divider orientation="left">
         <Space direction='horizontal' size='small' >
           <AimOutlined />Address Information
         </Space>
       </Divider>
-      <Input placeholder="Installation Address" onChange={onChange7} />
+      <Input placeholder="Installation Address" onChange={onChange7} value={formData.installationAddress} />
       <Row>
         <Col span={12}>
-          <Select defaultValue="VANCOUVER" style={{ width: "100%" }} onChange={onChange8} >
+          <Select defaultValue="VANCOUVER" style={{ width: "100%" }} onChange={onChange8} value={formData.city} >
             <Select.Option value="VANCOUVER">VANCOUVER</Select.Option>
             <Select.Option value="BURNABY">BURNABY</Select.Option>
             <Select.Option value="RICHMOND">RICHMOND</Select.Option>
@@ -114,7 +114,7 @@ const CustomerInfo = ({formData, setFormData}) => {
           </Select>
         </Col>
         <Col span={4}>
-          <Select defaultValue="BC" style={{ width: "100%" }} onChange={onChange9} disabled={true} >
+          <Select defaultValue="BC" style={{ width: "100%" }} onChange={onChange9} disabled={true} value={formData.province} >
             <Select.Option value="AB">AB</Select.Option>
             <Select.Option value="BC">BC</Select.Option>
             <Select.Option value="MB">MB</Select.Option>
@@ -128,7 +128,7 @@ const CustomerInfo = ({formData, setFormData}) => {
           </Select>
         </Col>
         <Col span={8}>
-          <Input placeholder="Postal Code" onChange={onChange10}/>
+          <Input placeholder="Postal Code" onChange={onChange10} value={formData.postalCode}/>
         </Col>
       </Row>
 
@@ -139,7 +139,7 @@ const CustomerInfo = ({formData, setFormData}) => {
       </Divider>
       <Row justify="space-around" align="middle">
         <Col span={12}>
-          <Radio.Group name="optionsUnitType" defaultValue={1} onChange={onChange11}>
+          <Radio.Group name="optionsUnitType" defaultValue={1} onChange={onChange11} value={formData.optionsUnitType}>
             <Radio value={1}>
               Main
             </Radio>
@@ -156,18 +156,19 @@ const CustomerInfo = ({formData, setFormData}) => {
               placeholder="UnitType"
               disabled={formData.optionsUnitType === 3 ? false : true}
               onChange={onChange12}
+              value={formData.unitType}
             />
         </Col>
       </Row>
 
-      <Input placeholder="Buzz" onChange={onChange13} />
+      <Input placeholder="Buzz" onChange={onChange13} value={formData.buzz} />
 
       <Divider orientation="left">
         <Space direction='horizontal' size='small' >
           <CarryOutOutlined />Billing Address
         </Space>
       </Divider>
-      <Radio.Group name="optionsSameAddress" defaultValue={1} onChange={onChange14}>
+      <Radio.Group name="optionsSameAddress" defaultValue={1} onChange={onChange14} value={formData.optionsSameAddress} >
         <Radio value={1}>
           Same As Installation Address
         </Radio>
@@ -179,6 +180,7 @@ const CustomerInfo = ({formData, setFormData}) => {
           placeholder={formData.optionsSameAddress === 1 ? formData.installationAddress : 'Billing Address'}
           disabled={formData.optionsSameAddress === 2 ? false : true}
           onChange={onChange15}
+          value={formData.billingAddress}
         />
     </Space>
   );

@@ -14,7 +14,7 @@ const ServiceInfo = ({formData, setFormData}) => {
 
   const onChangeDate = (date, dateString) => {
     console.log(date, dateString);
-    setFormData({ ...formData, dateRequest: dateString });
+    setFormData({ ...formData, dateRequest: date });
   };
 
   return (
@@ -24,7 +24,7 @@ const ServiceInfo = ({formData, setFormData}) => {
           <ClockCircleOutlined />Prefer Installation Time
         </Space>
       </Divider>
-      <Radio.Group name="optionsType" defaultValue={1} onChange={onChange}>
+      <Radio.Group name="installationTime" defaultValue={1} value={formData.installationTime} onChange={onChange}>
         <Radio value={1}>8am-12pm</Radio>
         <Radio value={2}>12pm-4pm</Radio>
       </Radio.Group>
@@ -34,7 +34,11 @@ const ServiceInfo = ({formData, setFormData}) => {
           <CalendarOutlined />Date Request
         </Space>
       </Divider>
-      <DatePicker placeholder="choose date" onChange={onChangeDate} style={{ width: "100%" }} />
+      <DatePicker
+        placeholder="choose date"
+        onChange={onChangeDate}
+        value={formData.dateRequest}
+        style={{ width: "100%" }} />
     </Space>
   );
 };

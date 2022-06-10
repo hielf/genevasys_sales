@@ -109,6 +109,7 @@ const ProductInfo = ({formData, setFormData}) => {
   return (
     <Checkbox.Group
     onChange={onChange}
+    value={formData.products}
     style={{ width: '100%' }}>
       <Space direction='vertical' size='middle' style={{ display: 'flex' }}>
         {

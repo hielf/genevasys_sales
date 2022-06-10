@@ -41,7 +41,7 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => (
       console.log(formData);
       if (step === 0 && formData.products.length === 0) {
         error("Please choose your product")
-      } else if (step === 1 && formData.dateRequest.trim() === '') {
+      } else if (step === 1 && formData.dateRequest === '') {
         error("Please select service date")
       } else if (step === 2 && formData.firstName.trim() === '') {
         error("First name required")
