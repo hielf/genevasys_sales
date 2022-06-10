@@ -8,7 +8,7 @@ import { GlobalOutlined, CreditCardOutlined, UserOutlined, DollarOutlined } from
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCcMastercard, faCcVisa } from '@fortawesome/free-brands-svg-icons'
 
-const PaymentInfo = ({formData, setFormData}) => {
+const Summary = ({formData, setFormData}) => {
 
   const onChange1 = ({ target: { value } }) => {
     setFormData({ ...formData, optionsCardType: value });
@@ -79,50 +79,17 @@ const PaymentInfo = ({formData, setFormData}) => {
           <CreditCardOutlined />Credit Card Info
         </Space>
       </Divider>
-      <Input
-        placeholder="Card Number"
-        onChange={onChange4}
-        onKeyPress={(event) => {
-          if (!/[0-9]/.test(event.key)) {
-            event.preventDefault();
-          }
-        }}
-        maxLength={19}/>
+      <Input placeholder="Card Number" onChange={onChange4} />
       <Row gutter={[16, 16]} align="middle">
         <Col span={6}>
-          <Input placeholder="MM"
-            style={{ width: '100%' }}
-            onChange={onChange5}
-            onKeyPress={(event) => {
-              if (!/[0-9]/.test(event.key)) {
-                event.preventDefault();
-              }
-            }}
-            maxLength={2}/>
+          <Input placeholder="MM" style={{ width: '100%' }} onChange={onChange5} />
         </Col>
         /
         <Col span={6}>
-          <Input
-            placeholder="YY"
-            style={{ width: '100%' }}
-            onChange={onChange6}
-            onKeyPress={(event) => {
-              if (!/[0-9]/.test(event.key)) {
-                event.preventDefault();
-              }
-            }}
-            maxLength={2}/>
+          <Input placeholder="YY" style={{ width: '100%' }} onChange={onChange6} />
         </Col>
         <Col span={6}>
-          <Input placeholder="CVV"
-            style={{ width: '100px' }}
-            onChange={onChange7}
-            onKeyPress={(event) => {
-              if (!/[0-9]/.test(event.key)) {
-                event.preventDefault();
-              }
-            }}
-            maxLength={3}/>
+          <Input placeholder="CVV" style={{ width: '100px' }} onChange={onChange7} />
         </Col>
       </Row>
 
@@ -143,4 +110,4 @@ const PaymentInfo = ({formData, setFormData}) => {
   );
 };
 
-export default PaymentInfo;
+export default Summary;

@@ -16,8 +16,24 @@ const warning = (info) => {
   message.warning(info);
 };
 
+const display = (step, FormTitles) => {
+  if (step === FormTitles.length - 1) {
+    return (
+      <span>Submit</span>
+    )
+  } else {
+    return (
+      <span>Next</span>
+    )
+  }
+};
+
 const NextButton = ({ step, setStep, FormTitles, formData }) => (
-  <Button type='primary' shape='default' size='large' block
+  <Button
+  type='primary'
+  shape='default'
+  size='large'
+  block
   onClick={() => {
     if (step === FormTitles.length - 1) {
       alert("FORM SUBMITTED");
@@ -45,14 +61,25 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => (
         error("Postal Code required")
       } else if (step === 2 && formData.optionsSameAddress === 2 && formData.billingAddress.trim() === '') {
         error("Billing address required")
+      } else if (step === 3 && formData.cardFirstName.trim() === '') {
+        error("First name required")
+      } else if (step === 3 && formData.cardLastName.trim() === '') {
+        error("Last name required")
+      } else if (step === 3 && formData.cardNumber.trim() === '') {
+        error("Card number required")
+      } else if (step === 3 && formData.mm.trim() === '') {
+        error("MM required")
+      } else if (step === 3 && formData.yy.trim() === '') {
+        error("YY required")
+      } else if (step === 3 && formData.cvv.trim() === '') {
+        error("CVV required")
       } else {
         setStep((step) => step + 1);
       }
-
     }
       console.log(step)
     }}>
-    {step === FormTitles.length - 1 ? "Submit" : "Next"}
+    { display(step, FormTitles) }
   </Button>
 );
 

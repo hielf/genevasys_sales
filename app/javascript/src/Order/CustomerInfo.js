@@ -40,7 +40,7 @@ const CustomerInfo = ({formData, setFormData}) => {
       setFormData({ ...formData, city: value });
     };
 
-  const onChange9 = ({ target: { value } }) => {
+  const onChange9 = (value) => {
       setFormData({ ...formData, province: value });
     };
 
@@ -114,7 +114,18 @@ const CustomerInfo = ({formData, setFormData}) => {
           </Select>
         </Col>
         <Col span={4}>
-          <Input placeholder="Province" defaultValue="BC"  onChange={onChange9}/>
+          <Select defaultValue="BC" style={{ width: "100%" }} onChange={onChange9} disabled={true} >
+            <Select.Option value="AB">AB</Select.Option>
+            <Select.Option value="BC">BC</Select.Option>
+            <Select.Option value="MB">MB</Select.Option>
+            <Select.Option value="NB">NB</Select.Option>
+            <Select.Option value="NL">NL</Select.Option>
+            <Select.Option value="NS">NS</Select.Option>
+            <Select.Option value="ON">ON</Select.Option>
+            <Select.Option value="PE">PE</Select.Option>
+            <Select.Option value="QC">QC</Select.Option>
+            <Select.Option value="SK">SK</Select.Option>
+          </Select>
         </Col>
         <Col span={8}>
           <Input placeholder="Postal Code" onChange={onChange10}/>

@@ -12,6 +12,7 @@ import ProductInfo from './ProductInfo'
 import ServiceInfo from './ServiceInfo'
 import CustomerInfo from './CustomerInfo'
 import PaymentInfo from './PaymentInfo'
+import Summary from './Summary'
 
 function OrderForm() {
   const { Header, Footer, Sider, Content } = Layout;
@@ -47,7 +48,7 @@ function OrderForm() {
     recurrentPayment: "",
   });
 
-  const FormTitles = ["Service Request", "Service Time", "Customer Info", "Payment Info"];
+  const FormTitles = ["Service Request", "Service Time", "Customer Info", "Payment Info", "Summary"];
 
   const NextButtonClick = () => {
     return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} formData={formData} />;
@@ -66,6 +67,8 @@ function OrderForm() {
       return <CustomerInfo formData={formData} setFormData={setFormData} />;
     } else if (step === 3) {
       return <PaymentInfo formData={formData} setFormData={setFormData} />;;
+    } else if (step === 4) {
+      return <Summary formData={formData} setFormData={setFormData} />;;
     }
   };
 
