@@ -90,7 +90,15 @@ function OrderForm() {
         <Header style={{ backgroundColor: "#90BA75", position: 'fixed', zIndex: 1, width: '100%', }}>
           { HeaderTitleDisplay() }
         </Header>
-        <Content style={{ padding: '0 50px', backgroundColor:"#ffffff", marginTop: 64 }}>
+        <Content style={
+          isMobile ? {
+             padding: '0 50px', backgroundColor:"#ffffff", marginTop: 64
+          } : {
+             padding: '0 150px', backgroundColor:"#ffffff", marginTop: 64
+          }
+        }
+
+        >
           {
             // AlertDisplay()
           }

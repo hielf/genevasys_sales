@@ -10,17 +10,15 @@
         "/packs/js/application-008a196ff5fb3b5b725c.js.map"
       ]
     },
-      ]
-    },
     "react": {
       "js": [
-        "/packs/js/react-dc29799872ce4fb2a624.js"
+        "/packs/js/react-9489a973f6b3bbbd07e5.js"
       ],
       "js.map": [
-        "/packs/js/react-dc29799872ce4fb2a624.js.map"
+        "/packs/js/react-9489a973f6b3bbbd07e5.js.map"
       ]
     }
   },
-  "react.js": "/packs/js/react-dc29799872ce4fb2a624.js",
-  "react.js.map": "/packs/js/react-dc29799872ce4fb2a624.js.map"
+  "react.js": "/packs/js/react-9489a973f6b3bbbd07e5.js",
+  "react.js.map": "/packs/js/react-9489a973f6b3bbbd07e5.js.map"
 }
