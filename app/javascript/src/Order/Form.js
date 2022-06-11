@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {isMobile} from 'react-device-detect';
-import { Space, Layout, List, Typography, Checkbox } from 'antd';
+import { Space, Layout, Typography } from 'antd';
 import { Row, Col } from 'antd';
-import { Button, Radio } from 'antd';
+import { Button } from 'antd';
 import HeaderTitle from '../Components/HeaderTitle'
 import ProgressBar from '../Components/ProgressBar'
 import AlertBar from '../Components/Alert'
@@ -86,33 +86,31 @@ function OrderForm() {
 
   return (
     <>
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ minHeight: "100vh", backgroundColor:"#ffffff" }}>
         <Header style={{ backgroundColor: "#90BA75", position: 'fixed', zIndex: 1, width: '100%', }}>
           { HeaderTitleDisplay() }
         </Header>
-        <Content style={
-          isMobile ? {
-             padding: '0 50px', backgroundColor:"#ffffff", marginTop: 64
-          } : {
-             padding: '0 150px', backgroundColor:"#ffffff", marginTop: 64
-          }
-        }
-
-        >
-          {
-            // AlertDisplay()
-          }
-          { PageDisplay() }
+        <Space direction="vertical" size="large" style={{ display: 'flex' }}>
+          <Content style={
+            isMobile ? {
+               padding: '0 50px', marginTop: 64
+            } : {
+               padding: '0 17.5%', marginTop: 64
+            }
+          }>
+            {
+              // AlertDisplay()
+            }
+            { PageDisplay() }
+          </Content>
           <br />
-          <br />
-          <br />
-        </Content>
-        <Content style={{ backgroundColor:"#ffffff", }}>
-          <Row gutter={[16, 16]} justify="center">
-            <Col span={8}>{ PrevButtonClick() }</Col>
-            <Col span={8}>{ NextButtonClick() }</Col>
-          </Row>
-        </Content>
+          <Content>
+            <Row gutter={[16, 16]} justify="center">
+              <Col span={8}>{ PrevButtonClick() }</Col>
+              <Col span={8}>{ NextButtonClick() }</Col>
+            </Row>
+          </Content>
+        </Space>
         <Footer style={{ textAlign: 'center', backgroundColor:"#ffffff" }}>
           {!isMobile ? ('©2022 Geneva Systems Ltd.') : null}
         </Footer>
