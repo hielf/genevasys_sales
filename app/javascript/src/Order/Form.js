@@ -103,7 +103,7 @@ function OrderForm() {
             }
             { PageDisplay() }
           </Content>
-          <br />
+          <div />
           <Content>
             <Row gutter={[16, 16]} justify="center">
               <Col span={8}>{ PrevButtonClick() }</Col>

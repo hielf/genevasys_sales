@@ -17,6 +17,12 @@ const ServiceInfo = ({formData, setFormData}) => {
     setFormData({ ...formData, dateRequest: date });
   };
 
+  const disabledDate = (current) => {
+    var today = new Date();
+    // Can not select days before today and today
+    return current < today;
+  };
+
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
       <Divider orientation="left">
@@ -35,6 +41,7 @@ const ServiceInfo = ({formData, setFormData}) => {
         </Space>
       </Divider>
       <DatePicker
+        disabledDate={disabledDate}
         placeholder="choose date"
         onChange={onChangeDate}
         value={formData.dateRequest}

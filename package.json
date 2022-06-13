@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "dateformat": "^4.5.1",
     "lightweight-charts": "^3.3.0",
+    "moment": "^2.29.3",
     "prop-types": "^15.7.2",
     "qs": "^6.10.1",
     "react": "^17.0.2",
