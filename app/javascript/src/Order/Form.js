@@ -86,11 +86,11 @@ function OrderForm() {
 
   return (
     <>
-      <Layout style={{ minHeight: "100vh", backgroundColor:"#ffffff" }}>
+      <Layout style={{ minHeight: "100vh", backgroundColor:"#ffffff", }}>
         <Header style={{ backgroundColor: "#90BA75", position: 'fixed', zIndex: 1, width: '100%', }}>
           { HeaderTitleDisplay() }
         </Header>
-        <Space direction="vertical" size="large" style={{ display: 'flex' }}>
+        <Space direction="vertical" size="large" style={{ display: 'flex', }}>
           <Content style={
             isMobile ? {
                padding: '0 50px', marginTop: 64
