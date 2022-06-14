@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Checkbox } from 'antd';
+import { Divider, Checkbox, Select, Tooltip, Card } from 'antd';
 import { Space } from 'antd';
 import { Row, Col } from 'antd';
 import { HomeOutlined, WifiOutlined, PlaySquareOutlined, PhoneOutlined } from '@ant-design/icons';
@@ -27,6 +27,27 @@ const ProductInfo = ({formData, setFormData}) => {
     } else if (p === "IP Phone") {
       return (
         <PhoneOutlined />
+      )
+    }
+  };
+
+  const tvBox = (p) => {
+    if (p === "TV Box") {
+      return (
+        <Card>
+          <Space direction='horizontal' size='middle'>
+            <Tooltip>
+              <span>Number of TV BOX:</span>
+            </Tooltip>
+            <Select defaultValue="1" >
+              <Select.Option value="1">1</Select.Option>
+              <Select.Option value="2">2</Select.Option>
+              <Select.Option value="3">3</Select.Option>
+              <Select.Option value="4">4</Select.Option>
+              <Select.Option value="5">5</Select.Option>
+            </Select>
+          </Space>
+        </Card>
       )
     }
   };
@@ -132,6 +153,7 @@ const ProductInfo = ({formData, setFormData}) => {
                     )
                   })
                 }
+                {tvBox(p)}
               </Space>
             )
           })

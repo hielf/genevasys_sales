@@ -9,7 +9,7 @@ ConfigProvider.config({
     primaryColor: '#90BA75',
     textColor: '#90BA75',
     textColorSecondary: '#90BA75',
-    linkColor: '#90BA75'
+    linkColor: '#90BA75',
   },
 });
 
