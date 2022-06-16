@@ -38,14 +38,6 @@ const PaymentInfo = ({formData, setFormData}) => {
     setFormData({ ...formData, cvv: value });
   };
 
-  const onChange8 = ({ target: { value } }) => {
-    setFormData({ ...formData, firstInitialPayment: value });
-  };
-
-  const onChange9 = ({ target: { value } }) => {
-    setFormData({ ...formData, recurrentPayment: value });
-  };
-
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
       <Divider orientation="left">
@@ -127,26 +119,6 @@ const PaymentInfo = ({formData, setFormData}) => {
               }
             }}
             maxLength={3}/>
-        </Col>
-      </Row>
-
-      <Divider orientation="left">
-        <Space direction='horizontal' size='small' >
-          <DollarOutlined />Payment Schedule
-        </Space>
-      </Divider>
-      <Row gutter={[16, 16]}>
-        <Col span={12}>
-          <Input prefix="$" suffix="CAD"
-            placeholder="First Initial Payment"
-            onChange={onChange8}
-            value={formData.firstInitialPayment} />
-        </Col>
-        <Col span={12}>
-          <Input prefix="$" suffix="CAD"
-            placeholder="Recurrent Payment"
-            onChange={onChange9}
-            value={formData.recurrentPayment} />
         </Col>
       </Row>
     </Space>

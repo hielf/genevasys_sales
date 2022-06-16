@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Checkbox, Select, Tooltip, Card } from 'antd';
+import { Divider, Checkbox, Select, Tooltip, Card, Radio, Input } from 'antd';
 import { Space } from 'antd';
 import { Row, Col } from 'antd';
 import { HomeOutlined, WifiOutlined, PlaySquareOutlined, PhoneOutlined } from '@ant-design/icons';
@@ -7,8 +7,32 @@ import { HomeOutlined, WifiOutlined, PlaySquareOutlined, PhoneOutlined } from '@
 
 const ProductInfo = ({formData, setFormData}) => {
 
-  const onChange = (checkedValues) => {
+  const onChange1 = (checkedValues) => {
     setFormData({ ...formData, products: checkedValues })
+  };
+
+  const onChange2 = (value) => {
+    setFormData({ ...formData, tvBoxQty: value });
+  };
+
+  const onChange3 = (value) => {
+    setFormData({ ...formData, ipPhoneQty: value });
+  };
+
+  const onChange4 = ({ target: { value } }) => {
+    setFormData({ ...formData, ipPhonePortIn: value });
+  };
+
+  const onChange5 = ({ target: { value } }) => {
+    setFormData({ ...formData, ipPhonePortInNumber: value });
+  };
+
+  const onChange6 = ({ target: { value } }) => {
+    setFormData({ ...formData, ipPhoneAddressOption: value });
+  };
+
+  const onChange7 = ({ target: { value } }) => {
+    setFormData({ ...formData, ipPhoneAddress: value });
   };
 
   const icons = (p) => {
@@ -34,20 +58,81 @@ const ProductInfo = ({formData, setFormData}) => {
   const tvBox = (p) => {
     if (p === "TV Box") {
       return (
-        <Card>
-          <Space direction='horizontal' size='middle'>
-            <Tooltip>
-              <span>Number of TV BOX:</span>
-            </Tooltip>
-            <Select defaultValue="1" >
-              <Select.Option value="1">1</Select.Option>
-              <Select.Option value="2">2</Select.Option>
-              <Select.Option value="3">3</Select.Option>
-              <Select.Option value="4">4</Select.Option>
-              <Select.Option value="5">5</Select.Option>
-            </Select>
-          </Space>
-        </Card>
+        <Row>
+          <Col span={24}>
+            <Card>
+              <Space direction='horizontal' size='small'>
+                <Tooltip>
+                  <span style={{ fontWeight: 'bold' }}>Qty:</span>
+                </Tooltip>
+                <Select defaultValue={1} style={{ width: "100px" }} onChange={onChange2} value={formData.tvBoxQty}>
+                  <Select.Option value={1}>1</Select.Option>
+                  <Select.Option value={2}>2</Select.Option>
+                  <Select.Option value={3}>3</Select.Option>
+                  <Select.Option value={4}>4</Select.Option>
+                  <Select.Option value={5}>5</Select.Option>
+                </Select>
+              </Space>
+            </Card>
+          </Col>
+        </Row>
+      )
+    }
+  };
+
+  const ipPhone = (p) => {
+    if (p === "IP Phone") {
+      return (
+        <Row>
+          <Col span={24}>
+            <Card>
+              <Space direction='vertical' size='small'>
+                <Space direction='horizontal' size='small'>
+                  <Tooltip>
+                    <span style={{ fontWeight: 'bold' }}>Qty:</span>
+                  </Tooltip>
+                  <Select defaultValue={1} style={{ width: "100px" }} onChange={onChange3} value={formData.ipPhoneQty}>
+                    <Select.Option value={1}>1</Select.Option>
+                    <Select.Option value={2}>2</Select.Option>
+                    <Select.Option value={3}>3</Select.Option>
+                    <Select.Option value={4}>4</Select.Option>
+                    <Select.Option value={5}>5</Select.Option>
+                  </Select>
+                </Space>
+                <Space direction='horizontal' size='small'>
+                  <Tooltip>
+                    <span style={{ fontWeight: 'bold' }}>Status:</span>
+                  </Tooltip>
+                  <Radio.Group name="phoneIsPortIn" defaultValue={1} onChange={onChange4} value={formData.ipPhonePortIn}>
+                    <Radio value={1}>New</Radio>
+                    <Radio value={2}>Port-in</Radio>
+                  </Radio.Group>
+                  <Input placeholder="#Port-in number"
+                    bordered={false}
+                    style={{ borderBottom: '1px solid rgb(0 0 0 / 6%)', borderTop:'0px', borderLeft:'0px', borderright:'0px' }}
+                    disabled={formData.ipPhonePortIn === 2 ? false : true}
+                    onChange={onChange5}
+                    value={formData.ipPhonePortInNumber}/>
+                </Space>
+                <Space direction='horizontal' size='small'>
+                  <Tooltip>
+                    <span style={{ fontWeight: 'bold' }}>Address:</span>
+                  </Tooltip>
+                  <Radio.Group name="ipPhoneAddressOption" defaultValue={1} onChange={onChange6} value={formData.ipPhoneAddressOption}>
+                    <Radio value={1}>Same</Radio>
+                    <Radio value={2}>Other</Radio>
+                  </Radio.Group>
+                  <Input placeholder="#Address"
+                    bordered={false}
+                    style={{ borderBottom: '1px solid rgb(0 0 0 / 6%)', borderTop:'0px', borderLeft:'0px', borderright:'0px' }}
+                    disabled={formData.ipPhoneAddressOption === 2 ? false : true}
+                    onChange={onChange7}
+                    value={formData.ipPhoneAddress}/>
+                </Space>
+              </Space>
+            </Card>
+          </Col>
+        </Row>
       )
     }
   };
@@ -67,7 +152,7 @@ const ProductInfo = ({formData, setFormData}) => {
         value: 'A3',
       },
       {
-        label: 'Internet + TV Box + IP Phone 750: $105.95/month',
+        label: 'Internet + TV Box + IP Phone 1000: $105.95/month',
         value: 'A4',
       },
     ],
@@ -85,51 +170,31 @@ const ProductInfo = ({formData, setFormData}) => {
         value: 'A7',
       },
       {
-        label: 'Internet 750: $105.95/month',
+        label: 'Internet 1000: $105.95/month',
         value: 'A8',
       },
     ],
     'TV Box': [
       {
-        label: 'TV Box 75: $55.95/month',
+        label: 'Rent Box 75: $10.00/month',
         value: 'A9',
       },
       {
-        label: 'TV Box 300: $85.95/month',
+        label: 'Buy TV Box: $300',
         value: 'A21',
-      },
-      {
-        label: 'TV Box 750: $105.95/month',
-        value: 'A31',
-      },
-      {
-        label: 'TV Box 750: $105.95/month',
-        value: 'A41',
       },
     ],
     'IP Phone': [
       {
-        label: 'IP Phone 75: $55.95/month',
+        label: 'IP Phone Rental: 10.95/month',
         value: 'A111',
-      },
-      {
-        label: 'IP Phone 300: $85.95/month',
-        value: 'A211',
-      },
-      {
-        label: 'IP Phone 750: $105.95/month',
-        value: 'A311',
-      },
-      {
-        label: 'IP Phone 750: $105.95/month',
-        value: 'A411',
       },
     ],
   };
 
   return (
     <Checkbox.Group
-    onChange={onChange}
+    onChange={onChange1}
     value={formData.products}
     style={{ width: '100%' }}>
       <Space direction='vertical' size='middle' style={{ display: 'flex' }}>
@@ -154,6 +219,7 @@ const ProductInfo = ({formData, setFormData}) => {
                   })
                 }
                 {tvBox(p)}
+                {ipPhone(p)}
               </Space>
             )
           })

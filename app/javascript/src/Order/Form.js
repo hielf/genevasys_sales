@@ -20,6 +20,12 @@ function OrderForm() {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     products: [],
+    tvBoxQty: 1,
+    ipPhoneQty: 1,
+    ipPhonePortIn: 1,
+    ipPhonePortInNumber: "",
+    ipPhoneAddressOption: 1,
+    ipPhoneAddress: "",
     installationTime: 1,
     dateRequest: "",
     firstName: "",
@@ -105,9 +111,11 @@ function OrderForm() {
           </Content>
           <div />
           <Content>
-            <Row gutter={[16, 16]} justify="center">
-              <Col span={8}>{ PrevButtonClick() }</Col>
-              <Col span={8}>{ NextButtonClick() }</Col>
+            <Row justify="space-evenly center">
+              <Col span={2}></Col>
+              <Col span={6}>{ PrevButtonClick() }</Col>
+              <Col span={6}>{ NextButtonClick() }</Col>
+              <Col span={2}></Col>
             </Row>
           </Content>
         </Space>
