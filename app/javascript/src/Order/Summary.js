@@ -39,15 +39,15 @@ const Summary = ({formData, setFormData}) => {
           <Col span={5}>{ formData.buzz }</Col>
         </Row>
         <Row justify="space-between center">
-          <Col span={3}>City/Town:</Col>
+          <Col span={3}><span style={{fontWeight: 'bold'}}>City/Town:</span></Col>
           <Col span={5}>{ formData.city }</Col>
-          <Col span={3}>Province:</Col>
+          <Col span={3}><span style={{fontWeight: 'bold'}}>Province:</span></Col>
           <Col span={5}>{ formData.province }</Col>
-          <Col span={3}>Postal Code:</Col>
+          <Col span={3}><span style={{fontWeight: 'bold'}}>Postal Code:</span></Col>
           <Col span={5}>{ formData.postalCode }</Col>
         </Row>
         <Row justify="space-between center">
-          <Col span={3}>Billing Address:</Col>
+          <Col span={3}><span style={{fontWeight: 'bold'}}>Billing Address:</span></Col>
           <Col span={21}>{ formData.billingAddress }</Col>
         </Row>
 
@@ -55,9 +55,9 @@ const Summary = ({formData, setFormData}) => {
           Service Request
         </Divider>
         <Row justify="space-between center">
-          <Col span={3}>Planed Date of Delivery:</Col>
+          <Col span={3}><span style={{fontWeight: 'bold'}}>Planed Date of Delivery:</span></Col>
           <Col span={5}>{ formData.installationTime }</Col>
-          <Col span={3}>Date Request:</Col>
+          <Col span={3}><span style={{fontWeight: 'bold'}}>Date Request:</span></Col>
           <Col span={5}>{ formData.dateRequest }</Col>
         </Row>
       </Space>
