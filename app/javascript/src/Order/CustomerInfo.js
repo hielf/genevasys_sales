@@ -33,7 +33,10 @@ const CustomerInfo = ({formData, setFormData}) => {
     };
 
   const onChange7 = ({ target: { value } }) => {
-      setFormData({ ...formData, installationAddress: value });
+      if (formData.optionsSameAddress === 1) {
+        setFormData((formData) => ({ ...formData, billingAddress: value }));
+      }
+      setFormData((formData) => ({ ...formData, installationAddress: value }));
     };
 
   const onChange8 = (value) => {
@@ -61,7 +64,10 @@ const CustomerInfo = ({formData, setFormData}) => {
     };
 
   const onChange14 = ({ target: { value } }) => {
-      setFormData({ ...formData, optionsSameAddress: value });
+      if (value === 1) {
+        setFormData((formData) => ({ ...formData, billingAddress: formData.installationAddress }));
+      }
+      setFormData((formData) => ({ ...formData, optionsSameAddress: value }));
     };
 
   const onChange15 = ({ target: { value } }) => {
@@ -177,7 +183,7 @@ const CustomerInfo = ({formData, setFormData}) => {
         </Radio>
       </Radio.Group>
       <Input
-          placeholder={formData.optionsSameAddress === 1 ? formData.installationAddress : 'Billing Address'}
+          placeholder='Billing Address'
           disabled={formData.optionsSameAddress === 2 ? false : true}
           onChange={onChange15}
           value={formData.billingAddress}

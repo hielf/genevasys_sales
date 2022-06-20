@@ -38,6 +38,10 @@ const PaymentInfo = ({formData, setFormData}) => {
     setFormData({ ...formData, cvv: value });
   };
 
+  const onChange8 = ({ target: { value } }) => {
+    setFormData({ ...formData, cardRegistrationAddress: value });
+  };
+
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
       <Divider orientation="left">
@@ -121,6 +125,10 @@ const PaymentInfo = ({formData, setFormData}) => {
             maxLength={3}/>
         </Col>
       </Row>
+      <Input
+        placeholder="Credit Card Registration Address"
+        onChange={onChange8}
+        value={formData.cardRegistrationAddress}/>
     </Space>
   );
 };

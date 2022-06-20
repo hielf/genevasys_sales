@@ -15,6 +15,7 @@ const ServiceInfo = ({formData, setFormData}) => {
   const onChangeDate = (date, dateString) => {
     console.log(date, dateString);
     setFormData({ ...formData, dateRequest: date });
+    console.log(date.format('DD/MMM/YYYY'));
   };
 
   const disabledDate = (current) => {

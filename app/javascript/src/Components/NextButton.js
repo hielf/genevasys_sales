@@ -39,6 +39,7 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => (
       alert("FORM SUBMITTED");
     } else {
       console.log(formData);
+      const d = new Date();
       if (step === 0 && formData.products.length === 0) {
         error("Please choose your product")
       } else if (step === 1 && formData.dateRequest === '') {
@@ -73,6 +74,16 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => (
         error("YY required")
       } else if (step === 3 && formData.cvv.trim() === '') {
         error("CVV required")
+      } else if (step === 3 && formData.mm.trim().length !== 2) {
+        error("MM is invalid")
+      } else if (step === 3 && formData.yy.trim().length !== 2) {
+        error("YY is invalid")
+      } else if (step === 3 && Number(formData.mm) > 12) {
+        error("MM is invalid")
+      } else if (step === 3 && parseInt(formData.yy) < (d.getFullYear() % 100)) {
+        error("YY is invalid")
+      } else if (step === 3 && formData.cvv.trim().length !== 3) {
+        error("CVV is invalid")
       } else {
         setStep((step) => step + 1);
       }
