@@ -17,7 +17,7 @@ import Summary from './Summary'
 function OrderForm() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title, Paragraph, Text, Link } = Typography;
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(4);
   const [formData, setFormData] = useState({
     products: [],
     tvBoxQty: 1,

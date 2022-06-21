@@ -62,6 +62,8 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => (
         error("Postal Code required")
       } else if (step === 2 && formData.optionsSameAddress === 2 && formData.billingAddress.trim() === '') {
         error("Billing address required")
+      } else if (step === 2 && formData.optionsUnitType === 3 && formData.unitType.trim() === '') {
+        error("Unit type required")
       } else if (step === 3 && formData.cardFirstName.trim() === '') {
         error("First name required")
       } else if (step === 3 && formData.cardLastName.trim() === '') {
