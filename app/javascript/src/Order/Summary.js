@@ -59,7 +59,7 @@ const Summary = ({formData, setFormData}) => {
       },
     ],
   };
-  
+
   const lableStyle = { fontWeight: 'bold', color: '#90BA75', };
   const dataStyle = { textDecoration: 'underline', };
 
@@ -69,7 +69,7 @@ const Summary = ({formData, setFormData}) => {
     } else if (optionsUnitType === 2) {
       return ("Basement")
     } else if (optionsUnitType === 3) {
-      return (formData.unitType)
+      return ("Unit")
     }
   };
 

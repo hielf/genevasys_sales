@@ -39,7 +39,6 @@ function OrderForm() {
     province: "BC",
     postalCode: "",
     optionsUnitType: 1,
-    unitType: "",
     buzz: "",
     optionsSameAddress: 1,
     billingAddress: "",

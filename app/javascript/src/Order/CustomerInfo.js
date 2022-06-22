@@ -55,10 +55,6 @@ const CustomerInfo = ({formData, setFormData}) => {
       setFormData({ ...formData, optionsUnitType: value });
     };
 
-  const onChange12 = ({ target: { value } }) => {
-      setFormData({ ...formData, unitType: value });
-    };
-
   const onChange13 = ({ target: { value } }) => {
       setFormData({ ...formData, buzz: value });
     };
@@ -99,7 +95,7 @@ const CustomerInfo = ({formData, setFormData}) => {
           <AimOutlined />Address Information
         </Space>
       </Divider>
-      <Input placeholder="Installation Address" onChange={onChange7} value={formData.installationAddress} />
+      <Input placeholder="Installation Address (#Unit-Number Street)" onChange={onChange7} value={formData.installationAddress} />
       <Row>
         <Col span={12}>
           <Select defaultValue="VANCOUVER" style={{ width: "100%" }} onChange={onChange8} value={formData.city} >
@@ -153,21 +149,19 @@ const CustomerInfo = ({formData, setFormData}) => {
               Basement
             </Radio>
             <Radio value={3}>
-              Other
+              Unit
             </Radio>
           </Radio.Group>
         </Col>
         <Col span={12}>
           <Input
-              placeholder="UnitType"
+              placeholder="#Buzz"
               disabled={formData.optionsUnitType === 3 ? false : true}
-              onChange={onChange12}
-              value={formData.unitType}
+              onChange={onChange13}
+              value={formData.buzz}
             />
         </Col>
       </Row>
-
-      <Input placeholder="#Buzz" onChange={onChange13} value={formData.buzz} />
 
       <Divider orientation="left">
         <Space direction='horizontal' size='small' >
