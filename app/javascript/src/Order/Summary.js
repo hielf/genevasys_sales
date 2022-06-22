@@ -5,6 +5,61 @@ import { GlobalOutlined, Typography } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 
 const Summary = ({formData, setFormData}) => {
+  const list = {
+    Bundle: [
+      {
+        label: 'Internet + TV Box + IP Phone 75: $55.95/month',
+        value: 'A1',
+      },
+      {
+        label: 'Internet + TV Box + IP Phone 300: $85.95/month',
+        value: 'A2',
+      },
+      {
+        label: 'Internet + TV Box + IP Phone 750: $105.95/month',
+        value: 'A3',
+      },
+      {
+        label: 'Internet + TV Box + IP Phone 1000: $105.95/month',
+        value: 'A4',
+      },
+    ],
+    Internet: [
+      {
+        label: 'Internet 75: $55.95/month',
+        value: 'A5',
+      },
+      {
+        label: 'Internet 300: $85.95/month',
+        value: 'A6',
+      },
+      {
+        label: 'Internet 750: $105.95/month',
+        value: 'A7',
+      },
+      {
+        label: 'Internet 1000: $105.95/month',
+        value: 'A8',
+      },
+    ],
+    'TV Box': [
+      {
+        label: 'Rent Box 75: $10.00/month',
+        value: 'A9',
+      },
+      {
+        label: 'Buy TV Box: $300',
+        value: 'A21',
+      },
+    ],
+    'IP Phone': [
+      {
+        label: 'IP Phone Rental: 10.95/month',
+        value: 'A111',
+      },
+    ],
+  };
+  
   const lableStyle = { fontWeight: 'bold', color: '#90BA75', };
   const dataStyle = { textDecoration: 'underline', };
 
