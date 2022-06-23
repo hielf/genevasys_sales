@@ -8,14 +8,11 @@ import { ClockCircleOutlined, CalendarOutlined } from '@ant-design/icons';
 
 const ServiceInfo = ({formData, setFormData}) => {
   const onChange = (e) => {
-    console.log('checked = ', e);
     setFormData({ ...formData, installationTime: e.target.value });
   };
 
   const onChangeDate = (date, dateString) => {
-    console.log(date, dateString);
     setFormData({ ...formData, dateRequest: date });
-    console.log(date.format('DD/MMM/YYYY'));
   };
 
   const disabledDate = (current) => {

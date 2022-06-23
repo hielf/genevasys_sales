@@ -142,52 +142,63 @@ const ProductInfo = ({formData, setFormData}) => {
       {
         label: 'Internet + TV Box + IP Phone 75: $55.95/month',
         value: 'A1',
+        price: 55.95,
       },
       {
         label: 'Internet + TV Box + IP Phone 300: $85.95/month',
         value: 'A2',
+        price: 155.95,
       },
       {
         label: 'Internet + TV Box + IP Phone 750: $105.95/month',
         value: 'A3',
+        price: 255.95,
       },
       {
         label: 'Internet + TV Box + IP Phone 1000: $105.95/month',
         value: 'A4',
+        price: 355.95,
       },
     ],
     Internet: [
       {
         label: 'Internet 75: $55.95/month',
         value: 'A5',
+        price: 55.95,
       },
       {
         label: 'Internet 300: $85.95/month',
         value: 'A6',
+        price: 515.95,
       },
       {
         label: 'Internet 750: $105.95/month',
         value: 'A7',
+        price: 525.95,
       },
       {
         label: 'Internet 1000: $105.95/month',
         value: 'A8',
+        price: 535.95,
       },
     ],
     'TV Box': [
       {
         label: 'Rent Box 75: $10.00/month',
         value: 'A9',
+        price: 15.95,
       },
       {
         label: 'Buy TV Box: $300',
         value: 'A21',
+        price: 55.95,
       },
     ],
     'IP Phone': [
       {
         label: 'IP Phone Rental: 10.95/month',
         value: 'A111',
+        price: 15.95,
       },
     ],
   };
