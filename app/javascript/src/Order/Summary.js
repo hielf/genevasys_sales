@@ -56,7 +56,7 @@ const Summary = ({formData, setFormData}) => {
     }
   };
 
-  const qtyDisplay = (product) => {
+  const QtyDisplay = (product) => {
     console.log(product);
     if (product.value.includes("C")) {
       return (
@@ -92,7 +92,7 @@ const Summary = ({formData, setFormData}) => {
                 <span>{ product[0].label }</span>
               </Col>
               <Col span={5}>
-                {qtyDisplay(product[0])}
+                {QtyDisplay(product[0])}
               </Col>
               <Col span={4}>
                 <span style={ boldStyle }>${ product[0].price }</span>
@@ -104,7 +104,7 @@ const Summary = ({formData, setFormData}) => {
     )
   };
 
-  const ipPhoneInfoDisplay = () => {
+  const IpPhoneInfoDisplay = () => {
     if (formData.ipPhoneQty > 0) {
       return (
         <Card>
@@ -236,7 +236,7 @@ const Summary = ({formData, setFormData}) => {
           Product Request
         </Divider>
         { ProductsQtyDisplay(formData.productsDetail) }
-        { ipPhoneInfoDisplay() }
+        { IpPhoneInfoDisplay() }
 
         <Divider orientation="center">
           Service Request
