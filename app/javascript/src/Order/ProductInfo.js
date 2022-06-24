@@ -8,7 +8,19 @@ import { HomeOutlined, WifiOutlined, PlaySquareOutlined, PhoneOutlined } from '@
 const ProductInfo = ({formData, setFormData}) => {
 
   const onChange1 = (checkedValues) => {
-    setFormData({ ...formData, products: checkedValues })
+    var listData = [];
+
+    checkedValues.map(value => {
+      Object.keys(list).map(p => {
+        const l = list[p]
+        if ((l.filter((e) => e.value === value)).length !== 0) {
+          listData.push((l.filter((e) => e.value === value)))
+        }
+      })
+    })
+
+    setFormData((formData) => ({ ...formData, products: checkedValues }));
+    setFormData((formData) => ({ ...formData, productsDetail: listData }));
   };
 
   const onChange2 = (value) => {

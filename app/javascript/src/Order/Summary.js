@@ -102,20 +102,24 @@ const Summary = ({formData, setFormData}) => {
     }
   };
 
-  const ProductsDisplay = () => {
-    const products=['A1','A2','A3']
+  const ProductsDisplay = (products) => {
     return (
       <div>
-        {products.map(id => {
-          console.log(id);
-          <Row justify="space-between center">
-            <Col span={24}>
-              <Space direction='horizontal' size='small' >
-                <span style={lableStyle}>First Name:</span>
-                <span style={dataStyle}>{ id }</span>
-              </Space>
-            </Col>
-          </Row>
+        {products.map(product => {
+          console.log(product[0]);
+          return (
+            <Row justify="space-between center" key={ product[0].value }>
+              <Col span={18}>
+                <span style={dataStyle}>{ product[0].label }</span>
+              </Col>
+              <Col span={2}>
+                
+              </Col>
+              <Col span={4}>
+                <span style={dataStyle}>{ product[0].price }</span>
+              </Col>
+            </Row>
+          )
         })}
       </div>
     )
@@ -221,7 +225,7 @@ const Summary = ({formData, setFormData}) => {
         <Divider orientation="center">
           Product Request
         </Divider>
-        { ProductsDisplay() }
+        { ProductsDisplay(formData.productsDetail) }
 
         <Divider orientation="center">
           Service Request
