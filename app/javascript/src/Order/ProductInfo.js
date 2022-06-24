@@ -30,15 +30,19 @@ const ProductInfo = ({formData, setFormData}) => {
       }
     })
 
-    if (hasTypeC) {
-      setFormData((formData) => ({ ...formData, tvBoxQty: 1 }));
-    } else {
+    if (hasTypeC === true) {
+      if (formData.tvBoxQty === 0) {
+        setFormData((formData) => ({ ...formData, tvBoxQty: 1 }));
+      }
+    } else if (hasTypeC === false) {
       setFormData((formData) => ({ ...formData, tvBoxQty: 0 }));
     }
 
-    if (hasTypeD) {
-      setFormData((formData) => ({ ...formData, ipPhoneQty: 1 }));
-    } else {
+    if (hasTypeD === true) {
+      if (formData.ipPhoneQty === 0) {
+        setFormData((formData) => ({ ...formData, ipPhoneQty: 1 }));
+      }
+    } else if (hasTypeD === false) {
       setFormData((formData) => ({ ...formData, ipPhoneQty: 0 }));
     }
 

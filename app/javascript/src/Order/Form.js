@@ -17,42 +17,42 @@ import Summary from './Summary'
 function OrderForm() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title, Paragraph, Text, Link } = Typography;
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(4);
   const [formData, setFormData] = useState({
-    products: [],
-    productsDetail: [],
-    tvBoxQty: 0,
-    ipPhoneQty: 0,
+    products: ['B7', 'D111', 'A1', 'C9'],
+    productsDetail: [[{label: 'Internet 750: $105.95/month', value: 'B7', price: 525.95}],[{label: 'IP Phone Rental: 10.95/month', value: 'D111', price: 15.95}],[{label: 'Internet + TV Box + IP Phone 75: $55.95/month', value: 'A1', price: 55.95}],[{label: 'Rent Box 75: $10.00/month', value: 'C9', price: 15.95}]],
+    tvBoxQty: 2,
+    ipPhoneQty: 3,
     ipPhonePortIn: 1,
-    ipPhonePortInNumber: "",
+    ipPhonePortInNumber: "435423642",
     ipPhoneAddressOption: 1,
-    ipPhoneAddress: "",
+    ipPhoneAddress: "8600 Kelmore Rd",
     installationTime: 1,
     dateRequest: "",
-    firstName: "",
+    firstName: "zishi",
     middleName: "",
-    lastName: "",
-    contactPhone: "",
+    lastName: "mm",
+    contactPhone: "5776542",
     altPhone: "",
-    email: "",
-    installationAddress: "",
+    email: "fdsaf@gmds.com",
+    installationAddress: "8600 Kelmore Rd",
     city: "VANCOUVER",
     province: "BC",
-    postalCode: "",
+    postalCode: "v2gc5s",
     optionsUnitType: 1,
     buzz: "",
     optionsSameAddress: 1,
-    billingAddress: "",
+    billingAddress: "8600 Kelmore Rd",
     optionsCardType: 1,
-    cardFirstName: "",
-    cardLastName: "",
-    cardNumber: "",
-    mm: "",
-    yy: "",
-    cvv: "",
+    cardFirstName: "zisg",
+    cardLastName: "mou",
+    cardNumber: "543643765763",
+    mm: "11",
+    yy: "22",
+    cvv: "543",
     firstInitialPayment: "",
     recurrentPayment: "",
-    cardRegistrationAddress: ""
+    cardRegistrationAddress: "8600 Kelmore Rd"
   });
 
   const FormTitles = ["Service Request", "Service Time", "Customer Info", "Payment Info", "Review"];

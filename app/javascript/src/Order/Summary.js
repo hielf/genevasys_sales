@@ -1,78 +1,15 @@
 import React from 'react';
 import { Layout, Divider, Space } from 'antd';
 import { Row, Col } from 'antd';
+import { Card } from 'antd';
 import { GlobalOutlined, Typography } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 
 const Summary = ({formData, setFormData}) => {
-  const list = {
-    Bundle: [
-      {
-        label: 'Internet + TV Box + IP Phone 75: $55.95/month',
-        value: 'A1',
-        price: 55.95,
-      },
-      {
-        label: 'Internet + TV Box + IP Phone 300: $85.95/month',
-        value: 'A2',
-        price: 155.95,
-      },
-      {
-        label: 'Internet + TV Box + IP Phone 750: $105.95/month',
-        value: 'A3',
-        price: 255.95,
-      },
-      {
-        label: 'Internet + TV Box + IP Phone 1000: $105.95/month',
-        value: 'A4',
-        price: 355.95,
-      },
-    ],
-    Internet: [
-      {
-        label: 'Internet 75: $55.95/month',
-        value: 'A5',
-        price: 55.95,
-      },
-      {
-        label: 'Internet 300: $85.95/month',
-        value: 'A6',
-        price: 515.95,
-      },
-      {
-        label: 'Internet 750: $105.95/month',
-        value: 'A7',
-        price: 525.95,
-      },
-      {
-        label: 'Internet 1000: $105.95/month',
-        value: 'A8',
-        price: 535.95,
-      },
-    ],
-    'TV Box': [
-      {
-        label: 'Rent Box 75: $10.00/month',
-        value: 'A9',
-        price: 15.95,
-      },
-      {
-        label: 'Buy TV Box: $300',
-        value: 'A21',
-        price: 55.95,
-      },
-    ],
-    'IP Phone': [
-      {
-        label: 'IP Phone Rental: 10.95/month',
-        value: 'A111',
-        price: 15.95,
-      },
-    ],
-  };
-
   const lableStyle = { fontWeight: 'bold', color: '#90BA75', };
   const dataStyle = { textDecoration: 'underline', };
+  const lableStyleSmall = { fontWeight: 'bold', color: '#90BA75', fontSize: '10px', };
+  const dataStyleSmall = { textDecoration: 'underline', fontSize: '10px', };
   const boldStyle = { fontWeight: 'bold', };
 
   const UnitType = (optionsUnitType) => {
@@ -103,18 +40,59 @@ const Summary = ({formData, setFormData}) => {
     }
   };
 
-  const ProductsDisplay = (products) => {
+  const IpPhonePortIn = (ipPhonePortIn) => {
+    if (ipPhonePortIn === 1) {
+      return ("NEW")
+    } else if (ipPhonePortIn === 2) {
+      return ("Port in")
+    }
+  };
+
+  const IpPhoneAddress = (ipPhoneAddressOption) => {
+    if (ipPhoneAddressOption === 1) {
+      return ("SAME AS INSTALLATION ADDRESS")
+    } else if (ipPhoneAddressOption === 2) {
+      return (formData.ipPhoneAddress)
+    }
+  };
+
+  const qtyDisplay = (product) => {
+    console.log(product);
+    if (product.value.includes("C")) {
+      return (
+        <div>
+          <span>Qty: </span>
+          <span>
+            { formData.tvBoxQty }
+          </span>
+        </div>
+      )
+    }
+
+    if (product.value.includes("D")) {
+      return (
+        <div>
+          <span>Qty: </span>
+          <span>
+            { formData.ipPhoneQty }
+          </span>
+        </div>
+      )
+    }
+  };
+
+  const ProductsQtyDisplay = (products) => {
     return (
-      <div>
+      <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
         {products.map((product, index) => {
-          console.log(product[0]);
           return (
             <Row justify="space-between center" key={ product[0].value }>
-              <Col span={18}>
-                <span style={{}}>{ index + 1 }. { product[0].label }</span>
+              <Col span={15}>
+                <span style={ lableStyle }>{ index + 1 }. </span>
+                <span>{ product[0].label }</span>
               </Col>
-              <Col span={2}>
-
+              <Col span={5}>
+                {qtyDisplay(product[0])}
               </Col>
               <Col span={4}>
                 <span style={ boldStyle }>${ product[0].price }</span>
@@ -122,8 +100,39 @@ const Summary = ({formData, setFormData}) => {
             </Row>
           )
         })}
-      </div>
+      </Space>
     )
+  };
+
+  const ipPhoneInfoDisplay = () => {
+    if (formData.ipPhoneQty > 0) {
+      return (
+        <Card>
+          <Row justify="space-between center">
+            <Col span={8}>
+              <Space direction='horizontal' size='small' >
+                <span style={lableStyleSmall}>IP Phone:</span>
+                <span style={dataStyleSmall}>{ IpPhonePortIn(formData.ipPhonePortIn) }</span>
+              </Space>
+            </Col>
+            <Col span={16}>
+              <Space direction='horizontal' size='small' >
+                <span style={lableStyleSmall}>Port In Number:</span>
+                <span style={dataStyleSmall}>{ formData.ipPhonePortInNumber }</span>
+              </Space>
+            </Col>
+          </Row>
+          <Row justify="space-between center">
+            <Col span={24}>
+              <Space direction='horizontal' size='small' >
+                <span style={lableStyleSmall}>Address:</span>
+                <span style={dataStyleSmall}>{ IpPhoneAddress(formData.ipPhoneAddressOption) }</span>
+              </Space>
+            </Col>
+          </Row>
+        </Card>
+      )
+    }
   };
 
   return (
@@ -226,7 +235,8 @@ const Summary = ({formData, setFormData}) => {
         <Divider orientation="center">
           Product Request
         </Divider>
-        { ProductsDisplay(formData.productsDetail) }
+        { ProductsQtyDisplay(formData.productsDetail) }
+        { ipPhoneInfoDisplay() }
 
         <Divider orientation="center">
           Service Request
