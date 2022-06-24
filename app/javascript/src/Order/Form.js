@@ -21,8 +21,8 @@ function OrderForm() {
   const [formData, setFormData] = useState({
     products: [],
     productsDetail: [],
-    tvBoxQty: 1,
-    ipPhoneQty: 1,
+    tvBoxQty: 0,
+    ipPhoneQty: 0,
     ipPhonePortIn: 1,
     ipPhonePortInNumber: "",
     ipPhoneAddressOption: 1,

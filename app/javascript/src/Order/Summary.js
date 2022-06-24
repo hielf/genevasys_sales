@@ -73,6 +73,7 @@ const Summary = ({formData, setFormData}) => {
 
   const lableStyle = { fontWeight: 'bold', color: '#90BA75', };
   const dataStyle = { textDecoration: 'underline', };
+  const boldStyle = { fontWeight: 'bold', };
 
   const UnitType = (optionsUnitType) => {
     if (optionsUnitType === 1) {
@@ -105,18 +106,18 @@ const Summary = ({formData, setFormData}) => {
   const ProductsDisplay = (products) => {
     return (
       <div>
-        {products.map(product => {
+        {products.map((product, index) => {
           console.log(product[0]);
           return (
             <Row justify="space-between center" key={ product[0].value }>
               <Col span={18}>
-                <span style={dataStyle}>{ product[0].label }</span>
+                <span style={{}}>{ index + 1 }. { product[0].label }</span>
               </Col>
               <Col span={2}>
-                
+
               </Col>
               <Col span={4}>
-                <span style={dataStyle}>{ product[0].price }</span>
+                <span style={ boldStyle }>${ product[0].price }</span>
               </Col>
             </Row>
           )
