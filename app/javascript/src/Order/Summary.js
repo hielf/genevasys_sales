@@ -57,7 +57,6 @@ const Summary = ({formData, setFormData}) => {
   };
 
   const QtyDisplay = (product) => {
-    console.log(product);
     if (product.value.includes("C")) {
       return (
         <div>
@@ -88,18 +87,26 @@ const Summary = ({formData, setFormData}) => {
           return (
             <Row justify="space-between center" key={ product[0].value }>
               <Col span={15}>
-                <span style={ lableStyle }>{ index + 1 }. </span>
+                <span style={ lableStyle }>· </span>
                 <span>{ product[0].label }</span>
               </Col>
               <Col span={5}>
                 {QtyDisplay(product[0])}
               </Col>
               <Col span={4}>
-                <span style={ boldStyle }>${ product[0].price }</span>
+                <span>${ product[0].price }</span>
               </Col>
             </Row>
           )
         })}
+        <Row justify="space-between center">
+          <Col span={20}>
+            <span style={ boldStyle }>Total:</span>
+          </Col>
+          <Col span={4}>
+            <span style={ boldStyle }>${ products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b).toFixed(2) }</span>
+          </Col>
+        </Row>
       </Space>
     )
   };
