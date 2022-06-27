@@ -32,5 +32,7 @@ const [formData, setFormData] = useState({
   cvv: "",
   firstInitialPayment: "",
   recurrentPayment: "",
-  cardRegistrationAddress: ""
+  cardRegistrationAddress: "",
+  checkAgreeMent: false,
+  promoteCode: "",
 });

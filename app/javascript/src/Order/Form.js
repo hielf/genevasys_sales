@@ -13,11 +13,12 @@ import ServiceInfo from './ServiceInfo'
 import CustomerInfo from './CustomerInfo'
 import PaymentInfo from './PaymentInfo'
 import Summary from './Summary'
+import AgreeMent from './AgreeMent'
 
 function OrderForm() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title, Paragraph, Text, Link } = Typography;
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(4);
   const [formData, setFormData] = useState({
     products: ['B7', 'D111', 'A1', 'C9'],
     productsDetail: [[{label: 'Internet 750: $105.95/month', value: 'B7', price: 525.95}],[{label: 'IP Phone Rental: 10.95/month', value: 'D111', price: 15.95}],[{label: 'Internet + TV Box + IP Phone 75: $55.95/month', value: 'A1', price: 55.95}],[{label: 'Rent Box 75: $10.00/month', value: 'C9', price: 15.95}]],
@@ -52,7 +53,9 @@ function OrderForm() {
     cvv: "543",
     firstInitialPayment: "",
     recurrentPayment: "",
-    cardRegistrationAddress: "8600 Kelmore Rd"
+    cardRegistrationAddress: "8600 Kelmore Rd",
+    checkAgreeMent: false,
+    promoteCode: "",
   });
 
   const FormTitles = ["Service Request", "Service Time", "Customer Info", "Payment Info", "Review"];
@@ -73,9 +76,14 @@ function OrderForm() {
     } else if (step === 2) {
       return <CustomerInfo formData={formData} setFormData={setFormData} />;
     } else if (step === 3) {
-      return <PaymentInfo formData={formData} setFormData={setFormData} />;;
+      return <PaymentInfo formData={formData} setFormData={setFormData} />;
     } else if (step === 4) {
-      return <Summary formData={formData} setFormData={setFormData} />;;
+      return (
+        <div>
+          <Summary formData={formData} setFormData={setFormData} />
+          <AgreeMent formData={formData} setFormData={setFormData} />
+        </div>
+      )
     }
   };
 
