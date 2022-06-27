@@ -86,7 +86,11 @@ const CustomerInfo = ({formData, setFormData}) => {
           <ContactsOutlined />Contact Information
         </Space>
       </Divider>
-      <Input placeholder="Contact Phone" onChange={onChange4} value={formData.contactPhone} />
+      <Input
+      placeholder="Contact Phone"
+      mask={'(000) 000-0000'}
+      onChange={onChange4}
+      value={formData.contactPhone} />
       <Input placeholder="Alt. Phone" onChange={onChange5} value={formData.altPhone} />
       <Input placeholder="E-mail" onChange={onChange6} value={formData.email} />
 

@@ -101,10 +101,34 @@ const Summary = ({formData, setFormData}) => {
         })}
         <Row justify="space-between center">
           <Col span={20}>
-            <span style={ boldStyle }>Total:</span>
+            <span style={ lableStyle }>Total(excl.tax):</span>
           </Col>
           <Col span={4}>
             <span style={ boldStyle }>${ products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b).toFixed(2) }</span>
+          </Col>
+        </Row>
+        <Row justify="space-between center">
+          <Col span={20}>
+            <span style={ lableStyle }>Total GST/5%:</span>
+          </Col>
+          <Col span={4}>
+            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b)*0.05).toFixed(2) }</span>
+          </Col>
+        </Row>
+        <Row justify="space-between center">
+          <Col span={20}>
+            <span style={ lableStyle }>Total PST(BC)/7%:</span>
+          </Col>
+          <Col span={4}>
+            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b)*0.07).toFixed(2) }</span>
+          </Col>
+        </Row>
+        <Row justify="space-between center">
+          <Col span={20}>
+            <span style={ lableStyle }>Total(inc.tax):</span>
+          </Col>
+          <Col span={4}>
+            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b)*1.12).toFixed(2) }</span>
           </Col>
         </Row>
       </Space>
