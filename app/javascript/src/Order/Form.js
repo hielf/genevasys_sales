@@ -79,10 +79,11 @@ function OrderForm() {
       return <PaymentInfo formData={formData} setFormData={setFormData} />;
     } else if (step === 4) {
       return (
-        <div>
+        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
           <Summary formData={formData} setFormData={setFormData} />
+          <div/>
           <AgreeMent formData={formData} setFormData={setFormData} />
-        </div>
+        </Space>
       )
     }
   };

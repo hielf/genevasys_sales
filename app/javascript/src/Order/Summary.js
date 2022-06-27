@@ -6,9 +6,9 @@ import { GlobalOutlined, Typography } from 'antd';
 const { Title, Paragraph, Text, Link } = Typography;
 
 const Summary = ({formData, setFormData}) => {
-  const lableStyle = { fontWeight: 'bold', color: '#90BA75', };
+  const labelStyle = { fontWeight: 'bold', color: '#90BA75', };
   const dataStyle = { textDecoration: 'underline', };
-  const lableStyleSmall = { fontWeight: 'bold', color: '#90BA75', fontSize: '10px', };
+  const labelStyleSmall = { fontWeight: 'bold', color: '#90BA75', fontSize: '10px', };
   const dataStyleSmall = { textDecoration: 'underline', fontSize: '10px', };
   const boldStyle = { fontWeight: 'bold', };
 
@@ -87,7 +87,7 @@ const Summary = ({formData, setFormData}) => {
           return (
             <Row justify="space-between center" key={ product[0].value }>
               <Col span={15}>
-                <span style={ lableStyle }>· </span>
+                <span style={ labelStyle }>· </span>
                 <span>{ product[0].label }</span>
               </Col>
               <Col span={5}>
@@ -101,7 +101,7 @@ const Summary = ({formData, setFormData}) => {
         })}
         <Row justify="space-between center">
           <Col span={20}>
-            <span style={ lableStyle }>Total(excl.tax):</span>
+            <span style={ labelStyle }>Total(excl.tax):</span>
           </Col>
           <Col span={4}>
             <span style={ boldStyle }>${ products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b).toFixed(2) }</span>
@@ -109,7 +109,7 @@ const Summary = ({formData, setFormData}) => {
         </Row>
         <Row justify="space-between center">
           <Col span={20}>
-            <span style={ lableStyle }>Total GST/5%:</span>
+            <span style={ labelStyle }>Total GST/5%:</span>
           </Col>
           <Col span={4}>
             <span style={ boldStyle }>${ (products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b)*0.05).toFixed(2) }</span>
@@ -117,7 +117,7 @@ const Summary = ({formData, setFormData}) => {
         </Row>
         <Row justify="space-between center">
           <Col span={20}>
-            <span style={ lableStyle }>Total PST(BC)/7%:</span>
+            <span style={ labelStyle }>Total PST(BC)/7%:</span>
           </Col>
           <Col span={4}>
             <span style={ boldStyle }>${ (products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b)*0.07).toFixed(2) }</span>
@@ -125,7 +125,7 @@ const Summary = ({formData, setFormData}) => {
         </Row>
         <Row justify="space-between center">
           <Col span={20}>
-            <span style={ lableStyle }>Total(inc.tax):</span>
+            <span style={ labelStyle }>Total(inc.tax):</span>
           </Col>
           <Col span={4}>
             <span style={ boldStyle }>${ (products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b)*1.12).toFixed(2) }</span>
@@ -142,13 +142,13 @@ const Summary = ({formData, setFormData}) => {
           <Row justify="space-between center">
             <Col span={8}>
               <Space direction='horizontal' size='small' >
-                <span style={lableStyleSmall}>IP Phone:</span>
+                <span style={labelStyleSmall}>IP Phone:</span>
                 <span style={dataStyleSmall}>{ IpPhonePortIn(formData.ipPhonePortIn) }</span>
               </Space>
             </Col>
             <Col span={16}>
               <Space direction='horizontal' size='small' >
-                <span style={lableStyleSmall}>Port In Number:</span>
+                <span style={labelStyleSmall}>Port In Number:</span>
                 <span style={dataStyleSmall}>{ formData.ipPhonePortInNumber }</span>
               </Space>
             </Col>
@@ -156,7 +156,7 @@ const Summary = ({formData, setFormData}) => {
           <Row justify="space-between center">
             <Col span={24}>
               <Space direction='horizontal' size='small' >
-                <span style={lableStyleSmall}>Address:</span>
+                <span style={labelStyleSmall}>Address:</span>
                 <span style={dataStyleSmall}>{ IpPhoneAddress(formData.ipPhoneAddressOption) }</span>
               </Space>
             </Col>
@@ -175,19 +175,19 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>First Name:</span>
+              <span style={labelStyle}>First Name:</span>
               <span style={dataStyle}>{ formData.firstName }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Middle Name:</span>
+              <span style={labelStyle}>Middle Name:</span>
               <span style={dataStyle}>{ formData.middleName }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Last Name:</span>
+              <span style={labelStyle}>Last Name:</span>
               <span style={dataStyle}>{ formData.lastName }</span>
             </Space>
           </Col>
@@ -195,19 +195,19 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Contact Phone:</span>
+              <span style={labelStyle}>Contact Phone:</span>
               <span style={dataStyle}>{ formData.contactPhone }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Alt. Phone:</span>
+              <span style={labelStyle}>Alt. Phone:</span>
               <span style={dataStyle}>{ formData.altPhone }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>E-mail:</span>
+              <span style={labelStyle}>E-mail:</span>
               <span style={dataStyle}>{ formData.email }</span>
             </Space>
           </Col>
@@ -215,7 +215,7 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={24}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Installation Address:</span>
+              <span style={labelStyle}>Installation Address:</span>
               <span style={dataStyle}>{ formData.installationAddress }</span>
             </Space>
           </Col>
@@ -223,13 +223,13 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Unit Type:</span>
+              <span style={labelStyle}>Unit Type:</span>
               <span style={dataStyle}>{ UnitType(formData.optionsUnitType) }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Buzz #:</span>
+              <span style={labelStyle}>Buzz #:</span>
               <span style={dataStyle}>{ formData.buzz }</span>
             </Space>
           </Col>
@@ -237,19 +237,19 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>City/Town:</span>
+              <span style={labelStyle}>City/Town:</span>
               <span style={dataStyle}>{ formData.city }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Province:</span>
+              <span style={labelStyle}>Province:</span>
               <span style={dataStyle}>{ formData.province }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Postal Code:</span>
+              <span style={labelStyle}>Postal Code:</span>
               <span style={dataStyle}>{ formData.postalCode }</span>
             </Space>
           </Col>
@@ -257,7 +257,7 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={24}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Billing Address:</span>
+              <span style={labelStyle}>Billing Address:</span>
               <span style={dataStyle}>{ formData.billingAddress }</span>
             </Space>
           </Col>
@@ -275,13 +275,13 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Preferred delivery Time:</span>
+              <span style={labelStyle}>Preferred delivery Time:</span>
               <span style={dataStyle}>{ InstallationTime(formData.installationTime) }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Planed Date:</span>
+              <span style={labelStyle}>Planed Date:</span>
               <span style={dataStyle}>{ formData.dateRequest !== "" ? formData.dateRequest.format('DD/MMM/YYYY') : "" }</span>
             </Space>
           </Col>
@@ -293,7 +293,7 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Card Type:</span>
+              <span style={labelStyle}>Card Type:</span>
               <span style={dataStyle}>{ CardType(formData.optionsCardType) }</span>
             </Space>
           </Col>
@@ -301,13 +301,13 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Card Holder's First Name:</span>
+              <span style={labelStyle}>Card Holder's First Name:</span>
               <span style={dataStyle}>{ formData.cardFirstName }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Last Name:</span>
+              <span style={labelStyle}>Last Name:</span>
               <span style={dataStyle}>{ formData.cardLastName }</span>
             </Space>
           </Col>
@@ -315,7 +315,7 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={24}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Card Number:</span>
+              <span style={labelStyle}>Card Number:</span>
               <span style={dataStyle}>{ formData.cardNumber }</span>
             </Space>
           </Col>
@@ -323,13 +323,13 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Expiry Date:</span>
+              <span style={labelStyle}>Expiry Date:</span>
               <span style={dataStyle}>{ formData.mm }/{ formData.yy }</span>
             </Space>
           </Col>
           <Col span={8}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>CVV:</span>
+              <span style={labelStyle}>CVV:</span>
               <span style={dataStyle}>{ "***" }</span>
             </Space>
           </Col>
@@ -337,7 +337,7 @@ const Summary = ({formData, setFormData}) => {
         <Row justify="space-between center">
           <Col span={24}>
             <Space direction='horizontal' size='small' >
-              <span style={lableStyle}>Credit Card Registration Address:</span>
+              <span style={labelStyle}>Credit Card Registration Address:</span>
               <span style={dataStyle}>{ formData.cardRegistrationAddress }</span>
             </Space>
           </Col>
