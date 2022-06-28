@@ -14,7 +14,7 @@ import CustomerInfo from './CustomerInfo'
 import PaymentInfo from './PaymentInfo'
 import Summary from './Summary'
 import AgreeMent from './AgreeMent'
-import Submit from './Submit'
+import ResultForm from './ResultForm'
 
 function OrderForm() {
   const { Header, Footer, Sider, Content } = Layout;
@@ -55,11 +55,11 @@ function OrderForm() {
     firstInitialPayment: "",
     recurrentPayment: "",
     cardRegistrationAddress: "8600 Kelmore Rd",
-    checkAgreeMent: false,
-    promoteCode: "",
+    checkAgreeMent: true,
+    promoteCode: "32432",
   });
 
-  const FormTitles = ["Service Request", "Service Time", "Customer Info", "Payment Info", "Review"];
+  const FormTitles = ["Choose Product", "Service Time", "Customer Info", "Payment Info", "Review"];
 
   const NextButtonClick = () => {
     return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} formData={formData} />;
