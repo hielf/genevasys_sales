@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 import { Button, message } from 'antd';
 
 const success = (info) => {
@@ -36,7 +37,7 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => (
   block
   onClick={() => {
     if (step === FormTitles.length - 1) {
-      alert("FORM SUBMITTED");
+      this.history.pushState(null, 'submit');
     } else {
       console.log(formData);
       const d = new Date();
@@ -84,6 +85,10 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => (
         error("YY is invalid")
       } else if (step === 3 && formData.cvv.trim().length !== 3) {
         error("CVV is invalid")
+      } else if (step === 4 && formData.promoteCode.trim().length === '') {
+        error("Promote Code required")
+      } else if (step === 4 && formData.checkAgreeMent !== true) {
+        error("Please check user agreement")
       } else {
         setStep((step) => step + 1);
       }

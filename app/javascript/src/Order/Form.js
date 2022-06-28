@@ -14,6 +14,7 @@ import CustomerInfo from './CustomerInfo'
 import PaymentInfo from './PaymentInfo'
 import Summary from './Summary'
 import AgreeMent from './AgreeMent'
+import Submit from './Submit'
 
 function OrderForm() {
   const { Header, Footer, Sider, Content } = Layout;
@@ -85,6 +86,8 @@ function OrderForm() {
           <AgreeMent formData={formData} setFormData={setFormData} />
         </Space>
       )
+    } else if (step === 5) {
+      return <Submit formData={formData} setFormData={setFormData} />;
     }
   };
 
