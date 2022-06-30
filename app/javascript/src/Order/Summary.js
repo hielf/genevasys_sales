@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Layout, Divider, Space } from 'antd';
 import { Row, Col } from 'antd';
 import { Card } from 'antd';
@@ -348,3 +348,17 @@ const Summary = ({formData, setFormData}) => {
 };
 
 export default Summary;
+
+export const SummaryPrintTemplate = class SummaryPrintTemplate extends Component {
+  render() {
+    const formData = this.props.formData
+
+    const printTable = (
+      <div style={{ padding: '0 17.5%', marginTop: 64 }}>
+        <Summary formData={formData}/>
+      </div>
+    );
+
+    return printTable;
+  }
+};

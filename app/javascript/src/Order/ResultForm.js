@@ -5,12 +5,15 @@ import { Row, Col } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
 import { Button, Result } from 'antd';
 import HeaderTitle from '../Components/HeaderTitle'
-import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
-import Summary from './Summary'
+import ReactToPrint, { PrintContextConsumer, useReactToPrint } from 'react-to-print';
+import { SummaryPrintTemplate } from './Summary'
 
 function ResultForm() {
   const { Header, Footer, Sider, Content } = Layout;
   const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const HeaderTitleDisplay = () => {
     return <HeaderTitle step={-1} FormTitles={""} />;
@@ -56,50 +59,37 @@ function ResultForm() {
   });
 
   return (
-    <Layout style={{ minHeight: "100vh", backgroundColor:"#ffffff", }}>
-      <Header style={{ backgroundColor: "#90BA75", position: 'fixed', zIndex: 1, width: '100%', }}>
-        { HeaderTitleDisplay() }
-      </Header>
-      <Space direction="vertical" size="large" style={{ display: 'flex', }}>
-        <Content style={
-          isMobile ? {
-             padding: '0 50px', marginTop: 64
-          } : {
-             padding: '0 17.5%', marginTop: 64
-          }
-        }>
-          <Result
-            icon={<SmileOutlined />}
-            title="Great, we have done all the operations!"
-            extra={
-
-
-              <ReactToPrint
-                copyStyles={true}
-                trigger={() => (
-                  <Button
-                    aria-label="Print Licensee profile"
-                    aria-haspopup="false"
-                    size="large"
-                    type="primary"
-                  >
-                    Print
-                  </Button>
-                )}
-                content={() => componentRef.current}
-              />
-
+    <>
+      <Layout style={{ minHeight: "100vh", backgroundColor:"#ffffff", }}>
+        <Header style={{ backgroundColor: "#90BA75", position: 'fixed', zIndex: 1, width: '100%', }}>
+          { HeaderTitleDisplay() }
+        </Header>
+        <Space direction="vertical" size="large" style={{ display: 'flex', }}>
+          <Content style={
+            isMobile ? {
+               padding: '0 50px', marginTop: 64
+            } : {
+               padding: '0 17.5%', marginTop: 64
             }
-          />
-        </Content>
-        <Summary ref={componentRef} formData={formData} setFormData={setFormData} />
-        <div />
-      </Space>
-      <Footer style={{ textAlign: 'center', backgroundColor:"#ffffff" }}>
-        {!isMobile ? ('©2022 Geneva Systems Ltd.') : null}
-      </Footer>
-    </Layout>
-
+          }>
+            <Result
+              icon={<SmileOutlined />}
+              title="Great, we have done all the operations!"
+              extra={
+                <button onClick={handlePrint}>Print this out!</button>
+              }
+            />
+          </Content>
+          <div />
+        </Space>
+        <Footer style={{ textAlign: 'center', backgroundColor:"#ffffff" }}>
+          {!isMobile ? ('©2022 Geneva Systems Ltd.') : null}
+        </Footer>
+      </Layout>
+      <div style={{ overflow: 'hidden', height: 0 }}>
+        <SummaryPrintTemplate ref={componentRef} formData={formData} setFormData={setFormData} />
+      </div>
+    </>
   );
 }
 
