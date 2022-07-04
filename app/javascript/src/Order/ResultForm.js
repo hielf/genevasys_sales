@@ -86,7 +86,7 @@ const ResultForm = () => {
           {!isMobile ? ('©2022 Geneva Systems Ltd.') : null}
         </Footer>
       </Layout>
-      <div style={{ overflow: 'hidden', height: 0 }}>
+      <div style={{ overflow: 'hidden', height: '0' }}>
         <SummaryPrintTemplate ref={componentRef} formData={formData} setFormData={setFormData} />
       </div>
     </>
