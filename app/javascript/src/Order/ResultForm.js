@@ -8,7 +8,7 @@ import HeaderTitle from '../Components/HeaderTitle'
 import ReactToPrint, { PrintContextConsumer, useReactToPrint } from 'react-to-print';
 import { SummaryPrintTemplate } from './Summary'
 
-function ResultForm() {
+const ResultForm = () => {
   const { Header, Footer, Sider, Content } = Layout;
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -76,7 +76,7 @@ function ResultForm() {
               icon={<SmileOutlined />}
               title="Great, we have done all the operations!"
               extra={
-                <button onClick={handlePrint}>Print this out!</button>
+                <Button type='primary' size='large' onClick={handlePrint}>Print this out</Button>
               }
             />
           </Content>
