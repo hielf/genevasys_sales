@@ -252,7 +252,7 @@ const ProductInfo = ({formData, setFormData}) => {
           Object.keys(list).map(p => {
             return (
               <Space direction='vertical' size='middle' key={ 'space_key_' + p } style={{ display: 'flex' }}>
-                <Divider orientation='left'>
+                <Divider orientation='left' style={dividerStyle}>
                   <Space direction='horizontal' size='small' >
                     {icons(p)}{p}
                   </Space>

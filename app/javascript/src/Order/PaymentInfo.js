@@ -45,91 +45,142 @@ const PaymentInfo = ({formData, setFormData}) => {
 
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-      <Divider orientation="left" style={dividerStyle}>
-        <Space direction='horizontal' size='small' >
-          <GlobalOutlined />Card Type
-        </Space>
-      </Divider>
-
-      <Radio.Group name="optionsCardType" defaultValue={1} onChange={onChange1} value={formData.optionsCardType}>
-        <Radio value={1}>VISA</Radio>
-        <Radio value={2}>MasterCard</Radio>
-        <Radio value={3}>UnionPay</Radio>
-      </Radio.Group>
-
-      <Divider orientation="left" style={dividerStyle}>
-        <Space direction='horizontal' size='small' >
-          <UserOutlined />Card Holder's Name
-        </Space>
-      </Divider>
-      <Row gutter={[16, 16]}>
-        <Col span={12}>
-          <Input placeholder="First Name" onChange={onChange2} value={formData.cardFirstName} />
-        </Col>
-        <Col span={12}>
-          <Input placeholder="Last Name" onChange={onChange3} value={formData.cardLastName} />
-        </Col>
-      </Row>
-
+      <div/>
       <Divider orientation="left" style={dividerStyle}>
         <Space direction='horizontal' size='small' >
           <CreditCardOutlined />Credit Card Info
         </Space>
       </Divider>
-      <Input
-        placeholder="Card Number"
-        onChange={onChange4}
-        value={formData.cardNumber}
-        onKeyPress={(event) => {
-          if (!/[0-9]/.test(event.key)) {
-            event.preventDefault();
-          }
-        }}
-        maxLength={19}/>
-      <Row gutter={[16, 16]} align="middle">
-        <Col span={6}>
-          <Input placeholder="MM"
-            style={{ width: '100%' }}
-            onChange={onChange5}
-            value={formData.mm}
-            onKeyPress={(event) => {
-              if (!/[0-9]/.test(event.key)) {
-                event.preventDefault();
-              }
-            }}
-            maxLength={2}/>
-        </Col>
-        /
-        <Col span={6}>
-          <Input
-            placeholder="YY"
-            style={{ width: '100%' }}
-            onChange={onChange6}
-            value={formData.yy}
-            onKeyPress={(event) => {
-              if (!/[0-9]/.test(event.key)) {
-                event.preventDefault();
-              }
-            }}
-            maxLength={2}/>
-        </Col>
-        <Col span={6}>
-          <Input placeholder="CVV"
-            style={{ width: '100px' }}
-            onChange={onChange7}
-            value={formData.cvv}
-            onKeyPress={(event) => {
-              if (!/[0-9]/.test(event.key)) {
-                event.preventDefault();
-              }
-            }}
-            maxLength={3}/>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Card Type:</span>
         </Col>
       </Row>
-      <Input
-        placeholder="Credit Card Registration Address"
-        onChange={onChange8}
-        value={formData.cardRegistrationAddress}/>
+      <Row>
+        <Col span={24}>
+          <Radio.Group name="optionsCardType" defaultValue={1} onChange={onChange1} value={formData.optionsCardType}>
+            <Radio value={1}>VISA</Radio>
+            <Radio value={2}>MasterCard</Radio>
+            <Radio value={3}>UnionPay</Radio>
+          </Radio.Group>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Card Holder's Name:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Row gutter={[16, 16]}>
+            <Col span={12}>
+              <Input placeholder="First Name" onChange={onChange2} value={formData.cardFirstName} />
+            </Col>
+            <Col span={12}>
+              <Input placeholder="Last Name" onChange={onChange3} value={formData.cardLastName} />
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Card Number:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input
+            placeholder="Please input digt numbers"
+            onChange={onChange4}
+            value={formData.cardNumber}
+            onKeyPress={(event) => {
+              if (!/[0-9]/.test(event.key)) {
+                event.preventDefault();
+              }
+            }}
+            maxLength={19}/>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={12}>
+          <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+            <Row>
+              <Col span={24}>
+                <span style={labelStyle}>Expire Date:</span>
+              </Col>
+            </Row>
+            <Row gutter={[16, 16]} align="middle">
+              <Col span={6}>
+                <Input placeholder="MM"
+                  style={{ width: '100%' }}
+                  onChange={onChange5}
+                  value={formData.mm}
+                  onKeyPress={(event) => {
+                    if (!/[0-9]/.test(event.key)) {
+                      event.preventDefault();
+                    }
+                  }}
+                  maxLength={2}/>
+              </Col>
+              /
+              <Col span={6}>
+                <Input
+                  placeholder="YY"
+                  style={{ width: '100%' }}
+                  onChange={onChange6}
+                  value={formData.yy}
+                  onKeyPress={(event) => {
+                    if (!/[0-9]/.test(event.key)) {
+                      event.preventDefault();
+                    }
+                  }}
+                  maxLength={2}/>
+              </Col>
+            </Row>
+          </Space>
+        </Col>
+        <Col span={12}>
+          <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+            <Row>
+              <Col span={24}>
+                <span style={labelStyle}>CVV:</span>
+              </Col>
+            </Row>
+            <Row gutter={[16, 16]} align="middle">
+              <Col span={6}>
+                <Input placeholder="3 Digts"
+                  style={{ width: '100px' }}
+                  onChange={onChange7}
+                  value={formData.cvv}
+                  onKeyPress={(event) => {
+                    if (!/[0-9]/.test(event.key)) {
+                      event.preventDefault();
+                    }
+                  }}
+                  maxLength={3}/>
+              </Col>
+            </Row>
+          </Space>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Credit Card Registration Address:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input
+            placeholder="#Unit-Number Street City Province"
+            onChange={onChange8}
+            value={formData.cardRegistrationAddress}/>
+        </Col>
+      </Row>
     </Space>
   );
 };

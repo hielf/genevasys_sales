@@ -73,6 +73,7 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+      <div/>
       <Divider orientation="left" style={dividerStyle}>
         <Space direction='horizontal' size='small' >
           <UserAddOutlined />Customer Name

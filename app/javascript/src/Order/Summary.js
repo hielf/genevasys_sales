@@ -56,6 +56,12 @@ const Summary = ({formData, setFormData}) => {
     }
   };
 
+  const AdditionalRequirements = (additionalRequirements) => {
+    if (additionalRequirements.trim() !== "") {
+      return (<Descriptions.Item label="Additional Requirements:" span={3}>{ formData.additionalRequirements }</Descriptions.Item>)
+    }
+  };
+
   const QtyDisplay = (product) => {
     if (product.value.includes("C")) {
       return (
@@ -210,6 +216,7 @@ const Summary = ({formData, setFormData}) => {
         <Descriptions.Item label="Expiry Date:" span={2}>{ formData.mm }/{ formData.yy }</Descriptions.Item>
         <Descriptions.Item label="CVV:" span={3}>{ "***" }</Descriptions.Item>
         <Descriptions.Item label="Registration Address:" span={3}>{ formData.cardRegistrationAddress }</Descriptions.Item>
+        { AdditionalRequirements(formData.additionalRequirements) }
         <Descriptions.Item label="Product(s):" span={3}>
           { ProductsQtyDisplay(formData.productsDetail) }
           { ProductsSubtotalDisplay(formData.productsDetail) }

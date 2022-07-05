@@ -24,6 +24,7 @@ const ServiceInfo = ({formData, setFormData}) => {
 
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+      <div/>
       <Divider orientation="left" style={dividerStyle}>
         <Space direction='horizontal' size='small' >
           <CalendarOutlined />Prefer Installation Time
@@ -32,7 +33,7 @@ const ServiceInfo = ({formData, setFormData}) => {
       <Row>
         <Col span={24}>
           <Space direction='vertical' size='small' >
-            <span style={labelStyle}>Choose Time Period:</span>
+            <span style={labelStyle}>Time Period:</span>
             <Radio.Group name="installationTime" defaultValue={1} value={formData.installationTime} onChange={onChange}>
               <Radio value={1}>8am-12pm</Radio>
               <Radio value={2}>12pm-4pm</Radio>
@@ -43,7 +44,7 @@ const ServiceInfo = ({formData, setFormData}) => {
       <Row>
         <Col span={24}>
           <Space direction='vertical' size='small' >
-            <span style={labelStyle}>Choose Date:</span>
+            <span style={labelStyle}>Date:</span>
           </Space>
         </Col>
       </Row>
