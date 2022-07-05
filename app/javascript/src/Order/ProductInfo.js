@@ -3,7 +3,7 @@ import { Divider, Checkbox, Select, Tooltip, Card, Radio, Input } from 'antd';
 import { Space } from 'antd';
 import { Row, Col } from 'antd';
 import { HomeOutlined, WifiOutlined, PlaySquareOutlined, PhoneOutlined } from '@ant-design/icons';
-
+import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, dividerStyle} from '../Components/FormStyle'
 
 const ProductInfo = ({formData, setFormData}) => {
 

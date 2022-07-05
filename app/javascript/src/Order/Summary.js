@@ -6,13 +6,9 @@ import { GlobalOutlined, Typography } from 'antd';
 import { Descriptions } from 'antd';
 import * as moment from 'moment';
 const { Title, Paragraph, Text, Link } = Typography;
+import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, dividerStyle} from '../Components/FormStyle'
 
 const Summary = ({formData, setFormData}) => {
-  const labelStyle = { fontWeight: 'bold', color: '#90BA75', };
-  const dataStyle = { textDecoration: 'underline', };
-  const labelStyleSmall = { fontWeight: 'bold', color: '#90BA75', fontSize: '10px', };
-  const dataStyleSmall = { textDecoration: 'underline', fontSize: '10px', };
-  const boldStyle = { fontWeight: 'bold', };
 
   const currentDate = moment().format("DD-MMMM-YY");
 
@@ -180,7 +176,6 @@ const Summary = ({formData, setFormData}) => {
   return (
     <Space direction="vertical" size="small" style={{ display: 'flex' }}>
       <div/>
-      <Title level={5}>{'Date: ' + currentDate}</Title>
       <Descriptions
         bordered
         size='small'
@@ -230,9 +225,20 @@ export default Summary;
 export const SummaryPrintTemplate = class SummaryPrintTemplate extends Component {
   render() {
     const formData = this.props.formData
+    const currentDate = moment().format("DD-MMMM-YY");
 
     const printTable = (
       <div style={{ padding: '0 3.5%', marginTop: 64 }}>
+        <Row>
+          <Col span={24}>
+            <div style={{ textAlign: 'center', fontWeight: 'bold', }}>
+              <span>Cable Internet Service Application</span>
+            </div>
+          </Col>
+          <Col span={12}>
+            <span level={5} style={{fontSize: '10px',}}>{'Date: ' + currentDate}</span>
+          </Col>
+        </Row>
         <Summary formData={formData}/>
       </div>
     );

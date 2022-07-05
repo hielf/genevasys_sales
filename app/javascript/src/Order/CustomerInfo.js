@@ -5,6 +5,7 @@ import { Row, Col } from 'antd';
 import { Radio } from 'antd';
 import { Input, Select } from 'antd';
 import { UserAddOutlined, ContactsOutlined, AimOutlined, HomeOutlined, CarryOutOutlined } from '@ant-design/icons';
+import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, dividerStyle} from '../Components/FormStyle'
 
 const CustomerInfo = ({formData, setFormData}) => {
 
@@ -72,34 +73,109 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-      <Divider orientation="left">
+      <Divider orientation="left" style={dividerStyle}>
         <Space direction='horizontal' size='small' >
           <UserAddOutlined />Customer Name
         </Space>
       </Divider>
-      <Input placeholder="First Name" onChange={onChange1} value={formData.firstName} />
-      <Input placeholder="Middle Name" onChange={onChange2} value={formData.middleName} />
-      <Input placeholder="Last Name" onChange={onChange3} value={formData.lastName} />
 
-      <Divider orientation="left">
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>First Name:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input onChange={onChange1} value={formData.firstName} />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Middle Name:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input onChange={onChange2} value={formData.middleName} />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Last Name:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input onChange={onChange3} value={formData.lastName} />
+        </Col>
+      </Row>
+
+      <Divider orientation="left" style={dividerStyle}>
         <Space direction='horizontal' size='small' >
           <ContactsOutlined />Contact Information
         </Space>
       </Divider>
-      <Input
-      placeholder="Contact Phone"
-      mask={'(000) 000-0000'}
-      onChange={onChange4}
-      value={formData.contactPhone} />
-      <Input placeholder="Alt. Phone" onChange={onChange5} value={formData.altPhone} />
-      <Input placeholder="E-mail" onChange={onChange6} value={formData.email} />
 
-      <Divider orientation="left">
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Contact Phone:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input
+          mask={'(000) 000-0000'}
+          onChange={onChange4}
+          value={formData.contactPhone} />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Alt. Phone:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input onChange={onChange5} value={formData.altPhone} />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>E-mail:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input onChange={onChange6} value={formData.email} />
+        </Col>
+      </Row>
+
+      <Divider orientation="left" style={dividerStyle}>
         <Space direction='horizontal' size='small' >
-          <AimOutlined />Address Information
+          <HomeOutlined />Address Information
         </Space>
       </Divider>
-      <Input placeholder="Installation Address (#Unit-Number Street)" onChange={onChange7} value={formData.installationAddress} />
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Installation Address:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input placeholder="#Unit-Number Street" onChange={onChange7} value={formData.installationAddress} />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>City | Province | Postal Code:</span>
+        </Col>
+      </Row>
       <Row>
         <Col span={12}>
           <Select defaultValue="VANCOUVER" style={{ width: "100%" }} onChange={onChange8} value={formData.city} >
@@ -134,58 +210,89 @@ const CustomerInfo = ({formData, setFormData}) => {
           </Select>
         </Col>
         <Col span={8}>
-          <Input placeholder="Postal Code" onChange={onChange10} value={formData.postalCode}/>
+          <Input onChange={onChange10} value={formData.postalCode}/>
         </Col>
       </Row>
 
-      <Divider orientation="left">
-        <Space direction='horizontal' size='small' >
-          <HomeOutlined />Unit Type
-        </Space>
-      </Divider>
       <Row justify="space-around" align="middle">
         <Col span={12}>
-          <Radio.Group name="optionsUnitType" defaultValue={1} onChange={onChange11} value={formData.optionsUnitType}>
+          <Space direction='vertical' size='small' >
+            <Row>
+              <Col span={24}>
+                <span style={labelStyle}>Unit Type:</span>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={24}>
+                <Radio.Group name="optionsUnitType" defaultValue={1} onChange={onChange11} value={formData.optionsUnitType}>
+                  <Radio value={1}>
+                    Main
+                  </Radio>
+                  <Radio value={2}>
+                    Basement
+                  </Radio>
+                  <Radio value={3}>
+                    Unit
+                  </Radio>
+                </Radio.Group>
+              </Col>
+            </Row>
+          </Space>
+        </Col>
+
+        <Col span={12}>
+          <Space direction='vertical' size='small' >
+            <Row>
+              <Col span={24}>
+                <span style={labelStyle}>#Buzz:</span>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={24}>
+              <Input
+                  disabled={formData.optionsUnitType === 3 ? false : true}
+                  onChange={onChange13}
+                  value={formData.buzz}
+                />
+              </Col>
+            </Row>
+          </Space>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Billing Address Status:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Radio.Group name="optionsSameAddress" defaultValue={1} onChange={onChange14} value={formData.optionsSameAddress} >
             <Radio value={1}>
-              Main
+              Same As Installation Address
             </Radio>
             <Radio value={2}>
-              Basement
-            </Radio>
-            <Radio value={3}>
-              Unit
+              Different From Installation Address
             </Radio>
           </Radio.Group>
         </Col>
-        <Col span={12}>
+      </Row>
+
+      <Row>
+        <Col span={24}>
+          <span style={labelStyle}>Billing Address:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
           <Input
-              placeholder="#Buzz"
-              disabled={formData.optionsUnitType === 3 ? false : true}
-              onChange={onChange13}
-              value={formData.buzz}
+              disabled={formData.optionsSameAddress === 2 ? false : true}
+              onChange={onChange15}
+              value={formData.billingAddress}
             />
         </Col>
       </Row>
 
-      <Divider orientation="left">
-        <Space direction='horizontal' size='small' >
-          <CarryOutOutlined />Billing Address
-        </Space>
-      </Divider>
-      <Radio.Group name="optionsSameAddress" defaultValue={1} onChange={onChange14} value={formData.optionsSameAddress} >
-        <Radio value={1}>
-          Same As Installation Address
-        </Radio>
-        <Radio value={2}>
-          Different From Installation Address
-        </Radio>
-      </Radio.Group>
-      <Input
-          placeholder='Billing Address'
-          disabled={formData.optionsSameAddress === 2 ? false : true}
-          onChange={onChange15}
-          value={formData.billingAddress}
-        />
     </Space>
   );
 };

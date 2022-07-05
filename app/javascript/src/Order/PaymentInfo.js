@@ -7,6 +7,7 @@ import { Input, Tooltip } from 'antd';
 import { GlobalOutlined, CreditCardOutlined, UserOutlined, DollarOutlined } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCcMastercard, faCcVisa } from '@fortawesome/free-brands-svg-icons'
+import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, dividerStyle} from '../Components/FormStyle'
 
 const PaymentInfo = ({formData, setFormData}) => {
 
@@ -44,7 +45,7 @@ const PaymentInfo = ({formData, setFormData}) => {
 
   return (
     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-      <Divider orientation="left">
+      <Divider orientation="left" style={dividerStyle}>
         <Space direction='horizontal' size='small' >
           <GlobalOutlined />Card Type
         </Space>
@@ -56,7 +57,7 @@ const PaymentInfo = ({formData, setFormData}) => {
         <Radio value={3}>UnionPay</Radio>
       </Radio.Group>
 
-      <Divider orientation="left">
+      <Divider orientation="left" style={dividerStyle}>
         <Space direction='horizontal' size='small' >
           <UserOutlined />Card Holder's Name
         </Space>
@@ -70,7 +71,7 @@ const PaymentInfo = ({formData, setFormData}) => {
         </Col>
       </Row>
 
-      <Divider orientation="left">
+      <Divider orientation="left" style={dividerStyle}>
         <Space direction='horizontal' size='small' >
           <CreditCardOutlined />Credit Card Info
         </Space>
