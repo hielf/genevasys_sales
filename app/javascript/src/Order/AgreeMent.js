@@ -37,10 +37,12 @@ const AgreeMent = ({formData, setFormData}) => {
         <Col span={24}>
           <Space direction='horizontal' size='small' >
             <span style={labelStyle}>Additional Requirements:</span>
-            <Input
-              size="small"
-              onChange={onChange3}
-              value={formData.additionalRequirements}/>
+            <span>
+              <Input
+                size="small"
+                onChange={onChange3}
+                value={formData.additionalRequirements}/>
+            </span>
           </Space>
         </Col>
       </Row>

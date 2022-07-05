@@ -56,6 +56,7 @@ const ResultForm = () => {
     cardRegistrationAddress: "8600 Kelmore Rd",
     checkAgreeMent: true,
     promoteCode: "32432",
+    additionalRequirements: "need more and more",
   });
 
   return (
