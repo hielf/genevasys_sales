@@ -83,3 +83,4 @@ gem "webpacker", "~> 5.3"
 gem 'mini_racer', platforms: :ruby
 gem 'rack-attack'
 gem 'net-smtp'
+gem 'faraday'
