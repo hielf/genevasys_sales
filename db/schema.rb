@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_141931) do
+ActiveRecord::Schema.define(version: 2022_07_07_215225) do
 
   create_table "op_logs", charset: "utf8mb3", force: :cascade do |t|
     t.integer "user_id"
@@ -20,6 +20,23 @@ ActiveRecord::Schema.define(version: 2021_05_27_141931) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_op_logs_on_user_id"
+  end
+
+  create_table "products", charset: "utf8mb3", force: :cascade do |t|
+    t.string "product_id"
+    t.string "label"
+    t.string "description"
+    t.string "product_type"
+    t.decimal "price", precision: 10, scale: 2
+    t.decimal "price_ttc", precision: 10, scale: 2
+    t.decimal "tva_tx", precision: 10, scale: 2
+    t.decimal "localtax1_tx", precision: 10, scale: 2
+    t.string "status"
+    t.string "ref"
+    t.boolean "visible", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_products_on_product_id", unique: true
   end
 
   create_table "sms", charset: "utf8mb3", force: :cascade do |t|

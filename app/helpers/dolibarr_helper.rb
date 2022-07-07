@@ -83,4 +83,22 @@ module DolibarrHelper
     return status, data
   end
 
+  # status, data = ApplicationController.helpers.dolibarr_products
+  def dolibarr_products
+    method = "/products"
+    params = {}
+    status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
+
+    return status, data
+  end
+
+  # status, data = ApplicationController.helpers.dolibarr_thirdparties
+  def dolibarr_thirdparties
+    method = "/thirdparties"
+    params = {}
+    status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
+
+    return status, data
+  end
+
 end
