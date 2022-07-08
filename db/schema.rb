@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_07_215225) do
+ActiveRecord::Schema.define(version: 2022_07_08_230343) do
 
   create_table "op_logs", charset: "utf8mb3", force: :cascade do |t|
     t.integer "user_id"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_07_07_215225) do
     t.string "password_digest"
     t.string "mobile"
     t.string "access_token"
-    t.string "promotional_code", limit: 6
+    t.string "promote_code", limit: 6
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.string "current_sign_in_ip", limit: 50
@@ -61,8 +61,14 @@ ActiveRecord::Schema.define(version: 2022_07_07_215225) do
     t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "ref"
+    t.string "statut"
+    t.string "employee"
+    t.string "email"
+    t.string "user_name"
+    t.string "lastname"
+    t.string "firstname"
     t.index ["access_token"], name: "index_users_on_access_token"
-    t.index ["mobile"], name: "index_users_on_mobile", unique: true
   end
 
 end

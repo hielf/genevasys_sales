@@ -1,7 +1,6 @@
 class Order < ApplicationRecord
   validates_lengths_from_database
   belongs_to :user
-  belongs_to :package
 
   state_machine :status, :initial => :'未支付' do
     event :pay do
