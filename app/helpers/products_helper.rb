@@ -44,7 +44,7 @@ module ProductsHelper
       count = count + 1
     end;0
 
-    count
+    p count
   end
 
 end

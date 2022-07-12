@@ -68,7 +68,7 @@ module DolibarrHelper
   # status, data = ApplicationController.helpers.dolibarr_orders
   def dolibarr_orders
     method = "/orders"
-    params = {}
+    params = {limit: 0}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
 
     return status, data
@@ -77,7 +77,7 @@ module DolibarrHelper
   # status, data = ApplicationController.helpers.dolibarr_users
   def dolibarr_users
     method = "/users"
-    params = {}
+    params = {limit: 0}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
 
     return status, data
@@ -86,7 +86,7 @@ module DolibarrHelper
   # status, data = ApplicationController.helpers.dolibarr_products
   def dolibarr_products
     method = "/products"
-    params = {}
+    params = {limit: 0}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
 
     return status, data
@@ -95,7 +95,7 @@ module DolibarrHelper
   # status, data = ApplicationController.helpers.dolibarr_thirdparties
   def dolibarr_thirdparties
     method = "/thirdparties"
-    params = {}
+    params = {limit: 0}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
 
     return status, data

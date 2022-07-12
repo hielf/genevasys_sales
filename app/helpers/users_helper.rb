@@ -7,10 +7,10 @@ module UsersHelper
     statut =    params["statut"]
     employee =  params["employee"]
     email =     params["email"]
-    user_name =     params["login"]
+    user_name = params["login"]
     lastname =  params["lastname"]
     firstname = params["firstname"]
-    
+
     if User.find_by(ref: ref).nil?
       begin
         user = User.new(mobile: mobile,
@@ -40,7 +40,7 @@ module UsersHelper
       count = count + 1
     end;0
 
-    count
+    p count
   end
 
 end
