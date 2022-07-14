@@ -4,6 +4,6 @@ class ThirdParty < ApplicationRecord
 
   private
   def generate_promote_code
-    self.promote_code = ref.rjust(4, '0') if self.promote_code.nil?
+    self.promote_code = ref.rjust(6, '0') if self.promote_code.nil?
   end
 end

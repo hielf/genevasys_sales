@@ -42,7 +42,7 @@ module DolibarrHelper
       end
       status = response.status
       if status == 200
-        data = JSON.parse(response.body)["success"]
+        data = JSON.parse(response.body)
       else
         data = JSON.parse(response.body)["error"]
       end
@@ -60,7 +60,7 @@ module DolibarrHelper
     method = "/login"
     params = {login: login, password: password}
     status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
-    token = data["token"] if status == 200
+    token = data["success"]["token"] if status == 200
 
     return status, token
   end
@@ -92,10 +92,18 @@ module DolibarrHelper
     return status, data
   end
 
-  # status, data = ApplicationController.helpers.dolibarr_thirdparties
-  def dolibarr_thirdparties
+  # status, data = ApplicationController.helpers.dolibarr_thirdparties({limit: 0})
+  def dolibarr_thirdparties(params)
     method = "/thirdparties"
-    params = {limit: 0}
+    status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
+
+    return status, data
+  end
+
+  # status, data = ApplicationController.helpers.dolibarr_thirdparty(8703)
+  def dolibarr_thirdparty(id)
+    method = "/thirdparties/#{id}"
+    params = {id: id}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
 
     return status, data
