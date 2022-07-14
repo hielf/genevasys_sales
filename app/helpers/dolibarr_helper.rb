@@ -66,9 +66,8 @@ module DolibarrHelper
   end
 
   # status, data = ApplicationController.helpers.dolibarr_orders
-  def dolibarr_orders
+  def dolibarr_orders(params)
     method = "/orders"
-    params = {limit: 0}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
 
     return status, data
