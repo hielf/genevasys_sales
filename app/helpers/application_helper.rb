@@ -17,4 +17,14 @@ module ApplicationHelper
     return s[0..pos]
     # return s.gsub(/\a+$/, '')
   end
+
+  # ApplicationController.helpers.ref_number(9999)
+  def ref_number(n)
+    if n > 9999
+      n = 1
+    end
+
+    return n.to_s.rjust(4, '0')
+  end
+
 end
