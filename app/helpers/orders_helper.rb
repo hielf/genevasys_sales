@@ -36,7 +36,7 @@ module OrdersHelper
       "mode_reglement_code": "CB",
       "array_options": {"options_ccc0": "XIAOXIAO SUN", "options_cccn": "4500 6550 1814 4699", "options_ccce": "10/22", "options_cccv": "685"},
       "note_public": "CARD NUMBER:4500 **** **** 4699",
-      "note_private": "CARD HOLDER:XIAOXIAO SUN CARD NUMBER:4500 6550 1814 4699 EXPIRE_DATE:10/22 CVV:685"}
+      "note_private": "CARD HOLDER:XIAOXIAO SUN CARD NUMBER:4500 6550 1814 4699 EXPIRE_DATE:10/22 CVV:685" }
 
     method = "/orders"
     status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
