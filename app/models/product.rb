@@ -1,7 +1,14 @@
 class Product < ApplicationRecord
   validates_lengths_from_database
+  attribute :level, :integer, default: -> { 0 }
 
+  def level
+    label.gsub(/[^0-9]/, '').to_i
+  end
 
+  def as_json(options = {})
+    super(methods: [:level])
+  end
 end
 
 # ["19", "Bundle 1000", "<div><strong>Package Monthly (</strong>Internet 1000M /&nbsp;IP Phone /&nbsp;&nbsp;Music TV Box <strong>&nbsp;)</strong></div>", "1"]

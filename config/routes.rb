@@ -11,12 +11,9 @@ Rails.application.routes.draw do
         get :me
       end
     end
-    resources :packages do
-      collection do
-        post :subscribe
-        get :new_user_package
-      end
-    end
+    
+    resources :products
+
     resources :orders do
       collection do
         post :pre_pay
