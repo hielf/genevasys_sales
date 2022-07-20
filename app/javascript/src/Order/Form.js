@@ -19,7 +19,7 @@ import ResultForm from './ResultForm'
 function OrderForm() {
   const { Header, Footer, Sider, Content } = Layout;
   const { Title, Paragraph, Text, Link } = Typography;
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     products: ['B7', 'D111', 'A1', 'C9'],
     productsDetail: [[{label: 'Internet 750: $105.95/month', value: 'B7', price: 525.95}],[{label: 'IP Phone Rental: 10.95/month', value: 'D111', price: 15.95}],[{label: 'Internet + TV Box + IP Phone 75: $55.95/month', value: 'A1', price: 55.95}],[{label: 'Rent Box 75: $10.00/month', value: 'C9', price: 15.95}]],
