@@ -4,9 +4,20 @@ import { Space } from 'antd';
 import { Row, Col } from 'antd';
 import { HomeOutlined, WifiOutlined, PlaySquareOutlined, PhoneOutlined } from '@ant-design/icons';
 import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, dividerStyle} from '../Components/FormStyle'
-import { getProducts } from '../Functions/ProductRequest'
+import { apiGet } from '../Functions/ApiRequest'
 
 const ProductInfo = ({formData, setFormData}) => {
+
+  const [list, setList] = useState({});
+
+  useEffect(() => {
+    getList();
+  }, []);
+
+  const getList = async () => {
+    const res = await apiGet('products', []);
+    setList(res);
+  };
 
   const onChange1 = (checkedValues) => {
     var listData = [];
@@ -121,7 +132,7 @@ const ProductInfo = ({formData, setFormData}) => {
   };
 
   const ipPhone = (p) => {
-    if (p === "IP Phone") {
+    if (p === "ip_phone") {
       return (
         <Row>
           <Col span={24}>
@@ -177,10 +188,16 @@ const ProductInfo = ({formData, setFormData}) => {
     }
   };
 
-  getProducts().then(response => {
-    const list = response
-    console.log(list);
-  })
+  // var list;
+  //
+  // getProducts().then(response => {
+  //   list = response.data
+  //   console.log(list);
+  // })
+  //
+  // console.log(list);
+
+
 
 
 
