@@ -106,6 +106,18 @@ const ProductInfo = ({formData, setFormData}) => {
     }
   };
 
+  const categroy = (p) => {
+    if (p === "bundles") {
+      return ( "Bundle" )
+    } else if (p === "internets") {
+      return ( "Internet" )
+    } else if (p === "tv_box") {
+      return ( "TV Box" )
+    } else if (p === "ip_phone") {
+      return ( "IP Phone" )
+    }
+  };
+
   const tvBox = (p) => {
     if (p === "tv_box") {
       return (
@@ -188,85 +200,6 @@ const ProductInfo = ({formData, setFormData}) => {
     }
   };
 
-  // var list;
-  //
-  // getProducts().then(response => {
-  //   list = response.data
-  //   console.log(list);
-  // })
-  //
-  // console.log(list);
-
-
-
-
-
-  // const list = {
-  //   bundles: [
-  //     {
-  //       label: 'Internet + TV Box + IP Phone 75: $55.95/month',
-  //       value: 'A1',
-  //       price: 55.95,
-  //     },
-  //     {
-  //       label: 'Internet + TV Box + IP Phone 300: $85.95/month',
-  //       value: 'A2',
-  //       price: 155.95,
-  //     },
-  //     {
-  //       label: 'Internet + TV Box + IP Phone 750: $105.95/month',
-  //       value: 'A3',
-  //       price: 255.95,
-  //     },
-  //     {
-  //       label: 'Internet + TV Box + IP Phone 1000: $105.95/month',
-  //       value: 'A4',
-  //       price: 355.95,
-  //     },
-  //   ],
-  //   internets: [
-  //     {
-  //       label: 'Internet 75: $55.95/month',
-  //       value: 'B5',
-  //       price: 55.95,
-  //     },
-  //     {
-  //       label: 'Internet 300: $85.95/month',
-  //       value: 'B6',
-  //       price: 515.95,
-  //     },
-  //     {
-  //       label: 'Internet 750: $105.95/month',
-  //       value: 'B7',
-  //       price: 525.95,
-  //     },
-  //     {
-  //       label: 'Internet 1000: $105.95/month',
-  //       value: 'B8',
-  //       price: 535.95,
-  //     },
-  //   ],
-  //   'tv_box': [
-  //     {
-  //       label: 'Rent Box 75: $10.00/month',
-  //       value: 'C9',
-  //       price: 15.95,
-  //     },
-  //     {
-  //       label: 'Buy TV Box: $300',
-  //       value: 'C21',
-  //       price: 55.95,
-  //     },
-  //   ],
-  //   'ip_phone': [
-  //     {
-  //       label: 'IP Phone Rental: 10.95/month',
-  //       value: 'D111',
-  //       price: 15.95,
-  //     },
-  //   ],
-  // };
-
   return (
     <Checkbox.Group
     onChange={onChange1}
@@ -279,7 +212,7 @@ const ProductInfo = ({formData, setFormData}) => {
               <Space direction='vertical' size='middle' key={ 'space_key_' + p } style={{ display: 'flex' }}>
                 <Divider orientation='left' style={dividerStyle}>
                   <Space direction='horizontal' size='small' >
-                    {icons(p)}{p}
+                    {icons(p)}{categroy(p)}
                   </Space>
                 </Divider>
                 {

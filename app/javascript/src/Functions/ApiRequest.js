@@ -34,5 +34,5 @@ export const apiGet = async (uri, params) => {
 
   // if success return value
   // return response.data.data.status == 0 ? response.data.data.products : null // or set initial value
-  return response?.data ? response?.data.data.products : null
+  return response?.data ? response?.data.data : null
 }
