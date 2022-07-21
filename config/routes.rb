@@ -11,12 +11,12 @@ Rails.application.routes.draw do
         get :me
       end
     end
-    
+
     resources :products
 
     resources :orders do
       collection do
-        post :pre_pay
+        post :submit
         post :notify
       end
     end

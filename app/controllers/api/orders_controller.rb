@@ -1,44 +1,54 @@
 class Api::OrdersController < Api::ApplicationController
-  skip_before_action :authenticate_user!, only: [:notify]
+  skip_before_action :authenticate_user!, only: [:submit]
 
-  def pre_pay
-    m_requires! [:id]
+  def submit
+    m_requires! [:promoteCode]
+    result = [1, 'failed', nil]
+    user = User.find_by(promote_code: params[:promoteCode])
+    p user
     begin
-      order = Order.find_by(id: params[:id])
-      if params[:openid]
-        openid = params[:openid]
-      else
-        openid = order.user.openid
-      end
-      result = [1, '下单失败', nil]
-      ip = request.ip
+      order = user.orders.new(products: params[:products],
+                              tv_box_qty: params[:tvBoxQty],
+                              ip_phone_qty: params[:ipPhoneQty],
+                              ip_phone_port_in: params[:ipPhonePortIn],
+                              ip_phone_port_in_number: params[:ipPhonePortInNumber],
+                              ip_phone_address_option: params[:ipPhoneAddressOption],
+                              ip_phone_address: params[:ipPhoneAddress],
+                              installation_time: params[:installationTime],
+                              date_request: params[:dateRequest],
+                              first_name: params[:firstName],
+                              middle_name: params[:middleName],
+                              last_name: params[:lastName],
+                              contact_phone: params[:contactPhone],
+                              alt_phone: params[:altPhone],
+                              email: params[:email],
+                              installation_address: params[:installationAddress],
+                              city: params[:city],
+                              province: params[:province],
+                              postal_code: params[:postalCode],
+                              options_unit_type: params[:optionsUnitType],
+                              buzz: params[:buzz],
+                              options_same_address: params[:optionsSameAddress],
+                              billing_address: params[:billingAddress],
+                              options_card_type: params[:optionsCardType],
+                              card_first_name: params[:cardFirstName],
+                              card_last_name: params[:cardLastName],
+                              card_number: params[:cardNumber],
+                              mm: params[:mm],
+                              yy: params[:yy],
+                              cvv: params[:cvv],
+                              card_registration_ddress: params[:cardRegistrationAddress],
+                              check_agreement: params[:checkAgreeMent],
+                              promote_code: params[:promoteCode],
+                              additional_requirements: params[:additionalRequirements])
 
-      params = {
-        body: order.package.title,
-        out_trade_no: order.out_trade_no,
-        total_fee: (order.amount * 100).to_i,
-        spbill_create_ip: ip,
-        notify_url: 'http://pandaapi.ripple-tech.com/api/orders/notify',
-        trade_type: 'JSAPI', # could be "MWEB", ""JSAPI", "NATIVE" or "APP",
-        openid: openid # required when trade_type is `JSAPI`
-      }
-      r = WxPay::Service.invoke_unifiedorder params
-      p r
-      if r.success?
-        params = {
-          prepayid: r["prepay_id"], # fetch by call invoke_unifiedorder with `trade_type` is `JSAPI`
-          noncestr: r["nonce_str"], # must same as given to invoke_unifiedorder
-        }
-
-        hash = WxPay::Service.generate_js_pay_req params
-      end
-
-      if hash
-        result = [0, '下单成功', hash]
+      if order.save
+        result = [0, 'success', order]
       end
     rescue Exception => ex
       result= [1, ex.message, nil]
     end
+
     render_json(result)
   end
 

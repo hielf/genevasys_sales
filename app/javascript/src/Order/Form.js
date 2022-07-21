@@ -17,7 +17,7 @@ import AgreeMent from './AgreeMent'
 import ResultForm from './ResultForm'
 
 function OrderForm() {
-  console.log(process.env.NODE_ENV)
+  // console.log(process.env.NODE_ENV)
   const { Header, Footer, Sider, Content } = Layout;
   const { Title, Paragraph, Text, Link } = Typography;
   const [step, setStep] = useState(0);
@@ -114,7 +114,7 @@ function OrderForm() {
         <Space direction="vertical" size="large" style={{ display: 'flex', }}>
           <Content style={
             isMobile ? {
-               padding: '0 50px', marginTop: 64
+               padding: '0 15px', marginTop: 64
             } : {
                padding: '0 17.5%', marginTop: 64
             }

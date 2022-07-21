@@ -2,12 +2,15 @@ class Order < ApplicationRecord
   validates_lengths_from_database
   belongs_to :user
 
-  state_machine :status, :initial => :'未支付' do
-    event :pay do
-      transition :'未支付' => :'已支付'
+  state_machine :status, :initial => :'initial' do
+    event :submit do
+      transition :'initial' => :'submitted'
     end
-    event :cancel do
-      transition :'未支付' => :'已取消'
+    event :failing do
+      transition :'initial' => :'failed'
+    end
+    event :retry do
+      transition :'failed' => :'submitted'
     end
   end
 end

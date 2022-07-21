@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {isMobile} from 'react-device-detect';
 import { Divider, Checkbox, Select, Tooltip, Card, Radio, Input } from 'antd';
 import { Space } from 'antd';
 import { Row, Col } from 'antd';
@@ -221,10 +222,12 @@ const ProductInfo = ({formData, setFormData}) => {
                       <Row key={d.value}>
                         <Col span={24}>
                           <Row justify="space-between">
-                            <Col span={4}>
+                            <Col span={!isMobile ? 4 : 10}>
                               <Checkbox value={d.value}>{d.label}</Checkbox>
                             </Col>
-                            <Col span={16}>{d.description}</Col>
+                            <Col span={!isMobile ? 16 : 1}>
+                            {!isMobile ? d.description : null}
+                            </Col>
                             <Col span={4}>${d.price}</Col>
                           </Row>
                         </Col>
