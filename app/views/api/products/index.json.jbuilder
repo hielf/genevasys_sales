@@ -7,7 +7,7 @@ json.data do
       json.id             bundle["id"]
       json.value          bundle["product_id"]
       json.label          bundle['label']
-      json.description    bundle['description']
+      json.description    ActionView::Base.full_sanitizer.sanitize(bundle['description'])
       json.price          bundle['price'].to_f
     end
   end
@@ -16,7 +16,7 @@ json.data do
       json.id             internet["id"]
       json.value          internet['product_id']
       json.label          internet['label']
-      json.description    internet['description']
+      json.description    ActionView::Base.full_sanitizer.sanitize(internet['description'])
       json.price          internet['price'].to_f
     end
   end
@@ -25,7 +25,7 @@ json.data do
       json.id             tv_box["id"]
       json.value          tv_box['product_id']
       json.label          tv_box['label']
-      json.description    tv_box['description']
+      json.description    ActionView::Base.full_sanitizer.sanitize(tv_box['description'])
       json.price          tv_box['price'].to_f
     end
   end
@@ -34,7 +34,7 @@ json.data do
       json.id             ip_phone["id"]
       json.value          ip_phone['product_id']
       json.label          ip_phone['label']
-      json.description    ip_phone['description']
+      json.description    ActionView::Base.full_sanitizer.sanitize(ip_phone['description'])
       json.price          ip_phone['price'].to_f
     end
   end

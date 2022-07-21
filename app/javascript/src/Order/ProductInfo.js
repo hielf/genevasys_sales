@@ -220,7 +220,13 @@ const ProductInfo = ({formData, setFormData}) => {
                     return (
                       <Row key={d.value}>
                         <Col span={24}>
-                          <Checkbox value={d.value}>{d.label}</Checkbox>
+                          <Row justify="space-between">
+                            <Col span={4}>
+                              <Checkbox value={d.value}>{d.label}</Checkbox>
+                            </Col>
+                            <Col span={16}>{d.description}</Col>
+                            <Col span={4}>${d.price}</Col>
+                          </Row>
                         </Col>
                       </Row>
                     )
