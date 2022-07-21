@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { Divider, Checkbox } from 'antd';
 import { Space } from 'antd';
@@ -15,6 +15,7 @@ const AgreeMent = ({formData, setFormData}) => {
   let query = useQuery();
 
   const promoteCode = query.get("promote_code");
+  useEffect(() => { setFormData((formData) => ({ ...formData, promoteCode: promoteCode })); }, [] )
 
   const onChange1 = (checkedValues) => {
     setFormData((formData) => ({ ...formData, checkAgreeMent: checkedValues.target.checked }));

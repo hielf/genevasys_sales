@@ -17,6 +17,7 @@ import AgreeMent from './AgreeMent'
 import ResultForm from './ResultForm'
 
 function OrderForm() {
+  console.log(process.env.NODE_ENV)
   const { Header, Footer, Sider, Content } = Layout;
   const { Title, Paragraph, Text, Link } = Typography;
   const [step, setStep] = useState(0);

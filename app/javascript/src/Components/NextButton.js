@@ -46,6 +46,7 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
         } else if (step === 4 && formData.checkAgreeMent !== true) {
           error("Please check user agreement")
         } else {
+          console.log(formData);
           history.push("/order/submit");
         }
       } else {
