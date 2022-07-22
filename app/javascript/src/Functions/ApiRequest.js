@@ -49,5 +49,5 @@ export const apiPost = async (uri, params) => {
   // console.log(response)
 
   // if success return value
-  return response?.data ? response?.data.data : null
+  return response?.data ? response?.data : null
 }
