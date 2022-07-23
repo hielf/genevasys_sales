@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, message } from 'antd';
+import { apiPost } from '../Functions/ApiRequest'
 
 const NextButton = ({ step, setStep, FormTitles, formData }) => {
+  const [res, setRes] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState('');
+
   const success = (info) => {
     message.config({ top: 64, });
     message.success(info);
@@ -30,6 +35,43 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
     }
   };
 
+  const handleSubmit = async () => {
+    try {
+      setErr('');
+      setIsLoading(true);
+      console.log(isLoading);
+      console.log(err);
+
+      const {data} = await apiPost('orders/submit', formData,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        },
+      );
+      // console.log(data);
+      // console.log(JSON.stringify(data));
+      // console.log(JSON.stringify(data, null, 4));
+      setRes(data.data);
+
+      if (data.status === 1) {
+        setErr(data.message);
+        console.log(err);
+      }
+    } catch (e) {
+      setErr(e.message);
+    } finally {
+      console.log("final");
+      if (err !== '') {
+        error(err)
+      }
+      setIsLoading(false);
+
+      console.log(isLoading);
+    }
+  };
+
 
   const history = useHistory();
 
@@ -47,7 +89,8 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
           error("Please check user agreement")
         } else {
           console.log(formData);
-          history.push("/order/submit");
+          handleSubmit();
+          // history.push("/order/submit");
         }
       } else {
         console.log(formData);
