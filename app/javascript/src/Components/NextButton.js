@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, message } from 'antd';
 import { apiPost } from '../Functions/ApiRequest'
@@ -7,6 +7,22 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
   const [res, setRes] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('');
+
+  useEffect(() => {
+    if (err !== '') {
+      error(err)
+    }
+  }, [err]);
+
+  useEffect(() => {
+    if (step === FormTitles.length - 1 && err === '') {
+      console.log("res_ue:", res);
+      history.push({
+        pathname: "/order/submit",
+        search: '?id=' + res.id
+      });
+    }
+  }, [res]);
 
   const success = (info) => {
     message.config({ top: 64, });
@@ -39,8 +55,6 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
     try {
       setErr('');
       setIsLoading(true);
-      console.log(isLoading);
-      console.log(err);
 
       const {data} = await apiPost('orders/submit', formData,
         {
@@ -50,25 +64,17 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
           },
         },
       );
-      // console.log(data);
+      // console.log(data.data);
       // console.log(JSON.stringify(data));
       // console.log(JSON.stringify(data, null, 4));
       setRes(data.data);
-
       if (data.status === 1) {
         setErr(data.message);
-        console.log(err);
       }
     } catch (e) {
       setErr(e.message);
     } finally {
-      console.log("final");
-      if (err !== '') {
-        error(err)
-      }
       setIsLoading(false);
-
-      console.log(isLoading);
     }
   };
 
@@ -83,14 +89,13 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
     block
     onClick={() => {
       if (step === FormTitles.length - 1) {
-        if (step === 4 && formData.promoteCode.trim() === '') {
+        if (step === 4 && formData.promoteCode === null) {
           error("Promote Code required")
         } else if (step === 4 && formData.checkAgreeMent !== true) {
           error("Please check user agreement")
         } else {
           console.log(formData);
           handleSubmit();
-          // history.push("/order/submit");
         }
       } else {
         console.log(formData);
