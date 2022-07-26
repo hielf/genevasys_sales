@@ -10,6 +10,8 @@ import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, divid
 
 const Summary = ({formData, setFormData}) => {
 
+  console.log("formData:", formData);
+
   const currentDate = moment().format("DD-MMMM-YY");
 
   const UnitType = (optionsUnitType) => {
@@ -195,33 +197,7 @@ const Summary = ({formData, setFormData}) => {
         }}
       >
         <Descriptions.Item label="First Name:" span={1}>{ formData.firstName }</Descriptions.Item>
-        <Descriptions.Item label="Middle Name:" span={2}>{ formData.middleName }</Descriptions.Item>
-        <Descriptions.Item label="Last Name:" span={3}>{ formData.lastName }</Descriptions.Item>
-        <Descriptions.Item label="Contact Phone:" span={1}>{ formData.contactPhone }</Descriptions.Item>
-        <Descriptions.Item label="Alt. Phone:" span={2}>{ formData.altPhone }</Descriptions.Item>
-        <Descriptions.Item label="E-mail:" span={3}>{ formData.email }</Descriptions.Item>
-        <Descriptions.Item label="Installation Address:" span={3}>{ formData.installationAddress }</Descriptions.Item>
-        <Descriptions.Item label="Unit Type:" span={1}>{ UnitType(formData.optionsUnitType) }</Descriptions.Item>
-        <Descriptions.Item label="Buzz #:" span={2}>{ formData.buzz }</Descriptions.Item>
-        <Descriptions.Item label="City/Town:" span={1}>{ formData.city }</Descriptions.Item>
-        <Descriptions.Item label="Province:" span={2}>{ formData.province }</Descriptions.Item>
-        <Descriptions.Item label="Billing Address:" span={3}>{ formData.billingAddress }</Descriptions.Item>
-        <Descriptions.Item label="Postal Code:" span={3}>{ formData.postalCode }</Descriptions.Item>
-        <Descriptions.Item label="Preferred delivery Time:" span={1}>{ InstallationTime(formData.installationTime) }</Descriptions.Item>
-        <Descriptions.Item label="Planed Date:" span={2}>{ formData.dateRequest !== "" ? formData.dateRequest.format('DD/MMM/YYYY') : "" }</Descriptions.Item>
-        <Descriptions.Item label="Card Type:" span={3}>{ CardType(formData.optionsCardType) }</Descriptions.Item>
-        <Descriptions.Item label="Card Holder's First Name:" span={1}>{ formData.cardFirstName }</Descriptions.Item>
-        <Descriptions.Item label="Last Name:" span={2}>{ formData.cardLastName }</Descriptions.Item>
-        <Descriptions.Item label="Card Number:" span={1}>{ formData.cardNumber }</Descriptions.Item>
-        <Descriptions.Item label="Expiry Date:" span={2}>{ formData.mm }/{ formData.yy }</Descriptions.Item>
-        <Descriptions.Item label="CVV:" span={3}>{ "***" }</Descriptions.Item>
-        <Descriptions.Item label="Registration Address:" span={3}>{ formData.cardRegistrationAddress }</Descriptions.Item>
-        { AdditionalRequirements(formData.additionalRequirements) }
-        <Descriptions.Item label="Product(s):" span={3}>
-          { ProductsQtyDisplay(formData.productsDetail) }
-          { ProductsSubtotalDisplay(formData.productsDetail) }
-          { IpPhoneInfoDisplay() }
-        </Descriptions.Item>
+        
       </Descriptions>
     </Space>
   );

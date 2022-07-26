@@ -1,11 +1,17 @@
 class Api::OrdersController < Api::ApplicationController
-  skip_before_action :authenticate_user!, only: [:submit, :test]
+  skip_before_action :authenticate_user!, only: [:submit, :test, :show]
 
   def test
     code = params[:promoteCode] ? params[:promoteCode] : "0"
     result = [0, 'success', {:message => "ok", :code => code}]
 
     render_json(result)
+  end
+
+  def show
+    m_requires! [:id]
+
+    @order = Order.last
   end
 
   def submit
