@@ -16,7 +16,7 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
 
   useEffect(() => {
     if (step === FormTitles.length - 1 && err === '') {
-      console.log("res_ue:", res);
+      // console.log("res_ue:", res);
       history.push({
         pathname: "/order/submit",
         search: '?id=' + res.id
@@ -98,7 +98,7 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
           handleSubmit();
         }
       } else {
-        console.log(formData);
+        // console.log(formData);
         const d = new Date();
         if (step === 0 && formData.products.length === 0) {
           error("Please choose your product")

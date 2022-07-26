@@ -10,8 +10,6 @@ import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, divid
 
 const Summary = ({formData, setFormData}) => {
 
-  console.log("formData:", formData);
-
   const currentDate = moment().format("DD-MMMM-YY");
 
   const UnitType = (optionsUnitType) => {
@@ -29,6 +27,17 @@ const Summary = ({formData, setFormData}) => {
       return ("8am-12am")
     } else if (installationTime === 2) {
       return ("12pm-4pm")
+    }
+  };
+
+  const DateRequest = (dateRequest) => {
+    let formattedDate;
+    try {
+      formattedDate = dateRequest.format('DD/MMM/YYYY')
+    } catch (e) {
+      formattedDate = dateRequest
+    } finally {
+      return ( formattedDate )
     }
   };
 
@@ -59,13 +68,13 @@ const Summary = ({formData, setFormData}) => {
   };
 
   const AdditionalRequirements = (additionalRequirements) => {
-    if (additionalRequirements.trim() !== "") {
+    if (additionalRequirements !== "") {
       return (<Descriptions.Item label="Additional Requirements:" span={3}>{ formData.additionalRequirements }</Descriptions.Item>)
     }
   };
 
   const QtyDisplay = (product) => {
-    if (product.value.includes("C")) {
+    if (product.value === '16') {
       return (
         <div>
           <span>Qty: </span>
@@ -76,7 +85,7 @@ const Summary = ({formData, setFormData}) => {
       )
     }
 
-    if (product.value.includes("D")) {
+    if (product.value === '20') {
       return (
         <div>
           <span>Qty: </span>
@@ -93,16 +102,16 @@ const Summary = ({formData, setFormData}) => {
       <Space direction="vertical" size="size" style={{ display: 'flex' }}>
         {products.map((product, index) => {
           return (
-            <Row justify="space-between center" key={ product[0].value }>
+            <Row justify="space-between center" key={ product.value }>
               <Col span={15}>
                 <span style={ labelStyle }>· </span>
-                <span>{ product[0].label }</span>
+                <span>{ product.label }</span>
               </Col>
               <Col span={5}>
-                {QtyDisplay(product[0])}
+                {QtyDisplay(product)}
               </Col>
               <Col span={4}>
-                <span>${ product[0].price }</span>
+                <span>${ product.price }</span>
               </Col>
             </Row>
           )
@@ -119,7 +128,7 @@ const Summary = ({formData, setFormData}) => {
             <span style={ labelStyle }>Total(excl.tax):</span>
           </Col>
           <Col span={4}>
-            <span style={ boldStyle }>${ products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b).toFixed(2) }</span>
+            <span style={ boldStyle }>${ products.map((item) => parseFloat(item['price']) || 0).reduce((a, b) => a + b).toFixed(2) }</span>
           </Col>
         </Row>
         <Row justify="space-between center">
@@ -127,7 +136,7 @@ const Summary = ({formData, setFormData}) => {
             <span style={ labelStyle }>Total GST/5%:</span>
           </Col>
           <Col span={4}>
-            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b)*0.05).toFixed(2) }</span>
+            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item['price']) || 0).reduce((a, b) => a + b)*0.05).toFixed(2) }</span>
           </Col>
         </Row>
         <Row justify="space-between center">
@@ -135,7 +144,7 @@ const Summary = ({formData, setFormData}) => {
             <span style={ labelStyle }>Total PST(BC)/7%:</span>
           </Col>
           <Col span={4}>
-            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b)*0.07).toFixed(2) }</span>
+            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item['price']) || 0).reduce((a, b) => a + b)*0.07).toFixed(2) }</span>
           </Col>
         </Row>
         <Row justify="space-between center">
@@ -143,7 +152,7 @@ const Summary = ({formData, setFormData}) => {
             <span style={ labelStyle }>Total(inc.tax):</span>
           </Col>
           <Col span={4}>
-            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item[0]['price']) || 0).reduce((a, b) => a + b)*1.12).toFixed(2) }</span>
+            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item['price']) || 0).reduce((a, b) => a + b)*1.12).toFixed(2) }</span>
           </Col>
         </Row>
       </Space>
@@ -196,8 +205,34 @@ const Summary = ({formData, setFormData}) => {
           xs: 2,
         }}
       >
-        <Descriptions.Item label="First Name:" span={1}>{ formData.firstName }</Descriptions.Item>
-        
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="First Name:" span={1}>{ formData.firstName }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Middle Name:" span={2}>{ formData.middleName }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Last Name:" span={3}>{ formData.lastName }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Contact Phone:" span={1}>{ formData.contactPhone }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Alt. Phone:" span={2}>{ formData.altPhone }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="E-mail:" span={3}>{ formData.email }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Installation Address:" span={3}>{ formData.installationAddress }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Unit Type:" span={1}>{ UnitType(formData.optionsUnitType) }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Buzz #:" span={2}>{ formData.buzz }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="City/Town:" span={1}>{ formData.city }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Province:" span={2}>{ formData.province }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Billing Address:" span={3}>{ formData.billingAddress }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Postal Code:" span={3}>{ formData.postalCode }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Preferred delivery Time:" span={1}>{ InstallationTime(formData.installationTime) }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Planed Date:" span={2}>{ formData.dateRequest !== "" ? DateRequest(formData.dateRequest) : "" }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Card Type:" span={3}>{ CardType(formData.optionsCardType) }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Card Holder's First Name:" span={1}>{ formData.cardFirstName }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Last Name:" span={2}>{ formData.cardLastName }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Card Number:" span={1}>{ formData.cardNumber }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Expiry Date:" span={2}>{ formData.mm }/{ formData.yy }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="CVV:" span={3}>{ "***" }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Registration Address:" span={3}>{ formData.cardRegistrationAddress }</Descriptions.Item>
+        { AdditionalRequirements(formData.additionalRequirements) }
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Product(s):" span={3}>
+          { Object.entries(formData).length > 0 ? ProductsQtyDisplay(formData.productsDetail) : null }
+          { Object.entries(formData).length > 0 ? ProductsSubtotalDisplay(formData.productsDetail) : null }
+          { IpPhoneInfoDisplay() }
+        </Descriptions.Item>
       </Descriptions>
     </Space>
   );

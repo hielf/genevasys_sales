@@ -5,6 +5,7 @@ json.data do
   json.order do
     json.id                               @order.id
     json.products                         @order.products
+    json.productsDetail                   (JSON.parse @order.products).map{|product| {label: Product.find_by(product_id: product).label, value: Product.find_by(product_id: product).product_id, price: Product.find_by(product_id: product).price.to_f}}
     json.tvBoxQty                         @order.tv_box_qty
     json.ipPhoneQty                       @order.ip_phone_qty
     json.ipPhonePortIn                    @order.ip_phone_port_in
@@ -30,7 +31,7 @@ json.data do
     json.optionsCardType                  @order.options_card_type
     json.cardFirstName                    @order.card_first_name
     json.cardLastName                     @order.card_last_name
-    json.cardNumber                       @order.card_number
+    json.cardNumber                       @order.card_number.gsub(/.(?=.{4})/,'*')
     json.mm                               @order.mm
     json.yy                               @order.yy
     json.cvv                              "***"

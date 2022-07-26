@@ -68,16 +68,12 @@ const ResultForm = () => {
     getData();
   }, []);
 
-  console.log("data:", formData);
-
   const getData = async () => {
     const res = await apiGet('orders/' + id, []);
-    console.log("getting formData");
     setFormData(res.order);
   };
 
   const summaryHidden = (componentRef, formData, setFormData) => {
-    console.log("data:", formData);
 
     return (
       <div style={{ overflow: 'hidden', height: '0' }}>

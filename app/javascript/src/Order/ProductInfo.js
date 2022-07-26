@@ -29,16 +29,16 @@ const ProductInfo = ({formData, setFormData}) => {
       Object.keys(list).map(p => {
         const l = list[p]
         if ((l.filter((e) => e.value === value)).length !== 0) {
-          listData.push((l.filter((e) => e.value === value)))
+          listData.push((l.filter((e) => e.value === value))[0])
         }
       })
     })
 
     listData.map(data => {
-      if (data[0].value.includes('C')) {
+      if (data.value === '16') {
         hasTypeC = true;
       }
-      if (data[0].value.includes('D')) {
+      if (data.value === '20') {
         hasTypeD = true;
       }
     })
