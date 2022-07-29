@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_21_205125) do
+ActiveRecord::Schema.define(version: 2022_07_29_184457) do
 
   create_table "op_logs", charset: "utf8mb3", force: :cascade do |t|
     t.integer "user_id"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2022_07_21_205125) do
     t.string "additional_requirements"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "retry_times", default: 0
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

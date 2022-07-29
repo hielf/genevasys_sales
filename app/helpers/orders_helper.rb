@@ -18,7 +18,7 @@ module OrdersHelper
   end
 
   def create_order(params)
-    status, data = ApplicationController.helpers.dolibarr_orders({sortfield: "t.rowid", sortorder: "DESC", limit: 1})
+    status_1, data = ApplicationController.helpers.dolibarr_orders({sortfield: "t.rowid", sortorder: "DESC", limit: 1})
     ref = "CO#{Date.today.strftime("%y%m")}-#{ApplicationController.helpers.ref_number((data[0]["ref"].split("-")[1].to_i + 1))}"
     socid = ThirdParty.last.id
     fk_product = Product.find_by(product_id: 9)

@@ -6,11 +6,16 @@ class Order < ApplicationRecord
     event :submit do
       transition :'initial' => :'submitted'
     end
-    event :failing do
-      transition :'initial' => :'failed'
+    event :fail do
+      transition any => :'failed'
     end
     event :retry do
-      transition :'failed' => :'submitted'
+      transition :'failed' => :'initial'
+    end
+
+    after_transition any => :failed  do |order, transition|
+      p transition
+      order.retry_times = order.retry_times + 1
     end
   end
 end
