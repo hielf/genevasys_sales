@@ -6,7 +6,7 @@ class Order < ApplicationRecord
     event :submit do
       transition :'initial' => :'submitted'
     end
-    event :fail do
+    event :unsuccess do
       transition any => :'failed'
     end
     event :retry do

@@ -115,36 +115,13 @@ module ThirdPartiesHelper
   end
 
   def create_third_party(params)
+    flag = false
+    exist_cust = ThirdParty.find_by(email: params[:email])
+
     query = {sortfield: "t.rowid", sortorder: "DESC", limit: 1}
     status, data = ApplicationController.helpers.dolibarr_thirdparties(query)
     code_client = data.first["code_client"].to_i + 1 if status == 200
-
-    name = "test_#{rand(0..100)}"
-
-    params = {"entity": "1",
-      "name": name,
-      "name_alias": name,
-      "address": "4500 kingsway",
-      "zip": "V5H 2A9",
-      "town": "BURNABY",
-      "status": "1",
-      "state_id": "172",
-      "phone": "2368865552",
-      "email": "ct2368865552@gmail.com",
-      "client": 1,
-      "prospect": 0,
-      "fournisseur": "0",
-      "code_client": code_client,
-      "price_level": 1,
-      "fk_multicurrency": "1",
-      "multicurrency_code": "CAD",
-      "country_id": "14",
-      "country_code": "CA",
-      "region_id": "26",
-      "fk_account": "0",
-      "lastname": name,
-      "firstname": name,
-    }
+    params[:code_client] = code_client
 
     method = "/thirdparties"
     status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
@@ -154,6 +131,8 @@ module ThirdPartiesHelper
       status, data = ApplicationController.helpers.dolibarr_thirdparty(id)
       flag = ApplicationController.helpers.new_third_party(data)
     end
+
+    return flag
   end
 
 end

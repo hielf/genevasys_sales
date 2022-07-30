@@ -58,6 +58,7 @@ class Api::OrdersController < Api::ApplicationController
                                 additional_requirements: params[:additionalRequirements])
 
         if order.save
+          OrderCreateJob.perform_later order.id
           result = [0, 'success', order]
         end
       rescue Exception => ex
