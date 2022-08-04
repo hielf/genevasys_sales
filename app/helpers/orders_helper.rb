@@ -25,6 +25,7 @@ module OrdersHelper
     fk_product_ = Product.find_by(product_id: 14)
     qty = 1
     params = { "socid": socid,
+      "contact_id": nil,
       "date": Time.now.to_i,
       "delivery_date": (Time.now + 36000).to_i,
       "type": 0,
