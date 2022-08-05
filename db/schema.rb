@@ -10,7 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_29_184457) do
+ActiveRecord::Schema.define(version: 2022_08_04_184050) do
+
+  create_table "contacts", charset: "utf8mb3", force: :cascade do |t|
+    t.integer "third_party_id"
+    t.string "address"
+    t.string "zip"
+    t.string "town"
+    t.string "state_id"
+    t.string "socid"
+    t.string "email"
+    t.string "statut"
+    t.string "phone_pro"
+    t.string "ref"
+    t.string "country_id"
+    t.string "country_code"
+    t.string "lastname"
+    t.string "firstname"
+    t.string "socname"
+    t.string "mail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["third_party_id"], name: "index_contacts_on_third_party_id"
+  end
 
   create_table "op_logs", charset: "utf8mb3", force: :cascade do |t|
     t.integer "user_id"

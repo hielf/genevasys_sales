@@ -116,4 +116,13 @@ module DolibarrHelper
     return status, data
   end
 
+  # status, data = ApplicationController.helpers.dolibarr_contact(27)
+  def dolibarr_contact(id)
+    method = "/contacts/#{id}"
+    params = {id: id}
+    status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
+
+    return status, data
+  end
+
 end

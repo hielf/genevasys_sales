@@ -1,5 +1,7 @@
 class ThirdParty < ApplicationRecord
   validates_lengths_from_database
+  has_many :contacts
+
   before_save :generate_promote_code
 
   private

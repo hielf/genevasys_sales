@@ -116,7 +116,7 @@ module ThirdPartiesHelper
 
   def create_third_party(params)
     flag = false
-    exist_cust = ThirdParty.find_by(email: params[:email])
+    exist_cust = ThirdParty.find_by(phone: params[:phone])
 
     query = {sortfield: "t.rowid", sortorder: "DESC", limit: 1}
     status, data = ApplicationController.helpers.dolibarr_thirdparties(query)
