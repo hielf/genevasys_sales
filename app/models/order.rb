@@ -16,6 +16,7 @@ class Order < ApplicationRecord
     after_transition any => :failed  do |order, transition|
       p transition
       order.retry_times = order.retry_times + 1
+      order.save!
     end
   end
 end

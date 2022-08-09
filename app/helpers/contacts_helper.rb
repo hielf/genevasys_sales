@@ -2,14 +2,19 @@ module ContactsHelper
 
   def new_contact(params)
     flag = true
-    ref = params["ref"]
     socid = params["socid"]
-    third_party = ThirdParty.find_by(ref: socid)
+    ref = params["ref"]
+    third_party = ThirdParty.find_by(ref: socid) if ref
 
     if Contact.find_by(ref: ref).nil?
       begin
-        contact = third_party.contacts.new(params.select{|x| Contact.attribute_names.index(x)})
-        contact.save
+        contact = third_party.contacts.find_by(firstname: params["firstname"], email: params["email"]) if third_party
+        if contact
+          contact.update(params.select{|x| Contact.attribute_names.index(x)})
+        else
+          contact = third_party.contacts.new(params.select{|x| Contact.attribute_names.index(x)})
+          contact.save
+        end
       rescue Exception => e
         flag = false
         p "new_contact error: #{e.message}"
@@ -47,18 +52,27 @@ module ContactsHelper
 
   def create_contact(params)
     flag = false
-    exist_contact = Contact.find_by(phone_pro: params[:phone_pro], firstname: params[:firstname])
+    contact_id = nil
+    # exist_contact = Contact.find_by(phone_pro: params[:phone_pro], firstname: params[:firstname])
+
+    # if exist_contact.nil?
+    #
+    # else
+    #   flag = true
+    # end
 
     method = "/contacts"
     status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
-    id = data if status == 200
+    contact_id = data if status == 200
 
-    if id
-      status, data = ApplicationController.helpers.dolibarr_contact(id)
+    if contact_id
+      status, data = ApplicationController.helpers.dolibarr_contact(contact_id)
+      p contact_id
+      p data
       flag = ApplicationController.helpers.new_contact(data)
     end
 
-    return flag
+    return flag, contact_id
   end
 
 end

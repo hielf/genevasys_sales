@@ -3,6 +3,7 @@ module ThirdPartiesHelper
   def new_third_party(params)
     flag = true
     ref = params["ref"]
+    third_party_id = nil
 
     if ThirdParty.find_by(ref: ref).nil?
       begin
@@ -48,6 +49,8 @@ module ThirdPartiesHelper
       rescue Exception => e
         flag = false
         Rails.logger.warn "new_third_party error: #{e.message}"
+      ensure
+        third_party_id = third_party.id if flag == true
       end
 
     else
@@ -94,10 +97,12 @@ module ThirdPartiesHelper
       rescue Exception => e
         flag = false
         Rails.logger.warn "new_third_party error: #{e.message}"
+      ensure
+        third_party_id = third_party.id if flag == true
       end
     end
 
-    return flag
+    return flag, third_party_id
   end
 
   # ApplicationController.helpers.init_third_parties
@@ -106,7 +111,7 @@ module ThirdPartiesHelper
     params = {limit: 0}
     status, data = ApplicationController.helpers.dolibarr_thirdparties(params)
     data.each do |params|
-      flag = ApplicationController.helpers.new_third_party(params)
+      flag, third_party_id = ApplicationController.helpers.new_third_party(params)
       break if flag == false
       count = count + 1
     end;0
@@ -116,23 +121,29 @@ module ThirdPartiesHelper
 
   def create_third_party(params)
     flag = false
-    exist_cust = ThirdParty.find_by(phone: params[:phone])
+    third_party_id = nil
+    id = nil
+    exist_cust = ThirdParty.find_by(email: params[:email], name: params[:name])
 
-    query = {sortfield: "t.rowid", sortorder: "DESC", limit: 1}
-    status, data = ApplicationController.helpers.dolibarr_thirdparties(query)
-    code_client = data.first["code_client"].to_i + 1 if status == 200
-    params[:code_client] = code_client
+    if exist_cust.nil?
+      query = {sortfield: "t.rowid", sortorder: "DESC", limit: 1}
+      status, data = ApplicationController.helpers.dolibarr_thirdparties(query)
+      code_client = data.first["code_client"].to_i + 1 if status == 200
+      params[:code_client] = code_client
 
-    method = "/thirdparties"
-    status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
-    id = data if status == 200
+      method = "/thirdparties"
+      status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
+      id = data if status == 200
+    else
+      id = exist_cust.ref
+    end
 
     if id
       status, data = ApplicationController.helpers.dolibarr_thirdparty(id)
-      flag = ApplicationController.helpers.new_third_party(data)
+      flag, third_party_id = ApplicationController.helpers.new_third_party(data)
     end
 
-    return flag
+    return flag, third_party_id
   end
 
 end

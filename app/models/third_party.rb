@@ -1,6 +1,6 @@
 class ThirdParty < ApplicationRecord
   validates_lengths_from_database
-  has_many :contacts
+  has_many :contacts, dependent: :destroy
 
   before_save :generate_promote_code
 
