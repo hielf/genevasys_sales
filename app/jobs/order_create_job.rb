@@ -69,7 +69,7 @@ class OrderCreateJob < ApplicationJob
     if @status == 200
       @order.submit
     else
-      if @order.retry_times < 5
+      if @order.retry_times < 3
         @order.unsuccess
         OrderCreateJob.perform_later @order_id
       end
