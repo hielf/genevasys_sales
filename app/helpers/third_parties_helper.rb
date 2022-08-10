@@ -140,7 +140,7 @@ module ThirdPartiesHelper
 
     if id
       status, data = ApplicationController.helpers.dolibarr_thirdparty(id)
-      flag, third_party_id = ApplicationController.helpers.new_third_party(data)
+      flag, third_party_id = ApplicationController.helpers.new_third_party(data) if status == 200
     end
 
     return flag, third_party_id

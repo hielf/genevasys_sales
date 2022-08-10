@@ -67,9 +67,9 @@ module ContactsHelper
 
     if contact_id
       status, data = ApplicationController.helpers.dolibarr_contact(contact_id)
-      p contact_id
-      p data
-      flag = ApplicationController.helpers.new_contact(data)
+      # p contact_id
+      # p data
+      flag = ApplicationController.helpers.new_contact(data) if status == 200
     end
 
     return flag, contact_id

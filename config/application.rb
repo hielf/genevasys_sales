@@ -11,8 +11,8 @@ class Application < Rails::Application
   config.load_defaults 5.1
 
   # config.autoload_paths << Rails.root.join('lib')
-  config.time_zone = 'Beijing'
-  config.i18n.default_locale = 'zh-CN'
+  config.time_zone = 'Pacific Time (US & Canada)'
+  config.i18n.default_locale = 'en'
   config.encoding = "utf-8"
 
   # config.middleware.insert_before 0, Rack::Cors do

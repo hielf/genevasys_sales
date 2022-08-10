@@ -53,10 +53,18 @@ module OrdersHelper
 
     contact = Contact.find(contact_id)
     qty = 1
+    d = order.date_request
+    t = case order.installation_time
+    when 1
+      8
+    when 2
+      14
+    end
+    delivery_date = DateTime.new(d.year, d.month, d.day, t, 0, 0, Time.zone.now.zone).to_i
     params = { "socid": socid,
       "contact_id": nil,
       "date": Time.now.to_i,
-      "delivery_date": (Time.now + 36000).to_i,
+      "delivery_date": delivery_date,
       "type": 0,
       "ref": ref,
       "lines": [{ "fk_product": fk_product.product_id, "qty": qty, "price": fk_product.price, "subprice": fk_product.price, "tva_tx": fk_product.tva_tx, "localtax1_tx": fk_product.localtax1_tx, "localtax1_type": 1, "product_type": fk_product.product_type, "desc": "" },
