@@ -21,23 +21,21 @@ module OrdersHelper
     status_1, data = ApplicationController.helpers.dolibarr_orders({sortfield: "t.rowid", sortorder: "DESC", limit: 1})
     ref = "CO#{Date.today.strftime("%y%m")}-#{ApplicationController.helpers.ref_number((data[0]["ref"].split("-")[1].to_i + 1))}"
     socid = ThirdParty.last.id
-    fk_product = Product.find_by(product_id: 9)
-    fk_product_ = Product.find_by(product_id: 14)
     products_detail = Array.new
 
     (JSON.parse order.products).each do |product_id|
-      product = Product.find(product_id)
-      qty =
+      product = Product.find_by(product_id: product_id)
+      qty, desc =
       if product.label.include?("Bundle")
-        1
+        [1, product.description]
       elsif product.label.include?("Internet")
-        1
+        [1, product.description]
       elsif product.label.include?("Magio")
-        order.tv_box_qty
+        [order.tv_box_qty, "Qty: #{order.tv_box_qty}"]
       elsif product.label.include?("Phone")
-        order.ip_phone_qty
+        [order.ip_phone_qty, "Qty: #{order.ip_phone_qty}" + (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + (order.ip_phone_address_option == 2 ? "<br />Address: #{order.ip_phone_address}" : "")]
       else
-        1
+        [1, ""]
       end
 
       products_detail << { "fk_product": product.product_id,
@@ -48,7 +46,7 @@ module OrdersHelper
         "localtax1_tx": product.localtax1_tx,
         "localtax1_type": 1,
         "product_type": product.product_type,
-        "desc": product.description }
+        "desc": desc }
     end
 
     contact = Contact.find(contact_id)
@@ -62,15 +60,14 @@ module OrdersHelper
     end
     delivery_date = DateTime.new(d.year, d.month, d.day, t, 0, 0, Time.zone.now.zone).to_i
     params = { "socid": socid,
-      "contact_id": nil,
+      "contact_id": contact.ref,
       "date": Time.now.to_i,
       "delivery_date": delivery_date,
       "type": 0,
       "ref": ref,
-      "lines": [{ "fk_product": fk_product.product_id, "qty": qty, "price": fk_product.price, "subprice": fk_product.price, "tva_tx": fk_product.tva_tx, "localtax1_tx": fk_product.localtax1_tx, "localtax1_type": 1, "product_type": fk_product.product_type, "desc": "" },
-      { "fk_product": fk_product_.product_id, "qty": qty, "price": fk_product_.price, "subprice": fk_product_.price, "tva_tx": fk_product_.tva_tx, "localtax1_tx": fk_product_.localtax1_tx, "localtax1_type": 1, "product_type": fk_product_.product_type, "desc": "" }],
+      "lines": products_detail,
       "entity": "1",
-      "contacts_ids"=>[contact.id],
+      "contacts_ids"=>[contact.ref],
       "mode_reglement_id": "6",
       "mode_reglement_code": "CB",
       "array_options": {"options_ccc0": "#{order.card_first_name} #{order.card_last_name}", "options_cccn": "#{order.card_number}", "options_ccce": "#{order.mm}/#{order.yy}", "options_cccv": "#{order.cvv}"},

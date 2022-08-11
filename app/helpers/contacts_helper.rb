@@ -51,24 +51,23 @@ module ContactsHelper
   end
 
   def create_contact(params)
+    p params
     flag = false
     contact_id = nil
-    # exist_contact = Contact.find_by(phone_pro: params[:phone_pro], firstname: params[:firstname])
+    socid = params[:socid]
+    third_party = ThirdParty.find_by(ref: socid)
+    exist_contact = third_party.contacts.find_by(firstname: params[:firstname], email: params[:email])
 
-    # if exist_contact.nil?
-    #
-    # else
-    #   flag = true
-    # end
-
-    method = "/contacts"
-    status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
-    contact_id = data if status == 200
+    if exist_contact.nil?
+      method = "/contacts"
+      status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
+      contact_id = data if status == 200
+    else
+      flag = true
+    end
 
     if contact_id
       status, data = ApplicationController.helpers.dolibarr_contact(contact_id)
-      # p contact_id
-      # p data
       flag = ApplicationController.helpers.new_contact(data) if status == 200
     end
 
