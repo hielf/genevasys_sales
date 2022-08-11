@@ -51,7 +51,7 @@ module ContactsHelper
   end
 
   def create_contact(params)
-    p params
+    # p params
     flag = false
     contact_id = nil
     socid = params[:socid]
@@ -63,6 +63,7 @@ module ContactsHelper
       status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
       contact_id = data if status == 200
     else
+      contact_id = exist_contact.ref
       flag = true
     end
 

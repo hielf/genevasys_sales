@@ -54,7 +54,7 @@ module OrdersHelper
     d = order.date_request
     t = case order.installation_time
     when 1
-      8
+      9
     when 2
       14
     end
