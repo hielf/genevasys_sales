@@ -54,6 +54,37 @@ module DolibarrHelper
     return status, data
   end
 
+  def dolibarr_api_put(method, params)
+    method = "/documents/builddoc"
+    params = { "modulepart": "order", "original_file": "CO2208-0111/CO2208-0111.pdf", "doctemplate": "eratosthene", "langcode": "en_US" }
+    base_uri = "/dolibarr/api/index.php"
+    status = 0
+    data = {}
+
+    begin
+      conn = ApplicationController.helpers.set_connection
+      response = conn.put("#{base_uri}#{method}") do |req|
+        req.params['DOLAPIKEY'] = ""
+        req.body = params.to_json
+      end
+      status = response.status
+      if status == 200
+        data = JSON.parse(response.body)
+      else
+        data = JSON.parse(response.body)["error"]
+      end
+    rescue Exception => e
+      p e.message
+      Rails.logger.warn "dolibarr_api_post error: #{e.message}"
+    end
+
+    # File.open("test.pdf", "wb") do |f|
+    #   f.write(Base64.decode64(c))
+    # end
+
+    return status, data
+  end
+
   # status, token = ApplicationController.helpers.dolibarr_login(ENV["test_login"], ENV["test_password"])
   def dolibarr_login(login, password)
     token = ""
