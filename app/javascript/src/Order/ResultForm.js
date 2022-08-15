@@ -97,8 +97,8 @@ const ResultForm = () => {
             }
           }>
             <Result
-              icon={<SmileOutlined />}
-              title="Great, we have done all the operations!"
+              icon={< SmileOutlined />}
+              title="Thank you for choosing Geneva Service!"
               extra={
                 <Button type='primary' size='large' onClick={handlePrint}>Print this out</Button>
               }

@@ -135,7 +135,7 @@ module OrdersHelper
     flag = false
     status, data = ApplicationController.helpers.get_order(order_id)
     ref = data["ref"]
-    pdf_file = "#{Rails.root.to_s}/tmp/data/#{ref}.pdf"
+    pdf_file = "#{ref}.pdf"
     method = "/documents/builddoc"
     params = { "modulepart": "order", "original_file": "#{ref}/#{ref}.pdf", "doctemplate": "eratosthene", "langcode": "en_US" }
 

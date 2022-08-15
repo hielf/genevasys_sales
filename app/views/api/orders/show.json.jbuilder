@@ -41,5 +41,6 @@ json.data do
     json.checkAgreeMent                   @order.check_agreement
     json.promoteCode                      @order.promote_code
     json.additionalRequirements           @order.additional_requirements
+    json.pdf_file                         @pdf_url
   end
 end

@@ -1,5 +1,5 @@
 class Api::OrdersController < Api::ApplicationController
-  skip_before_action :authenticate_user!, only: [:submit, :test, :show]
+  skip_before_action :authenticate_user!, only: [:submit, :test, :show, :order_pdf]
 
   def test
     code = params[:promoteCode] ? params[:promoteCode] : "0"
@@ -12,6 +12,19 @@ class Api::OrdersController < Api::ApplicationController
     m_requires! [:id]
 
     @order = Order.last
+    # @pdf_url = "#{request.protocol}#{request.host}:#{request.port}/tmp/data/#{@order.pdf_file}"
+    @pdf_url = "#{request.protocol}#{request.host}:#{request.port}/orders/order_pdf?file=#{@order.pdf_file}"
+  end
+
+  def order_pdf
+    m_requires! [:file]
+    file = params[:file]
+
+    respond_to do |format|
+      format.pdf do
+        render :pdf => "/tmp/data/#{file}"
+      end
+    end
   end
 
   def submit
