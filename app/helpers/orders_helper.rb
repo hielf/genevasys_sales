@@ -87,11 +87,11 @@ module OrdersHelper
     when 3
       "UnionPay"
     end
-    note_private = "CARD TYPE: #{card_type} CARD HOLDER: #{order.card_first_name} #{order.card_last_name} <br /> CARD NUMBER: #{order.card_number} <br /> EXPIRE DATE: #{order.mm}/#{order.yy} <br /> CVV: #{order.cvv} <br /> CARD ADDRESS: #{order.card_registration_ddress} "
-    + "<br /> UNIT TYPE: #{unit_type}"
-    + (order.buzz != "" ? "<br />  BUZZ: #{order.buzz}" : "")
-    + (order.alt_phone != "" ? "<br />  ALT PHONE: #{order.alt_phone}" : "")
-    + (order.additional_requirements != "" ? "<br />  ADDITIONAL REQUIREMENTS: #{order.additional_requirements}" : "")
+    note_private = "CARD TYPE: #{card_type} CARD HOLDER: #{order.card_first_name} #{order.card_last_name} <br /> CARD NUMBER: #{order.card_number} <br /> EXPIRE DATE: #{order.mm}/#{order.yy} <br /> CVV: #{order.cvv} <br /> CARD ADDRESS: #{order.card_registration_ddress} " +
+    "<br /> UNIT TYPE: #{unit_type}" +
+    (order.buzz != "" ? "<br />  BUZZ: #{order.buzz}" : "") +
+    (order.alt_phone != "" ? "<br />  ALT PHONE: #{order.alt_phone}" : "") +
+    (order.additional_requirements != "" ? "<br />  ADDITIONAL REQUIREMENTS: #{order.additional_requirements}" : "")
 
     params = { "socid": socid,
       # "contact_id": contact.ref,
@@ -101,18 +101,24 @@ module OrdersHelper
       "ref": ref,
       "lines": products_detail,
       "entity": "1",
-      "contacts_ids": [{"contactid": contact.ref.to_i, "type": "CUSTOMER"}],
       "mode_reglement_id": "6",
       "mode_reglement_code": "CB",
       "array_options": {"options_ccc0": "#{order.card_first_name} #{order.card_last_name}", "options_cccn": "#{order.card_number}", "options_ccce": "#{order.mm}/#{order.yy}", "options_cccv": "#{order.cvv}"},
       "note_public": "CARD NUMBER:#{order.card_number.gsub(/.(?=.{4})/,'*')}",
       "note_private": note_private }
 
-    p params
+    # p params
     method = "/orders"
-    status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
+    status, order_id = ApplicationController.helpers.dolibarr_api_post(method, params)
+    status, data = ApplicationController.helpers.add_order_contact(order_id, contact.ref) if status == 200
 
-    return status, data
+    return status, order_id
+  end
+
+  def add_order_contact(order_id, contact_ref)
+    method = "/orders/#{order_id}/contact/#{contact_ref}/BILLING"
+    params = {}
+    status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
   end
 
   # status, data = ApplicationController.helpers.get_order(197)

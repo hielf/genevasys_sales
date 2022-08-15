@@ -127,9 +127,9 @@ module ThirdPartiesHelper
     exist_cust = ThirdParty.find_by(email: params[:email], name: params[:name])
 
     if exist_cust.nil?
-      query = {sortfield: "t.rowid", sortorder: "DESC", limit: 1}
+      query = {sortfield: "t.code_client", sortorder: "DESC", limit: 5}
       status, data = ApplicationController.helpers.dolibarr_thirdparties(query)
-      code_client = data.first["code_client"].to_i + 1 if status == 200
+      code_client = data.map{|client| client["code_client"]}.max.to_i + 1 if status == 200
       params[:code_client] = code_client
 
       method = "/thirdparties"
