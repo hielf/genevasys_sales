@@ -57,7 +57,7 @@ class OrderCreateJob < ApplicationJob
 
       flag, contact_id = ApplicationController.helpers.create_contact(contact_params) if third_party_id
     rescue Exception => ex
-      p ex.message
+      Rails.logger.warn ex.message
     ensure
       @status, @data = ApplicationController.helpers.create_order(@order, contact_id) if flag
 
