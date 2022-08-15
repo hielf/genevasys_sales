@@ -55,8 +55,6 @@ module DolibarrHelper
   end
 
   def dolibarr_api_put(method, params)
-    method = "/documents/builddoc"
-    params = { "modulepart": "order", "original_file": "CO2208-0111/CO2208-0111.pdf", "doctemplate": "eratosthene", "langcode": "en_US" }
     base_uri = "/dolibarr/api/index.php"
     status = 0
     data = {}
@@ -77,10 +75,6 @@ module DolibarrHelper
       p e.message
       Rails.logger.warn "dolibarr_api_post error: #{e.message}"
     end
-
-    # File.open("test.pdf", "wb") do |f|
-    #   f.write(Base64.decode64(c))
-    # end
 
     return status, data
   end

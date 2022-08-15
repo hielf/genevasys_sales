@@ -40,7 +40,7 @@ class OrderCreateJob < ApplicationJob
 
       flag, third_party_id = ApplicationController.helpers.create_third_party(cust_params)
 
-      contact_params = {"address": @order.installation_address,
+      contact_params = {"address": @order.billing_address,
        "zip": @order.postal_code,
        "town": @order.city,
        "state_id": "172",
@@ -55,22 +55,28 @@ class OrderCreateJob < ApplicationJob
        "socname": "#{@order.first_name} #{@order.last_name}",
        "mail": @order.email}
 
-      flag, contact_id = ApplicationController.helpers.create_contact(contact_params)
+      flag, contact_id = ApplicationController.helpers.create_contact(contact_params) if third_party_id
     rescue Exception => ex
       p ex.message
     ensure
       @status, @data = ApplicationController.helpers.create_order(@order, contact_id) if flag
+
+      if @status == 200
+        order_id = @data
+        @flag, @pdf_file = ApplicationController.helpers.order_document_generate(order_id)
+      end
     end
   end
 # SmsJob.perform_later "1818559075", "verify_code", ""
 
   private
   def around_check
-    if @status == 200
+    if @status == 200 && @flag == true
+      @order.pdf_file = @pdf_file
       @order.submit
     else
+      @order.unsuccess
       if @order.retry_times < 3
-        @order.unsuccess
         OrderCreateJob.perform_later @order_id
       end
     end

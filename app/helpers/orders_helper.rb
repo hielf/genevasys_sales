@@ -17,9 +17,21 @@ module OrdersHelper
     return flag
   end
 
+  def order_ref_generate
+    current_max = 0
+    status, data = ApplicationController.helpers.dolibarr_orders({sortfield: "t.rowid", sortorder: "DESC", limit: 5})
+    if status == 200 && data.count > 0
+      a = data.map{|o| o["ref"]}
+      current_max = a.map{|s| s.split('-')[-1].to_i}.max
+    end
+
+    ref = "CO#{Date.today.strftime("%y%m")}-#{ApplicationController.helpers.ref_number((current_max + 1))}"
+
+    return ref
+  end
+
   def create_order(order, contact_id)
-    status_1, data = ApplicationController.helpers.dolibarr_orders({sortfield: "t.rowid", sortorder: "DESC", limit: 1})
-    ref = "CO#{Date.today.strftime("%y%m")}-#{ApplicationController.helpers.ref_number((data[0]["ref"].split("-")[1].to_i + 1))}"
+    ref = ApplicationController.helpers.order_ref_generate
     socid = ThirdParty.last.id
     products_detail = Array.new
 
@@ -59,34 +71,80 @@ module OrdersHelper
       14
     end
     delivery_date = DateTime.new(d.year, d.month, d.day, t, 0, 0, Time.zone.now.zone).to_i
+    unit_type = case order.options_unit_type
+    when 1
+      "Main"
+    when 2
+      "Basement"
+    when 3
+      "Unit"
+    end
+    card_type = case order.options_card_type
+    when 1
+      "VISA"
+    when 2
+      "MasterCard"
+    when 3
+      "UnionPay"
+    end
+    note_private = "CARD TYPE: #{card_type} CARD HOLDER: #{order.card_first_name} #{order.card_last_name} <br /> CARD NUMBER: #{order.card_number} <br /> EXPIRE DATE: #{order.mm}/#{order.yy} <br /> CVV: #{order.cvv} <br /> CARD ADDRESS: #{order.card_registration_ddress} "
+    + "<br /> UNIT TYPE: #{unit_type}"
+    + (order.buzz != "" ? "<br />  BUZZ: #{order.buzz}" : "")
+    + (order.alt_phone != "" ? "<br />  ALT PHONE: #{order.alt_phone}" : "")
+    + (order.additional_requirements != "" ? "<br />  ADDITIONAL REQUIREMENTS: #{order.additional_requirements}" : "")
+
     params = { "socid": socid,
-      "contact_id": contact.ref,
+      # "contact_id": contact.ref,
       "date": Time.now.to_i,
       "delivery_date": delivery_date,
       "type": 0,
       "ref": ref,
       "lines": products_detail,
       "entity": "1",
-      "contacts_ids"=>[contact.ref],
+      "contacts_ids": [{"contactid": contact.ref.to_i, "type": "CUSTOMER"}],
       "mode_reglement_id": "6",
       "mode_reglement_code": "CB",
       "array_options": {"options_ccc0": "#{order.card_first_name} #{order.card_last_name}", "options_cccn": "#{order.card_number}", "options_ccce": "#{order.mm}/#{order.yy}", "options_cccv": "#{order.cvv}"},
-      "note_public": "CARD NUMBER:#{order.card_number}",
-      "note_private": "CARD HOLDER:#{order.card_first_name} #{order.card_last_name} CARD NUMBER:#{order.card_number} EXPIRE_DATE:#{order.mm}/#{order.yy} CVV:#{order.cvv}" }
+      "note_public": "CARD NUMBER:#{order.card_number.gsub(/.(?=.{4})/,'*')}",
+      "note_private": note_private }
 
+    p params
     method = "/orders"
     status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
 
-    return status
+    return status, data
   end
 
-  # status, data = ApplicationController.helpers.get_order(139)
-  def get_order(id)
-    method = "/orders/#{id}"
-    params = {id: id}
+  # status, data = ApplicationController.helpers.get_order(197)
+  def get_order(order_id)
+    method = "/orders/#{order_id}"
+    params = {id: order_id}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
 
     return status, data
+  end
+
+  # flag, pdf_file = ApplicationController.helpers.order_document_generate(186)
+  def order_document_generate(order_id)
+    flag = false
+    status, data = ApplicationController.helpers.get_order(order_id)
+    ref = data["ref"]
+    pdf_file = "#{Rails.root.to_s}/tmp/data/#{ref}.pdf"
+    method = "/documents/builddoc"
+    params = { "modulepart": "order", "original_file": "#{ref}/#{ref}.pdf", "doctemplate": "eratosthene", "langcode": "en_US" }
+
+    status, data = ApplicationController.helpers.dolibarr_api_put(method, params) if status == 200
+
+    if status == 200
+      c = data["content"]
+      File.open(pdf_file, "wb") do |f|
+        f.write(Base64.decode64(c))
+      end
+
+      flag = true
+    end
+
+    return flag, pdf_file
   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_04_184050) do
+ActiveRecord::Schema.define(version: 2022_08_12_223305) do
 
   create_table "contacts", charset: "utf8mb3", force: :cascade do |t|
     t.integer "third_party_id"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2022_08_04_184050) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "retry_times", default: 0
+    t.string "pdf_file"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
