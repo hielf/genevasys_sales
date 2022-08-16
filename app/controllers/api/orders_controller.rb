@@ -13,18 +13,17 @@ class Api::OrdersController < Api::ApplicationController
 
     @order = Order.last
     # @pdf_url = "#{request.protocol}#{request.host}:#{request.port}/tmp/data/#{@order.pdf_file}"
-    @pdf_url = "#{request.protocol}#{request.host}:#{request.port}/orders/order_pdf?file=#{@order.pdf_file}"
+    @pdf_url = "#{request.protocol}#{request.host}:#{request.port}/api/orders/order_pdf?file=#{@order.pdf_file}"
   end
 
   def order_pdf
     m_requires! [:file]
     file = params[:file]
 
-    respond_to do |format|
-      format.pdf do
-        render :pdf => "/tmp/data/#{file}"
-      end
+    File.open("#{Rails.root.to_s}/tmp/data/#{file}", 'r') do |f|
+      send_data f.read.force_encoding('BINARY'), :filename => file, :type => "application/pdf", :disposition => "inline"
     end
+    # send_data("#{Rails.root.to_s}/tmp/data/#{file}", filename: file, type: 'application/pdf', :disposition => 'inline')
   end
 
   def submit
