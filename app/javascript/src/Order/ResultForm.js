@@ -12,6 +12,8 @@ import { apiGet } from '../Functions/ApiRequest'
 const ResultForm = () => {
   const { Header, Footer, Sider, Content } = Layout;
   const componentRef = useRef();
+  console.log(formData);
+  const handlePdf = () => window.open("http://localhost:3000/api/orders/order_pdf?file=CO2208-0114.pdf", "_blank");
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
@@ -100,7 +102,7 @@ const ResultForm = () => {
               icon={< SmileOutlined />}
               title="Thank you for choosing Geneva Service!"
               extra={
-                <Button type='primary' size='large' onClick={handlePrint}>Print this out</Button>
+                <Button type='primary' size='large' onClick={handlePdf}>Print this out</Button>
               }
             />
           </Content>
