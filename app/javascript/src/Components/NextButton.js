@@ -86,6 +86,7 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
     type='primary'
     shape='default'
     size='large'
+    loading={ isLoading }
     block
     onClick={() => {
       if (step === FormTitles.length - 1) {

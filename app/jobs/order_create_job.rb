@@ -77,7 +77,7 @@ class OrderCreateJob < ApplicationJob
     else
       @order.unsuccess
       if @order.retry_times < 3
-        OrderCreateJob.perform_later @order_id
+        OrderCreateJob.perform_now @order_id
       end
     end
   end

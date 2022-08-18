@@ -11,8 +11,16 @@ class Api::OrdersController < Api::ApplicationController
   def show
     m_requires! [:id]
 
-    @order = Order.last
-    # @pdf_url = "#{request.protocol}#{request.host}:#{request.port}/tmp/data/#{@order.pdf_file}"
+    # 50.times do
+    #
+    #
+    #   if !@order.pdf_file.nil?
+    #     break
+    #   else
+    #     sleep 0.5
+    #   end
+    # end
+    @order = Order.find_by(id: params[:id])
     @pdf_url = "#{request.protocol}#{request.host}:#{request.port}/api/orders/order_pdf?file=#{@order.pdf_file}"
   end
 
@@ -70,7 +78,7 @@ class Api::OrdersController < Api::ApplicationController
                                 additional_requirements: params[:additionalRequirements])
 
         if order.save
-          OrderCreateJob.perform_later order.id
+          OrderCreateJob.perform_now order.id
           result = [0, 'success', order]
         end
       rescue Exception => ex

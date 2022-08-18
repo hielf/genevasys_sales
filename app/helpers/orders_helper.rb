@@ -143,7 +143,7 @@ module OrdersHelper
 
     if status == 200
       c = data["content"]
-      File.open(pdf_file, "wb") do |f|
+      File.open("#{Rails.root.to_s}/tmp/data/#{pdf_file}", "wb") do |f|
         f.write(Base64.decode64(c))
       end
 
