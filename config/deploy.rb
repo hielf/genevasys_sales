@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.16.0"
+lock "~> 3.17.0"
 
 set :repo_url, "git@github.com:hielf/genevasys_sales.git"
 set :application, "genevasys_sales"
@@ -94,13 +94,13 @@ namespace :deploy do
     end
   end
 
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      invoke 'puma:restart'
-      # invoke 'god:deploy'
-    end
-  end
+  # desc 'Restart application'
+  # task :restart do
+  #   on roles(:app), in: :sequence, wait: 5 do
+  #     invoke 'puma:restart'
+  #     # invoke 'god:deploy'
+  #   end
+  # end
 
   before :starting, :check_revision
   after :finishing, :compile_assets

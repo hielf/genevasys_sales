@@ -84,3 +84,6 @@ gem 'mini_racer', platforms: :ruby
 gem 'rack-attack'
 gem 'net-smtp'
 gem 'faraday'
+gem 'net-smtp', require: false
+gem 'net-imap', require: false
+gem 'net-pop', require: false
