@@ -1,5 +1,4 @@
 class Api::UsersController < Api::ApplicationController
-  wechat_api
   skip_before_action :authenticate_user!, only: [:send_verify]
   before_action :set_user, only: [:show, :update, :destroy]
   # before_action only: [:destroy] { render_json([403, t('messages.c_403')]) if current_user.role != 'admin' }
