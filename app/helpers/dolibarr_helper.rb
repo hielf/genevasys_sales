@@ -1,41 +1,75 @@
 module DolibarrHelper
 
-  def set_connection
+  def get_token(ref)
+    config = Rails.configuration.database_configuration
+    host = config[Rails.env]["host"]
+    username = config[Rails.env]["username"]
+    password = config[Rails.env]["password"]
+
+    client = Mysql2::Client.new(:host => host, :username => username, :password => password, :database => 'dolibarrdebian' )
+    results = client.query("SELECT api_key FROM llx_user WHERE rowid='#{ref}'")
+    client.close
+
+    api_key = results.first["api_key"]
+
+    return api_key
+  end
+
+  def set_user_access_token(user)
+    api_key = ApplicationController.helpers.get_token(user.ref)
+    user.update(access_token: api_key)
+  end
+
+  # ApplicationController.helpers.current_user(user)
+  def current_user(*args)
+    (args.nil? || args.empty?) ? User.first : args.first
+  end
+
+  def set_connection(*args)
     base_url = ENV["api_url"]
+    user = ApplicationController.helpers.current_user args.first
+    api_key = user.access_token
+
     conn = Faraday.new(
       url: base_url,
       # params: {},
-      headers: {'Content-Type' => 'application/json', 'DOLAPIKEY' => '3c44101b1c0b1833a1c92b529e06d981f4459812'},
+      headers: {'Content-Type' => 'application/json', 'DOLAPIKEY' => api_key},
       ssl: {:verify => false}
     )
     return conn
   end
 
-  def dolibarr_api_get(method, params)
+  def dolibarr_api_get(method, params, *args)
     base_uri = "/dolibarr/api/index.php"
     status = 0
     data = {}
+    user = ApplicationController.helpers.current_user args.first
 
     begin
-      conn = ApplicationController.helpers.set_connection
+      retries ||= 0
+      conn = ApplicationController.helpers.set_connection user
       response = conn.get("#{base_uri}#{method}", params, {})
       status = response.status
       data = JSON.parse(response.body)
     rescue Exception => e
       p e.message
       Rails.logger.warn "dolibarr_api_get error: #{e.message}"
+      ApplicationController.helpers.set_user_access_token(user) if status == 401
+      retry if ((retries += 1) < 3 && status == 401)
     end
 
     return status, data
   end
 
-  def dolibarr_api_post(method, params)
+  def dolibarr_api_post(method, params, *args)
     base_uri = "/dolibarr/api/index.php"
     status = 0
     data = {}
+    user = ApplicationController.helpers.current_user args.first
 
     begin
-      conn = ApplicationController.helpers.set_connection
+      retries ||= 0
+      conn = ApplicationController.helpers.set_connection user
       response = conn.post("#{base_uri}#{method}") do |req|
         req.params['DOLAPIKEY'] = ""
         req.body = params.to_json
@@ -49,18 +83,22 @@ module DolibarrHelper
     rescue Exception => e
       p e.message
       Rails.logger.warn "dolibarr_api_post error: #{e.message}"
+      ApplicationController.helpers.set_user_access_token(user) if status == 401
+      retry if ((retries += 1) < 3 && status == 401)
     end
 
     return status, data
   end
 
-  def dolibarr_api_put(method, params)
+  def dolibarr_api_put(method, params, *args)
     base_uri = "/dolibarr/api/index.php"
     status = 0
     data = {}
+    user = ApplicationController.helpers.current_user args.first
 
     begin
-      conn = ApplicationController.helpers.set_connection
+      retries ||= 0
+      conn = ApplicationController.helpers.set_connection user
       response = conn.put("#{base_uri}#{method}") do |req|
         req.params['DOLAPIKEY'] = ""
         req.body = params.to_json
@@ -74,6 +112,8 @@ module DolibarrHelper
     rescue Exception => e
       p e.message
       Rails.logger.warn "dolibarr_api_post error: #{e.message}"
+      ApplicationController.helpers.set_user_access_token(user) if status == 401
+      retry if ((retries += 1) < 3 && status == 401)
     end
 
     return status, data
@@ -159,4 +199,12 @@ module DolibarrHelper
     return status, data
   end
 
+  # status, data = ApplicationController.helpers.dolibarr_test()
+  def dolibarr_test
+    method = "/status"
+    params = {}
+    status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
+
+    return status, data
+  end
 end

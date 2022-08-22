@@ -30,7 +30,7 @@ module OrdersHelper
     return ref
   end
 
-  def create_order(order, contact_id)
+  def create_order(order, contact_id, user)
     ref = ApplicationController.helpers.order_ref_generate
     socid = ThirdParty.last.id
     products_detail = Array.new
@@ -109,16 +109,16 @@ module OrdersHelper
 
     # p params
     method = "/orders"
-    status, order_id = ApplicationController.helpers.dolibarr_api_post(method, params)
-    status, data = ApplicationController.helpers.add_order_contact(order_id, contact.ref) if status == 200
+    status, order_id = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+    status, data = ApplicationController.helpers.add_order_contact(order_id, contact.ref, user) if status == 200
 
     return status, order_id
   end
 
-  def add_order_contact(order_id, contact_ref)
+  def add_order_contact(order_id, contact_ref, user)
     method = "/orders/#{order_id}/contact/#{contact_ref}/BILLING"
     params = {}
-    status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
+    status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
   end
 
   # status, data = ApplicationController.helpers.get_order(197)
@@ -131,7 +131,7 @@ module OrdersHelper
   end
 
   # flag, pdf_file = ApplicationController.helpers.order_document_generate(186)
-  def order_document_generate(order_id)
+  def order_document_generate(order_id, user)
     flag = false
     status, data = ApplicationController.helpers.get_order(order_id)
     ref = data["ref"]
@@ -139,7 +139,7 @@ module OrdersHelper
     method = "/documents/builddoc"
     params = { "modulepart": "order", "original_file": "#{ref}/#{ref}.pdf", "doctemplate": "eratosthene", "langcode": "en_US" }
 
-    status, data = ApplicationController.helpers.dolibarr_api_put(method, params) if status == 200
+    status, data = ApplicationController.helpers.dolibarr_api_put(method, params, user) if status == 200
 
     if status == 200
       c = data["content"]

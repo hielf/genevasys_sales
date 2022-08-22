@@ -133,23 +133,24 @@ module Api
       end
     end
 
-
     def current_user
-      token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
-      # Rails.logger.warn "request headers token: #{token}"
-      # Rails.logger.warn "request headers options: #{options}"
-      p "request headers token: #{token}"
-      p "request headers options: #{options}"
-      mobile = options.blank? ? nil : options[:mobile]
-      # user = mobile && User.find_by(mobile: mobile)
-      user = token && User.find_by(access_token: token)
-      if user && user.access_token.present? && ActiveSupport::SecurityUtils.secure_compare(user.access_token, token)
+      # token, options = ActionController::HttpAuthentication::Token.token_and_options(request)
+      # # Rails.logger.warn "request headers token: #{token}"
+      # # Rails.logger.warn "request headers options: #{options}"
+      # p "request headers token: #{token}"
+      # p "request headers options: #{options}"
+      # mobile = options.blank? ? nil : options[:mobile]
+      # # user = mobile && User.find_by(mobile: mobile)
+      # user = token && User.find_by(access_token: token)
+      user = User.find_by(promote_code: params[:promote_code])
+      p "params =========>>>>>>> #{params}"
+      p "current_user =========>>>>>>> #{user}"
+      if user && user.access_token.present? # && ActiveSupport::SecurityUtils.secure_compare(user.access_token, token)
         @current_user = user
       else
         unauthenticated!
       end
     end
-
 
     def authenticate_user!
       render_json([401, t('messages.c_401')]) unless current_user

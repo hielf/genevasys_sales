@@ -2,6 +2,8 @@ class Api::ProductsController < Api::ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
+    status, data = ApplicationController.helpers.dolibarr_test
+    
     products = Product.where(visible: 1, product_type: 1)
 
     @bundles = Array.new
