@@ -30,10 +30,11 @@ module OrdersHelper
     return ref
   end
 
-  def create_order(order, contact_id, user)
+  def create_order(order, contact_id)
     ref = ApplicationController.helpers.order_ref_generate
     socid = ThirdParty.last.id
     products_detail = Array.new
+    user = order.user
 
     (JSON.parse order.products).each do |product_id|
       product = Product.find_by(product_id: product_id)

@@ -13,6 +13,8 @@ class OrderCreateJob < ApplicationJob
       sleep 5
     end
 
+    user = @order.user
+
     begin
       cust_params = {"entity": "1",
         "name": "#{@order.first_name} #{@order.last_name}",
@@ -38,7 +40,7 @@ class OrderCreateJob < ApplicationJob
         "lastname": @order.last_name,
         "firstname": @order.first_name}
 
-      flag, third_party_id = ApplicationController.helpers.create_third_party(cust_params)
+      flag, third_party_id = ApplicationController.helpers.create_third_party(cust_params, user)
 
       contact_params = {"address": @order.billing_address,
        "zip": @order.postal_code,
@@ -55,7 +57,7 @@ class OrderCreateJob < ApplicationJob
        "socname": "#{@order.first_name} #{@order.last_name}",
        "mail": @order.email}
 
-      flag, contact_id = ApplicationController.helpers.create_contact(contact_params) if third_party_id
+      flag, contact_id = ApplicationController.helpers.create_contact(contact_params, user) if third_party_id
     rescue Exception => ex
       Rails.logger.warn ex.message
     ensure

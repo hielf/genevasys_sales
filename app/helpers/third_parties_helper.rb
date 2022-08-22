@@ -119,7 +119,7 @@ module ThirdPartiesHelper
     p count
   end
 
-  def create_third_party(params)
+  def create_third_party(params, user)
     p params
     flag = false
     third_party_id = nil
@@ -133,7 +133,7 @@ module ThirdPartiesHelper
       params[:code_client] = code_client
 
       method = "/thirdparties"
-      status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
+      status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
       id = data if status == 200
     else
       id = exist_cust.ref
