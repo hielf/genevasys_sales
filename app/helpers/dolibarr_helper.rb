@@ -11,7 +11,7 @@ module DolibarrHelper
     results = client.query("SELECT api_key FROM llx_user WHERE rowid='#{user.ref}'")
     client.close
 
-    api_key = results.first.nil? ? ApplicationController.helpers.generate_api_key(user) : results.first["api_key"]
+    api_key = (results.first.nil? || results.first["api_key"].nil?) ? ApplicationController.helpers.generate_api_key(user) : results.first["api_key"]
 
     return api_key
   end
@@ -169,7 +169,7 @@ module DolibarrHelper
         headers: {'Content-Type' => 'application/json', 'DOLAPIKEY' => ''},
         ssl: {:verify => false}
       )
-      
+
       response = conn.post("#{base_uri}#{method}") do |req|
         req.params['DOLAPIKEY'] = ""
         req.body = params.to_json

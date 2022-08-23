@@ -31,6 +31,7 @@ module UsersHelper
     return flag
   end
 
+  # ApplicationController.helpers.init_users
   def init_users
     count = 0
     status, data = ApplicationController.helpers.dolibarr_users
