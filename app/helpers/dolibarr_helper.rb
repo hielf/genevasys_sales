@@ -46,9 +46,9 @@ module DolibarrHelper
   def set_connection(user)
     base_url = ENV["api_url"]
     # user = ApplicationController.helpers.current_user user
-    api_key = ""
     if user.nil?
-      status, api_key = ApplicationController.helpers.dolibarr_login(ENV["crm_login"], ENV["crm_password"])
+      # status, api_key = ApplicationController.helpers.dolibarr_login(ENV["crm_login"], ENV["crm_password"])
+      api_key = ""
     else
       api_key = user.access_token
     end
@@ -76,7 +76,7 @@ module DolibarrHelper
       status = response.status
       data = JSON.parse(response.body)
 
-    raise Exception.new "401" if status == 401
+      raise Exception.new "401" if status == 401
 
     rescue Exception => e
       ApplicationController.helpers.set_user_access_token(user) if status == 401
@@ -102,16 +102,19 @@ module DolibarrHelper
         req.body = params.to_json
       end
       status = response.status
+
+      raise Exception.new "401" if status == 401
+
       if status == 200
         data = JSON.parse(response.body)
       else
         data = JSON.parse(response.body)["error"]
       end
     rescue Exception => e
-      p e.message
-      Rails.logger.warn "dolibarr_api_post error: #{e.message}"
       ApplicationController.helpers.set_user_access_token(user) if status == 401
       retry if ((retries += 1) < 3 && status == 401)
+      p e.message
+      Rails.logger.warn "dolibarr_api_post error: #{e.message}"
     end
 
     return status, data
@@ -131,22 +134,25 @@ module DolibarrHelper
         req.body = params.to_json
       end
       status = response.status
+
+      raise Exception.new "401" if status == 401
+
       if status == 200
         data = JSON.parse(response.body)
       else
         data = JSON.parse(response.body)["error"]
       end
     rescue Exception => e
-      p e.message
-      Rails.logger.warn "dolibarr_api_put error: #{e.message}"
       ApplicationController.helpers.set_user_access_token(user) if status == 401
       retry if ((retries += 1) < 3 && status == 401)
+      p e.message
+      Rails.logger.warn "dolibarr_api_put error: #{e.message}"
     end
 
     return status, data
   end
 
-  # status, token = ApplicationController.helpers.dolibarr_login(ENV["test_login"], ENV["test_password"])
+  # status, token = ApplicationController.helpers.dolibarr_login(ENV["crm_login"], ENV["crm_password"])
   def dolibarr_login(login, password)
     token = ""
     method = "/login"
