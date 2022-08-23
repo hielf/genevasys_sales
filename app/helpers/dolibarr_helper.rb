@@ -1,35 +1,59 @@
 module DolibarrHelper
 
-  def get_token(ref)
+  def get_token(user)
     config = Rails.configuration.database_configuration
     host = config[Rails.env]["host"]
     username = config[Rails.env]["username"]
     password = config[Rails.env]["password"]
+    port = config[Rails.env]["port"]
 
-    client = Mysql2::Client.new(:host => host, :username => username, :password => password, :database => ENV['CRM_DATABASE'] )
-    results = client.query("SELECT api_key FROM llx_user WHERE rowid='#{ref}'")
+    client = Mysql2::Client.new(:host => host, :port => port, :username => username, :password => password, :database => ENV['CRM_DATABASE'] )
+    results = client.query("SELECT api_key FROM llx_user WHERE rowid='#{user.ref}'")
     client.close
 
-    api_key = results.first.nil? ? nil : results.first["api_key"]
+    api_key = results.first.nil? ? ApplicationController.helpers.generate_api_key(user) : results.first["api_key"]
 
     return api_key
   end
 
+  # ApplicationController.helpers.set_user_access_token(user)
   def set_user_access_token(user)
-    api_key = ApplicationController.helpers.get_token(user.ref)
+    api_key = ApplicationController.helpers.get_token(user)
     user.update(access_token: api_key)
   end
 
   # ApplicationController.helpers.current_user(args)
   def current_user(args)
-    (args.nil? || (args.class == Array && args.empty?)) ? User.first : args
+    (args.nil? || (args.class == Array && args.empty?)) ? User.find_by(user_name: 'admin') : args
   end
 
+  def generate_api_key(user)
+    api_key = Digest::MD5.hexdigest("#{user.user_name}||#{user.created_at}")
+
+    config = Rails.configuration.database_configuration
+    host = config[Rails.env]["host"]
+    username = config[Rails.env]["username"]
+    password = config[Rails.env]["password"]
+    port = config[Rails.env]["port"]
+
+    client = Mysql2::Client.new(:host => host, :port => port, :username => username, :password => password, :database => ENV['CRM_DATABASE'] )
+    results = client.query("update llx_user set api_key = '#{api_key}' WHERE rowid='#{user.ref}'")
+
+    return api_key
+  end
+
+  # ApplicationController.helpers.set_connection user
   def set_connection(user)
     base_url = ENV["api_url"]
     # user = ApplicationController.helpers.current_user user
-    api_key = user.access_token
+    api_key = ""
+    if user.nil?
+      status, api_key = ApplicationController.helpers.dolibarr_login(ENV["crm_login"], ENV["crm_password"])
+    else
+      api_key = user.access_token
+    end
 
+    p api_key
     conn = Faraday.new(
       url: base_url,
       # params: {},
@@ -51,11 +75,14 @@ module DolibarrHelper
       response = conn.get("#{base_uri}#{method}", params, {})
       status = response.status
       data = JSON.parse(response.body)
+
+    raise Exception.new "401" if status == 401
+
     rescue Exception => e
-      p e.message
-      Rails.logger.warn "dolibarr_api_get error: #{e.message}"
       ApplicationController.helpers.set_user_access_token(user) if status == 401
       retry if ((retries += 1) < 3 && status == 401)
+      p e.message
+      Rails.logger.warn "dolibarr_api_get error: #{e.message}"
     end
 
     return status, data
@@ -111,7 +138,7 @@ module DolibarrHelper
       end
     rescue Exception => e
       p e.message
-      Rails.logger.warn "dolibarr_api_post error: #{e.message}"
+      Rails.logger.warn "dolibarr_api_put error: #{e.message}"
       ApplicationController.helpers.set_user_access_token(user) if status == 401
       retry if ((retries += 1) < 3 && status == 401)
     end
@@ -200,7 +227,7 @@ module DolibarrHelper
   end
 
   # status, data = ApplicationController.helpers.dolibarr_test()
-  def dolibarr_test
+  def dolibarr_status
     method = "/status"
     params = {}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
