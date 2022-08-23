@@ -6,11 +6,11 @@ module DolibarrHelper
     username = config[Rails.env]["username"]
     password = config[Rails.env]["password"]
 
-    client = Mysql2::Client.new(:host => host, :username => username, :password => password, :database => 'dolibarrdebian' )
+    client = Mysql2::Client.new(:host => host, :username => username, :password => password, :database => ENV['CRM_DATABASE'] )
     results = client.query("SELECT api_key FROM llx_user WHERE rowid='#{ref}'")
     client.close
 
-    api_key = results.first["api_key"]
+    api_key = results.first.nil? ? nil : results.first["api_key"]
 
     return api_key
   end
@@ -22,7 +22,6 @@ module DolibarrHelper
 
   # ApplicationController.helpers.current_user(args)
   def current_user(args)
-    p args
     (args.nil? || (args.class == Array && args.empty?)) ? User.first : args
   end
 
