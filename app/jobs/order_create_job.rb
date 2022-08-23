@@ -65,7 +65,7 @@ class OrderCreateJob < ApplicationJob
 
       if @status == 200
         order_id = @data
-        @flag, @pdf_file = ApplicationController.helpers.order_document_generate(order_id)
+        @flag, @pdf_file = ApplicationController.helpers.order_document_generate(order_id, user)
       end
     end
   end

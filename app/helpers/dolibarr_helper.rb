@@ -20,14 +20,15 @@ module DolibarrHelper
     user.update(access_token: api_key)
   end
 
-  # ApplicationController.helpers.current_user(user)
-  def current_user(*args)
-    (args.nil? || args.empty?) ? User.first : args.first
+  # ApplicationController.helpers.current_user(args)
+  def current_user(args)
+    p args
+    (args.nil? || (args.class == Array && args.empty?)) ? User.first : args
   end
 
-  def set_connection(*args)
+  def set_connection(user)
     base_url = ENV["api_url"]
-    user = ApplicationController.helpers.current_user args.first
+    # user = ApplicationController.helpers.current_user user
     api_key = user.access_token
 
     conn = Faraday.new(
@@ -43,7 +44,7 @@ module DolibarrHelper
     base_uri = "/dolibarr/api/index.php"
     status = 0
     data = {}
-    user = ApplicationController.helpers.current_user args.first
+    user = ApplicationController.helpers.current_user args
 
     begin
       retries ||= 0
@@ -65,7 +66,7 @@ module DolibarrHelper
     base_uri = "/dolibarr/api/index.php"
     status = 0
     data = {}
-    user = ApplicationController.helpers.current_user args.first
+    user = ApplicationController.helpers.current_user args
 
     begin
       retries ||= 0
@@ -94,7 +95,7 @@ module DolibarrHelper
     base_uri = "/dolibarr/api/index.php"
     status = 0
     data = {}
-    user = ApplicationController.helpers.current_user args.first
+    user = ApplicationController.helpers.current_user args
 
     begin
       retries ||= 0
