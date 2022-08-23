@@ -42,13 +42,12 @@ module DolibarrHelper
     return api_key
   end
 
-  # ApplicationController.helpers.set_connection user
+  # conn = ApplicationController.helpers.set_connection user
   def set_connection(user)
     base_url = ENV["api_url"]
-    # user = ApplicationController.helpers.current_user user
+
     if user.nil?
-      # status, api_key = ApplicationController.helpers.dolibarr_login(ENV["crm_login"], ENV["crm_password"])
-      api_key = ""
+      status, api_key = ApplicationController.helpers.dolibarr_login(ENV["crm_login"], ENV["crm_password"])
     else
       api_key = user.access_token
     end
@@ -157,7 +156,36 @@ module DolibarrHelper
     token = ""
     method = "/login"
     params = {login: login, password: password}
-    status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
+    # status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
+
+    base_uri = "/dolibarr/api/index.php"
+    status = 0
+    data = {}
+
+    begin
+      conn = Faraday.new(
+        url: ENV["api_url"],
+        # params: {},
+        headers: {'Content-Type' => 'application/json', 'DOLAPIKEY' => ''},
+        ssl: {:verify => false}
+      )
+      
+      response = conn.post("#{base_uri}#{method}") do |req|
+        req.params['DOLAPIKEY'] = ""
+        req.body = params.to_json
+      end
+      status = response.status
+
+      if status == 200
+        data = JSON.parse(response.body)
+      else
+        data = JSON.parse(response.body)["error"]
+      end
+    rescue Exception => e
+      p e.message
+      Rails.logger.warn "dolibarr_api_post error: #{e.message}"
+    end
+
     token = data["success"]["token"] if status == 200
 
     return status, token
