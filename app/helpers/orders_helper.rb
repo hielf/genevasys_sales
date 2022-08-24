@@ -32,7 +32,8 @@ module OrdersHelper
 
   def create_order(order, contact_id)
     ref = ApplicationController.helpers.order_ref_generate
-    socid = ThirdParty.last.id
+    contact = Contact.find_by(ref: contact_id)
+    socid = contact.third_party.ref
     products_detail = Array.new
     user = order.user
 

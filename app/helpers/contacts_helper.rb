@@ -50,7 +50,7 @@ module ContactsHelper
     p count
   end
 
-  def create_contact(params)
+  def create_contact(params, user)
     # p params
     flag = false
     contact_id = nil
@@ -60,7 +60,7 @@ module ContactsHelper
 
     if exist_contact.nil?
       method = "/contacts"
-      status, data = ApplicationController.helpers.dolibarr_api_post(method, params)
+      status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
       contact_id = data if status == 200
     else
       contact_id = exist_contact.ref

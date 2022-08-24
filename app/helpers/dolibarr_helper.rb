@@ -24,7 +24,7 @@ module DolibarrHelper
 
   # ApplicationController.helpers.current_user(args)
   def current_user(args)
-    (args.nil? || (args.class == Array && args.empty?)) ? User.find_by(user_name: 'admin') : args
+    (args.nil? || (args.class == Array && args.empty?)) ? User.find_by(user_name: 'admin') : args[0]
   end
 
   def generate_api_key(user)

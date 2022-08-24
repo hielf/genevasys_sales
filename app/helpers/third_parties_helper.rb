@@ -120,7 +120,6 @@ module ThirdPartiesHelper
   end
 
   def create_third_party(params, user)
-    p params
     flag = false
     third_party_id = nil
     id = nil

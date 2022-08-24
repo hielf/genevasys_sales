@@ -42,5 +42,6 @@ json.data do
     json.promoteCode                      @order.promote_code
     json.additionalRequirements           @order.additional_requirements
     json.pdf_file                         @pdf_url
+    json.status                           @order.status
   end
 end
