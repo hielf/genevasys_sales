@@ -35,6 +35,7 @@ module ProductsHelper
     return flag
   end
 
+  # ApplicationController.helpers.init_products
   def init_products
     count = 0
     status, data = ApplicationController.helpers.dolibarr_products

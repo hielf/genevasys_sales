@@ -52,7 +52,6 @@ module DolibarrHelper
       api_key = user.access_token
     end
 
-    p api_key
     conn = Faraday.new(
       url: base_url,
       # params: {},
