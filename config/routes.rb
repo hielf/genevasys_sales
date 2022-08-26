@@ -24,5 +24,5 @@ Rails.application.routes.draw do
     end
     # match '*path', to: 'root#route_not_found', via: :all
   end
-  get '*path', to: 'home#index', via: :all, format: false
+  get '*path', to: 'home#index', via: :all
 end
