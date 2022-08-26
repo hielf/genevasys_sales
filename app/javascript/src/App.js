@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import OrderForm from './Order/Form'
 import ResultForm from './Order/ResultForm'
 import Term from './Pages/Term'
-import './App.css';
+// import './App.css';
 import { ConfigProvider } from 'antd';
 
 ConfigProvider.config({
