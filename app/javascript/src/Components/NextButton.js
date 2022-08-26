@@ -9,6 +9,7 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
   const [err, setErr] = useState('');
 
   useEffect(() => {
+    // console.log("err_ue:", err);
     if (err !== '') {
       error(err)
     }
@@ -17,10 +18,12 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
   useEffect(() => {
     if (step === FormTitles.length - 1 && err === '') {
       // console.log("res_ue:", res);
-      history.push({
-        pathname: "/order/submit",
-        search: '?id=' + res.id
-      });
+      if (res !== null) {
+        history.push({
+          pathname: "/order/submit",
+          search: '?id=' + res.id
+        });
+      }
     }
   }, [res]);
 
@@ -64,11 +67,12 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
           },
         },
       );
-      // console.log(data.data);
+      // console.log(data);
       // console.log(JSON.stringify(data));
       // console.log(JSON.stringify(data, null, 4));
       setRes(data.data);
       if (data.status === 1) {
+        // console.log(data);
         setErr(data.message);
       }
     } catch (e) {
