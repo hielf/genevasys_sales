@@ -4,7 +4,6 @@ class User < ApplicationRecord
   # has_secure_password
   has_many :orders, dependent: :destroy
   has_many :op_logs, dependent: :destroy
-  has_many :push_notifications, dependent: :destroy
 
   before_save :generate_promote_code
 
@@ -55,6 +54,8 @@ class User < ApplicationRecord
 
   private
   def generate_promote_code
-    self.promote_code = ref.rjust(4, '0') if self.promote_code.nil?
+    p self.user_name
+    # self.promote_code = ref.rjust(4, '0') if self.promote_code.nil?
+    self.promote_code = self.user_name if self.promote_code.nil?
   end
 end

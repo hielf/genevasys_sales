@@ -222,10 +222,10 @@ const ProductInfo = ({formData, setFormData}) => {
                       <Row key={d.value}>
                         <Col span={24}>
                           <Row justify="space-between">
-                            <Col span={!isMobile ? 4 : 10}>
+                            <Col span={!isMobile ? 6 : 10}>
                               <Checkbox value={d.value}>{d.label}</Checkbox>
                             </Col>
-                            <Col span={!isMobile ? 16 : 1}>
+                            <Col span={!isMobile ? 14 : 1}>
                             {!isMobile ? d.description : null}
                             </Col>
                             <Col span={4}>${d.price}</Col>
