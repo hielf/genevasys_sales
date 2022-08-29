@@ -34,8 +34,14 @@ const CustomerInfo = ({formData, setFormData}) => {
     };
 
   const onChange7 = ({ target: { value } }) => {
-      if (formData.optionsSameAddress === 1) {
+      // if (formData.optionsSameAddress === 1) {
+      //   setFormData((formData) => ({ ...formData, billingAddress: value }));
+      // }
+      if (formData.billingAddress === formData.installationAddress) {
         setFormData((formData) => ({ ...formData, billingAddress: value }));
+      }
+      if (formData.ipPhoneAddress === formData.installationAddress) {
+        setFormData((formData) => ({ ...formData, ipPhoneAddress: value }));
       }
       setFormData((formData) => ({ ...formData, installationAddress: value }));
     };
@@ -60,15 +66,19 @@ const CustomerInfo = ({formData, setFormData}) => {
       setFormData({ ...formData, buzz: value });
     };
 
-  const onChange14 = ({ target: { value } }) => {
-      if (value === 1) {
-        setFormData((formData) => ({ ...formData, billingAddress: formData.installationAddress }));
-      }
-      setFormData((formData) => ({ ...formData, optionsSameAddress: value }));
-    };
+  // const onChange14 = ({ target: { value } }) => {
+  //     if (value === 1) {
+  //       setFormData((formData) => ({ ...formData, billingAddress: formData.installationAddress }));
+  //     }
+  //     setFormData((formData) => ({ ...formData, optionsSameAddress: value }));
+  //   };
 
   const onChange15 = ({ target: { value } }) => {
       setFormData({ ...formData, billingAddress: value });
+    };
+
+  const onChange16 = ({ target: { value } }) => {
+      setFormData((formData) => ({ ...formData, ipPhoneAddress: value }));
     };
 
   return (
@@ -174,6 +184,17 @@ const CustomerInfo = ({formData, setFormData}) => {
 
       <Row>
         <Col span={24}>
+          <span style={labelStyle}>E911 Address:</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Input placeholder="#Unit-Number Street" onChange={onChange16} value={formData.ipPhoneAddress} />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={24}>
           <span style={labelStyle}>City | Province | Postal Code:</span>
         </Col>
       </Row>
@@ -263,31 +284,12 @@ const CustomerInfo = ({formData, setFormData}) => {
 
       <Row>
         <Col span={24}>
-          <span style={labelStyle}>Billing Address Status:</span>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Radio.Group name="optionsSameAddress" defaultValue={1} onChange={onChange14} value={formData.optionsSameAddress} >
-            <Radio value={1}>
-              Same As Installation Address
-            </Radio>
-            <Radio value={2}>
-              Different From Installation Address
-            </Radio>
-          </Radio.Group>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col span={24}>
           <span style={labelStyle}>Billing Address:</span>
         </Col>
       </Row>
       <Row>
         <Col span={24}>
           <Input
-              disabled={formData.optionsSameAddress === 2 ? false : true}
               onChange={onChange15}
               value={formData.billingAddress}
             />

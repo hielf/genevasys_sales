@@ -178,21 +178,6 @@ const ProductInfo = ({formData, setFormData}) => {
                     onChange={onChange5}
                     value={formData.ipPhonePortInNumber}/>
                 </Space>
-                <Space direction='horizontal' size='small'>
-                  <Tooltip>
-                    <span style={{ fontWeight: 'bold' }}>Address:</span>
-                  </Tooltip>
-                  <Radio.Group name="ipPhoneAddressOption" defaultValue={1} onChange={onChange6} value={formData.ipPhoneAddressOption}>
-                    <Radio value={1}>Same</Radio>
-                    <Radio value={2}>Other</Radio>
-                  </Radio.Group>
-                  <Input placeholder="#Address"
-                    bordered={false}
-                    style={{ borderBottom: '1px solid rgb(0 0 0 / 6%)', borderTop:'0px', borderLeft:'0px', borderright:'0px' }}
-                    disabled={formData.ipPhoneAddressOption === 2 ? false : true}
-                    onChange={onChange7}
-                    value={formData.ipPhoneAddress}/>
-                </Space>
               </Space>
             </Card>
           </Col>
