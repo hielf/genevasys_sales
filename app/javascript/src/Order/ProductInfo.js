@@ -38,7 +38,7 @@ const ProductInfo = ({formData, setFormData}) => {
       if (data.value === '16') {
         hasTypeC = true;
       }
-      if (data.value === '20') {
+      if (data.value === '20' || data.label.indexOf('Bundle') >= 0) {
         hasTypeD = true;
       }
     })
@@ -145,7 +145,7 @@ const ProductInfo = ({formData, setFormData}) => {
   };
 
   const ipPhone = (p) => {
-    if (p === "ip_phone") {
+    if (p === "ip_phone" || p === "bundles") {
       return (
         <Row>
           <Col span={24}>
