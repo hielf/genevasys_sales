@@ -43,6 +43,9 @@ const CustomerInfo = ({formData, setFormData}) => {
       if (formData.ipPhoneAddress === formData.installationAddress) {
         setFormData((formData) => ({ ...formData, ipPhoneAddress: value }));
       }
+      if (formData.cardRegistrationAddress === formData.installationAddress) {
+        setFormData((formData) => ({ ...formData, cardRegistrationAddress: value }));
+      }
       setFormData((formData) => ({ ...formData, installationAddress: value }));
     };
 
