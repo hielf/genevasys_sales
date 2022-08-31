@@ -41,13 +41,13 @@ module OrdersHelper
       product = Product.find_by(product_id: product_id)
       qty, desc =
       if product.label.include?("Bundle")
-        [1, "#{product.description}" + "<br />" + (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + "<br />Address: #{order.ip_phone_address}"]
+        [1, "#{product.description}" + "<br />" + (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + "<br />E911 Address: #{order.ip_phone_address}"]
       elsif product.label.include?("Internet")
         [1, product.description]
       elsif product.label.include?("Magio")
         [order.tv_box_qty, "Qty: #{order.tv_box_qty}"]
       elsif product.label.include?("Phone")
-        [order.ip_phone_qty, (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + "<br />Address: #{order.ip_phone_address}"]
+        [order.ip_phone_qty, (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + "<br />E911 Address: #{order.ip_phone_address}"]
       else
         [1, ""]
       end
@@ -89,7 +89,7 @@ module OrdersHelper
     when 3
       "UnionPay"
     end
-    note_private = "CARD TYPE: #{card_type} CARD HOLDER: #{order.card_first_name} #{order.card_last_name} <br /> CARD NUMBER: #{order.card_number} <br /> EXPIRE DATE: #{order.mm}/#{order.yy} <br /> CVV: #{order.cvv} <br /> CARD ADDRESS: #{order.card_registration_ddress} " +
+    note_private = "CARD TYPE: #{card_type} <br /> CARD HOLDER: #{order.card_first_name} #{order.card_last_name} <br /> CARD NUMBER: #{order.card_number} <br /> EXPIRE DATE: #{order.mm}/#{order.yy} <br /> CVV: #{order.cvv} <br /> CARD ADDRESS: #{order.card_registration_ddress} " +
     "<br /> UNIT TYPE: #{unit_type}" +
     (order.buzz != "" ? "<br />  BUZZ: #{order.buzz}" : "") +
     (order.alt_phone != "" ? "<br />  ALT PHONE: #{order.alt_phone}" : "") +
