@@ -25,4 +25,5 @@ Rails.application.routes.draw do
     # match '*path', to: 'root#route_not_found', via: :all
   end
   get '*path', to: 'home#index', via: :all
+  get '*hello_world', to: 'layhouts#hello_world', via: :all
 end
