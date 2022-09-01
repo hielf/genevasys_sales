@@ -208,9 +208,8 @@ module DolibarrHelper
   end
 
   # status, data = ApplicationController.helpers.dolibarr_users
-  def dolibarr_users
+  def dolibarr_users(params)
     method = "/users"
-    params = {limit: 0}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
 
     return status, data

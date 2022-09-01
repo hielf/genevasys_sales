@@ -78,11 +78,19 @@ module ContactsHelper
   def create_contact_user(contact_id, user)
     flag = false
     contact = Contact.find_by(ref: contact_id)
-    params = {"login": "#{contact.firstname}_#{SecureRandom.urlsafe_base64(4)}", "password": SecureRandom.urlsafe_base64(8)}
-    method = "/contacts/#{contact_id}/createUser"
-    status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+    login = "#{contact.firstname}_#{contact.ref}"
 
-    flag = true if status == 200
+    params = {limit: 1, sqlfilters: "t.login='#{login}'"}
+    status, data = ApplicationController.helpers.dolibarr_users(params)
+
+    if status == 404
+      params = {"login": login, "password": SecureRandom.urlsafe_base64(8)}
+      method = "/contacts/#{contact_id}/createUser"
+      status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+
+      flag = true if status == 200
+    end
+
     return flag
   end
 

@@ -34,7 +34,8 @@ module UsersHelper
   # ApplicationController.helpers.init_users
   def init_users
     count = 0
-    status, data = ApplicationController.helpers.dolibarr_users
+    params = {limit: 0}
+    status, data = ApplicationController.helpers.dolibarr_users(params)
     data.each do |params|
       flag = ApplicationController.helpers.new_user(params)
       break if flag == false
