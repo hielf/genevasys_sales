@@ -10,7 +10,7 @@ import { apiGet } from '../Functions/ApiRequest'
 const ProductInfo = ({formData, setFormData}) => {
 
   const [list, setList] = useState({});
-
+  console.log(list);
   useEffect(() => {
     getList();
   }, []);
@@ -21,9 +21,10 @@ const ProductInfo = ({formData, setFormData}) => {
   };
 
   const onChange1 = (checkedValues) => {
-    var listData = [];
-    var hasTypeC = false;
-    var hasTypeD = false;
+    let listData = [];
+    let hasTypeB = false;
+    let hasTypeC = false;
+    let hasTypeD = false;
 
     checkedValues.map(value => {
       Object.keys(list).map(p => {
@@ -35,6 +36,9 @@ const ProductInfo = ({formData, setFormData}) => {
     })
 
     listData.map(data => {
+      if (data.label.indexOf('Internet') === 0) {
+        hasTypeB = true;
+      }
       if (data.value === '16') {
         hasTypeC = true;
       }
@@ -187,10 +191,7 @@ const ProductInfo = ({formData, setFormData}) => {
   };
 
   return (
-    <Checkbox.Group
-    onChange={onChange1}
-    value={formData.products}
-    style={{ width: '100%' }}>
+
       <Space direction='vertical' size='middle' style={{ display: 'flex' }}>
         {
           Object.keys(list).map(p => {
@@ -201,25 +202,34 @@ const ProductInfo = ({formData, setFormData}) => {
                     {icons(p)}{categroy(p)}
                   </Space>
                 </Divider>
-                {
-                  list[p].map(d => {
-                    return (
-                      <Row key={d.value}>
-                        <Col span={24}>
-                          <Row justify="space-between">
-                            <Col span={!isMobile ? 6 : 10}>
-                              <Checkbox value={d.value}>{d.label}</Checkbox>
+
+                    <Checkbox.Group
+                    onChange={onChange1}
+                    value={formData.products}
+                    style={{ width: '100%' }}>
+
+                    {
+                      list[p].map(d => {
+                        return (
+                          <Row key={d.value}>
+                            <Col span={24}>
+                              <Row justify="space-between">
+                                <Col span={!isMobile ? 6 : 10}>
+                                  <Checkbox value={d.value}>{d.label}</Checkbox>
+                                </Col>
+                                <Col span={!isMobile ? 14 : 1}>
+                                {!isMobile ? d.description : null}
+                                </Col>
+                                <Col span={4}>${d.price}</Col>
+                              </Row>
                             </Col>
-                            <Col span={!isMobile ? 14 : 1}>
-                            {!isMobile ? d.description : null}
-                            </Col>
-                            <Col span={4}>${d.price}</Col>
                           </Row>
-                        </Col>
-                      </Row>
-                    )
-                  })
-                }
+                        )
+                      })
+                    }
+
+                    </Checkbox.Group>
+
                 {tvBox(p)}
                 {ipPhone(p)}
               </Space>
@@ -227,7 +237,7 @@ const ProductInfo = ({formData, setFormData}) => {
           })
         }
       </Space>
-    </Checkbox.Group>
+
   );
 };
 
