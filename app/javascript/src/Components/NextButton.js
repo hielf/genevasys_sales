@@ -103,7 +103,7 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
           handleSubmit();
         }
       } else {
-        // console.log(formData);
+        console.log(formData);
         const d = new Date();
         if (step === 0 && formData.products.length === 0) {
           error("Please choose your product")

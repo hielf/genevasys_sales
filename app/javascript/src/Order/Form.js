@@ -59,6 +59,10 @@ function OrderForm() {
     checkAgreeMent: false,
     promoteCode: "",
     additionalRequirements: "",
+    productAs: [],
+    productBs: [],
+    productCs: [],
+    productDs: [],
   });
 
   const FormTitles = ["Choose Product", "Service Time", "Customer Info", "Payment Info", "Review"];

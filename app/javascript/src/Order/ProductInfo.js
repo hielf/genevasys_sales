@@ -10,7 +10,7 @@ import { apiGet } from '../Functions/ApiRequest'
 const ProductInfo = ({formData, setFormData}) => {
 
   const [list, setList] = useState({});
-  console.log(list);
+  // console.log(list);
   useEffect(() => {
     getList();
   }, []);
@@ -19,6 +19,82 @@ const ProductInfo = ({formData, setFormData}) => {
     const res = await apiGet('products', []);
     setList(res);
   };
+
+  const onChangeB = (checkedValues) => {
+    // console.log("B Checked:", checkedValues);
+    if (formData.productBs.length !== 0) {
+      setFormData((formData) => ({ ...formData, productBs: [] }));
+    }
+    setFormData((formData) => ({ ...formData, productBs: checkedValues }));
+    bundleCheck(checkedValues, "B");
+  }
+
+  const onChangeC = (checkedValues) => {
+    // console.log("C Checked:", checkedValues);
+    setFormData((formData) => ({ ...formData, productCs: checkedValues }));
+    bundleCheck(checkedValues, "C");
+  }
+
+  const onChangeD = (checkedValues) => {
+    // console.log("D Checked:", checkedValues);
+    setFormData((formData) => ({ ...formData, productDs: checkedValues }));
+    bundleCheck(checkedValues, "D");
+  }
+
+  const bundleCheck = (values, type) => {
+    let productBs = (type === "B" ? values : formData.productBs)
+    let productCs = (type === "C" ? values : formData.productCs)
+    let productDs = (type === "D" ? values : formData.productDs)
+
+    let checkedValues = productBs.concat(productCs).concat(productDs)
+
+    // console.log(checkedValues);
+
+    let listData = [];
+    let hasTypeB = false;
+    let hasTypeC = false;
+    let hasTypeD = false;
+
+    checkedValues.map(value => {
+      Object.keys(list).map(p => {
+        const l = list[p]
+        if ((l.filter((e) => e.value === value)).length !== 0) {
+          listData.push((l.filter((e) => e.value === value))[0])
+        }
+      })
+    })
+
+    listData.map(data => {
+      if (data.label.indexOf('Internet') === 0) {
+        hasTypeB = true;
+      }
+      if (data.value === '16') {
+        hasTypeC = true;
+      }
+      if (data.value === '20' || data.label.indexOf('Bundle') >= 0) {
+        hasTypeD = true;
+      }
+    })
+
+    if (hasTypeC === true) {
+      if (formData.tvBoxQty === 0) {
+        setFormData((formData) => ({ ...formData, tvBoxQty: 1 }));
+      }
+    } else if (hasTypeC === false) {
+      setFormData((formData) => ({ ...formData, tvBoxQty: 0 }));
+    }
+
+    if (hasTypeD === true) {
+      if (formData.ipPhoneQty === 0) {
+        setFormData((formData) => ({ ...formData, ipPhoneQty: 1 }));
+      }
+    } else if (hasTypeD === false) {
+      setFormData((formData) => ({ ...formData, ipPhoneQty: 0 }));
+    }
+
+    setFormData((formData) => ({ ...formData, products: checkedValues }));
+    setFormData((formData) => ({ ...formData, productsDetail: listData }));
+  }
 
   const onChange1 = (checkedValues) => {
     let listData = [];
@@ -195,45 +271,47 @@ const ProductInfo = ({formData, setFormData}) => {
       <Space direction='vertical' size='middle' style={{ display: 'flex' }}>
         {
           Object.keys(list).map(p => {
-            return (
-              <Space direction='vertical' size='middle' key={ 'space_key_' + p } style={{ display: 'flex' }}>
-                <Divider orientation='left' style={dividerStyle}>
-                  <Space direction='horizontal' size='small' >
-                    {icons(p)}{categroy(p)}
-                  </Space>
-                </Divider>
-
-                    <Checkbox.Group
-                    onChange={onChange1}
-                    value={formData.products}
-                    style={{ width: '100%' }}>
+            if (p !== "bundles") {
+              return (
+                <Space direction='vertical' size='middle' key={ 'space_key_' + p } style={{ display: 'flex' }}>
+                  <Divider orientation='left' style={dividerStyle}>
+                    <Space direction='horizontal' size='small' >
+                      {icons(p)}{categroy(p)}
+                    </Space>
+                  </Divider>
 
                     {
                       list[p].map(d => {
                         return (
-                          <Row key={d.value}>
-                            <Col span={24}>
-                              <Row justify="space-between">
-                                <Col span={!isMobile ? 6 : 10}>
-                                  <Checkbox value={d.value}>{d.label}</Checkbox>
-                                </Col>
-                                <Col span={!isMobile ? 14 : 1}>
-                                {!isMobile ? d.description : null}
-                                </Col>
-                                <Col span={4}>${d.price}</Col>
-                              </Row>
-                            </Col>
-                          </Row>
+                          <Checkbox.Group
+                          key={d.value}
+                          onChange={ (p == "internets") ? onChangeB : ((p == "tv_box") ? onChangeC : (p == "ip_phone") ? onChangeD : null)}
+                          value={ (p == "internets") ? formData.productBs : ((p == "tv_box") ? formData.productCs : (p == "ip_phone") ? formData.productDs : null)}
+                          style={{ width: '100%' }}>
+                            <Row>
+                              <Col span={24}>
+                                <Row justify="space-between">
+                                  <Col span={!isMobile ? 6 : 10}>
+                                    <Checkbox value={d.value}>{d.label}</Checkbox>
+                                  </Col>
+                                  <Col span={!isMobile ? 14 : 1}>
+                                  {!isMobile ? d.description : null}
+                                  </Col>
+                                  <Col span={4}>${d.price}</Col>
+                                </Row>
+                              </Col>
+                            </Row>
+                          </Checkbox.Group>
                         )
                       })
                     }
 
-                    </Checkbox.Group>
+                  {tvBox(p)}
+                  {ipPhone(p)}
+                </Space>
+              )
+            }
 
-                {tvBox(p)}
-                {ipPhone(p)}
-              </Space>
-            )
           })
         }
       </Space>
