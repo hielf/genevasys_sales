@@ -27,4 +27,9 @@ module ApplicationHelper
     return n.to_s.rjust(4, '0')
   end
 
+  # ApplicationController.helpers.string_between_markers(s, m1, m2)
+  def string_between_markers(s, m1, m2)
+    s[/#{Regexp.escape(m1)}(.*?)#{Regexp.escape(m2)}/m, 1]
+  end
+
 end
