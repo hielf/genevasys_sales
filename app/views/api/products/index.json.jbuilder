@@ -9,6 +9,7 @@ json.data do
       json.label          bundle['label']
       json.description    ActionView::Base.full_sanitizer.sanitize(bundle['description'])
       json.price          bundle['price'].to_f
+      json.tag            bundle['tag']
     end
   end
   json.internets do
@@ -18,6 +19,7 @@ json.data do
       json.label          internet['label']
       json.description    ActionView::Base.full_sanitizer.sanitize(internet['description'])
       json.price          internet['price'].to_f
+      json.tag            internet['tag']
     end
   end
   json.tv_box do
@@ -27,6 +29,7 @@ json.data do
       json.label          tv_box['label']
       json.description    ActionView::Base.full_sanitizer.sanitize(tv_box['description'])
       json.price          tv_box['price'].to_f
+      json.tag            tv_box['tag']
     end
   end
   json.ip_phone do
@@ -36,6 +39,7 @@ json.data do
       json.label          ip_phone['label']
       json.description    ActionView::Base.full_sanitizer.sanitize(ip_phone['description'])
       json.price          ip_phone['price'].to_f
+      json.tag            ip_phone['tag']
     end
   end
 end
