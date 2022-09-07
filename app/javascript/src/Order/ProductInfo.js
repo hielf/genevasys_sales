@@ -279,33 +279,31 @@ const ProductInfo = ({formData, setFormData}) => {
                       {icons(p)}{categroy(p)}
                     </Space>
                   </Divider>
-
-                    {
-                      list[p].map(d => {
-                        return (
-                          <Checkbox.Group
-                          key={d.value}
-                          onChange={ (p == "internets") ? onChangeB : ((p == "tv_box") ? onChangeC : (p == "ip_phone") ? onChangeD : null)}
-                          value={ (p == "internets") ? formData.productBs : ((p == "tv_box") ? formData.productCs : (p == "ip_phone") ? formData.productDs : null)}
-                          style={{ width: '100%' }}>
-                            <Row>
-                              <Col span={24}>
-                                <Row justify="space-between">
-                                  <Col span={!isMobile ? 6 : 10}>
-                                    <Checkbox value={d.value}>{d.label}</Checkbox>
-                                  </Col>
-                                  <Col span={!isMobile ? 14 : 1}>
-                                  {!isMobile ? d.description : null}
-                                  </Col>
-                                  <Col span={4}>${d.price}</Col>
-                                </Row>
-                              </Col>
-                            </Row>
-                          </Checkbox.Group>
-                        )
-                      })
-                    }
-
+                  {
+                    list[p].map(d => {
+                      return (
+                        <Checkbox.Group
+                        key={d.value}
+                        onChange={ (p == "internets") ? onChangeB : ((p == "tv_box") ? onChangeC : (p == "ip_phone") ? onChangeD : null)}
+                        value={ (p == "internets") ? formData.productBs : ((p == "tv_box") ? formData.productCs : (p == "ip_phone") ? formData.productDs : null)}
+                        style={{ width: '100%' }}>
+                          <Row>
+                            <Col span={24}>
+                              <Row justify="space-between">
+                                <Col span={!isMobile ? 6 : 10}>
+                                  <Checkbox value={d.value}>{d.label}</Checkbox>
+                                </Col>
+                                <Col span={!isMobile ? 14 : 1}>
+                                {!isMobile ? d.description : null}
+                                </Col>
+                                <Col span={4}>${d.price}</Col>
+                              </Row>
+                            </Col>
+                          </Row>
+                        </Checkbox.Group>
+                      )
+                    })
+                  }
                   {tvBox(p)}
                   {ipPhone(p)}
                 </Space>
