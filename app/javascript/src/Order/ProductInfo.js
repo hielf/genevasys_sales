@@ -10,7 +10,7 @@ import { apiGet } from '../Functions/ApiRequest'
 const ProductInfo = ({formData, setFormData}) => {
 
   const [list, setList] = useState({});
-  // console.log(list);
+  console.log(list);
   useEffect(() => {
     getList();
   }, []);
