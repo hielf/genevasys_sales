@@ -50,7 +50,6 @@ const ProductInfo = ({formData, setFormData}) => {
 
     // console.log(checkedValues);
 
-    let listData = [];
     let hasTypeB = false;
     let hasTypeC = false;
     let hasTypeD = false;
@@ -64,17 +63,43 @@ const ProductInfo = ({formData, setFormData}) => {
       })
     })
 
-    listData.map(data => {
-      if (data.label.indexOf('Internet') === 0) {
-        hasTypeB = true;
-      }
-      if (data.value === '16') {
-        hasTypeC = true;
-      }
-      if (data.value === '20' || data.label.indexOf('Bundle') >= 0) {
-        hasTypeD = true;
+    list["bundles"].map(bundle => {
+      if (tags.every(r => bundle["tag"].includes(r)) && tags.length === bundle["tag"].length) {
+        console.log("bundle", bundle["tag"]);
+        console.log("tag:", tags);
+        checkedValues.push(bundle.value)
+        checkedValues = checkedValues.filter(item => !productBs.includes(item))
+        if (productCs.length > 0 && formData.tvBoxQty <= 1) {
+          checkedValues = checkedValues.filter(item => !productCs.includes(item))
+        }
+        if (productDs.length > 0 && formData.ipPhoneQty <= 1) {
+          checkedValues = checkedValues.filter(item => !productDs.includes(item))
+        }
       }
     })
+
+    // if (formData.productCs.length != 0 && formData.tvBoxQty > 1) {
+    //   checkedValues.concat(formData.productCs)
+    // }
+    //
+    // if (formData.productDs.length != 0 && formData.ipPhoneQty > 1) {
+    //   checkedValues.concat(formData.productDs)
+    // }
+
+    let listData = [];
+    let hasTypeB = false;
+    let hasTypeC = false;
+    let hasTypeD = false;
+
+    if (productBs.length > 0) {
+      hasTypeB = true;
+    }
+    if (productCs.length > 0) {
+      hasTypeC = true;
+    }
+    if (productDs.length > 0) {
+      hasTypeD = true;
+    }
 
     if (hasTypeC === true) {
       if (formData.tvBoxQty === 0) {
@@ -91,6 +116,15 @@ const ProductInfo = ({formData, setFormData}) => {
     } else if (hasTypeD === false) {
       setFormData((formData) => ({ ...formData, ipPhoneQty: 0 }));
     }
+
+    checkedValues.map(value => {
+      Object.keys(list).map(p => {
+        const l = list[p]
+        if ((l.filter((e) => e.value === value)).length !== 0) {
+          listData.push((l.filter((e) => e.value === value))[0])
+        }
+      })
+    })
 
     setFormData((formData) => ({ ...formData, products: checkedValues }));
     setFormData((formData) => ({ ...formData, productsDetail: listData }));
