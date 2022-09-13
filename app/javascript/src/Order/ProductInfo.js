@@ -48,17 +48,15 @@ const ProductInfo = ({formData, setFormData}) => {
 
     let checkedValues = productBs.concat(productCs).concat(productDs)
 
-    // console.log(checkedValues);
+    console.log("checkedValues", checkedValues);
 
-    let hasTypeB = false;
-    let hasTypeC = false;
-    let hasTypeD = false;
+    let tags = [];
 
     checkedValues.map(value => {
       Object.keys(list).map(p => {
         const l = list[p]
         if ((l.filter((e) => e.value === value)).length !== 0) {
-          listData.push((l.filter((e) => e.value === value))[0])
+          tags.push(...(l.filter((e) => e.value === value))[0]["tag"])
         }
       })
     })
@@ -69,22 +67,14 @@ const ProductInfo = ({formData, setFormData}) => {
         console.log("tag:", tags);
         checkedValues.push(bundle.value)
         checkedValues = checkedValues.filter(item => !productBs.includes(item))
-        if (productCs.length > 0 && formData.tvBoxQty <= 1) {
+        if (productCs.length > 0 && formData.tvBoxQtySelected <= 1) {
           checkedValues = checkedValues.filter(item => !productCs.includes(item))
         }
-        if (productDs.length > 0 && formData.ipPhoneQty <= 1) {
+        if (productDs.length > 0 && formData.ipPhoneQtySelected <= 1) {
           checkedValues = checkedValues.filter(item => !productDs.includes(item))
         }
       }
     })
-
-    // if (formData.productCs.length != 0 && formData.tvBoxQty > 1) {
-    //   checkedValues.concat(formData.productCs)
-    // }
-    //
-    // if (formData.productDs.length != 0 && formData.ipPhoneQty > 1) {
-    //   checkedValues.concat(formData.productDs)
-    // }
 
     let listData = [];
     let hasTypeB = false;
@@ -102,19 +92,19 @@ const ProductInfo = ({formData, setFormData}) => {
     }
 
     if (hasTypeC === true) {
-      if (formData.tvBoxQty === 0) {
-        setFormData((formData) => ({ ...formData, tvBoxQty: 1 }));
+      if (formData.tvBoxQtySelected === 0) {
+        setFormData((formData) => ({ ...formData, tvBoxQtySelected: 1 }));
       }
     } else if (hasTypeC === false) {
-      setFormData((formData) => ({ ...formData, tvBoxQty: 0 }));
+      setFormData((formData) => ({ ...formData, tvBoxQtySelected: 0 }));
     }
 
     if (hasTypeD === true) {
-      if (formData.ipPhoneQty === 0) {
-        setFormData((formData) => ({ ...formData, ipPhoneQty: 1 }));
+      if (formData.ipPhoneQtySelected === 0) {
+        setFormData((formData) => ({ ...formData, ipPhoneQtySelected: 1 }));
       }
     } else if (hasTypeD === false) {
-      setFormData((formData) => ({ ...formData, ipPhoneQty: 0 }));
+      setFormData((formData) => ({ ...formData, ipPhoneQtySelected: 0 }));
     }
 
     checkedValues.map(value => {
@@ -158,19 +148,19 @@ const ProductInfo = ({formData, setFormData}) => {
     })
 
     if (hasTypeC === true) {
-      if (formData.tvBoxQty === 0) {
-        setFormData((formData) => ({ ...formData, tvBoxQty: 1 }));
+      if (formData.tvBoxQtySelected === 0) {
+        setFormData((formData) => ({ ...formData, tvBoxQtySelected: 1 }));
       }
     } else if (hasTypeC === false) {
-      setFormData((formData) => ({ ...formData, tvBoxQty: 0 }));
+      setFormData((formData) => ({ ...formData, tvBoxQtySelected: 0 }));
     }
 
     if (hasTypeD === true) {
-      if (formData.ipPhoneQty === 0) {
-        setFormData((formData) => ({ ...formData, ipPhoneQty: 1 }));
+      if (formData.ipPhoneQtySelected === 0) {
+        setFormData((formData) => ({ ...formData, ipPhoneQtySelected: 1 }));
       }
     } else if (hasTypeD === false) {
-      setFormData((formData) => ({ ...formData, ipPhoneQty: 0 }));
+      setFormData((formData) => ({ ...formData, ipPhoneQtySelected: 0 }));
     }
 
     setFormData((formData) => ({ ...formData, products: checkedValues }));
@@ -178,11 +168,11 @@ const ProductInfo = ({formData, setFormData}) => {
   };
 
   const onChange2 = (value) => {
-    setFormData({ ...formData, tvBoxQty: value });
+    setFormData({ ...formData, tvBoxQtySelected: value });
   };
 
   const onChange3 = (value) => {
-    setFormData({ ...formData, ipPhoneQty: value });
+    setFormData({ ...formData, ipPhoneQtySelected: value });
   };
 
   const onChange4 = ({ target: { value } }) => {
@@ -243,7 +233,7 @@ const ProductInfo = ({formData, setFormData}) => {
                 <Tooltip>
                   <span style={{ fontWeight: 'bold' }}>Qty:</span>
                 </Tooltip>
-                <Select defaultValue={1} style={{ width: "100px" }} onChange={onChange2} value={formData.tvBoxQty}>
+                <Select defaultValue={1} style={{ width: "100px" }} onChange={onChange2} value={formData.tvBoxQtySelected}>
                   <Select.Option value={1}>1</Select.Option>
                   <Select.Option value={2}>2</Select.Option>
                   <Select.Option value={3}>3</Select.Option>
@@ -269,7 +259,7 @@ const ProductInfo = ({formData, setFormData}) => {
                   <Tooltip>
                     <span style={{ fontWeight: 'bold' }}>Qty:</span>
                   </Tooltip>
-                  <Select defaultValue={1} style={{ width: "100px" }} onChange={onChange3} value={formData.ipPhoneQty}>
+                  <Select defaultValue={1} style={{ width: "100px" }} onChange={onChange3} value={formData.ipPhoneQtySelected}>
                     <Select.Option value={1}>1</Select.Option>
                     <Select.Option value={2}>2</Select.Option>
                     <Select.Option value={3}>3</Select.Option>
