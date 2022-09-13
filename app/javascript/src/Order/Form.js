@@ -63,6 +63,8 @@ function OrderForm() {
     productBs: [],
     productCs: [],
     productDs: [],
+    tvBoxQtySelected: 0,
+    ipPhoneQtySelected: 0,
   });
 
   const FormTitles = ["Choose Product", "Service Time", "Customer Info", "Payment Info", "Review"];
