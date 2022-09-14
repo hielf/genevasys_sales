@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Button, message } from 'antd';
 import { apiPost } from '../Functions/ApiRequest'
 
-const NextButton = ({ step, setStep, FormTitles, formData }) => {
+const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
   const [res, setRes] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('');
@@ -103,6 +103,14 @@ const NextButton = ({ step, setStep, FormTitles, formData }) => {
           handleSubmit();
         }
       } else {
+        if (step === 0) {
+          let productCQty = (formData.productAs.length === 1 && formData.tvBoxQtySelected > 1) ? formData.tvBoxQtySelected - 1 : formData.tvBoxQtySelected;
+          let productDQty = (formData.productAs.length === 1 && formData.ipPhoneQtySelected > 1) ? formData.ipPhoneQtySelected - 1 : formData.ipPhoneQtySelected;
+          // console.log("formData.productAs.length ", formData.productAs.length, "formData.tvBoxQtySelected", formData.tvBoxQtySelected, "productCQty", productCQty);
+          // console.log("productDQty", productDQty);
+          setFormData((formData) => ({ ...formData, tvBoxQty: productCQty }));
+          setFormData((formData) => ({ ...formData, ipPhoneQty: productDQty }));
+        }
         console.log(formData);
         const d = new Date();
         if (step === 0 && formData.products.length === 0) {

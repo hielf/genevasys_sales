@@ -97,6 +97,22 @@ const Summary = ({formData, setFormData}) => {
     }
   };
 
+  const PriceDisplay = (product) => {
+    if (product.value === '16') {
+      return (
+        <span>${ product.price * formData.tvBoxQty }</span>
+      )
+    } else if (product.value === '20') {
+      return (
+        <span>${ product.price * formData.ipPhoneQty }</span>
+      )
+    } else {
+      return (
+        <span>${ product.price }</span>
+      )
+    }
+  };
+
   const ProductsQtyDisplay = (products) => {
     return (
       <Space direction="vertical" size="size" style={{ display: 'flex' }}>
@@ -111,7 +127,7 @@ const Summary = ({formData, setFormData}) => {
                 {QtyDisplay(product)}
               </Col>
               <Col span={4}>
-                <span>${ product.price }</span>
+                {PriceDisplay(product)}
               </Col>
             </Row>
           )

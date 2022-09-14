@@ -10,7 +10,7 @@ import { apiGet } from '../Functions/ApiRequest'
 const ProductInfo = ({formData, setFormData}) => {
 
   const [list, setList] = useState({});
-  console.log(list);
+  // console.log(list);
   useEffect(() => {
     getList();
   }, []);
@@ -26,29 +26,31 @@ const ProductInfo = ({formData, setFormData}) => {
       setFormData((formData) => ({ ...formData, productBs: [] }));
     }
     setFormData((formData) => ({ ...formData, productBs: checkedValues }));
-    bundleCheck(checkedValues, "B");
+    bundleCheck(checkedValues, 0, "B");
   }
 
   const onChangeC = (checkedValues) => {
     // console.log("C Checked:", checkedValues);
     setFormData((formData) => ({ ...formData, productCs: checkedValues }));
-    bundleCheck(checkedValues, "C");
+    bundleCheck(checkedValues, document.getElementById('select_1').value, "C");
   }
 
   const onChangeD = (checkedValues) => {
     // console.log("D Checked:", checkedValues);
     setFormData((formData) => ({ ...formData, productDs: checkedValues }));
-    bundleCheck(checkedValues, "D");
+    bundleCheck(checkedValues, document.getElementById('select_2').value, "D");
   }
 
-  const bundleCheck = (values, type) => {
+  const bundleCheck = (values, qty, type) => {
     let productBs = (type === "B" ? values : formData.productBs)
     let productCs = (type === "C" ? values : formData.productCs)
     let productDs = (type === "D" ? values : formData.productDs)
+    let productCQty = (type === "C" ? qty : formData.tvBoxQtySelected)
+    let productDQty = (type === "D" ? qty : formData.ipPhoneQtySelected)
 
     let checkedValues = productBs.concat(productCs).concat(productDs)
 
-    console.log("checkedValues", checkedValues);
+    // console.log("checkedValues", checkedValues);
 
     let tags = [];
 
@@ -63,14 +65,16 @@ const ProductInfo = ({formData, setFormData}) => {
 
     list["bundles"].map(bundle => {
       if (tags.every(r => bundle["tag"].includes(r)) && tags.length === bundle["tag"].length) {
-        console.log("bundle", bundle["tag"]);
-        console.log("tag:", tags);
+        // console.log("bundle", bundle["tag"]);
+        // console.log("tag:", tags);
         checkedValues.push(bundle.value)
+        setFormData((formData) => ({ ...formData, productAs: [bundle.value] }));
+
         checkedValues = checkedValues.filter(item => !productBs.includes(item))
-        if (productCs.length > 0 && formData.tvBoxQtySelected <= 1) {
+        if (productCs.length > 0 && productCQty <= 1) {
           checkedValues = checkedValues.filter(item => !productCs.includes(item))
         }
-        if (productDs.length > 0 && formData.ipPhoneQtySelected <= 1) {
+        if (productDs.length > 0 && productDQty <= 1) {
           checkedValues = checkedValues.filter(item => !productDs.includes(item))
         }
       }
@@ -107,24 +111,7 @@ const ProductInfo = ({formData, setFormData}) => {
       setFormData((formData) => ({ ...formData, ipPhoneQtySelected: 0 }));
     }
 
-    checkedValues.map(value => {
-      Object.keys(list).map(p => {
-        const l = list[p]
-        if ((l.filter((e) => e.value === value)).length !== 0) {
-          listData.push((l.filter((e) => e.value === value))[0])
-        }
-      })
-    })
-
-    setFormData((formData) => ({ ...formData, products: checkedValues }));
-    setFormData((formData) => ({ ...formData, productsDetail: listData }));
-  }
-
-  const onChange1 = (checkedValues) => {
-    let listData = [];
-    let hasTypeB = false;
-    let hasTypeC = false;
-    let hasTypeD = false;
+    // console.log("checkedValues!", checkedValues);
 
     checkedValues.map(value => {
       Object.keys(list).map(p => {
@@ -134,34 +121,6 @@ const ProductInfo = ({formData, setFormData}) => {
         }
       })
     })
-
-    listData.map(data => {
-      if (data.label.indexOf('Internet') === 0) {
-        hasTypeB = true;
-      }
-      if (data.value === '16') {
-        hasTypeC = true;
-      }
-      if (data.value === '20' || data.label.indexOf('Bundle') >= 0) {
-        hasTypeD = true;
-      }
-    })
-
-    if (hasTypeC === true) {
-      if (formData.tvBoxQtySelected === 0) {
-        setFormData((formData) => ({ ...formData, tvBoxQtySelected: 1 }));
-      }
-    } else if (hasTypeC === false) {
-      setFormData((formData) => ({ ...formData, tvBoxQtySelected: 0 }));
-    }
-
-    if (hasTypeD === true) {
-      if (formData.ipPhoneQtySelected === 0) {
-        setFormData((formData) => ({ ...formData, ipPhoneQtySelected: 1 }));
-      }
-    } else if (hasTypeD === false) {
-      setFormData((formData) => ({ ...formData, ipPhoneQtySelected: 0 }));
-    }
 
     setFormData((formData) => ({ ...formData, products: checkedValues }));
     setFormData((formData) => ({ ...formData, productsDetail: listData }));
@@ -169,10 +128,12 @@ const ProductInfo = ({formData, setFormData}) => {
 
   const onChange2 = (value) => {
     setFormData({ ...formData, tvBoxQtySelected: value });
+    bundleCheck(formData.productCs, value, "C");
   };
 
   const onChange3 = (value) => {
     setFormData({ ...formData, ipPhoneQtySelected: value });
+    bundleCheck(formData.productDs, value, "D");
   };
 
   const onChange4 = ({ target: { value } }) => {
@@ -233,7 +194,7 @@ const ProductInfo = ({formData, setFormData}) => {
                 <Tooltip>
                   <span style={{ fontWeight: 'bold' }}>Qty:</span>
                 </Tooltip>
-                <Select defaultValue={1} style={{ width: "100px" }} onChange={onChange2} value={formData.tvBoxQtySelected}>
+                <Select id="select_1" defaultValue={1} style={{ width: "100px" }} onChange={onChange2} value={formData.tvBoxQtySelected}>
                   <Select.Option value={1}>1</Select.Option>
                   <Select.Option value={2}>2</Select.Option>
                   <Select.Option value={3}>3</Select.Option>
@@ -259,7 +220,7 @@ const ProductInfo = ({formData, setFormData}) => {
                   <Tooltip>
                     <span style={{ fontWeight: 'bold' }}>Qty:</span>
                   </Tooltip>
-                  <Select defaultValue={1} style={{ width: "100px" }} onChange={onChange3} value={formData.ipPhoneQtySelected}>
+                  <Select id="select_2" defaultValue={1} style={{ width: "100px" }} onChange={onChange3} value={formData.ipPhoneQtySelected}>
                     <Select.Option value={1}>1</Select.Option>
                     <Select.Option value={2}>2</Select.Option>
                     <Select.Option value={3}>3</Select.Option>

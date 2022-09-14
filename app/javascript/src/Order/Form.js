@@ -70,7 +70,7 @@ function OrderForm() {
   const FormTitles = ["Choose Product", "Service Time", "Customer Info", "Payment Info", "Review"];
 
   const NextButtonClick = () => {
-    return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} formData={formData} />;
+    return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} formData={formData} setFormData={setFormData} />;
   };
 
   const PrevButtonClick = () => {
