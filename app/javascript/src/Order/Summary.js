@@ -136,6 +136,21 @@ const Summary = ({formData, setFormData}) => {
     )
   };
 
+  function getTotalAmount(products) {
+    let totalAmount = 0;
+    products.map((product, index) => {
+      if (product.value === '16') {
+        totalAmount = (totalAmount + (product.price * formData.tvBoxQty))
+      } else if (product.value === '20') {
+        totalAmount = (totalAmount + (product.price * formData.tvBoxQty))
+      } else {
+        totalAmount = (totalAmount = totalAmount + product.price)
+      }
+    })
+
+    return totalAmount;
+  };
+
   const ProductsSubtotalDisplay = (products) => {
     return (
       <Space direction="vertical" size="size" style={{ display: 'flex' }}>
@@ -144,7 +159,7 @@ const Summary = ({formData, setFormData}) => {
             <span style={ labelStyle }>Total(excl.tax):</span>
           </Col>
           <Col span={4}>
-            <span style={ boldStyle }>${ products.map((item) => parseFloat(item['price']) || 0).reduce((a, b) => a + b).toFixed(2) }</span>
+            <span style={ boldStyle }>${ getTotalAmount(products).toFixed(2) }</span>
           </Col>
         </Row>
         <Row justify="space-between center">
@@ -152,7 +167,7 @@ const Summary = ({formData, setFormData}) => {
             <span style={ labelStyle }>Total GST/5%:</span>
           </Col>
           <Col span={4}>
-            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item['price']) || 0).reduce((a, b) => a + b)*0.05).toFixed(2) }</span>
+            <span style={ boldStyle }>${ (getTotalAmount(products)*0.05).toFixed(2) }</span>
           </Col>
         </Row>
         <Row justify="space-between center">
@@ -160,7 +175,7 @@ const Summary = ({formData, setFormData}) => {
             <span style={ labelStyle }>Total PST(BC)/7%:</span>
           </Col>
           <Col span={4}>
-            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item['price']) || 0).reduce((a, b) => a + b)*0.07).toFixed(2) }</span>
+            <span style={ boldStyle }>${ (getTotalAmount(products)*0.07).toFixed(2) }</span>
           </Col>
         </Row>
         <Row justify="space-between center">
@@ -168,7 +183,7 @@ const Summary = ({formData, setFormData}) => {
             <span style={ labelStyle }>Total(inc.tax):</span>
           </Col>
           <Col span={4}>
-            <span style={ boldStyle }>${ (products.map((item) => parseFloat(item['price']) || 0).reduce((a, b) => a + b)*1.12).toFixed(2) }</span>
+            <span style={ boldStyle }>${ (getTotalAmount(products)*1.12).toFixed(2) }</span>
           </Col>
         </Row>
       </Space>

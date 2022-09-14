@@ -44,7 +44,7 @@ module OrdersHelper
         [1, "#{product.description}" + "<br />" + (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + "<br />E911 Address: #{order.ip_phone_address}"]
       elsif product.label.include?("Internet")
         [1, product.description]
-      elsif product.label.include?("Magio")
+      elsif product.label.include?("TV")
         [order.tv_box_qty, "Qty: #{order.tv_box_qty}"]
       elsif product.label.include?("Phone")
         [order.ip_phone_qty, (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + "<br />E911 Address: #{order.ip_phone_address}"]
