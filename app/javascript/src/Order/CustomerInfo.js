@@ -11,6 +11,10 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   const onChange1 = ({ target: { value } }) => {
       setFormData({ ...formData, firstName: value });
+
+      if (formData.firstName === formData.cardFirstName) {
+        setFormData((formData) => ({ ...formData, cardFirstName: value }));
+      }
     };
 
   const onChange2 = ({ target: { value } }) => {
@@ -19,6 +23,10 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   const onChange3 = ({ target: { value } }) => {
       setFormData({ ...formData, lastName: value });
+
+      if (formData.lastName === formData.cardLastName) {
+        setFormData((formData) => ({ ...formData, cardLastName: value }));
+      }
     };
 
   const onChange4 = ({ target: { value } }) => {
