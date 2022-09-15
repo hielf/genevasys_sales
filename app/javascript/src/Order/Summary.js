@@ -69,7 +69,7 @@ const Summary = ({formData, setFormData}) => {
 
   const AdditionalRequirements = (additionalRequirements) => {
     if (additionalRequirements !== "") {
-      return (<Descriptions.Item label="Additional Requirements:" span={3}>{ formData.additionalRequirements }</Descriptions.Item>)
+      return (<Descriptions.Item label="Note:" span={3}>{ formData.additionalRequirements }</Descriptions.Item>)
     }
   };
 
@@ -237,8 +237,7 @@ const Summary = ({formData, setFormData}) => {
         }}
       >
         <Descriptions.Item style={{ marginBottom: '0px' }} label="First Name:" span={1}>{ formData.firstName }</Descriptions.Item>
-        <Descriptions.Item style={{ marginBottom: '0px' }} label="Middle Name:" span={2}>{ formData.middleName }</Descriptions.Item>
-        <Descriptions.Item style={{ marginBottom: '0px' }} label="Last Name:" span={3}>{ formData.lastName }</Descriptions.Item>
+        <Descriptions.Item style={{ marginBottom: '0px' }} label="Last Name:" span={2}>{ formData.lastName }</Descriptions.Item>
         <Descriptions.Item style={{ marginBottom: '0px' }} label="Contact Phone:" span={1}>{ formData.contactPhone }</Descriptions.Item>
         <Descriptions.Item style={{ marginBottom: '0px' }} label="Alt. Phone:" span={2}>{ formData.altPhone }</Descriptions.Item>
         <Descriptions.Item style={{ marginBottom: '0px' }} label="E-mail:" span={3}>{ formData.email }</Descriptions.Item>

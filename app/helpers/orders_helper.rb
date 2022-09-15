@@ -93,7 +93,7 @@ module OrdersHelper
     "<br /> UNIT TYPE: #{unit_type}" +
     (order.buzz != "" ? "<br />  BUZZ: #{order.buzz}" : "") +
     (order.alt_phone != "" ? "<br />  ALT PHONE: #{order.alt_phone}" : "") +
-    (order.additional_requirements != "" ? "<br />  ADDITIONAL REQUIREMENTS: #{order.additional_requirements}" : "")
+    (order.additional_requirements != "" ? "<br />  NOTE: #{order.additional_requirements}" : "")
 
     params = { "socid": socid,
       # "contact_id": contact.ref,

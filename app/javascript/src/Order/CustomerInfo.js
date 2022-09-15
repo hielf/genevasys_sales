@@ -106,17 +106,6 @@ const CustomerInfo = ({formData, setFormData}) => {
 
       <Row>
         <Col span={24}>
-          <span style={labelStyle}>Middle Name:</span>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Input onChange={onChange2} value={formData.middleName} />
-        </Col>
-      </Row>
-
-      <Row>
-        <Col span={24}>
           <span style={labelStyle}>Last Name:</span>
         </Col>
       </Row>
