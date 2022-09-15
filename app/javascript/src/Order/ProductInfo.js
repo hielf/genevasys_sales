@@ -235,11 +235,12 @@ const ProductInfo = ({formData, setFormData}) => {
                   <Radio.Group name="phoneIsPortIn" defaultValue={1} onChange={onChange4} value={formData.ipPhonePortIn}>
                     <Radio value={1}>New</Radio>
                     <Radio value={2}>Port-in</Radio>
+                    <Radio value={3}>Call Forward</Radio>
                   </Radio.Group>
-                  <Input placeholder="#Port-in number"
+                  <Input placeholder="#Port-in/Forward number"
                     bordered={false}
                     style={{ borderBottom: '1px solid rgb(0 0 0 / 6%)', borderTop:'0px', borderLeft:'0px', borderright:'0px' }}
-                    disabled={formData.ipPhonePortIn === 2 ? false : true}
+                    disabled={formData.ipPhonePortIn != 1 ? false : true}
                     onChange={onChange5}
                     value={formData.ipPhonePortInNumber}/>
                 </Space>

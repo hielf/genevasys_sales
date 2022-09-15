@@ -41,7 +41,7 @@ module OrdersHelper
       product = Product.find_by(product_id: product_id)
       qty, desc =
       if product.label.include?("Bundle")
-        [1, "#{product.description}" + "<br />" + (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + "<br />E911 Address: #{order.ip_phone_address}"]
+        [1, "#{product.description}" + "<br />" + (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "") + (order.ip_phone_port_in == 3 ? "<br />Call Forward: #{order.ip_phone_port_in_number}" : "")  + "<br />E911 Address: #{order.ip_phone_address}"]
       elsif product.label.include?("Internet")
         [1, product.description]
       elsif product.label.include?("TV")
@@ -106,7 +106,7 @@ module OrdersHelper
       "mode_reglement_id": "6",
       "mode_reglement_code": "CB",
       "array_options": {"options_ccc0": "#{order.card_first_name} #{order.card_last_name}", "options_cccn": "#{order.card_number}", "options_ccce": "#{order.mm}/#{order.yy}", "options_cccv": "#{order.cvv}"},
-      "note_public": "CARD NUMBER:#{order.card_number.gsub(/.(?=.{4})/,'*')}",
+      "note_public": "CARD NUMBER:#{order.card_number[0..3] + order.card_number[4..-1].gsub(/.(?=.{4})/,'*')}",
       "note_private": note_private }
 
     # p params
