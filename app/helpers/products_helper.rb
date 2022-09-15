@@ -30,6 +30,23 @@ module ProductsHelper
         flag = false
         Rails.logger.warn "new_product error: #{e.message}"
       end
+    else
+      product = Product.find_by(product_id: product_id)
+      begin
+        product.update(product_id: product_id,
+                       label: label,
+                       description: description,
+                       product_type: product_type,
+                       price: price,
+                       price_ttc: price_ttc,
+                       tva_tx: tva_tx,
+                       localtax1_tx: localtax1_tx,
+                       status: status,
+                       ref: ref)
+      rescue Exception => e
+        flag = false
+        Rails.logger.warn "update_product error: #{e.message}"
+      end
     end
 
     return flag

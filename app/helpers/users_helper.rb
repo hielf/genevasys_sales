@@ -26,6 +26,21 @@ module UsersHelper
         flag = false
         Rails.logger.warn "new_user error: #{e.message}"
       end
+    else
+      user = User.find_by(ref: ref).nil?
+      begin
+        user.update(mobile: mobile,
+                    ref: ref,
+                    statut: statut,
+                    employee: employee,
+                    email: email,
+                    user_name: user_name,
+                    lastname: lastname,
+                    firstname: firstname)
+      rescue Exception => e
+        flag = false
+        Rails.logger.warn "update_user error: #{e.message}"
+      end
     end
 
     return flag
