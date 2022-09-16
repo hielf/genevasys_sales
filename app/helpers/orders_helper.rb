@@ -64,7 +64,6 @@ module OrdersHelper
     end
 
     contact = Contact.find(contact_id)
-    qty = 1
     d = order.date_request
     t = case order.installation_time
     when 1
