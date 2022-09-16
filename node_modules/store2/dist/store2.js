@@ -1,10 +1,11 @@
-/*! store2 - v2.12.0 - 2020-08-12
-* Copyright (c) 2020 Nathan Bubna; Licensed (MIT OR GPL-3.0) */
+/*! store2 - v2.14.2 - 2022-07-18
+* Copyright (c) 2022 Nathan Bubna; Licensed (MIT OR GPL-3.0) */
 ;(function(window, define) {
     var _ = {
-        version: "2.12.0",
+        version: "2.14.2",
         areas: {},
         apis: {},
+        nsdelim: '.',
 
         // utilities
         inherit: function(api, o) {
@@ -15,8 +16,8 @@
             }
             return o;
         },
-        stringify: function(d) {
-            return d === undefined || typeof d === "function" ? d+'' : JSON.stringify(d);
+        stringify: function(d, fn) {
+            return d === undefined || typeof d === "function" ? d+'' : JSON.stringify(d,fn||_.replace);
         },
         parse: function(s, fn) {
             // if it doesn't parse, return as is
@@ -76,13 +77,15 @@
                 }
                 return store;
             },
-            namespace: function(namespace, singleArea) {
+            namespace: function(namespace, singleArea, delim) {
+                delim = delim || this._delim || _.nsdelim;
                 if (!namespace){
-                    return this._ns ? this._ns.substring(0,this._ns.length-1) : '';
+                    return this._ns ? this._ns.substring(0,this._ns.length-delim.length) : '';
                 }
                 var ns = namespace, store = this[ns];
                 if (!store || !store.namespace) {
-                    store = _.Store(this._id, this._area, this._ns+ns+'.');//new namespaced api
+                    store = _.Store(this._id, this._area, this._ns+ns+delim);//new namespaced api
+                    store._delim = delim;
                     if (!this[ns]){ this[ns] = store; }
                     if (!singleArea) {
                         for (var name in _.areas) {
@@ -92,7 +95,15 @@
                 }
                 return store;
             },
-            isFake: function(){ return this._area.name === 'fake'; },
+            isFake: function(force) {
+                if (force) {
+                    this._real = this._area;
+                    this._area = _.storage('fake');
+                } else if (force === false) {
+                    this._area = this._real || this._area;
+                }
+                return this._area.name === 'fake';
+            },
             toString: function() {
                 return 'store'+(this._ns?'.'+this.namespace():'')+'['+this._id+']';
             },
@@ -140,11 +151,16 @@
                 return this;
             },
             set: function(key, data, overwrite) {
-                var d = this.get(key);
+                var d = this.get(key),
+                    replacer;
                 if (d != null && overwrite === false) {
                     return data;
                 }
-                return _.set(this._area, this._in(key), _.stringify(data), overwrite) || d;
+                if (typeof overwrite === "function") {
+                    replacer = overwrite;
+                    overwrite = undefined;
+                }
+                return _.set(this._area, this._in(key), _.stringify(data, replacer), overwrite) || d;
             },
             setAll: function(data, overwrite) {
                 var changed, val;
@@ -156,7 +172,7 @@
                 }
                 return changed;
             },
-            add: function(key, data) {
+            add: function(key, data, replacer) {
                 var d = this.get(key);
                 if (d instanceof Array) {
                     data = d.concat(data);
@@ -171,7 +187,7 @@
                         data = d + data;
                     }
                 }
-                _.set(this._area, this._in(key), _.stringify(data));
+                _.set(this._area, this._in(key), _.stringify(data, replacer));
                 return data;
             },
             remove: function(key, alt) {
