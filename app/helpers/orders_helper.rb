@@ -54,10 +54,10 @@ module OrdersHelper
 
       products_detail << { "fk_product": product.product_id,
         "qty": qty,
-        "price": product.price,
-        "subprice": product.price_ttc,
-        "tva_tx": product.tva_tx,
-        "localtax1_tx": product.localtax1_tx,
+        "price": product.price_ttc.to_f,
+        "subprice": product.price.to_f,
+        "tva_tx": product.tva_tx.to_f,
+        "localtax1_tx": product.localtax1_tx.to_f,
         "localtax1_type": 1,
         "product_type": product.product_type,
         "desc": desc }
