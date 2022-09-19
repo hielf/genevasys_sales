@@ -2,7 +2,7 @@ class Api::ProductsController < Api::ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    products = Product.where(visible: 1, product_type: 1, status: 1)
+    products = Product.where(visible: 1, product_type:1, status: 1).or(Product.where("ref LIKE ?", 'E%'))
 
     @bundles = Array.new
     products.where("ref LIKE ?", 'A%').each do |product|
@@ -37,6 +37,24 @@ class Api::ProductsController < Api::ApplicationController
       hash["tag"] = tag.sort
       @ip_phone << hash
     end
+
+    @fee = Array.new
+    products.where("ref LIKE ?", 'E%').each do |product|
+      hash = product.as_json
+      tag = ApplicationController.helpers.product_tags(product)
+      hash["tag"] = tag.sort
+      @fee << hash
+    end
+
+    @rebate = Array.new
+    products.where("ref LIKE ?", 'F%').each do |product|
+      hash = product.as_json
+      tag = ApplicationController.helpers.product_tags(product)
+      hash["tag"] = tag.sort
+      @rebate << hash
+    end
+
+    products = Product.where(visible: 1, status: 1)
   end
 
 end

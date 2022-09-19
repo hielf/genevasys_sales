@@ -42,4 +42,24 @@ json.data do
       json.tag            ip_phone['tag']
     end
   end
+  json.fee do
+    json.array! @fee do |fee|
+      json.id             fee["id"]
+      json.value          fee['product_id']
+      json.label          fee['label']
+      json.description    ActionView::Base.full_sanitizer.sanitize(fee['description'])
+      json.price          fee['price'].to_f
+      json.tag            fee['tag']
+    end
+  end
+  json.rebate do
+    json.array! @rebate do |rebate|
+      json.id             rebate["id"]
+      json.value          rebate['product_id']
+      json.label          rebate['label']
+      json.description    ActionView::Base.full_sanitizer.sanitize(rebate['description'])
+      json.price          rebate['price'].to_f
+      json.tag            rebate['tag']
+    end
+  end
 end

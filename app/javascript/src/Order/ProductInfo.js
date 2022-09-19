@@ -10,7 +10,7 @@ import { apiGet } from '../Functions/ApiRequest'
 const ProductInfo = ({formData, setFormData}) => {
 
   const [list, setList] = useState({});
-  // console.log(list);
+  console.log(list);
   useEffect(() => {
     getList();
   }, []);
@@ -50,7 +50,7 @@ const ProductInfo = ({formData, setFormData}) => {
 
     let checkedValues = productBs.concat(productCs).concat(productDs)
 
-    // console.log("checkedValues", checkedValues);
+    console.log("checkedValues", checkedValues);
 
     let tags = [];
 
@@ -64,9 +64,9 @@ const ProductInfo = ({formData, setFormData}) => {
     })
 
     list["bundles"].map(bundle => {
-      if (tags.every(r => bundle["tag"].includes(r)) && tags.length === bundle["tag"].length) {
-        // console.log("bundle", bundle["tag"]);
-        // console.log("tag:", tags);
+      if (tags.every(r => bundle["tag"].includes(r)) && (tags.length + 2) === bundle["tag"].length) {
+        console.log("bundle", bundle["tag"]);
+        console.log("tag:", tags);
         checkedValues.push(bundle.value)
         setFormData((formData) => ({ ...formData, productAs: [bundle.value] }));
 
@@ -76,6 +76,14 @@ const ProductInfo = ({formData, setFormData}) => {
         }
         if (productDs.length > 0 && productDQty <= 1) {
           checkedValues = checkedValues.filter(item => !productDs.includes(item))
+        }
+
+        if (bundle["tag"].includes('E')) {
+          checkedValues.push(list['fee'][0].value)
+        }
+
+        if (bundle["tag"].includes('F')) {
+          checkedValues.push(list['rebate'][0].value)
         }
       }
     })
@@ -111,7 +119,7 @@ const ProductInfo = ({formData, setFormData}) => {
       setFormData((formData) => ({ ...formData, ipPhoneQtySelected: 0 }));
     }
 
-    // console.log("checkedValues!", checkedValues);
+    console.log("checkedValues!", checkedValues);
 
     checkedValues.map(value => {
       Object.keys(list).map(p => {
@@ -257,7 +265,7 @@ const ProductInfo = ({formData, setFormData}) => {
       <Space direction='vertical' size='middle' style={{ display: 'flex' }}>
         {
           Object.keys(list).map(p => {
-            if (p !== "bundles") {
+            if (p !== "bundles" && p != "rebate" && p != "fee") {
               return (
                 <Space direction='vertical' size='middle' key={ 'space_key_' + p } style={{ display: 'flex' }}>
                   <Divider orientation='left' style={dividerStyle}>

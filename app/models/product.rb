@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   attribute :level, :integer, default: -> { 0 }
 
   def level
-    label.gsub(/[^0-9]/, '').to_i
+    description.gsub(/[^0-9]/, '').to_i
   end
 
   def as_json(options = {})
