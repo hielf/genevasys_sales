@@ -40,13 +40,13 @@ module OrdersHelper
     (JSON.parse order.products).each do |product_id|
       product = Product.find_by(product_id: product_id)
       qty, desc =
-      if product.label.include?("Bundle")
+      if product.ref[0] == "A"
         [1, "#{product.description}" + "<br />" + (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "") + (order.ip_phone_port_in == 3 ? "<br />Call Forward: #{order.ip_phone_port_in_number}" : "")  + "<br />E911 Address: #{order.ip_phone_address}"]
-      elsif product.label.include?("Internet")
+      elsif product.ref[0] == "B"
         [1, product.description]
-      elsif product.label.include?("TV")
+      elsif product.ref[0] == "C"
         [order.tv_box_qty, "Qty: #{order.tv_box_qty}"]
-      elsif product.label.include?("Phone")
+      elsif product.ref[0] == "D"
         [order.ip_phone_qty, (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + "<br />E911 Address: #{order.ip_phone_address}"]
       else
         [1, ""]
