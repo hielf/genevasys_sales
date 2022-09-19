@@ -8,6 +8,12 @@ import PropTypes from 'prop-types'
 import App from '../src/App'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+if (process.env.NODE_ENV === 'production') {
+  console.log = () => {}
+  console.error = () => {}
+  console.debug = () => {}
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Router>
