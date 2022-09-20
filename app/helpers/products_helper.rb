@@ -80,7 +80,7 @@ module ProductsHelper
             description = ActionView::Base.full_sanitizer.sanitize(p_b.description).upcase
             description.split("/").each do |d|
               if d.scan(/\d/).join('').to_i > 0
-                p "B#{d.scan(/\d/).join('')}"
+                # p "B#{d.scan(/\d/).join('')}"
                 tag << "B#{d.scan(/\d/).join('')}"
               end
             end
@@ -108,7 +108,7 @@ module ProductsHelper
           description = ActionView::Base.full_sanitizer.sanitize(p_b.description).upcase
           description.split("/").each do |d|
             if d.scan(/\d/).join('').to_i > 0
-              p "B#{d.scan(/\d/).join('')}"
+              # p "B#{d.scan(/\d/).join('')}"
               tag << "B#{d.scan(/\d/).join('')}"
             end
           end
