@@ -30,33 +30,31 @@ const AgreeMent = ({formData, setFormData}) => {
   };
 
   return (
-    <Space direction="vertical" size="small" style={{ display: 'flex' }}>
+    <Space direction="vertical" size="small" style={{ display: 'flex', }}>
       <Checkbox onChange={onChange1} size="small" checked={formData.checkAgreeMent}>
         I agree to the <a target='_blank' href='/terms'>terms and conditions</a> as set out by the user agreement.
       </Checkbox>
       <Row>
-        <Col span={24}>
-          <Space direction='horizontal' size='small' >
-            <span style={labelStyle}>Note:</span>
-            <span>
-              <Input
-                size="small"
-                onChange={onChange3}
-                value={formData.additionalRequirements}/>
-            </span>
-          </Space>
+        <Col span={4}>
+          <span style={labelStyle}>Note:</span>
+        </Col>
+        <Col span={16}>
+          <Input
+            size="small"
+            onChange={onChange3}
+            value={formData.additionalRequirements}/>
         </Col>
       </Row>
       <Row>
-        <Col span={24}>
-          <Space direction='horizontal' size='small' >
-            <span style={labelStyle}>Promote Code#:</span>
-            <Input
-              placeholder="Fill by staff"
-              size="small"
-              onChange={onChange2}
-              value={formData.promoteCode === "" ? promoteCode : formData.promoteCode}/>
-          </Space>
+        <Col span={4}>
+          <span style={labelStyle}>Promote Code#:</span>
+        </Col>
+        <Col span={4}>
+          <Input
+            placeholder="Fill by staff"
+            size="small"
+            onChange={onChange2}
+            value={formData.promoteCode === "" ? promoteCode : formData.promoteCode}/>
         </Col>
       </Row>
     </Space>

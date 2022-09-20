@@ -90,7 +90,6 @@ function OrderForm() {
       return (
         <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
           <Summary formData={formData} setFormData={setFormData} />
-          <div/>
           <AgreeMent formData={formData} setFormData={setFormData} />
         </Space>
       )
