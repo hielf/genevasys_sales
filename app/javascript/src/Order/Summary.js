@@ -74,7 +74,7 @@ const Summary = ({formData, setFormData}) => {
   };
 
   const QtyDisplay = (product) => {
-    if (product.value === '16') {
+    if (product.tag[0] === 'C') {
       return (
         <div>
           <span>Qty: </span>
@@ -85,7 +85,7 @@ const Summary = ({formData, setFormData}) => {
       )
     }
 
-    if (product.value === '20') {
+    if (product.tag[0] === 'D') {
       return (
         <div>
           <span>Qty: </span>
@@ -98,11 +98,11 @@ const Summary = ({formData, setFormData}) => {
   };
 
   const PriceDisplay = (product) => {
-    if (product.value === '16') {
+    if (product.tag[0] === 'C') {
       return (
         <span>${ product.price * formData.tvBoxQty }</span>
       )
-    } else if (product.value === '20') {
+    } else if (product.tag[0] === 'D') {
       return (
         <span>${ product.price * formData.ipPhoneQty }</span>
       )
@@ -139,9 +139,9 @@ const Summary = ({formData, setFormData}) => {
   function getTotalAmount(products) {
     let totalAmount = 0;
     products.map((product, index) => {
-      if (product.value === '16') {
+      if (product.tag[0] === 'C') {
         totalAmount = (totalAmount + (product.price * formData.tvBoxQty))
-      } else if (product.value === '20') {
+      } else if (product.tag[0] === 'D') {
         totalAmount = (totalAmount + (product.price * formData.tvBoxQty))
       } else {
         totalAmount = (totalAmount = totalAmount + product.price)
