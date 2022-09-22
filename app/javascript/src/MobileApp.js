@@ -21,7 +21,6 @@ const MobileApp = () => {
       <Route exact path="/order/new" component={OrderForm}/>
       <Route exact path="/order/submit" component={ResultForm}/>
       <Route exact path="/terms" component={Term}/>
-      {/*<Route exact path='/order/:productId' component={Order}/>*/}
     </Switch>
   )
 }

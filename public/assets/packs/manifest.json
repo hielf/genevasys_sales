@@ -12,23 +12,23 @@
     },
     "react_mobile": {
       "js": [
-        "/assets/packs/js/react_mobile-f65d11e28bbbdb05be6a.js"
+        "/assets/packs/js/react_mobile-a6e18cbb561b0cfaaa5a.js"
       ],
       "js.map": [
-        "/assets/packs/js/react_mobile-f65d11e28bbbdb05be6a.js.map"
+        "/assets/packs/js/react_mobile-a6e18cbb561b0cfaaa5a.js.map"
       ]
     },
     "react": {
       "js": [
-        "/assets/packs/js/react-e32194a986ff49a55f4b.js"
+        "/assets/packs/js/react-6050e7a2537c1c986e42.js"
       ],
       "js.map": [
-        "/assets/packs/js/react-e32194a986ff49a55f4b.js.map"
+        "/assets/packs/js/react-6050e7a2537c1c986e42.js.map"
       ]
     }
   },
-  "react.js": "/assets/packs/js/react-e32194a986ff49a55f4b.js",
-  "react.js.map": "/assets/packs/js/react-e32194a986ff49a55f4b.js.map",
-  "react_mobile.js": "/assets/packs/js/react_mobile-f65d11e28bbbdb05be6a.js",
-  "react_mobile.js.map": "/assets/packs/js/react_mobile-f65d11e28bbbdb05be6a.js.map"
+  "react.js": "/assets/packs/js/react-6050e7a2537c1c986e42.js",
+  "react.js.map": "/assets/packs/js/react-6050e7a2537c1c986e42.js.map",
+  "react_mobile.js": "/assets/packs/js/react_mobile-a6e18cbb561b0cfaaa5a.js",
+  "react_mobile.js.map": "/assets/packs/js/react_mobile-a6e18cbb561b0cfaaa5a.js.map"
 }
