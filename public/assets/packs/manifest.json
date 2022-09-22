@@ -12,10 +12,10 @@
     },
     "react_mobile": {
       "js": [
-        "/assets/packs/js/react_mobile-a6e18cbb561b0cfaaa5a.js"
+        "/assets/packs/js/react_mobile-29b16e5947476e27248f.js"
       ],
       "js.map": [
-        "/assets/packs/js/react_mobile-a6e18cbb561b0cfaaa5a.js.map"
+        "/assets/packs/js/react_mobile-29b16e5947476e27248f.js.map"
       ]
     },
     "react": {
@@ -29,6 +29,6 @@
   },
   "react.js": "/assets/packs/js/react-6050e7a2537c1c986e42.js",
   "react.js.map": "/assets/packs/js/react-6050e7a2537c1c986e42.js.map",
-  "react_mobile.js": "/assets/packs/js/react_mobile-a6e18cbb561b0cfaaa5a.js",
-  "react_mobile.js.map": "/assets/packs/js/react_mobile-a6e18cbb561b0cfaaa5a.js.map"
+  "react_mobile.js": "/assets/packs/js/react_mobile-29b16e5947476e27248f.js",
+  "react_mobile.js.map": "/assets/packs/js/react_mobile-29b16e5947476e27248f.js.map"
 }

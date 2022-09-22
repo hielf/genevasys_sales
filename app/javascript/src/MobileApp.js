@@ -1,9 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import OrderForm from './Order/Form'
-import ResultForm from './Order/ResultForm'
-import Term from './Pages/Term'
-// import './App.css';
+import OrderForm from './Mobile/Order/Form'
+import ResultForm from './Mobile/Order/ResultForm'
+import Term from './Mobile/Pages/Term'
 import { ConfigProvider } from 'antd';
 
 // ConfigProvider.config({
