@@ -27,7 +27,7 @@ module UsersHelper
         Rails.logger.warn "new_user error: #{e.message}"
       end
     else
-      user = User.find_by(ref: ref).nil?
+      user = User.find_by(ref: ref)
       begin
         user.update(mobile: mobile,
                     ref: ref,

@@ -8,7 +8,7 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 # server '192.168.5.184', port: 122, roles: [:web, :app, :db], primary: true
-server '47.92.1.46', port: 122, roles: [:web, :app, :db], user: "deploy", ssh_options: {user: "deploy"}, primary: true
+server 'crm.genevasys.com', port: 8027, roles: [:web, :app, :db], user: "deploy", ssh_options: {user: "deploy"}, primary: true
 set :branch, "main"
 # set :rvm_ruby_version, '2.4.0@panda_quant'
 # set :rvm_type, :system
