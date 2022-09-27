@@ -9,6 +9,7 @@ const { Title, Paragraph, Text, Link } = Typography;
 import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, dividerStyle} from '../Components/FormStyle'
 
 const Summary = ({formData, setFormData}) => {
+  console.log("formData", formData);
 
   const currentDate = moment().format("DD-MMMM-YY");
 
@@ -74,6 +75,7 @@ const Summary = ({formData, setFormData}) => {
   };
 
   const QtyDisplay = (product) => {
+    console.log("producttag", product);
     if (product.tag[0] === 'C') {
       return (
         <div>
