@@ -9,8 +9,7 @@
 
     <% p "is #{browser.name} on #{browser.platform.name} #{browser.platform.version}" %>
     <% if browser.device.mobile? %>
-      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_pack_tag 'react_mobile' %>
+      <%= javascript_pack_tag 'mobile' %>
     <% else %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'react' %>
