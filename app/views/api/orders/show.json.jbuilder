@@ -5,7 +5,7 @@ json.data do
   json.order do
     json.id                               @order.id
     json.products                         @order.products
-    json.productsDetail                   (JSON.parse @order.products).map{|product| {label: Product.find_by(product_id: product).label, value: Product.find_by(product_id: product).product_id, price: Product.find_by(product_id: product).price.to_f}}
+    json.productsDetail                   (JSON.parse @order.products).map{|product| {description: ActionView::Base.full_sanitizer.sanitize(Product.find_by(product_id: product).description), id: Product.find_by(product_id: product).id, label: Product.find_by(product_id: product).label, value: Product.find_by(product_id: product).product_id, price: Product.find_by(product_id: product).price.to_f, tag: ApplicationController.helpers.product_tags(Product.find_by(product_id: product))}}
     json.tvBoxQty                         @order.tv_box_qty
     json.ipPhoneQty                       @order.ip_phone_qty
     json.ipPhonePortIn                    @order.ip_phone_port_in
