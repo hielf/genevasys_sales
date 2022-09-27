@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root to: redirect('/order/new/')
   resources :users
   namespace :api, defaults: {format: :json} do
     root 'root#home'
@@ -25,5 +25,5 @@ Rails.application.routes.draw do
     # match '*path', to: 'root#route_not_found', via: :all
   end
   get '*path', to: 'home#index', via: :all
-  get '*hello_world', to: 'layhouts#hello_world', via: :all
+  get '*hello_world', to: 'layouts#hello_world', via: :all
 end
