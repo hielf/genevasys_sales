@@ -63,10 +63,11 @@ const ProductInfo = ({formData, setFormData}) => {
       })
     })
 
+    console.log("tag:", tags);
+
     list["bundles"].map(bundle => {
       if (tags.every(r => bundle["tag"].includes(r)) && (tags.length + 2) === bundle["tag"].length) {
         console.log("bundle", bundle["tag"]);
-        console.log("tag:", tags);
         checkedValues.push(bundle.value)
         setFormData((formData) => ({ ...formData, productAs: [bundle.value] }));
 
@@ -74,17 +75,18 @@ const ProductInfo = ({formData, setFormData}) => {
         if (productCs.length > 0 && productCQty <= 1) {
           checkedValues = checkedValues.filter(item => !productCs.includes(item))
         }
+
         if (productDs.length > 0 && productDQty <= 1) {
           checkedValues = checkedValues.filter(item => !productDs.includes(item))
         }
 
-        if (bundle["tag"].includes('E')) {
-          checkedValues.push(list['fee'][0].value)
-        }
-
-        if (bundle["tag"].includes('F')) {
-          checkedValues.push(list['rebate'][0].value)
-        }
+        // if (bundle["tag"].includes('E')) {
+        //   checkedValues.push(list['fee'][0].value)
+        // }
+        //
+        // if (bundle["tag"].includes('F')) {
+        //   checkedValues.push(list['rebate'][0].value)
+        // }
       }
     })
 
@@ -101,6 +103,14 @@ const ProductInfo = ({formData, setFormData}) => {
     }
     if (productDs.length > 0) {
       hasTypeD = true;
+    }
+
+    if (hasTypeB === true) {
+      checkedValues.push(list['fee'][0].value)
+      checkedValues.push(list['rebate'][0].value)
+    } else {
+      checkedValues = checkedValues.filter(item => item !== list['fee'][0].value)
+      checkedValues = checkedValues.filter(item => item !== list['rebate'][0].value)
     }
 
     if (hasTypeC === true) {
