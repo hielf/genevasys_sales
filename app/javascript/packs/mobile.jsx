@@ -21,5 +21,4 @@ document.addEventListener('DOMContentLoaded', () => {
     </Router>,
     document.body.appendChild(document.createElement('div')),
   )
-  console.log("mobile.document.body", document.body);
 })
