@@ -48,6 +48,8 @@ module OrdersHelper
         [order.tv_box_qty, "Qty: #{order.tv_box_qty}"]
       elsif product.ref[0] == "D"
         [order.ip_phone_qty, (order.ip_phone_port_in == 2 ? "<br />Port in: #{order.ip_phone_port_in_number}" : "")  + "<br />E911 Address: #{order.ip_phone_address}"]
+      elsif product.ref[0] == "F"
+        [1, "From #{Date.today.beginning_of_month.strftime('%m/%Y')} to #{(Date.today + 11.months).beginning_of_month.strftime('%m/%Y')}"]
       else
         [1, ""]
       end
