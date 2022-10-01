@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 // import 'antd-mobile/es/global'
 // import Button from 'antd-mobile/es/components/button'
-import { Button, Modal } from 'antd-mobile'
+import { Space } from 'antd-mobile'
+import HeaderTitle from '../Components/HeaderTitle'
+import NextButton from '../Components/NextButton'
+import PrevButton from '../Components/PreviousButton'
 
 function OrderForm() {
-  const { Header, Footer, Sider, Content } = Layout;
-  const { Title, Paragraph, Text, Link } = Typography;
+
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     products: [],
@@ -55,11 +57,27 @@ function OrderForm() {
 
   const FormTitles = ["Choose Product", "Service Time", "Customer Info", "Payment Info", "Review"];
 
+  const NextButtonClick = () => {
+    return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} formData={formData} setFormData={setFormData} />;
+  };
+
+  // const PrevButtonClick = () => {
+  //   return <PrevButton step={step} setStep={setStep} FormTitles={FormTitles} />;
+  // };
+
+  const HeaderTitleDisplay = () => {
+    return <HeaderTitle step={step} FormTitles={FormTitles} />;
+  };
+
   return (
     <>
-      <div>123123</div>
+      { HeaderTitleDisplay() }
+      <Space direction='vertical'>
+        <Space wrap>
+          { NextButtonClick() }
+        </Space>
+      </Space>
     </>
-
   );
 }
 

@@ -1,22 +1,26 @@
-import React from 'react';
-import { Divider } from 'antd';
+import React from 'react'
+import { Steps, AutoCenter } from 'antd-mobile'
 
 const HeaderTitle = ({step, FormTitles}) => {
-  const TitleDisplay = (step, FormTitles) => {
-    if (step >= 0) {
-      const num = (step + 1).toString()
-      return (num + '. ' + FormTitles[step])
-    } else {
-      return ('Congratulation')
-    }
+  const { Step } = Steps
+
+  const StepDisplay = (step, FormTitles) => {
+    return (
+      <Steps current={step}>
+        {
+          FormTitles.map((title, index) => {
+            return (<Step title={'Step.' + (index + 1)} key={title}/>)
+          })
+        }
+      </Steps>
+    );
   };
 
   return (
-    <Divider style={{ color: "#ffffff", borderTopColor: "#90BA75", }}>
-      {
-        TitleDisplay(step, FormTitles)
-      }
-    </Divider>
+    <div style={{ backgroundColor: "#90BA75", position: 'fixed', zIndex: 1, width: '100%', }}>
+      { FormTitles[step] }
+      { StepDisplay(step, FormTitles) }
+    </div>
   );
 };
 

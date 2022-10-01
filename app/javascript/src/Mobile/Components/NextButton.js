@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, message } from 'antd';
+import { Button, Toast } from 'antd-mobile';
 import { apiPost } from '../Functions/ApiRequest'
 
 const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
@@ -28,18 +28,30 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
   }, [res]);
 
   const success = (info) => {
-    message.config({ top: 64, });
-    message.success(info);
+    Toast.show({
+      content: info,
+      afterClose: () => {
+        console.log('after')
+      },
+    })
   };
 
   const error = (info) => {
-    message.config({ top: 64, });
-    message.error(info);
+    Toast.show({
+      content: info,
+      afterClose: () => {
+        console.log('after')
+      },
+    })
   };
 
   const warning = (info) => {
-    message.config({ top: 64, });
-    message.warning(info);
+    Toast.show({
+      content: info,
+      afterClose: () => {
+        console.log('after')
+      },
+    })
   };
 
   const display = (step, FormTitles) => {
@@ -86,8 +98,8 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
   const history = useHistory();
 
   return (
-    <Button
-    type='primary'
+    <Button block
+    color='primary'
     shape='default'
     size='large'
     loading={ isLoading }
