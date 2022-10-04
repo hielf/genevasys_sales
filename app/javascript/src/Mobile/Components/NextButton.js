@@ -100,8 +100,8 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
   return (
     <Button block
     color='primary'
-    shape='default'
-    size='large'
+    size='middle'
+    type='submit'
     loading={ isLoading }
     block
     onClick={() => {

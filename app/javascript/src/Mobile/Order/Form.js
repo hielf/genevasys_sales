@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 // import 'antd-mobile/es/global'
 // import Button from 'antd-mobile/es/components/button'
-import { Space } from 'antd-mobile'
+import { Space, SafeArea, Grid } from 'antd-mobile'
 import HeaderTitle from '../Components/HeaderTitle'
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
@@ -61,9 +61,9 @@ function OrderForm() {
     return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} formData={formData} setFormData={setFormData} />;
   };
 
-  // const PrevButtonClick = () => {
-  //   return <PrevButton step={step} setStep={setStep} FormTitles={FormTitles} />;
-  // };
+  const PrevButtonClick = () => {
+    return <PrevButton step={step} setStep={setStep} FormTitles={FormTitles} />;
+  };
 
   const HeaderTitleDisplay = () => {
     return <HeaderTitle step={step} FormTitles={FormTitles} />;
@@ -71,12 +71,43 @@ function OrderForm() {
 
   return (
     <>
+      <div style={{ background: '#90BA75' }}>
+        <SafeArea position='top' />
+      </div>
       { HeaderTitleDisplay() }
-      <Space direction='vertical'>
-        <Space wrap>
-          { NextButtonClick() }
-        </Space>
+      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 74} }>
+        <div/>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
+        <Grid columns={3} gap={8}>
+          <Grid.Item>
+            { PrevButtonClick() }
+          </Grid.Item>
+          <Grid.Item span={2}>
+            { NextButtonClick() }
+          </Grid.Item>
+        </Grid>
       </Space>
+      <div style={{ background: '#90BA75' }}>
+        <SafeArea position='bottom' />
+      </div>
     </>
   );
 }
