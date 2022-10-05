@@ -75,7 +75,7 @@ function OrderForm() {
         <SafeArea position='top' />
       </div>
       { HeaderTitleDisplay() }
-      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 74} }>
+      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 85} }>
         <div/>
         <span>test</span>
         <span>test</span>

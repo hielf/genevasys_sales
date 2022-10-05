@@ -9,7 +9,7 @@ const HeaderTitle = ({step, FormTitles}) => {
       <Steps current={step}>
         {
           FormTitles.map((title, index) => {
-            return (<Step title={'Step.' + (index + 1)} key={title}/>)
+            return (<Step title={'Step' + (index + 1)} key={title} style={{}}/>)
           })
         }
       </Steps>
@@ -18,7 +18,9 @@ const HeaderTitle = ({step, FormTitles}) => {
 
   return (
     <div style={{ backgroundColor: "#90BA75", position: 'fixed', zIndex: 1, width: '100%', }}>
-      { FormTitles[step] }
+      <AutoCenter style={{ color: "#ffffff", fontSize:"16px", paddingTop:"8px", fontWeight: "bold", }}>
+        { FormTitles[step] }
+      </AutoCenter>
       { StepDisplay(step, FormTitles) }
     </div>
   );

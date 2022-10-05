@@ -8,3 +8,22 @@ body {
   margin-bottom: 0px;
   margin-right: 0px;
 }
+
+:root {
+  --adm-color-primary: #90BA75;
+  --adm-color-text: #90BA75;
+  --adm-color-weak: #fff;
+}
+
+:root:root {
+  --adm-button-border-radius: 8px;
+  /* .adm-step-status-process .adm-step-title */
+}
+
+.adm-step .adm-step-indicator .adm-step-icon-container {
+  color: white;
+}
+
+.adm-step-status-process .adm-step-title {
+  color: #E50914;
+}
