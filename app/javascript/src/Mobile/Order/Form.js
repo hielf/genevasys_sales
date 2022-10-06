@@ -55,7 +55,7 @@ function OrderForm() {
     ipPhoneQtySelected: 0,
   });
 
-  const FormTitles = ["Choose Product", "Service Time", "Customer Info", "Payment Info", "Review"];
+  const FormTitles = ["Choose Bundle", "Service Time", "Customer Info", "Payment Info", "Review"];
 
   const NextButtonClick = () => {
     return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} formData={formData} setFormData={setFormData} />;
