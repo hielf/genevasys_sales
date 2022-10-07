@@ -1,6 +1,7 @@
 /* .ant-btn-primary {
-    background-color: #90BA75;
+    background-color: #183857;
 } */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 body {
   margin-top: 0px;
@@ -20,8 +21,8 @@ body {
   --adm-font-size-8: 18px;
   --adm-font-size-9: 19px;
   --adm-font-size-10: 20px;
-  --adm-color-primary: #90BA75;
-  --adm-color-text: #90BA75;
+  --adm-color-primary: #183857;
+  --adm-color-text: #183857;
   --adm-color-weak: #fff;
 }
 
@@ -33,11 +34,11 @@ body {
 
 .adm-step .adm-step-indicator .adm-step-icon-container {
   /* color: white; */
-  background: #90BA75;
+  background: #183857;
 }
 
 .adm-step-status-process .adm-step-title {
-  color: #d860ed;
+  color: #d46417;
   font-weight: bold;
 }
 
@@ -47,6 +48,6 @@ body {
 }
 
 .adm-step-status-process {
-  --icon-color: #d860ed;
+  --icon-color: #d46417;
   font-weight: bold;
 }

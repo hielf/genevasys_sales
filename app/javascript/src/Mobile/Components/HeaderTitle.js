@@ -17,8 +17,8 @@ const HeaderTitle = ({step, FormTitles}) => {
   };
 
   return (
-    <div style={{ backgroundColor: "#90BA75", position: 'fixed', zIndex: 1, width: '100%', }}>
-      <AutoCenter style={{ color: "#ffffff", fontSize:"16px", paddingTop:"8px", fontWeight: "bold", }}>
+    <div style={{ backgroundColor: "#183857", position: 'fixed', zIndex: 1, width: '100%', }}>
+      <AutoCenter style={{ color: "#ffffff", fontSize:"20px", paddingTop:"16px", fontFamily: "'Roboto', sans-serif", }}>
         { FormTitles[step] }
       </AutoCenter>
       { StepDisplay(step, FormTitles) }

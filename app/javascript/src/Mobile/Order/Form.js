@@ -5,6 +5,10 @@ import { Space, SafeArea, Grid } from 'antd-mobile'
 import HeaderTitle from '../Components/HeaderTitle'
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
+import ProductInfo from './ProductInfo'
+import ServiceInfo from './ServiceInfo'
+import CustomerInfo from './CustomerInfo'
+import PaymentInfo from './PaymentInfo'
 
 function OrderForm() {
 
@@ -69,33 +73,36 @@ function OrderForm() {
     return <HeaderTitle step={step} FormTitles={FormTitles} />;
   };
 
+  const PageDisplay = () => {
+    if (step === 0) {
+      return <ProductInfo formData={formData} setFormData={setFormData} />;
+    } //else if (step === 1) {
+    //   return <ServiceInfo formData={formData} setFormData={setFormData} />;
+    // } else if (step === 2) {
+    //   return <CustomerInfo formData={formData} setFormData={setFormData} />;
+    // } else if (step === 3) {
+    //   return <PaymentInfo formData={formData} setFormData={setFormData} />;
+    // } else if (step === 4) {
+    //   return (
+    //     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+    //       <Summary formData={formData} setFormData={setFormData} />
+    //       <AgreeMent formData={formData} setFormData={setFormData} />
+    //     </Space>
+    //   )
+    // } else if (step === 5) {
+    //   return <Submit formData={formData} setFormData={setFormData} />;
+    // }
+  };
+
   return (
     <>
-      <div style={{ background: '#90BA75' }}>
+      <div style={{ background: '#183857' }}>
         <SafeArea position='top' />
       </div>
       { HeaderTitleDisplay() }
-      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 85} }>
+      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100} }>
         <div/>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
-        <span>test</span>
+        { PageDisplay() }
         <Grid columns={3} gap={8}>
           <Grid.Item>
             { PrevButtonClick() }
@@ -104,10 +111,10 @@ function OrderForm() {
             { NextButtonClick() }
           </Grid.Item>
         </Grid>
+        <div style={{ background: '#183857' }}>
+          <SafeArea position='bottom' />
+        </div>
       </Space>
-      <div style={{ background: '#90BA75' }}>
-        <SafeArea position='bottom' />
-      </div>
     </>
   );
 }
