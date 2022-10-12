@@ -23,23 +23,23 @@ const ProductInfo = ({formData, setFormData}) => {
           Object.keys(list).map(p => {
             if (p == "bundles") {
               return (
-                <Space direction='vertical' key={ 'space_key_' + p } block>
+                <Space direction='vertical' key={ 'space_key_' + p } style={{ '--gap': '24px' }} block>
                   <Radio.Group>
-                    <Space direction='vertical' block>
+                    <Space direction='vertical' style={{ '--gap': '24px' }} block>
                     {
                       list[p].map(d => {
                         return (
                           <Radio key={ d.value } value={d.value}>
-                            <Grid columns={3} gap={8}>
-                              <Grid.Item span={2}>
+                            <Grid columns={5} gap={3}>
+                              <Grid.Item span={4}>
                                 <span>{d.label}</span>
                               </Grid.Item>
-                              <Grid.Item>
+                              <Grid.Item span={1}>
                                 <span>{ d.price }</span>
                               </Grid.Item>
                             </Grid>
-                            <Grid columns={3} gap={8}>
-                              <Grid.Item span={3}>
+                            <Grid columns={5} gap={3}>
+                              <Grid.Item span={5}>
                                 <span style={{ fontSize: "14px" }}>{ d.description }</span>
                               </Grid.Item>
                             </Grid>

@@ -100,17 +100,19 @@ function OrderForm() {
         <SafeArea position='top' />
       </div>
       { HeaderTitleDisplay() }
-      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100} }>
+      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100,} }>
         <div/>
         { PageDisplay() }
-        <Grid columns={3} gap={8}>
-          <Grid.Item>
-            { PrevButtonClick() }
-          </Grid.Item>
-          <Grid.Item span={2}>
-            { NextButtonClick() }
-          </Grid.Item>
-        </Grid>
+        <div style={ {position: 'fixed', bottom: '24px', width: '90%', marginRight: 'auto', marginLeft: 'auto',} }>
+          <Grid columns={3} gap={8}>
+            <Grid.Item>
+              { PrevButtonClick() }
+            </Grid.Item>
+            <Grid.Item span={2}>
+              { NextButtonClick() }
+            </Grid.Item>
+          </Grid>
+        </div>
         <div style={{ background: '#183857' }}>
           <SafeArea position='bottom' />
         </div>
