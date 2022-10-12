@@ -2,7 +2,13 @@ class Api::ProductsController < Api::ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
+    customer_purchase_available = params[:for_customer]
+    p customer_purchase_available
     products = Product.where(visible: 1, product_type:1, status: 1).or(Product.where("ref LIKE ?", 'E%'))
+
+    if !customer_purchase_available.nil? && ActiveRecord::Type::Boolean.new.cast(customer_purchase_available) == true
+      products = products.where(customer_purchase_available: true)
+    end
 
     @bundles = Array.new
     products.where("ref LIKE ?", 'A%').each do |product|

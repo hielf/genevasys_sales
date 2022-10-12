@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_26_222459) do
+ActiveRecord::Schema.define(version: 2022_10_11_211052) do
 
   create_table "contacts", charset: "utf8mb3", force: :cascade do |t|
     t.integer "third_party_id"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2022_08_26_222459) do
     t.boolean "visible", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "customer_purchase_available", default: false
     t.index ["product_id"], name: "index_products_on_product_id", unique: true
   end
 
