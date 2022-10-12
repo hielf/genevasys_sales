@@ -29,18 +29,22 @@ const ProductInfo = ({formData, setFormData}) => {
                     {
                       list[p].map(d => {
                         return (
-                          <Radio key={ d.value } value={d.value}>
-                            <Grid columns={5} gap={3}>
-                              <Grid.Item span={4}>
-                                <span>{d.label}</span>
+                          <Radio key={ d.value } value={d.value} block>
+                            <Grid columns={4} gap={8}>
+                              <Grid.Item span={3}>
+                                <Grid columns={5} gap={3}>
+                                  <Grid.Item span={5}>
+                                    <span>{d.label}</span>
+                                  </Grid.Item>
+                                  <Grid.Item span={5}>
+                                    <span style={{ fontSize: "14px", }}>{ d.description }</span>
+                                  </Grid.Item>
+                                </Grid>
                               </Grid.Item>
-                              <Grid.Item span={1}>
-                                <span>{ d.price }</span>
-                              </Grid.Item>
-                            </Grid>
-                            <Grid columns={5} gap={3}>
-                              <Grid.Item span={5}>
-                                <span style={{ fontSize: "14px" }}>{ d.description }</span>
+                              <Grid.Item span={1} style={{ alignSelf: "center" }}>
+                                <span style={{ fontSize: "24px", color: "#d46417" }}>{ d.price }</span>
+                                <br/>
+                                <span style={{ fontSize: "12px", textDecoration:"line-through", }}>{ d.price }</span>
                               </Grid.Item>
                             </Grid>
                           </Radio>
