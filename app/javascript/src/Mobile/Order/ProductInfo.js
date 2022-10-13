@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiGet } from '../Functions/ApiRequest'
 import { Space, Grid } from 'antd-mobile'
-import { Radio } from 'antd-mobile'
+import { Radio, Badge } from 'antd-mobile'
 
 const ProductInfo = ({formData, setFormData}) => {
 
@@ -29,25 +29,27 @@ const ProductInfo = ({formData, setFormData}) => {
                     {
                       list[p].map(d => {
                         return (
-                          <Radio key={ d.value } value={d.value} block>
-                            <Grid columns={4} gap={8}>
-                              <Grid.Item span={3}>
-                                <Grid columns={5} gap={3}>
-                                  <Grid.Item span={5}>
-                                    <span>{d.label}</span>
-                                  </Grid.Item>
-                                  <Grid.Item span={5}>
-                                    <span style={{ fontSize: "14px", }}>{ d.description }</span>
-                                  </Grid.Item>
-                                </Grid>
-                              </Grid.Item>
-                              <Grid.Item span={1} style={{ alignSelf: "center" }}>
-                                <span style={{ fontSize: "24px", color: "#d46417" }}>{ d.price }</span>
-                                <br/>
-                                <span style={{ fontSize: "12px", textDecoration:"line-through", }}>{ d.price }</span>
-                              </Grid.Item>
-                            </Grid>
-                          </Radio>
+                          <Badge color='#d46417' content='2in1' style={{ '--right': '97%', }} bordered>
+                            <Radio key={ d.value } value={d.value} style={{ borderStyle: "solid", borderWidth: "0.5px", borderColor: "#ccc", borderRadius: "10px", padding: "8px" }} block>
+                              <Grid columns={4} gap={8}>
+                                <Grid.Item span={3}>
+                                  <Grid columns={5} gap={3}>
+                                    <Grid.Item span={5}>
+                                      <span>{d.label}</span>
+                                    </Grid.Item>
+                                    <Grid.Item span={5}>
+                                      <span style={{ fontSize: "14px", }}>{ d.description }</span>
+                                    </Grid.Item>
+                                  </Grid>
+                                </Grid.Item>
+                                <Grid.Item span={1} style={{ alignSelf: "center" }}>
+                                  <span style={{ fontSize: "24px", color: "#d46417" }}>{ d.price }</span>
+                                  <br/>
+                                  <span style={{ fontSize: "12px", textDecoration:"line-through", }}>{ d.price }</span>
+                                </Grid.Item>
+                              </Grid>
+                            </Radio>
+                          </Badge>
                         )
                       })
                     }

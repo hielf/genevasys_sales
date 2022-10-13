@@ -100,7 +100,7 @@ function OrderForm() {
         <SafeArea position='top' />
       </div>
       { HeaderTitleDisplay() }
-      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100,} }>
+      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, '--gap': '24px'} }>
         <div/>
         { PageDisplay() }
         <div style={ {position: 'fixed', bottom: '24px', width: '90%', marginRight: 'auto', marginLeft: 'auto',} }>

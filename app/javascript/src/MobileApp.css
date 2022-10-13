@@ -51,3 +51,14 @@ body {
   --icon-color: #d46417;
   font-weight: bold;
 }
+
+.adm-badge-content {
+  font-size: var(--adm-font-size-5);
+  line-height: 15px;
+  padding: 2px 6px;
+}
+
+.adm-radio.adm-radio-checked .adm-radio-icon {
+  border-color: #e95223;
+  background-color: #e95223;
+}
