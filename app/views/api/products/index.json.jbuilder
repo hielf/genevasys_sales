@@ -6,10 +6,11 @@ json.data do
     json.array! @bundles do |bundle|
       json.id             bundle["id"]
       json.value          bundle["product_id"]
-      json.label          bundle['label']
+      json.label          bundle['label'].gsub(bundle['bundle_tag'], "").strip
       json.description    ActionView::Base.full_sanitizer.sanitize(bundle['description'])
       json.price          bundle['price'].to_f
       json.tag            bundle['tag']
+      json.bundle_tag     bundle['bundle_tag']
     end
   end
   json.internets do

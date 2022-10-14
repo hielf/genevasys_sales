@@ -14,7 +14,9 @@ class Api::ProductsController < Api::ApplicationController
     products.where("ref LIKE ?", 'A%').each do |product|
       hash = product.as_json
       tag = ApplicationController.helpers.product_tags(product)
+      bundle_tag = ApplicationController.helpers.bundle_tag(tag)
       hash["tag"] = tag.sort
+      hash["bundle_tag"] = bundle_tag
       @bundles << hash
     end
     @bundles = @bundles.sort_by { |k| k["level"] }.reverse!

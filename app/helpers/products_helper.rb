@@ -128,4 +128,16 @@ module ProductsHelper
     return tag.sort
   end
 
+  def bundle_tag(tag)
+    bundle_tag = "NONE"
+    include_products = tag.map{|s| ((s.include? "B") || s == "C" || s == "D")}
+    product_count = include_products.tally[true]
+
+    if product_count && product_count > 1
+      bundle_tag = "#{product_count.to_s}IN1"
+    end
+
+    return bundle_tag
+  end
+
 end
