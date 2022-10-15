@@ -56,3 +56,4 @@ lib/python/market_shape/result.json
 yarn-debug.log*
 .yarn-integrity
 .ruby-gemset
+/public/assets/packs
