@@ -1,5 +1,5 @@
 /* .ant-btn-primary {
-    background-color: #183857;
+    background-color: #277d31;
 } */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
@@ -21,8 +21,8 @@ body {
   --adm-font-size-8: 18px;
   --adm-font-size-9: 19px;
   --adm-font-size-10: 20px;
-  --adm-color-primary: #183857;
-  --adm-color-text: #183857;
+  --adm-color-primary: #277d31;
+  --adm-color-text: #277d31;
   --adm-color-weak: #fff;
 }
 
@@ -34,7 +34,7 @@ body {
 
 .adm-step .adm-step-indicator .adm-step-icon-container {
   /* color: white; */
-  background: #183857;
+  background: #277d31;
 }
 
 .adm-step-status-process .adm-step-title {

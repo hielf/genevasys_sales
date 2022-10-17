@@ -96,7 +96,7 @@ function OrderForm() {
 
   return (
     <>
-      <div style={{ background: '#183857' }}>
+      <div style={{ background: '#277d31' }}>
         <SafeArea position='top' />
       </div>
       { HeaderTitleDisplay() }
@@ -113,7 +113,7 @@ function OrderForm() {
             </Grid.Item>
           </Grid>
         </div>
-        <div style={{ background: '#183857' }}>
+        <div style={{ background: '#277d31' }}>
           <SafeArea position='bottom' />
         </div>
       </Space>

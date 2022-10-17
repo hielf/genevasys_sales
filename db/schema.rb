@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_11_211052) do
+ActiveRecord::Schema.define(version: 2022_10_17_211653) do
 
   create_table "contacts", charset: "utf8mb3", force: :cascade do |t|
     t.integer "third_party_id"
@@ -88,6 +88,17 @@ ActiveRecord::Schema.define(version: 2022_10_11_211052) do
     t.integer "retry_times", default: 0
     t.string "pdf_file"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "product_rels", charset: "utf8mb3", force: :cascade do |t|
+    t.string "upper_product_id"
+    t.string "lower_product_id"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["upper_product_id", "lower_product_id"], name: "index_product_rels_on_upper_product_id_and_lower_product_id", unique: true
+    t.index ["upper_product_id"], name: "index_product_rels_on_upper_product_id"
   end
 
   create_table "products", charset: "utf8mb3", force: :cascade do |t|

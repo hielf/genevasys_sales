@@ -1,0 +1,2 @@
+class ProductRel < ApplicationRecord
+end
