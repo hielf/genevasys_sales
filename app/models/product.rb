@@ -2,6 +2,9 @@ class Product < ApplicationRecord
   validates_lengths_from_database
   attribute :level, :integer, default: -> { 0 }
 
+  has_many :product_rels, :primary_key => :product_id, :foreign_key => :upper_product_id
+  has_many :products, :through => :product_rels
+
   def level
     description.gsub(/[^0-9]/, '').to_i
   end
