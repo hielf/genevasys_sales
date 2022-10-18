@@ -43,9 +43,9 @@ const ProductInfo = ({formData, setFormData}) => {
                                   </Grid>
                                 </Grid.Item>
                                 <Grid.Item span={1} style={{ alignSelf: "center" }}>
-                                  <span style={{ fontSize: "24px", color: "#d46417" }}>{ d.price }</span>
+                                  <span style={{ fontSize: "24px", color: "#d46417" }}>{ d.promotion_price }</span>
                                   <br/>
-                                  <span style={{ fontSize: "12px", textDecoration:"line-through", color: "#8f8f8f", }}>{ d.price }</span>
+                                  <span style={{ fontSize: "14px", textDecoration:"line-through", color: "#8f8f8f", textDecorationColor: "#a1a1a1", textDecorationThickness: "0.5px",}}>{ d.price }</span>
                                 </Grid.Item>
                               </Grid>
                             </Radio>
