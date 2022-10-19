@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/seuros/capistrano-puma.git
+  revision: e9524872648b7bec6039d408c680274d6cba2709
+  specs:
+    capistrano3-puma (6.0.0.alpha.4)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (>= 5.1, < 6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -80,10 +89,6 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-puma (5.2.0)
-      capistrano (~> 3.7)
-      capistrano-bundler
-      puma (>= 4.0, < 6.0)
     chronic (0.10.2)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -294,7 +299,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails
   capistrano-rvm
-  capistrano3-puma
+  capistrano3-puma!
   database_cleaner
   factory_bot_rails
   faraday

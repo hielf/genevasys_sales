@@ -4,6 +4,7 @@ lock "~> 3.17.0"
 set :repo_url, "git@github.com:hielf/genevasys_sales.git"
 set :application, "genevasys_sales"
 # set :user, "deploy"
+set :puma_enable_socket_service, true
 set :puma_threads, [4, 16]
 set :puma_workers, 0
 set :rails_env, 'production'
