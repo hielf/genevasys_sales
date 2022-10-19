@@ -3,6 +3,11 @@ lock "~> 3.17.0"
 
 set :repo_url, "git@github.com:hielf/genevasys_sales.git"
 set :application, "genevasys_sales"
+
+# /etc/systemd/system/puma_genevasys_sales_production.service
+# systemctl start puma_genevasys_sales_production.service
+# systemctl status puma_genevasys_sales_production.service
+
 # set :user, "deploy"
 set :puma_enable_socket_service, true
 set :puma_threads, [4, 16]
