@@ -15,6 +15,7 @@ gem 'mysql2'
 gem "rack", ">= 2.2.3.1"
 
 # Use Puma as the app server
+gem 'puma-daemon', require: false
 gem 'puma', '~> 5.6'
 gem 'god'
 # Use SCSS for stylesheets
@@ -60,7 +61,7 @@ group :development do
   gem 'capistrano-rvm', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+  gem 'capistrano3-puma', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
