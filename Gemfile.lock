@@ -165,11 +165,8 @@ GEM
     prime (0.1.2)
       forwardable
       singleton
-    puma (5.6.5)
+    puma (4.3.12)
       nio4r (~> 2.0)
-    puma-daemon (0.1.2)
-      puma (>= 5.0)
-      rack
     racc (1.6.0)
     rack (2.2.4)
     rack-attack (6.6.1)
@@ -313,8 +310,7 @@ DEPENDENCIES
   net-smtp
   parallel
   prime
-  puma (~> 5.6)
-  puma-daemon
+  puma (~> 4.3.12)
   rack (>= 2.2.3.1)
   rack-attack
   rack-cors

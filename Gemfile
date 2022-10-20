@@ -15,8 +15,7 @@ gem 'mysql2'
 gem "rack", ">= 2.2.3.1"
 
 # Use Puma as the app server
-gem 'puma-daemon', require: false
-gem 'puma', '~> 5.6'
+gem 'puma', '~> 4.3.12'
 gem 'god'
 # Use SCSS for stylesheets
 # gem 'sassc-rails'
