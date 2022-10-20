@@ -63,11 +63,11 @@ module.exports = function(api) {
         }
       ],
       [
-+       '@babel/plugin-proposal-private-methods',
-+       {
-+         loose: true
-+       }
-+     ],
+        '@babel/plugin-proposal-private-methods',
+        {
+          loose: true
+        }
+      ],
       [
         '@babel/plugin-transform-runtime',
         {
