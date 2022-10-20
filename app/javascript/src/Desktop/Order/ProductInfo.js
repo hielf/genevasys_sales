@@ -8,7 +8,7 @@ import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, divid
 import { apiGet } from '../Functions/ApiRequest'
 
 const ProductInfo = ({formData, setFormData}) => {
-
+ 
   const [list, setList] = useState({});
   console.log(list);
   useEffect(() => {
