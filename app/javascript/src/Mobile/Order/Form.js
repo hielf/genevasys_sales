@@ -113,7 +113,7 @@ function OrderForm() {
             </Grid.Item>
           </Grid>
         </div>
-        <div style={{ background: '#277d31' }}>
+        <div style={{ background: '#ffffff' }}>
           <SafeArea position='bottom' />
         </div>
       </Space>
