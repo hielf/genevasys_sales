@@ -16,6 +16,12 @@ const ProductInfo = ({formData, setFormData}) => {
     setList(res);
   };
 
+  const onChange1 = (checkedValues) => {
+    console.log("Checked:", checkedValues);
+    setFormData((formData) => ({ ...formData, productAs: [checkedValues] }));
+    setFormData((formData) => ({ ...formData, products: [checkedValues] }));
+  }
+
   return (
 
       <Space direction='vertical' size='large'>
@@ -24,7 +30,7 @@ const ProductInfo = ({formData, setFormData}) => {
             if (p == "bundles") {
               return (
                 <Space direction='vertical' key={ 'space_key_' + p } style={{ '--gap': '24px' }} block>
-                  <Radio.Group>
+                  <Radio.Group onChange={ onChange1 }>
                     <Space direction='vertical' style={{ '--gap': '24px' }} block>
                     {
                       list[p].map(d => {
@@ -44,7 +50,7 @@ const ProductInfo = ({formData, setFormData}) => {
                                 </Grid.Item>
                                 <Grid.Item span={1} style={{ alignSelf: "center" }}>
                                   <span style={{ fontSize: "24px", color: "#d46417" }}>{ d.promotion_price }</span>
-                                  <br/> 
+                                  <br/>
                                   <span style={{ fontSize: "14px", textDecoration:"line-through", color: "#8f8f8f", textDecorationColor: "#a1a1a1", textDecorationThickness: "0.5px",}}>{ d.price }</span>
                                 </Grid.Item>
                               </Grid>
