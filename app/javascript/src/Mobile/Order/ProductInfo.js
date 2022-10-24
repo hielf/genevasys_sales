@@ -30,7 +30,7 @@ const ProductInfo = ({formData, setFormData}) => {
             if (p == "bundles") {
               return (
                 <Space direction='vertical' key={ 'space_key_' + p } style={{ '--gap': '24px' }} block>
-                  <Radio.Group onChange={ onChange1 }>
+                  <Radio.Group value={formData.products[0]} onChange={ onChange1 }>
                     <Space direction='vertical' style={{ '--gap': '24px' }} block>
                     {
                       list[p].map(d => {
