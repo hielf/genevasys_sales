@@ -1,65 +1,43 @@
-import React from 'react';
-import { Divider, Checkbox } from 'antd';
-import { DatePicker, Space } from 'antd';
-import { Row, Col } from 'antd';
-import { Radio } from 'antd';
-import { Input } from 'antd';
-import { ClockCircleOutlined, CalendarOutlined } from '@ant-design/icons';
-import {labelStyle, dataStyle, labelStyleSmall, dataStyleSmall, boldStyle, dividerStyle} from '../Components/FormStyle'
+import React, { useState, useEffect } from 'react';
+import { Space, Grid } from 'antd-mobile'
+import { PickerView } from 'antd-mobile'
 
 const ServiceInfo = ({formData, setFormData}) => {
-  const onChange = (e) => {
-    setFormData({ ...formData, installationTime: e.target.value });
-  };
 
-  const onChangeDate = (date, dateString) => {
-    setFormData({ ...formData, dateRequest: date });
-  };
+  const onChange1 = (checkedValues) => {
 
-  const disabledDate = (current) => {
-    var today = new Date();
-    // Can not select days before today and today
-    return current < today;
-  };
+  }
+
+  const dateColumns => {
+    let d1 = new Date();
+    let d2 = new Date(d1.setMonth(d1.getMonth() + 1));
+  }
+
+  const basicColumns = [
+    [
+      { label: 'Tue, 25', value: 'Tue, 25 Oct 2022' },
+      { label: 'Tue, 26', value: 'Tue, 26 Oct 2022' },
+      { label: 'Tue, 27', value: 'Tue, 27 Oct 2022' },
+      { label: 'Tue, 28', value: 'Tue, 28 Oct 2022' },
+      { label: 'Tue, 29', value: 'Tue, 29 Oct 2022' },
+      { label: 'Tue, 30', value: 'Tue, 30 Oct 2022' },
+      { label: 'Tue, 31', value: 'Tue, 31 Oct 2022' },
+      { label: 'Tue, 32', value: 'Tue, 32 Oct 2022' },
+      { label: 'Tue, 33', value: 'Tue, 33 Oct 2022' },
+      { label: 'Tue, 34', value: 'Tue, 34 Oct 2022' },
+    ],
+    [
+      { label: 'Morning', value: '1' },
+      { label: 'Afternoon', value: '2' },
+    ],
+  ]
 
   return (
-    <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-      <div/>
-      <Divider orientation="left" style={dividerStyle}>
-        <Space direction='horizontal' size='small' >
-          <CalendarOutlined />Prefer Installation Time
-        </Space>
-      </Divider>
-      <Row>
-        <Col span={24}>
-          <Space direction='vertical' size='small' >
-            <span style={labelStyle}>Time Period:</span>
-            <Radio.Group name="installationTime" defaultValue={1} value={formData.installationTime} onChange={onChange}>
-              <Radio value={1}>8am-12pm</Radio>
-              <Radio value={2}>12pm-4pm</Radio>
-            </Radio.Group>
-          </Space>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Space direction='vertical' size='small' >
-            <span style={labelStyle}>Date:</span>
-          </Space>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Space direction='vertical' size='small' >
-            <DatePicker
-              disabledDate={disabledDate}
-              onChange={onChangeDate}
-              value={formData.dateRequest}
-              style={{ width: "100%" }} />
-          </Space>
-        </Col>
-      </Row>
-    </Space>
+      <Space direction='vertical' block>
+        <p style={{ fontSize: "var(--adm-font-size-8)", textAlign: "center", fontWeight: 'bold', }}>Choose Date</p>
+        <PickerView columns={basicColumns} />
+        <p style={{ fontSize: "var(--adm-font-size-4)", }}>* A representative will call you later to confirm the installation time.</p>
+      </Space>
   );
 };
 
