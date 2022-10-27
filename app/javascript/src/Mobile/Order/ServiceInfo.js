@@ -11,7 +11,7 @@ const ServiceInfo = ({formData, setFormData}) => {
 
   while (d1 <= d2) {
     d1.setDate(d1.getDate() + 1)
-    dates.push({ label: d1.toLocaleString('en', { month: 'short' }).toString() + ', ' + d1.getDate().toString(), value: (new Date(d1))});
+    dates.push({ label: d1.toLocaleString('en', { month: 'short' }).toString() + ', ' + d1.getDate().toString(), value: (new Date(d1)).toDateString()});
   }
 
   const periods = [
@@ -20,10 +20,12 @@ const ServiceInfo = ({formData, setFormData}) => {
   ]
   const [dateColumns, setDateColumns] = useState([dates, periods])
 
-  if (formData.dateRequest === "") {
-    setFormData((formData) => ({ ...formData, dateRequest: dates[2]["value"] }));
-    setFormData((formData) => ({ ...formData, installationTime: 1 }));
-  }
+  const [preDate, setPreDate] = useState([dates[2]["value"], '1'])
+
+  // if (formData.dateRequest === "") {
+  //   // setFormData((formData) => ({ ...formData, dateRequest: dates[2]["value"] }));
+  //   // setFormData((formData) => ({ ...formData, installationTime: 1 }));
+  // }
 
   const onChange1 = (val, extend) => {
     setFormData((formData) => ({ ...formData, dateRequest: val[0] }));
@@ -36,7 +38,7 @@ const ServiceInfo = ({formData, setFormData}) => {
         <PickerView
           columns={dateColumns}
           value={
-            [formData.dateRequest, formData.installationTime]
+            (formData.dateRequest === "") ? preDate : [formData.dateRequest, formData.installationTime]
           }
           onChange={(val, extend) => {
             onChange1(val, extend)
