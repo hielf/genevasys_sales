@@ -43,22 +43,22 @@ body {
   color: #d46417;
   --icon-color: #d46417;
   --line-to-next-color: #d46417;
-  font-weight: bold;
+  font-weight: 300;
 }
 
 .adm-step-status-process .adm-step-title {
   color: #d46417;
-  font-weight: bold;
+  font-weight: 300;
 }
 
 .adm-step-status-wait {
   --icon-color: white;
-  font-weight: bold;
+  font-weight: 300;
 }
 
 .adm-step-status-process {
   --icon-color: #d46417;
-  font-weight: bold;
+  font-weight: 300;
 }
 
 .adm-badge-content {

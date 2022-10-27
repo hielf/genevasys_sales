@@ -22,18 +22,13 @@ const ServiceInfo = ({formData, setFormData}) => {
 
   const [preDate, setPreDate] = useState([dates[2]["value"], '1'])
 
-  // if (formData.dateRequest === "") {
-  //   // setFormData((formData) => ({ ...formData, dateRequest: dates[2]["value"] }));
-  //   // setFormData((formData) => ({ ...formData, installationTime: 1 }));
-  // }
-
   const onChange1 = (val, extend) => {
     setFormData((formData) => ({ ...formData, dateRequest: val[0] }));
     setFormData((formData) => ({ ...formData, installationTime: val[1] }));
   }
 
   return (
-      <Space direction='vertical' block>
+      <Space direction='vertical' style={ {'--gap': '0px'} } block>
         <p style={{ fontSize: "var(--adm-font-size-8)", textAlign: "center", fontWeight: 'bold', }}>Choose Date</p>
         <PickerView
           columns={dateColumns}

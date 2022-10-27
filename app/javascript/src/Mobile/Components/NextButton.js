@@ -126,13 +126,13 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
         console.log(formData);
         const d = new Date();
         if (step === 0 && formData.products.length === 0) {
-          error("Please choose your product")
+          error("Choose Product")
         } else if (step === 1 && formData.dateRequest === '') {
-          error("Please select service date")
+          error("Select Date")
         } else if (step === 2 && formData.firstName.trim() === '') {
-          error("First name required")
+          error("First Name Required")
         } else if (step === 2 && formData.lastName.trim() === '') {
-          error("Last name required")
+          error("Last Name Required")
         } else if (step === 2 && formData.contactPhone.trim() === '') {
           error("Contact phone required")
         } else if (step === 2 && formData.email.trim() === '') {

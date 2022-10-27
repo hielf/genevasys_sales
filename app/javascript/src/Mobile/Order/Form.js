@@ -78,9 +78,9 @@ function OrderForm() {
       return <ProductInfo formData={formData} setFormData={setFormData} />;
     } else if (step === 1) {
       return <ServiceInfo formData={formData} setFormData={setFormData} />;
-    } // else if (step === 2) {
-    //   return <CustomerInfo formData={formData} setFormData={setFormData} />;
-    // } else if (step === 3) {
+    } else if (step === 2) {
+      return <CustomerInfo formData={formData} setFormData={setFormData} />;
+     } // else if (step === 3) {
     //   return <PaymentInfo formData={formData} setFormData={setFormData} />;
     // } else if (step === 4) {
     //   return (
