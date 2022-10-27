@@ -35,7 +35,7 @@ const ProductInfo = ({formData, setFormData}) => {
                     {
                       list[p].map(d => {
                         return (
-                          <Badge key={ d.value } color='#d46417' content={ d.bundle_tag } style={{ '--right': '97%', }} bordered>
+                          <Badge key={ d.value } color='#ff6800' content={ d.bundle_tag } style={{ '--right': '97%', }} bordered>
                             <Radio value={d.value} style={{ borderStyle: "solid", borderWidth: "0.5px", borderColor: "#ccc", borderRadius: "10px", padding: "8px" }} block>
                               <Grid columns={4} gap={8}>
                                 <Grid.Item span={3}>
@@ -49,7 +49,7 @@ const ProductInfo = ({formData, setFormData}) => {
                                   </Grid>
                                 </Grid.Item>
                                 <Grid.Item span={1} style={{ alignSelf: "center" }}>
-                                  <span style={{ fontSize: "24px", color: "#d46417" }}>{ d.promotion_price }</span>
+                                  <span style={{ fontSize: "24px", color: "#ff6800" }}>{ d.promotion_price }</span>
                                   <br/>
                                   <span style={{ fontSize: "14px", textDecoration:"line-through", color: "#8f8f8f", textDecorationColor: "#a1a1a1", textDecorationThickness: "0.5px",}}>{ d.price }</span>
                                 </Grid.Item>

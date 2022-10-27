@@ -40,14 +40,14 @@ body {
 }
 
 .adm-step-status-finish {
-  color: #d46417;
-  --icon-color: #d46417;
-  --line-to-next-color: #d46417;
+  color: #ff6800;
+  --icon-color: #ff6800;
+  --line-to-next-color: #ff6800;
   font-weight: 300;
 }
 
 .adm-step-status-process .adm-step-title {
-  color: #d46417;
+  color: #ff6800;
   font-weight: 300;
 }
 
@@ -57,7 +57,7 @@ body {
 }
 
 .adm-step-status-process {
-  --icon-color: #d46417;
+  --icon-color: #ff6800;
   font-weight: 300;
 }
 
