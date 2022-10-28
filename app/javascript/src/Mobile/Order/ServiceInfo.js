@@ -29,7 +29,7 @@ const ServiceInfo = ({formData, setFormData}) => {
 
   return (
       <Space direction='vertical' style={ {'--gap': '0px'} } block>
-        <p style={{ fontSize: "var(--adm-font-size-8)", textAlign: "center", fontWeight: 'bold', }}>Choose Date</p>
+        <p style={{ fontSize: "18px", textAlign: "center", fontWeight: 'bold', }}>Choose Date</p>
         <PickerView
           columns={dateColumns}
           value={
@@ -40,7 +40,7 @@ const ServiceInfo = ({formData, setFormData}) => {
             console.log('onChange', val, extend.items)
           }}
         />
-        <p style={{ fontSize: "var(--adm-font-size-4)", }}>* A representative will call you later to confirm the installation time.</p>
+        <p style={{ fontSize: "14px", }}>* A representative will call you later to confirm the installation time.</p>
       </Space>
   );
 };

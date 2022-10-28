@@ -30,39 +30,39 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   return (
     <Form style={{ fontWeight:'300', }} layout='horizontal'>
-      <Form.Item label='First Name' name='firstName' style={{ fontSize:'var(--adm-font-size-6)', }}>
+      <Form.Item label='First Name' name='firstName' style={{ fontSize:'16px', }}>
         <Input placeholder='Your First Name' clearable
-          style={{ '--font-size':'var(--adm-font-size-6)', }}
+          style={{ '--font-size':'16px', }}
           onChange={val => { onChange1(val) }}
         />
       </Form.Item>
-      <Form.Item label='Last Name' name='lastName' style={{ fontSize:'var(--adm-font-size-6)', }}>
+      <Form.Item label='Last Name' name='lastName' style={{ fontSize:'16px', }}>
         <Input placeholder='Your Last Name' clearable
-          style={{ '--font-size':'var(--adm-font-size-6)' }}
+          style={{ '--font-size':'16px' }}
           onChange={val => { onChange2(val) }}
         />
       </Form.Item>
-      <Form.Item label='Contact Phone' name='contactPhone' style={{ fontSize:'var(--adm-font-size-6)', }}>
+      <Form.Item label='Contact Phone' name='contactPhone' style={{ fontSize:'16px', }}>
         <Input placeholder='Your Phone Number' clearable
-          style={{ '--font-size':'var(--adm-font-size-6)' }}
+          style={{ '--font-size':'16px' }}
           onChange={val => { onChange3(val) }}
         />
       </Form.Item>
-      <Form.Item label='E-mail' name='email' style={{ fontSize:'var(--adm-font-size-6)', }}>
+      <Form.Item label='E-mail' name='email' style={{ fontSize:'16px', }}>
         <Input placeholder='Your E-mail address' clearable
-          style={{ '--font-size':'var(--adm-font-size-6)' }}
+          style={{ '--font-size':'16px' }}
           onChange={val => { onChange4(val) }}
         />
       </Form.Item>
-      <Form.Item label='Address' name='installationAddress' style={{ fontSize:'var(--adm-font-size-6)', }}>
+      <Form.Item label='Address' name='installationAddress' style={{ fontSize:'16px', }}>
         <Input placeholder='#Unit-Number Street' clearable
-          style={{ '--font-size':'var(--adm-font-size-6)' }}
+          style={{ '--font-size':'16px' }}
           onChange={val => { onChange5(val) }}
         />
       </Form.Item>
-      <Form.Item label='E911 Address' name='ipPhoneAddress' style={{ fontSize:'var(--adm-font-size-6)', }}>
+      <Form.Item label='E911 Address' name='ipPhoneAddress' style={{ fontSize:'16px', }}>
         <Input placeholder='#Unit-Number Street' clearable
-          style={{ '--font-size':'var(--adm-font-size-6)' }}
+          style={{ '--font-size':'16px' }}
           onChange={val => { onChange6(val) }}
         />
       </Form.Item>
