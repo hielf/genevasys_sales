@@ -22,10 +22,10 @@
     },
     "mobile": {
       "js": [
-        "/assets/packs/js/mobile-8525f4979b221f428088.js"
+        "/assets/packs/js/mobile-5c435204e9779722e217.js"
       ],
       "js.map": [
-        "/assets/packs/js/mobile-8525f4979b221f428088.js.map"
+        "/assets/packs/js/mobile-5c435204e9779722e217.js.map"
       ]
     },
     "react": {
@@ -37,8 +37,8 @@
       ]
     }
   },
-  "mobile.js": "/assets/packs/js/mobile-8525f4979b221f428088.js",
-  "mobile.js.map": "/assets/packs/js/mobile-8525f4979b221f428088.js.map",
+  "mobile.js": "/assets/packs/js/mobile-5c435204e9779722e217.js",
+  "mobile.js.map": "/assets/packs/js/mobile-5c435204e9779722e217.js.map",
   "react.js": "/assets/packs/js/react-6050e7a2537c1c986e42.js",
   "react.js.map": "/assets/packs/js/react-6050e7a2537c1c986e42.js.map"
 }

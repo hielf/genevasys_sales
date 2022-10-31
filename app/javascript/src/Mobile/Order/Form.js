@@ -83,9 +83,9 @@ function OrderForm() {
   const PageDisplay = () => {
     if (step === 0) {
       return <ProductInfo formData={formData} setFormData={setFormData} />;
-    } //else if (step === 1) {
-    //   return <ServiceInfo formData={formData} setFormData={setFormData} />;
-    // } else if (step === 2) {
+    } else if (step === 1) {
+      return <ServiceInfo formData={formData} setFormData={setFormData} />;
+    } // else if (step === 2) {
     //   return <CustomerInfo formData={formData} setFormData={setFormData} />;
     //  } // else if (step === 3) {
     //   return <PaymentInfo formData={formData} setFormData={setFormData} />;
