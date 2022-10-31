@@ -32,7 +32,7 @@ const ServiceInfo = ({formData, setFormData}) => {
         <p style={{ fontSize: "18px", textAlign: "center", fontWeight: 'bold', }}>Choose Date</p>
         <PickerView
           columns={dateColumns}
-          value={
+          value={ 
             (formData.dateRequest === "") ? preDate : [formData.dateRequest, formData.installationTime]
           }
           onChange={(val, extend) => {

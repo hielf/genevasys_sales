@@ -6,7 +6,6 @@
     <link rel="icon" href="/images/favicon.ico">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <% p "is #{browser.name} on #{browser.platform.name} #{browser.platform.version}" %>
     <% if browser.device.mobile? %>
       <%= javascript_pack_tag 'applicationMobile', 'data-turbolinks-track': 'reload' %>

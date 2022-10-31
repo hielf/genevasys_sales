@@ -8,11 +8,11 @@ import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import MobileApp from '../src/MobileApp'
 
-if (process.env.NODE_ENV === 'production') {
-  console.log = () => {}
-  console.error = () => {}
-  console.debug = () => {}
-}
+// if (process.env.NODE_ENV === 'production') {
+//   console.log = () => {}
+//   console.error = () => {}
+//   console.debug = () => {}
+// }
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
