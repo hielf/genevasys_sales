@@ -6,16 +6,16 @@ import HeaderTitle from '../Components/HeaderTitle'
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
 import ProductInfo from './ProductInfo'
-// import ServiceInfo from './ServiceInfo'
+import ServiceInfo from './ServiceInfo'
 // import CustomerInfo from './CustomerInfo'
 // import PaymentInfo from './PaymentInfo'
-
-console.log("document.form", document);
-
-if (document.body === null) {
-  console.log("document.body.null", document.body);
-  document.createElement('p')
-}
+//
+// console.log("document.form", document);
+//
+// if (document.body === null) {
+//   console.log("document.body.null", document.body);
+//   document.createElement('p')
+// }
 
 function OrderForm() {
 
@@ -81,7 +81,7 @@ function OrderForm() {
   };
 
   const PageDisplay = () => {
-    if (step === 0) { 
+    if (step === 0) {
       return <ProductInfo formData={formData} setFormData={setFormData} />;
     } //else if (step === 1) {
     //   return <ServiceInfo formData={formData} setFormData={setFormData} />;
