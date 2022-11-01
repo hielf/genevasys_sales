@@ -9,13 +9,6 @@ import ProductInfo from './ProductInfo'
 import ServiceInfo from './ServiceInfo'
 // import CustomerInfo from './CustomerInfo'
 // import PaymentInfo from './PaymentInfo'
-//
-// console.log("document.form", document);
-//
-// if (document.body === null) {
-//   console.log("document.body.null", document.body);
-//   document.createElement('p')
-// }
 
 function OrderForm() {
 
