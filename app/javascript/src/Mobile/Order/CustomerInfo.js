@@ -30,12 +30,9 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   return (
     <>
-      <Form layout='vertical'>
-        <Form.Item label='First Name' name='firstName'>
-          <Input placeholder='' clearable/>
-        </Form.Item>
-
-      </Form>
+      <Input
+        placeholder='请输入密码'
+      />
     </>
   );
 };
