@@ -29,12 +29,14 @@ const CustomerInfo = ({formData, setFormData}) => {
   }
 
   return (
-    <Form layout='vertical'>
-      <Form.Item label='First Name' name='firstName'>
-        <Input placeholder='' clearable/>
-      </Form.Item>
+    <>
+      <Form layout='vertical'>
+        <Form.Item label='First Name' name='firstName'>
+          <Input placeholder='' clearable/>
+        </Form.Item>
 
-    </Form>
+      </Form>
+    </>
   );
 };
 
