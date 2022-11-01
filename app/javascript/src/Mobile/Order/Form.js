@@ -7,7 +7,7 @@ import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
 import ProductInfo from './ProductInfo'
 import ServiceInfo from './ServiceInfo'
-// import CustomerInfo from './CustomerInfo'
+import CustomerInfo from './CustomerInfo'
 // import PaymentInfo from './PaymentInfo'
 
 function OrderForm() {
@@ -78,9 +78,9 @@ function OrderForm() {
       return <ProductInfo formData={formData} setFormData={setFormData} />;
     } else if (step === 1) {
       return <ServiceInfo formData={formData} setFormData={setFormData} />;
-    } // else if (step === 2) {
-    //   return <CustomerInfo formData={formData} setFormData={setFormData} />;
-    //  } // else if (step === 3) {
+    } else if (step === 2) {
+      return <CustomerInfo formData={formData} setFormData={setFormData} />;
+    } // else if (step === 3) {
     //   return <PaymentInfo formData={formData} setFormData={setFormData} />;
     // } else if (step === 4) {
     //   return (

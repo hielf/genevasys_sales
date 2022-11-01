@@ -1,5 +1,5 @@
 import React from 'react';
-import { Space, Grid } from 'antd-mobile'
+import { Space } from 'antd-mobile'
 import { Form, Input } from 'antd-mobile'
 
 const CustomerInfo = ({formData, setFormData}) => {
@@ -29,27 +29,27 @@ const CustomerInfo = ({formData, setFormData}) => {
   }
 
   return (
-    <Form style={{ fontWeight:'300', }} layout='horizontal'>
+    <Form style={{ fontWeight:'300', }} layout='vertical'>
       <Form.Item label='First Name' name='firstName' style={{ fontSize:'16px', }}>
-        <Input placeholder='Your First Name' clearable
+        <Input placeholder='' clearable
           style={{ '--font-size':'16px', }}
           onChange={val => { onChange1(val) }}
         />
       </Form.Item>
       <Form.Item label='Last Name' name='lastName' style={{ fontSize:'16px', }}>
-        <Input placeholder='Your Last Name' clearable
+        <Input placeholder='' clearable
           style={{ '--font-size':'16px' }}
           onChange={val => { onChange2(val) }}
         />
       </Form.Item>
       <Form.Item label='Contact Phone' name='contactPhone' style={{ fontSize:'16px', }}>
-        <Input placeholder='Your Phone Number' clearable
+        <Input placeholder='' clearable
           style={{ '--font-size':'16px' }}
           onChange={val => { onChange3(val) }}
         />
       </Form.Item>
       <Form.Item label='E-mail' name='email' style={{ fontSize:'16px', }}>
-        <Input placeholder='Your E-mail address' clearable
+        <Input placeholder='' clearable
           style={{ '--font-size':'16px' }}
           onChange={val => { onChange4(val) }}
         />

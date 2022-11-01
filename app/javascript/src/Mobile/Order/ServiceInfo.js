@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Space, Grid } from 'antd-mobile'
 import { PickerView } from 'antd-mobile'
 
@@ -29,10 +29,10 @@ const ServiceInfo = ({formData, setFormData}) => {
 
   return (
       <Space direction='vertical' style={ {'--gap': '0px'} } block>
-        <p style={{ fontSize: "18px", textAlign: "center", fontWeight: 'bold', }}>Choose Date</p>
+        <p style={{ fontSize: "18px", textAlign: "center", fontWeight: 'bold', }}>Book A Service Date</p>
         <PickerView
           columns={dateColumns}
-          value={ 
+          value={
             (formData.dateRequest === "") ? preDate : [formData.dateRequest, formData.installationTime]
           }
           onChange={(val, extend) => {

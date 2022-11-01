@@ -1007,7 +1007,7 @@ function Term() {
        </o:shapelayout></xml><![endif]-->
       </head>
 
-      <body lang=ZH-CN style='tab-interval:36.0pt;word-wrap:break-word'>
+      <body lang=ZH-CN style='color:#000000;tab-interval:36.0pt;word-wrap:break-word'>
 
       <div class=WordSection1>
 

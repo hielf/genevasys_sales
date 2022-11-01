@@ -71,3 +71,17 @@ body {
   border-color: #e95223;
   background-color: #e95223;
 }
+
+.adm-input-element {
+  padding: 4px;
+  outline: solid;
+  outline-width: thin;
+}
+
+.adm-form {
+  ---border-inner: 0;
+}
+
+.adm-form-item.adm-form-item-vertical .adm-form-item-label {
+  font-size: var(--adm-font-size-4);
+}
