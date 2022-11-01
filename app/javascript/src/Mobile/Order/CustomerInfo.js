@@ -29,8 +29,15 @@ const CustomerInfo = ({formData, setFormData}) => {
   }
 
   return (
-    <>
-    </>
+    <Form layout='vertical'>
+      <Form.Item label='First Name' name='firstName' style={{ fontSize:'16px', }}>
+        <Input placeholder='' clearable
+          style={{ '--font-size':'16px', }}
+          onChange={val => { onChange1(val) }}
+        />
+      </Form.Item>
+
+    </Form>
   );
 };
 
