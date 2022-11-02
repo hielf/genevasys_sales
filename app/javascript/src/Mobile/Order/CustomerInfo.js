@@ -31,7 +31,7 @@ const CustomerInfo = ({formData, setFormData}) => {
   return (
     <>
       <Form layout='horizontal'>
-
+      
       </Form>
     </>
   );

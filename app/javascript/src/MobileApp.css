@@ -1,8 +1,8 @@
 /* .ant-btn-primary {
     background-color: #277d31;
 } */
-@import 'https://unpkg.com/antd-mobile@5.24.0/bundle/css-vars-patch.css';
-@import 'https://unpkg.com/antd-mobile@5.24.0/bundle/style.css';
+@import 'https://unpkg.com/antd-mobile@5.25.1/bundle/css-vars-patch.css';
+@import 'https://unpkg.com/antd-mobile@5.25.1/bundle/style.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 body {
