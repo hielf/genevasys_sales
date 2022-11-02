@@ -80,6 +80,7 @@ body {
 }
 
 .adm-form {
+  width: 100%;
   ---border-inner: 0;
 }
 
