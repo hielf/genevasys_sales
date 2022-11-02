@@ -61,6 +61,13 @@ const ProductInfo = ({formData, setFormData}) => {
                     }
                     </Space>
                   </Radio.Group>
+
+                  <p style={{ fontSize: "12px", }}>
+                    * An Activation Fee may be charged for providing internet installation service.
+                    <br/>
+                    <br/>
+                    * If Activation Fee is available, A $10 Rebate will be provided for 12 months.
+                  </p>
                 </Space>
               )
             }
