@@ -51,7 +51,7 @@ lib/python/market_shape/result.json
 
 /public/packs
 /public/packs-test
-/node_modules
+# /node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
