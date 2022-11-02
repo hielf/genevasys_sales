@@ -76,6 +76,7 @@ body {
   padding: 4px;
   outline: solid;
   outline-width: thin;
+  outline-color: #dcdcdc;
 }
 
 .adm-form {

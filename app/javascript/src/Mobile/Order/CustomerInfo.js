@@ -30,9 +30,11 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   return (
     <>
-      <Input
-        placeholder='请输入密码'
-      />
+      <Form layout='horizontal'>
+        <Input
+          placeholder='请输入密码'
+        />
+      </Form>
     </>
   );
 };
