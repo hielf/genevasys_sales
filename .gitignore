@@ -18,7 +18,7 @@
 !/tmp/.keep
 
 /node_modules
-!/node_modules/antd-mobile
+!/node_modules/antd-mobile/*
 /yarn-error.log
 
 .byebug_history
