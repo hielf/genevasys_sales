@@ -1,5 +1,5 @@
 import React from 'react';
-import { Space } from 'antd-mobile'
+import { Grid, Space } from 'antd-mobile'
 import { Form, Input } from 'antd-mobile'
 
 const CustomerInfo = ({formData, setFormData}) => {
@@ -30,9 +30,45 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   return (
     <>
-      <Form layout='horizontal'>
-      
-      </Form>
+      <Space direction='vertical' style={ {'--gap': '32px'} }>
+        <Grid columns={4} gap={32}>
+            <Grid.Item span={2}>
+              <p style={{ marginBottom: '5px', fontFamily: "'Roboto', sans-serif", }}>First</p>
+              <Input placeholder=''
+                style={{ '--font-size':'16px', }}
+                onChange={val => { onChange1(val) }}
+              />
+            </Grid.Item>
+            <Grid.Item span={2}>
+              <p style={{ marginBottom: '5px', fontFamily: "'Roboto', sans-serif", }}>Last</p>
+              <Input placeholder=''
+                style={{ '--font-size':'16px' }}
+                onChange={val => { onChange2(val) }}
+              />
+            </Grid.Item>
+        </Grid>
+
+
+        <Input placeholder='' clearable
+          style={{ '--font-size':'16px' }}
+          onChange={val => { onChange3(val) }}
+        />
+
+        <Input placeholder='' clearable
+          style={{ '--font-size':'16px' }}
+          onChange={val => { onChange4(val) }}
+        />
+
+        <Input placeholder='#Unit-Number Street' clearable
+          style={{ '--font-size':'16px' }}
+          onChange={val => { onChange5(val) }}
+        />
+
+        <Input placeholder='#Unit-Number Street' clearable
+          style={{ '--font-size':'16px' }}
+          onChange={val => { onChange6(val) }}
+        />
+      </Space>
     </>
   );
 };
