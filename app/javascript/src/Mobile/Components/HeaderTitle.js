@@ -9,7 +9,7 @@ const HeaderTitle = ({step, FormTitles}) => {
       <Steps current={step}>
         {
           FormTitles.map((title, index) => {
-            return (<Step title={'Step ' + (index + 1)} key={title} style={{}}/>)
+            return (<Step title={'Step ' + (index + 1)} key={title} style={{ fontFamily: "'Varela Round', sans-serif", }}/>)
           })
         }
       </Steps>

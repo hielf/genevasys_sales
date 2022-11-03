@@ -29,7 +29,7 @@ const ServiceInfo = ({formData, setFormData}) => {
 
   return (
       <Space direction='vertical' style={ {'--gap': '0px'} } block>
-        <p style={{ fontSize: "18px", textAlign: "center", fontWeight: 'bold', }}>Book A Service Date</p>
+        <p style={{ fontSize: "18px", textAlign: "center", fontFamily: "'Oswald', sans-serif", color: '#777777', }}>Book A Service Date</p>
         <PickerView
           columns={dateColumns}
           value={

@@ -3,7 +3,7 @@
 } */
 @import 'https://unpkg.com/antd-mobile@5.25.1/bundle/css-vars-patch.css';
 @import 'https://unpkg.com/antd-mobile@5.25.1/bundle/style.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Oswald:wght@300;400&family=Roboto:wght@300&family=Varela+Round&display=swap');
 
 body {
   margin-top: 0px;
