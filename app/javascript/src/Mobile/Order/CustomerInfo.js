@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Space } from 'antd-mobile'
-import { Form, Input, Divider } from 'antd-mobile'
+import { Form, Input, Divider, Picker } from 'antd-mobile'
 
 const CustomerInfo = ({formData, setFormData}) => {
+
+  const [city, setCity] = useState('')
 
   const onChange1 = (val) => {
     setFormData((formData) => ({ ...formData, firstName: val }));
@@ -79,16 +81,39 @@ const CustomerInfo = ({formData, setFormData}) => {
           </Grid.Item>
           <Grid.Item span={4}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Installation Address</p>
-            <Input placeholder='#Unit-Number Street' clearable
+            <Input placeholder='#Unit-Number Street'
               style={{ '--font-size':'16px' }}
               onChange={val => { onChange5(val) }}
             />
           </Grid.Item>
           <Grid.Item span={4}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>E911 Address</p>
-            <Input placeholder='#Unit-Number Street' clearable
+            <Input
               style={{ '--font-size':'16px' }}
               onChange={val => { onChange6(val) }}
+            />
+          </Grid.Item>
+          <Grid.Item span={2}>
+            <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>City</p>
+            <Input
+              style={{ '--font-size':'16px' }}
+              onChange={val => { onChange6(val) }}
+            />
+          </Grid.Item>
+          <Grid.Item span={2}>
+            <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Postal Code</p>
+            <Input
+              minLength={6}
+              maxLength={7}
+              style={{ '--font-size':'16px' }}
+              onChange={val => { onChange6(val) }}
+            />
+          </Grid.Item>
+          <Grid.Item span={4}>
+            <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Billing Address</p>
+            <Input
+              style={{ '--font-size':'16px' }}
+              onChange={val => { onChange5(val) }}
             />
           </Grid.Item>
         </Grid>

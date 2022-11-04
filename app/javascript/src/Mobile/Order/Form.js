@@ -103,7 +103,9 @@ function OrderForm() {
       <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, '--gap': '24px'} }>
         <div/>
         { PageDisplay() }
-        <div style={ {position: 'fixed', bottom: '24px', width: '90%', marginRight: 'auto', marginLeft: 'auto',} }>
+      </Space>
+      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, '--gap': '24px'} }>
+        <div style={ {position: 'fixed', bottom: '24px', width: '90%', marginRight: 'auto', marginLeft: 'auto', } }>
           <Grid columns={3} gap={8}>
             <Grid.Item>
               { PrevButtonClick() }
@@ -113,10 +115,10 @@ function OrderForm() {
             </Grid.Item>
           </Grid>
         </div>
-        <div style={{ background: '#ffffff' }}>
-          <SafeArea position='bottom' />
-        </div>
       </Space>
+      <div style={{ background: '#ffffff' }}>
+        <SafeArea position='bottom' />
+      </div>
     </>
   );
 }

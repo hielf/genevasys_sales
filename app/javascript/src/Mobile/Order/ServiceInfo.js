@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Space, Grid } from 'antd-mobile'
-import { PickerView } from 'antd-mobile'
+import { Divider, PickerView } from 'antd-mobile'
 
 const ServiceInfo = ({formData, setFormData}) => {
 
@@ -29,7 +29,11 @@ const ServiceInfo = ({formData, setFormData}) => {
 
   return (
       <Space direction='vertical' style={ {'--gap': '0px'} } block>
-        <p style={{ fontSize: "18px", textAlign: "center", fontFamily: "'Oswald', sans-serif", color: '#777777', }}>Book A Service Date</p>
+        <Divider
+          contentPosition='center'
+          style={{ color: '#777777', fontSize: "18px", fontFamily: "'Oswald', sans-serif", marginBottom: '0px', marginTop: '0px', }}>
+          Book A Service Date
+        </Divider>
         <PickerView
           columns={dateColumns}
           value={
