@@ -104,7 +104,7 @@ function OrderForm() {
         <div/>
         { PageDisplay() }
       </Space>
-      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, '--gap': '24px'} }>
+      <Space direction='vertical' style={ {backgroundColor: 'white', padding: '0 5%', width: '90%', marginTop: 100, '--gap': '24px'} }>
         <div style={ {position: 'fixed', bottom: '24px', width: '90%', marginRight: 'auto', marginLeft: 'auto', } }>
           <Grid columns={3} gap={8}>
             <Grid.Item>
