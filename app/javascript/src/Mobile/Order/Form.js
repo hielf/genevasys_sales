@@ -100,22 +100,24 @@ function OrderForm() {
         <SafeArea position='top' />
       </div>
       { HeaderTitleDisplay() }
-      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, '--gap': '24px'} }>
+      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, marginBottom: 120, '--gap': '24px'} }>
         <div/>
         { PageDisplay() }
       </Space>
-      <Space direction='vertical' style={ {backgroundColor: 'white', padding: '0 5%', width: '90%', marginTop: 100, '--gap': '24px'} }>
-        <div style={ {position: 'fixed', bottom: '24px', width: '90%', marginRight: 'auto', marginLeft: 'auto', } }>
-          <Grid columns={3} gap={8}>
-            <Grid.Item>
-              { PrevButtonClick() }
-            </Grid.Item>
-            <Grid.Item span={2}>
-              { NextButtonClick() }
-            </Grid.Item>
-          </Grid>
-        </div>
-      </Space>
+      <div style={{ backgroundColor: "white", position: 'fixed', zIndex: 1, width: '100%', bottom: '0px', boxShadow: '0px -2px 5px 0px #e6e6e6', WebkitBoxShadow: '0px -2px 5px 0px #e6e6e6', MozBoxShadow: '0px -2px 5px 0px #e6e6e6', }}>
+        <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 85, '--gap': '24px'} }>
+          <div style={ {position: 'fixed', bottom: '24px', width: '90%', marginRight: 'auto', marginLeft: 'auto', } }>
+            <Grid columns={3} gap={8}>
+              <Grid.Item>
+                { PrevButtonClick() }
+              </Grid.Item>
+              <Grid.Item span={2}>
+                { NextButtonClick() }
+              </Grid.Item>
+            </Grid>
+          </div>
+        </Space>
+      </div>
       <div style={{ background: '#ffffff' }}>
         <SafeArea position='bottom' />
       </div>
