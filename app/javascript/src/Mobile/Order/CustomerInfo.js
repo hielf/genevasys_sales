@@ -118,10 +118,10 @@ const CustomerInfo = ({formData, setFormData}) => {
               {(items, { open }) => {
                 return (
                   <Space align='center'>
-                    <Button onClick={open}>选择</Button>
+                    <Button onClick={open} style={{ fontSize: 'inherit' }}>Select</Button>
                     {items.every(item => item === null)
-                      ? '未选择'
-                      : items.map(item => item?.label ?? '未选择').join(' - ')}
+                      ? 'unknown'
+                      : items.map(item => item?.label ?? 'unknown').join(' - ')}
                   </Space>
                 )
               }}
