@@ -10,6 +10,7 @@
     <% if browser.device.mobile? %>
       <%= javascript_pack_tag 'applicationMobile', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'mobile' %>
+      <!-- <script src="../../js/inobounce.js"></script> -->
     <% else %>
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'react' %>
