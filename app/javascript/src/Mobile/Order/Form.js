@@ -97,10 +97,12 @@ function OrderForm() {
   return (
     <>
       { HeaderTitleDisplay() }
-      <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, marginBottom: 120, '--gap': '24px'} }>
-        <div/>
-        { PageDisplay() }
-      </Space>
+      <div style={{ width: '100%', }}>
+        <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, marginBottom: 120, '--gap': '24px'} }>
+          <div/>
+          { PageDisplay() }
+        </Space>
+      </div>
       <div style={{ backgroundColor: "white", position: 'fixed', zIndex: 1, width: '100%', bottom: '0px', boxShadow: '0px -2px 5px 0px #e6e6e6', WebkitBoxShadow: '0px -2px 5px 0px #e6e6e6', MozBoxShadow: '0px -2px 5px 0px #e6e6e6', }}>
         <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 85, '--gap': '24px'} }>
           <div style={ {position: 'fixed', bottom: '24px', width: '90%', marginRight: 'auto', marginLeft: 'auto', } }>
