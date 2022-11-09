@@ -96,9 +96,6 @@ function OrderForm() {
 
   return (
     <>
-      <div style={{ background: '#277d31' }}>
-        <SafeArea position='top' />
-      </div>
       { HeaderTitleDisplay() }
       <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, marginBottom: 120, '--gap': '24px'} }>
         <div/>
@@ -117,9 +114,6 @@ function OrderForm() {
             </Grid>
           </div>
         </Space>
-      </div>
-      <div style={{ background: '#ffffff' }}>
-        <SafeArea position='bottom' />
       </div>
     </>
   );
