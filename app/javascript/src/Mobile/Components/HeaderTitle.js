@@ -9,7 +9,8 @@ const HeaderTitle = ({step, FormTitles}) => {
       <Steps current={step}>
         {
           FormTitles.map((title, index) => {
-            return (<Step title={'Step ' + (index + 1)} key={title} style={{ fontFamily: "'Varela Round', sans-serif", }}/>)
+            // return (<Step title={'Step ' + (index + 1)} key={title} style={{ fontFamily: "'Varela Round', sans-serif", }}/>)
+            return (<Step title={title} key={'Step ' + (index + 1)} style={{ fontFamily: "'Varela Round', sans-serif", }}/>)
           })
         }
       </Steps>
@@ -19,7 +20,7 @@ const HeaderTitle = ({step, FormTitles}) => {
   return (
     <div style={{ backgroundColor: "#277d31", position: 'fixed', zIndex: 1, width: '100%', }}>
       <AutoCenter style={{ color: "#ffffff", fontSize:"20px", paddingTop:"16px", fontFamily: "'Roboto', sans-serif", }}>
-        { FormTitles[step] }
+        { "Geneva Systems" }
       </AutoCenter>
       { StepDisplay(step, FormTitles) }
     </div>

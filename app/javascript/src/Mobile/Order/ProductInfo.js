@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { apiGet } from '../Functions/ApiRequest'
-import { Space, Grid } from 'antd-mobile'
+import { Space, Grid, Divider } from 'antd-mobile'
 import { Radio, Badge } from 'antd-mobile'
 
 const ProductInfo = ({formData, setFormData}) => {
@@ -23,8 +23,13 @@ const ProductInfo = ({formData, setFormData}) => {
   }
 
   return (
-
-      <Space direction='vertical' size='large'>
+    <>
+      <Space direction='vertical' style={ {'--gap': '32px'} }>
+        <Divider
+          contentPosition='center'
+          style={{ color: '#777777', fontSize: "18px", fontFamily: "'Oswald', sans-serif", marginBottom: '0px', marginTop: '0px', }}>
+          Choose Bundle
+        </Divider>
         {
           Object.keys(list).map(p => {
             if (p == "bundles") {
@@ -62,19 +67,21 @@ const ProductInfo = ({formData, setFormData}) => {
                     </Space>
                   </Radio.Group>
 
-                  <p style={{ fontSize: "12px", }}>
-                    * An Activation Fee may be charged for providing internet installation service.
-                    <br/>
-                    <br/>
-                    * If Activation Fee is available, A $10 Rebate will be provided for 12 months.
-                  </p>
+                  <Space direction='vertical' size='small'>
+                    <p style={{ fontSize: "12px", margin: '0', }}>
+                      * An Activation Fee may be charged for providing internet installation service.
+                    </p>
+                    <p style={{ fontSize: "12px", margin: '0', }}>
+                      * If Activation Fee is available, A $10 Rebate will be provided for 12 months.
+                    </p>
+                  </Space>
                 </Space>
               )
             }
           })
         }
       </Space>
-
+    </>
   );
 };
 

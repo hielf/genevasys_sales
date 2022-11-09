@@ -26,10 +26,16 @@ const CustomerInfo = ({formData, setFormData}) => {
   ]
 
   const onChange1 = (val) => {
+    if (formData.firstName === formData.cardFirstName) {
+      setFormData((formData) => ({ ...formData, cardFirstName: val }));
+    }
     setFormData((formData) => ({ ...formData, firstName: val }));
   }
 
   const onChange2 = (val) => {
+    if (formData.lastName === formData.cardLastName) {
+      setFormData((formData) => ({ ...formData, cardLastName: val }));
+    }
     setFormData((formData) => ({ ...formData, lastName: val }));
   }
 
@@ -64,6 +70,10 @@ const CustomerInfo = ({formData, setFormData}) => {
 
   const onChange8 = (val) => {
     setFormData((formData) => ({ ...formData, billingAddress: val }));
+  }
+
+  const onChange9 = (val) => {
+    setFormData((formData) => ({ ...formData, city: val }));
   }
 
   return (
@@ -103,7 +113,7 @@ const CustomerInfo = ({formData, setFormData}) => {
           </Grid.Item>
           <Grid.Item span={4}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Email</p>
-            <Input placeholder='' clearable
+            <Input placeholder='' 
               style={{ '--font-size':'16px' }}
               onChange={val => { onChange4(val) }}
               value={formData.email}
@@ -139,14 +149,16 @@ const CustomerInfo = ({formData, setFormData}) => {
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>City</p>
             <Picker
               columns={basicColumns}
+              value={[formData.city]}
               onSelect={(val, extend) => {
-                console.log('onSelect', val, extend.items)
+                console.log('onSelect', val, extend.items);
+                onChange9(val[0])
               }}
             >
               {(items, { open }) => {
                 return (
                   <Space align='center'>
-                    <Button onClick={open} style={{ fontSize: 'inherit' }}>Select</Button>
+                    <Button onClick={open} style={{ color: '#777777', fontSize: 'inherit', }}>Select</Button>
                     {items.every(item => item === null)
                       ? 'unknown'
                       : items.map(item => item?.label ?? 'unknown').join(' - ')}
