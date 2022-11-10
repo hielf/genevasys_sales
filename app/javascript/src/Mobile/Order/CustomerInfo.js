@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Space } from 'antd-mobile'
 import { Form, Input, Divider, Picker, Button } from 'antd-mobile'
+import { formatPhoneNumber, formatPostalCode } from '../Functions/FormFormater'
 
 const CustomerInfo = ({formData, setFormData}) => {
 
@@ -40,7 +41,8 @@ const CustomerInfo = ({formData, setFormData}) => {
   }
 
   const onChange3 = (val) => {
-    setFormData((formData) => ({ ...formData, contactPhone: val }));
+    const formattedInputValue = formatPhoneNumber(val);
+    setFormData((formData) => ({ ...formData, contactPhone: formattedInputValue }));
   }
 
   const onChange4 = (val) => {
@@ -65,7 +67,8 @@ const CustomerInfo = ({formData, setFormData}) => {
   }
 
   const onChange7 = (val) => {
-    setFormData((formData) => ({ ...formData, postalCode: val }));
+    const formattedInputValue = formatPostalCode(val);
+    setFormData((formData) => ({ ...formData, postalCode: formattedInputValue }));
   }
 
   const onChange8 = (val) => {
@@ -113,7 +116,7 @@ const CustomerInfo = ({formData, setFormData}) => {
           </Grid.Item>
           <Grid.Item span={4}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Email</p>
-            <Input placeholder='' 
+            <Input placeholder=''
               style={{ '--font-size':'16px' }}
               onChange={val => { onChange4(val) }}
               value={formData.email}
@@ -170,8 +173,6 @@ const CustomerInfo = ({formData, setFormData}) => {
           <Grid.Item span={2}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Postal Code</p>
             <Input
-              minLength={6}
-              maxLength={7}
               style={{ '--font-size':'16px' }}
               onChange={val => { onChange7(val) }}
               value={formData.postalCode}

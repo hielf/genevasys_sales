@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Space } from 'antd-mobile'
 import { Form, Input, Divider, Picker, Button } from 'antd-mobile'
+import { formatCardNumber } from '../Functions/FormFormater'
 
 const PaymentInfo = ({formData, setFormData}) => {
 
@@ -13,7 +14,8 @@ const PaymentInfo = ({formData, setFormData}) => {
   }
 
   const onChange3 = (val) => {
-    setFormData((formData) => ({ ...formData, cardNumber: val }));
+    const formattedInputValue = formatCardNumber(val);
+    setFormData((formData) => ({ ...formData, cardNumber: formattedInputValue }));
   }
 
   const onChange4 = (val) => {
