@@ -1,3 +1,12 @@
+export function formatNumberOnly(value) {
+  // if input value is falsy eg if the user deletes the input, then just return
+  if (!value) return value;
+  const number = value.replace(/[^\d]/g, '').replace(/\s+/g,'');
+  const length = number.length;
+
+  return number;
+}
+
 export function formatPhoneNumber(value) {
   // if input value is falsy eg if the user deletes the input, then just return
   if (!value) return value;

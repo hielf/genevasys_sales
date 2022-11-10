@@ -5,8 +5,6 @@ import { formatPhoneNumber, formatPostalCode } from '../Functions/FormFormater'
 
 const CustomerInfo = ({formData, setFormData}) => {
 
-  const [city, setCity] = useState('')
-
   const basicColumns = [
     [
       { label: 'VANCOUVER', value: 'VANCOUVER' },

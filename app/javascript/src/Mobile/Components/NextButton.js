@@ -145,6 +145,8 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
           error("Province required")
         } else if (step === 2 && formData.postalCode.trim() === '') {
           error("Postal Code required")
+        } else if (step === 2 && formData.postalCode.trim().length !== 7) {
+          error("Postal Code incorrect")
         } else if (step === 2 && formData.optionsSameAddress === 2 && formData.billingAddress.trim() === '') {
           error("Billing address required")
         } else if (step === 3 && formData.cardFirstName.trim() === '') {
@@ -161,11 +163,11 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
           error("CVV required")
         } else if (step === 3 && formData.mm.trim().length !== 2) {
           error("MM is invalid")
-        } else if (step === 3 && formData.yy.trim().length !== 2) {
+        } else if (step === 3 && formData.yy.trim().length !== 4) {
           error("YY is invalid")
         } else if (step === 3 && Number(formData.mm) > 12) {
           error("MM is invalid")
-        } else if (step === 3 && parseInt(formData.yy) < (d.getFullYear() % 100)) {
+        } else if (step === 3 && parseInt(formData.yy) < d.getFullYear()) {
           error("YY is invalid")
         } else if (step === 3 && formData.cvv.trim().length !== 3) {
           error("CVV is invalid")

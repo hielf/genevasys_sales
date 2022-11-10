@@ -12,7 +12,7 @@ import PaymentInfo from './PaymentInfo'
 
 function OrderForm() {
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(3);
   const [formData, setFormData] = useState({
     products: [],
     productsDetail: [],
