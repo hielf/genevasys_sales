@@ -91,3 +91,7 @@ body {
 .adm-form-item.adm-form-item-vertical .adm-form-item-label {
   font-size: var(--adm-font-size-4);
 }
+
+.adm-number-keyboard-header-close-button {
+  color: black;
+}

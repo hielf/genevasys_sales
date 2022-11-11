@@ -135,8 +135,12 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
           error("Last Name Required")
         } else if (step === 2 && formData.contactPhone.trim() === '') {
           error("Contact phone required")
+        } else if (step === 2 && formData.contactPhone.length !== 14) {
+          error("Phone Number invalid")
         } else if (step === 2 && formData.email.trim() === '') {
           error("E-mail required")
+        } else if (step === 2 && (formData.email.indexOf('@') === -1 || formData.email.indexOf('.') === -1)) {
+          error("E-mail invalid")
         } else if (step === 2 && formData.installationAddress.trim() === '') {
           error("Installation address required")
         } else if (step === 2 && formData.city.trim() === '') {
@@ -146,7 +150,7 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
         } else if (step === 2 && formData.postalCode.trim() === '') {
           error("Postal Code required")
         } else if (step === 2 && formData.postalCode.trim().length !== 7) {
-          error("Postal Code incorrect")
+          error("Postal Code invalid")
         } else if (step === 2 && formData.optionsSameAddress === 2 && formData.billingAddress.trim() === '') {
           error("Billing address required")
         } else if (step === 3 && formData.cardFirstName.trim() === '') {
@@ -155,6 +159,8 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
           error("Last name required")
         } else if (step === 3 && formData.cardNumber.trim() === '') {
           error("Card number required")
+        } else if (step === 3 && formData.cardNumber.trim().length < 15) {
+          error("Card number invalid")
         } else if (step === 3 && formData.mm.trim() === '') {
           error("MM required")
         } else if (step === 3 && formData.yy.trim() === '') {

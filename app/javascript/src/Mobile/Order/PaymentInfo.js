@@ -1,10 +1,54 @@
 import React, { useState } from 'react';
 import { Grid, Space } from 'antd-mobile'
-import { Form, Input, Divider, Picker, Button, Radio } from 'antd-mobile'
+import { Form, Input, Divider, Picker, Button, Radio, NumberKeyboard } from 'antd-mobile'
 import { formatCardNumber, formatNumberOnly } from '../Functions/FormFormater'
 import { LockFill } from 'antd-mobile-icons'
 
 const PaymentInfo = ({formData, setFormData}) => {
+
+  const [visible, setVisible] = useState('')
+
+  const openKeyboard = (name) => {
+    setVisible(name)
+  }
+
+  const actions = {
+    onClose: () => {
+      setVisible('')
+    },
+    onInput: (key) => {},
+    onDelete: () => {},
+  }
+
+  const onInput = (value) => {
+    if (visible === 'cvv') {
+      if (formData.cvv.length < 3) {
+        setFormData((formData) => ({ ...formData, cvv: formData.cvv + value }));
+      }
+      if (formData.cvv.length === 2) {
+        setVisible('')
+      }
+    } else if (visible === 'cardNumber') {
+      if (formData.cardNumber.length < 19) {
+        // setFormData((formData) => ({ ...formData, cvv: formData.cvv + value }));
+
+        const formattedInputValue = formatCardNumber(formData.cardNumber + value);
+        setFormData((formData) => ({ ...formData, cardNumber: formattedInputValue }));
+      }
+      if (formData.cardNumber.length === 18) {
+        setVisible('')
+      }
+    }
+  }
+
+  const onDelete = () => {
+    if (visible === 'cvv') {
+      setFormData((formData) => ({ ...formData, cvv: formData.cvv.slice(0, formData.cvv.length - 1) }));
+    } else if (visible === 'cardNumber') {
+      const formattedInputValue = formatCardNumber(formData.cardNumber.slice(0, formData.cardNumber.length - 1));
+      setFormData((formData) => ({ ...formData, cardNumber: formattedInputValue }));
+    }
+  }
 
   var year = (new Date()).getFullYear();
   // var month = d.getMonth();
@@ -25,6 +69,10 @@ const PaymentInfo = ({formData, setFormData}) => {
                   { label: '12', value: '12' },]
 
   const timeColumns = [months, years,]
+
+  const onChange0 = (val) => {
+    setFormData((formData) => ({ ...formData, optionsCardType: val }));
+  }
 
   const onChange1 = (val) => {
     setFormData((formData) => ({ ...formData, cardFirstName: val }));
@@ -70,11 +118,11 @@ const PaymentInfo = ({formData, setFormData}) => {
           </Grid.Item>
           <Grid.Item span={6}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Credit Card Type</p>
-            <Radio.Group defaultValue={1}>
+            <Radio.Group onChange={onChange0} value={formData.optionsCardType} defaultValue={1}>
               <Space direction='horizontal' style={{ '--gap-horizontal': '18px', }}>
-                <Radio value={1} style={{'--icon-size': '18px', '--font-size': '14px', '--gap': '6px', color: '#777777',}}>VISA</Radio>
-                <Radio value={2} style={{'--icon-size': '18px', '--font-size': '14px', '--gap': '6px', color: '#777777',}}>MasterCard</Radio>
-                <Radio value={3} style={{'--icon-size': '18px', '--font-size': '14px', '--gap': '6px', color: '#777777',}}>UnionPay</Radio>
+                <Radio value={1} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '14px', '--gap': '6px', color: '#777777',}}>VISA</Radio>
+                <Radio value={2} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '14px', '--gap': '6px', color: '#777777',}}>MasterCard</Radio>
+                <Radio value={3} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '14px', '--gap': '6px', color: '#777777',}}>UnionPay</Radio>
               </Space>
             </Radio.Group>
           </Grid.Item>
@@ -84,6 +132,7 @@ const PaymentInfo = ({formData, setFormData}) => {
               style={{ '--font-size':'15px', }}
               onChange={val => { onChange1(val) }}
               value={formData.cardFirstName}
+              onClick={() => setVisible('')}
             />
           </Grid.Item>
           <Grid.Item span={3}>
@@ -92,13 +141,15 @@ const PaymentInfo = ({formData, setFormData}) => {
               style={{ '--font-size':'15px' }}
               onChange={val => { onChange2(val) }}
               value={formData.cardLastName}
+              onClick={() => setVisible('')}
             />
           </Grid.Item>
           <Grid.Item span={6}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Card Number <LockFill fontSize={12} color='#777777'/></p>
             <Input placeholder=''
               style={{ '--font-size':'16px' }}
-              onChange={val => { onChange3(val) }}
+              // onChange={val => { onChange3(val) }}
+              onClick={() => openKeyboard('cardNumber')}
               value={formData.cardNumber}
             />
           </Grid.Item>
@@ -115,7 +166,9 @@ const PaymentInfo = ({formData, setFormData}) => {
               {(items, { open }) => {
                 return (
                   <Space align='center'>
-                    <Button onClick={open} style={{ color: '#777777', fontSize: 'inherit', }}>Select</Button>
+                    <Button
+                    onClick={() => { setVisible(''); open(); }}
+                    style={{ color: '#777777', fontSize: 'inherit', }}>Select</Button>
                     {items.every(item => item === null)
                       ? 'unknown'
                       : items.map(item => item?.label ?? 'unknown').join(' / ')}
@@ -128,10 +181,10 @@ const PaymentInfo = ({formData, setFormData}) => {
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>CVV <LockFill fontSize={12} color='#777777'/></p>
             <Input placeholder='###'
               style={{ '--font-size':'16px' }}
-              onChange={val => { onChange6(val) }}
+              // onChange={val => { onChange6(val) }}
+              onClick={() => openKeyboard('cvv')}
               value={formData.cvv}
               maxLength={3}
-              readOnly
             />
           </Grid.Item>
           <Grid.Item span={6}>
@@ -140,11 +193,28 @@ const PaymentInfo = ({formData, setFormData}) => {
               style={{ '--font-size':'16px' }}
               onChange={val => { onChange7(val) }}
               value={formData.cardRegistrationAddress}
+              onClick={() => setVisible('')}
             />
           </Grid.Item>
         </Grid>
 
       </Space>
+      <NumberKeyboard
+        visible={visible === 'cvv'}
+        onClose={actions.onClose}
+        onInput={onInput}
+        onDelete={onDelete}
+        showCloseButton={true}
+        confirmText='Confirm'
+      />
+      <NumberKeyboard
+        visible={visible === 'cardNumber'}
+        onClose={actions.onClose}
+        onInput={onInput}
+        onDelete={onDelete}
+        showCloseButton={true}
+        confirmText='Confirm'
+      />
     </>
   );
 };
