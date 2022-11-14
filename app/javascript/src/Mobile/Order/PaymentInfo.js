@@ -10,6 +10,7 @@ const PaymentInfo = ({formData, setFormData}) => {
 
   const openKeyboard = (name) => {
     setVisible(name)
+    document.activeElement.scrollIntoViewIfNeeded();
   }
 
   const actions = {
@@ -116,16 +117,6 @@ const PaymentInfo = ({formData, setFormData}) => {
               Credit Card Infomation
             </Divider>
           </Grid.Item>
-          <Grid.Item span={6}>
-            <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Credit Card Type</p>
-            <Radio.Group onChange={onChange0} value={formData.optionsCardType} defaultValue={1}>
-              <Space direction='horizontal' style={{ '--gap-horizontal': '18px', }}>
-                <Radio value={1} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '18px', '--gap': '6px', color: '#777777',}}>VISA</Radio>
-                <Radio value={2} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '18px', '--gap': '6px', color: '#777777',}}>MasterCard</Radio>
-                <Radio value={3} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '18px', '--gap': '6px', color: '#777777',}}>UnionPay</Radio>
-              </Space>
-            </Radio.Group>
-          </Grid.Item>
           <Grid.Item span={3}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Holder's First Name</p>
             <Input placeholder=''
@@ -149,6 +140,7 @@ const PaymentInfo = ({formData, setFormData}) => {
             <Input placeholder=''
               style={{ '--font-size':'16px' }}
               // onChange={val => { onChange3(val) }}
+              onFocus={e => e.target.blur()}
               onClick={() => openKeyboard('cardNumber')}
               value={formData.cardNumber}
             />
@@ -168,7 +160,7 @@ const PaymentInfo = ({formData, setFormData}) => {
                   <Space align='center'>
                     <Button
                     onClick={() => { setVisible(''); open(); }}
-                    style={{ color: '#777777', fontSize: 'inherit', }}>Select</Button>
+                    style={{ color: '#777777', fontSize: '17px', }}>Select</Button>
                     {items.every(item => item === null)
                       ? 'unknown'
                       : items.map(item => item?.label ?? 'unknown').join(' / ')}
@@ -182,13 +174,21 @@ const PaymentInfo = ({formData, setFormData}) => {
             <Input placeholder='###'
               style={{ '--font-size':'16px' }}
               // onChange={val => { onChange6(val) }}
+              onFocus={e => e.target.blur()}
               onClick={() => openKeyboard('cvv')}
               value={formData.cvv}
               maxLength={3}
-              onKeyDown={(event) => {
-                event.preventDefault();
-              }}
             />
+          </Grid.Item>
+          <Grid.Item span={6}>
+            <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Credit Card Type</p>
+            <Radio.Group onChange={onChange0} value={formData.optionsCardType} defaultValue={1}>
+              <Space direction='horizontal' style={{ '--gap-horizontal': '18px', }}>
+                <Radio value={1} onChange={() => setVisible('')} style={{'--icon-size': '16px', '--font-size': '17px', '--gap': '6px', color: '#777777',}}>VISA</Radio>
+                <Radio value={2} onChange={() => setVisible('')} style={{'--icon-size': '16px', '--font-size': '17px', '--gap': '6px', color: '#777777',}}>MasterCard</Radio>
+                <Radio value={3} onChange={() => setVisible('')} style={{'--icon-size': '16px', '--font-size': '17px', '--gap': '6px', color: '#777777',}}>UnionPay</Radio>
+              </Space>
+            </Radio.Group>
           </Grid.Item>
           <Grid.Item span={6}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Card Registration Address</p>

@@ -80,9 +80,10 @@ body {
   padding: 4px;
   outline: solid;
   outline-width: thin;
-  outline-color: #dcdcdc;
-  font-size: var(--adm-font-size-8);
-  min-height: 2em;
+  outline-color: #eeeeee;
+  /* font-size: var(--adm-font-size-8); */
+  min-height: 2.5em;
+  border-radius: var(--adm-radius-m);
 }
 
 .adm-form {

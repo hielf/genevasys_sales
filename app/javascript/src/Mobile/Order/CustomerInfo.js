@@ -159,7 +159,7 @@ const CustomerInfo = ({formData, setFormData}) => {
               {(items, { open }) => {
                 return (
                   <Space align='center'>
-                    <Button onClick={open} style={{ color: '#777777', fontSize: 'inherit', }}>Select</Button>
+                    <Button onClick={open} style={{ color: '#777777', fontSize: '17px', }}>Select</Button>
                     {items.every(item => item === null)
                       ? 'unknown'
                       : items.map(item => item?.label ?? 'unknown').join(' - ')}
