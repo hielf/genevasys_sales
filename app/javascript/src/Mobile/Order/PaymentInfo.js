@@ -120,9 +120,9 @@ const PaymentInfo = ({formData, setFormData}) => {
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Credit Card Type</p>
             <Radio.Group onChange={onChange0} value={formData.optionsCardType} defaultValue={1}>
               <Space direction='horizontal' style={{ '--gap-horizontal': '18px', }}>
-                <Radio value={1} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '14px', '--gap': '6px', color: '#777777',}}>VISA</Radio>
-                <Radio value={2} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '14px', '--gap': '6px', color: '#777777',}}>MasterCard</Radio>
-                <Radio value={3} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '14px', '--gap': '6px', color: '#777777',}}>UnionPay</Radio>
+                <Radio value={1} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '18px', '--gap': '6px', color: '#777777',}}>VISA</Radio>
+                <Radio value={2} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '18px', '--gap': '6px', color: '#777777',}}>MasterCard</Radio>
+                <Radio value={3} onChange={() => setVisible('')} style={{'--icon-size': '18px', '--font-size': '18px', '--gap': '6px', color: '#777777',}}>UnionPay</Radio>
               </Space>
             </Radio.Group>
           </Grid.Item>
@@ -185,6 +185,9 @@ const PaymentInfo = ({formData, setFormData}) => {
               onClick={() => openKeyboard('cvv')}
               value={formData.cvv}
               maxLength={3}
+              onKeyDown={(event) => {
+                event.preventDefault();
+              }}
             />
           </Grid.Item>
           <Grid.Item span={6}>
