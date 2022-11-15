@@ -78,17 +78,21 @@ body {
 
 .adm-input-element {
   padding: 4px;
-  outline: solid;
+  /* outline: solid;
   outline-width: thin;
-  outline-color: #eeeeee;
+  outline-color: #eeeeee; */
   /* font-size: var(--adm-font-size-8); */
   min-height: 2.5em;
   border-radius: var(--adm-radius-m);
+  /* -webkit-border-radius: var(--adm-radius-m);
+  -khtml-border-radius: var(--adm-radius-m);
+  -moz-border-radius: var(--adm-radius-m); */
+  border: 1px solid #eeeeee;
 }
 
 .adm-form {
   width: 100%;
-  ---border-inner: 0;
+  /* ---border-inner: 0; */
 }
 
 .adm-form-item.adm-form-item-vertical .adm-form-item-label {

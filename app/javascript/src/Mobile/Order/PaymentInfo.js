@@ -120,7 +120,7 @@ const PaymentInfo = ({formData, setFormData}) => {
           <Grid.Item span={3}>
             <p style={{ marginBottom: '5px', fontFamily: "'Varela Round', sans-serif", }}>Holder's First Name</p>
             <Input placeholder=''
-              style={{ '--font-size':'15px', }}
+              style={{ '--font-size':'15px', borderRadius: '8px', }}
               onChange={val => { onChange1(val) }}
               value={formData.cardFirstName}
               onClick={() => setVisible('')}
