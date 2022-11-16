@@ -16,10 +16,43 @@ const ProductInfo = ({formData, setFormData}) => {
     setList(res);
   };
 
-  const onChange1 = (checkedValues) => {
+  const onChange1 = (values) => {
+    let listData = [];
+    let tags = [];
+    let checkedValues = [values];
+
+    checkedValues.map(value => {
+      Object.keys(list).map(p => {
+        const l = list[p]
+        if ((l.filter((e) => e.value === value)).length !== 0) {
+          tags.push(...(l.filter((e) => e.value === value))[0]["tag"])
+        }
+      })
+    })
+
+    console.log("tags:", tags);
     console.log("Checked:", checkedValues);
-    setFormData((formData) => ({ ...formData, productAs: [checkedValues] }));
-    setFormData((formData) => ({ ...formData, products: [checkedValues] }));
+
+    if (tags.includes('E')) {
+      checkedValues.push(list['fee'][0].value)
+    }
+
+    if (tags.includes('F')) {
+      checkedValues.push(list['rebate'][0].value)
+    }
+
+    checkedValues.map(value => {
+      Object.keys(list).map(p => {
+        const l = list[p]
+        if ((l.filter((e) => e.value === value)).length !== 0) {
+          listData.push((l.filter((e) => e.value === value))[0])
+        }
+      })
+    })
+
+    // setFormData((formData) => ({ ...formData, productAs: [checkedValues] }));
+    setFormData((formData) => ({ ...formData, products: checkedValues }));
+    setFormData((formData) => ({ ...formData, productsDetail: listData }));
   }
 
   return (

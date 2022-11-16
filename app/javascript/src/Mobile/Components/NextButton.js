@@ -162,9 +162,9 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
         } else if (step === 3 && formData.cardNumber.trim().length < 15) {
           error("Card number invalid")
         } else if (step === 3 && formData.mm.trim() === '') {
-          error("MM required")
+          error("Expiry Date required")
         } else if (step === 3 && formData.yy.trim() === '') {
-          error("YY required")
+          error("Expiry Date required")
         } else if (step === 3 && formData.cvv.trim() === '') {
           error("CVV required")
         } else if (step === 3 && formData.mm.trim().length !== 2) {
