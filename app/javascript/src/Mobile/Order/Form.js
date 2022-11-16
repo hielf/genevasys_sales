@@ -9,6 +9,7 @@ import ProductInfo from './ProductInfo'
 import ServiceInfo from './ServiceInfo'
 import CustomerInfo from './CustomerInfo'
 import PaymentInfo from './PaymentInfo'
+import Summary from './Summary'
 
 function OrderForm() {
 
@@ -59,7 +60,7 @@ function OrderForm() {
     ipPhoneQtySelected: 0,
   });
 
-  const FormTitles = ["Product", "Time", "Cust", "Bill", "Review"];
+  const FormTitles = ["Product", "Time", "Cust", "Bill", "Recap"];
 
   const NextButtonClick = () => {
     return <NextButton step={step} setStep={setStep} FormTitles={FormTitles} formData={formData} setFormData={setFormData} />;
@@ -82,14 +83,12 @@ function OrderForm() {
       return <CustomerInfo formData={formData} setFormData={setFormData} />;
     }  else if (step === 3) {
       return <PaymentInfo formData={formData} setFormData={setFormData} />;
-    } //else if (step === 4) {
-    //   return (
-    //     <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-    //       <Summary formData={formData} setFormData={setFormData} />
-    //       <AgreeMent formData={formData} setFormData={setFormData} />
-    //     </Space>
-    //   )
-    // } else if (step === 5) {
+    } else if (step === 4) {
+      return (
+        <Summary formData={formData} setFormData={setFormData} />
+
+      )
+    }//  else if (step === 5) {
     //   return <Submit formData={formData} setFormData={setFormData} />;
     // }
   };
