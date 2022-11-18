@@ -116,7 +116,7 @@ const Summary = ({formData, setFormData}) => {
               <Grid.Item span={8} block>
                 <Space direction='horizontal' block>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Installation Address:</span>
-                  <Ellipsis rows={1} direction='end' expandText='..' content={formData.installationAddress + ' ' + formData.postalCode + ' ' + formData.city} style={{ maxWidth: 'fit-content', margin: 'auto', fontFamily: "'Varela Round', sans-serif", }} />
+                  <Ellipsis rows={1} direction='end' expandText='.' content={formData.installationAddress + ' ' + formData.postalCode + ' ' + formData.city} style={{ maxWidth: '120px', margin: 'auto', fontFamily: "'Varela Round', sans-serif", }} />
                 </Space>
               </Grid.Item>
             </Space>
