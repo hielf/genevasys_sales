@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Space } from 'antd-mobile'
-import { Card, Ellipsis } from 'antd-mobile'
+import { Card, Ellipsis, Divider } from 'antd-mobile'
 import { SmileFill } from 'antd-mobile-icons'
 
 const Summary = ({formData, setFormData}) => {
@@ -40,6 +40,11 @@ const Summary = ({formData, setFormData}) => {
   return (
     <>
       <Space direction='vertical' style={ {'--gap': '26px'} } block>
+        <Divider
+          contentPosition='left'
+          style={{ color: '#777777', fontSize: "18px", fontFamily: "'Oswald', sans-serif", marginBottom: '0px', marginTop: '0px', }}>
+          Information Review & Confirm
+        </Divider>
         <Card title='Summary' headerStyle={{ fontSize: "18px", fontFamily: "'Oswald', sans-serif", color: '#777777', }} style={{ backgroundColor: '#f1f1f1' }}>
           <Grid columns={8}>
             <Space direction='vertical'>
@@ -94,24 +99,24 @@ const Summary = ({formData, setFormData}) => {
         </Card>
 
         <Card title='Personal Information' headerStyle={{ fontSize: "18px", fontFamily: "'Oswald', sans-serif", color: '#777777', }} style={{ backgroundColor: '#f1f1f1' }}>
-          <Grid columns={8}>
+          <Grid columns={8} block>
             <Space direction='vertical'>
-              <Grid.Item span={8}>
+              <Grid.Item span={8} block>
                 <Space direction='horizontal'>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Customer Name:</span>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>{formData.firstName} {formData.lastName}</span>
                 </Space>
               </Grid.Item>
-              <Grid.Item span={8}>
+              <Grid.Item span={8} block>
                 <Space direction='horizontal'>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Phone Number:</span>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>{formData.contactPhone}</span>
                 </Space>
               </Grid.Item>
-              <Grid.Item span={8}>
+              <Grid.Item span={8} block>
                 <Space direction='horizontal' block>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Installation Address:</span>
-                  <Ellipsis rows={3} direction='end' expandText='..' collapseText='.' content={formData.installationAddress + ' ' + formData.postalCode + ' ' + formData.city} style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }} />
+                  <Ellipsis rows={1} direction='end' expandText='..' content={formData.installationAddress + ' ' + formData.postalCode + ' ' + formData.city} style={{ maxWidth: 'fit-content', margin: 'auto', fontFamily: "'Varela Round', sans-serif", }} />
                 </Space>
               </Grid.Item>
             </Space>
