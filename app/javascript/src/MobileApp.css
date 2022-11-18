@@ -102,3 +102,7 @@ body {
 .adm-number-keyboard-header-close-button {
   color: black;
 }
+
+.adm-card-header:not(:last-child) {
+  border-bottom: solid .5px #c0c0c0;
+}

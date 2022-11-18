@@ -85,7 +85,7 @@ const CustomerInfo = ({formData, setFormData}) => {
             <Divider
               contentPosition='left'
               style={{ color: '#777777', fontSize: "18px", fontFamily: "'Oswald', sans-serif", marginBottom: '0px', marginTop: '0px', }}>
-              Personal Infomation
+              Personal Information
             </Divider>
           </Grid.Item>
           <Grid.Item span={2}>
