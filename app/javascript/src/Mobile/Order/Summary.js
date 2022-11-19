@@ -27,8 +27,8 @@ const Summary = ({formData, setFormData}) => {
           return (
             <Grid.Item span={8} key={ index }>
               <Space direction='horizontal'>
-                <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>{ product.label }:</span>
-                <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>${ product.promotion_price }</span>
+                <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>{ product.label }:</span>
+                <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", position: 'absolute', right: '10%', }}>${ product.promotion_price }</span>
               </Space>
             </Grid.Item>
           )
@@ -53,26 +53,32 @@ const Summary = ({formData, setFormData}) => {
 
               <Grid.Item span={8}>
                 <Space direction='horizontal'>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Total(excl.tax):</span>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>${ getTotalAmount(formData.productsDetail).toFixed(2) }</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Total(excl.tax):</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", position: 'absolute', right: '10%', }}>${ getTotalAmount(formData.productsDetail).toFixed(2) }</span>
                 </Space>
               </Grid.Item>
               <Grid.Item span={8}>
                 <Space direction='horizontal'>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Total GST/5%:</span>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>${ (getTotalAmount(formData.productsDetail)*0.05).toFixed(2) }</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Total GST/5%:</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", position: 'absolute', right: '10%', }}>${ (getTotalAmount(formData.productsDetail)*0.05).toFixed(2) }</span>
                 </Space>
               </Grid.Item>
               <Grid.Item span={8}>
                 <Space direction='horizontal'>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Total PST(BC)/7%:</span>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>${ (getTotalAmount(formData.productsDetail)*0.07).toFixed(2) }</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Total PST(BC)/7%:</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", position: 'absolute', right: '10%', }}>${ (getTotalAmount(formData.productsDetail)*0.07).toFixed(2) }</span>
                 </Space>
               </Grid.Item>
               <Grid.Item span={8}>
                 <Space direction='horizontal'>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Total(inc.tax):</span>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>${ (getTotalAmount(formData.productsDetail)*1.12).toFixed(2) }</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Total(inc.tax):</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", position: 'absolute', right: '10%', }}>${ (getTotalAmount(formData.productsDetail)*1.12).toFixed(2) }</span>
+                </Space>
+              </Grid.Item>
+              <Grid.Item span={8}>
+                <Space direction='horizontal'>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Total Rebate:</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", position: 'absolute', right: '10%', }}>(12 Months * $-10 = $-120)</span>
                 </Space>
               </Grid.Item>
             </Space>
@@ -84,13 +90,13 @@ const Summary = ({formData, setFormData}) => {
             <Space direction='vertical'>
               <Grid.Item span={8}>
                 <Space direction='horizontal'>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Card Number:</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Card Number:</span>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>{formData.cardNumber}</span>
                 </Space>
               </Grid.Item>
               <Grid.Item span={8}>
                 <Space direction='horizontal'>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Card Holder:</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Card Holder:</span>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>{formData.cardFirstName} {formData.cardLastName}</span>
                 </Space>
               </Grid.Item>
@@ -103,19 +109,19 @@ const Summary = ({formData, setFormData}) => {
             <Space direction='vertical'>
               <Grid.Item span={8} block>
                 <Space direction='horizontal'>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Customer Name:</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Customer Name:</span>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>{formData.firstName} {formData.lastName}</span>
                 </Space>
               </Grid.Item>
               <Grid.Item span={8} block>
                 <Space direction='horizontal'>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Phone Number:</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Phone Number:</span>
                   <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>{formData.contactPhone}</span>
                 </Space>
               </Grid.Item>
               <Grid.Item span={8} block>
                 <Space direction='horizontal' block>
-                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", }}>Installation Address:</span>
+                  <span style={{ margin: 'auto', fontFamily: "'Varela Round', sans-serif", color: '#777777', }}>Installation Address:</span>
                   <Ellipsis rows={1} direction='end' expandText='.' content={formData.installationAddress + ' ' + formData.postalCode + ' ' + formData.city} style={{ maxWidth: '120px', margin: 'auto', fontFamily: "'Varela Round', sans-serif", }} />
                 </Space>
               </Grid.Item>
