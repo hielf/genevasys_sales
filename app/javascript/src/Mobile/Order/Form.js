@@ -49,7 +49,7 @@ function OrderForm() {
     firstInitialPayment: "",
     recurrentPayment: "",
     cardRegistrationAddress: "8600 Kelmore Rd",
-    checkAgreeMent: true,
+    checkAgreeMent: false,
     promoteCode: "32432",
     additionalRequirements: "need more and more",
     productAs: [],

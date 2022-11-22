@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Toast } from 'antd-mobile';
+import { Popup } from 'antd-mobile';
 import { apiPost } from '../Functions/ApiRequest'
+import { Term } from '../Pages/Term'
 
 const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
   const [res, setRes] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('');
+  const [popupVisible, setPopupVisible] = useState(true);
 
   useEffect(() => {
     // console.log("err_ue:", err);
@@ -57,7 +60,7 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
   const display = (step, FormTitles) => {
     if (step === FormTitles.length - 1) {
       return (
-        <span>Submit</span>
+        <span>Confirm</span>
       )
     } else {
       return (
@@ -65,6 +68,22 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
       )
     }
   };
+
+  const displayTerm = () => {
+    return (
+      <Popup
+          visible={popupVisible}
+          onMaskClick={() => {
+            setPopupVisible(false)
+          }}
+          bodyStyle={{ height: '80vh' }}
+        >
+          <div style={{ padding: '24px' }}>
+            <div>abcd</div>
+          </div>
+      </Popup>
+    )
+  }
 
   const handleSubmit = async () => {
     try {
@@ -109,7 +128,8 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
         if (step === 4 && formData.promoteCode === null) {
           error("Promote Code required")
         } else if (step === 4 && formData.checkAgreeMent !== true) {
-          error("Please check user agreement")
+          // error("Please check user agreement")
+          displayTerm();
         } else {
           console.log(formData);
           handleSubmit();

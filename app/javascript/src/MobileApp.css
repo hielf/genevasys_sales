@@ -8,13 +8,21 @@
 body {
   touch-action: pan-x pan-y;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   margin-top: 0px;
   margin-left: 0px;
   margin-bottom: 0px;
   margin-right: 0px;
 }
+
+/* .container::-webkit-scrollbar {
+  display: none;
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+} */
 
 :root {
   --adm-font-size-1: 11px;
