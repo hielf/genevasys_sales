@@ -42,6 +42,7 @@ const [formData, setFormData] = useState({
   productDs: [],
   tvBoxQtySelected: 0,
   ipPhoneQtySelected: 0,
+  popupVisible: false,
 });
 
 
@@ -89,4 +90,5 @@ const [formData, setFormData] = useState({
   productDs: [],
   tvBoxQtySelected: 0,
   ipPhoneQtySelected: 0,
+  popupVisible: false,
 });

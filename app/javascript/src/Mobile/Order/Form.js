@@ -58,6 +58,7 @@ function OrderForm() {
     productDs: [],
     tvBoxQtySelected: 0,
     ipPhoneQtySelected: 0,
+    popupVisible: false,
   });
 
   const FormTitles = ["Product", "Time", "Cust", "Bill", "Recap"];

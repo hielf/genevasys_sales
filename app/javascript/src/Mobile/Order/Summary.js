@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Grid, Space } from 'antd-mobile'
-import { Card, Ellipsis, Divider } from 'antd-mobile'
+import { Card, Ellipsis, Divider, Popup, Button } from 'antd-mobile'
 import { SmileFill } from 'antd-mobile-icons'
+import Iframe from 'react-iframe'
+// import { Term } from '../Pages/Term'
 
 const Summary = ({formData, setFormData}) => {
 
@@ -129,6 +131,45 @@ const Summary = ({formData, setFormData}) => {
           </Grid>
         </Card>
 
+        <Popup
+            visible={formData.popupVisible}
+            onMaskClick={() => {
+              setFormData((formData) => ({ ...formData, popupVisible: false }));
+            }}
+            bodyStyle={{ height: '60vh' }}
+          >
+            <div style={{ padding: '2%', height: '80%', }}>
+              <Iframe url="/terms"
+                width="100%"
+                height="100%"
+                id=""
+                className=""
+                display="block"
+                position="relative"
+                styles={{borderWidth: "0px"}}/>
+            </div>
+            <div style={{ backgroundColor: "white", position: 'fixed', zIndex: 1, width: '100%', bottom: '0px', boxShadow: '0px -2px 5px 0px #e6e6e6', WebkitBoxShadow: '0px -2px 5px 0px #e6e6e6', MozBoxShadow: '0px -2px 5px 0px #e6e6e6', }}>
+              <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 85, '--gap': '24px'} }>
+                <div style={ {position: 'fixed', bottom: '24px', width: '90%', marginRight: 'auto', marginLeft: 'auto', } }>
+                  <Grid columns={3} gap={8}>
+                    <Grid.Item>
+                    </Grid.Item>
+                    <Grid.Item>
+                      <Button block color='primary' size='middle' type='submit'
+                        onClick={() => {
+                          setFormData((formData) => ({ ...formData, popupVisible: false }));
+                          setFormData((formData) => ({ ...formData, checkAgreeMent: true }));
+                        }}>
+                        Agree
+                      </Button>
+                    </Grid.Item>
+                    <Grid.Item>
+                    </Grid.Item>
+                  </Grid>
+                </div>
+              </Space>
+            </div>
+        </Popup>
       </Space>
     </>
   );
