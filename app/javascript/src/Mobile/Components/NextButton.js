@@ -56,7 +56,7 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
 
   const display = (step, FormTitles) => {
     if (step === FormTitles.length - 1) {
-      if (formData.checkAgreeMent == false) {
+      if (formData.checkAgreeMent === false) {
         return (
           <span>Confirm</span>
         )
@@ -108,6 +108,7 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
     color='primary'
     size='middle'
     type='submit'
+    fill={ (step === 4 && formData.checkAgreeMent === false) ? 'outline' : 'solid'}
     loading={ isLoading }
     onClick={() => {
       if (step === FormTitles.length - 1) {

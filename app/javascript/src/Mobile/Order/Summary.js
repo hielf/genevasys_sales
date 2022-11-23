@@ -155,7 +155,7 @@ const Summary = ({formData, setFormData}) => {
                     <Grid.Item>
                     </Grid.Item>
                     <Grid.Item>
-                      <Button block color='primary' size='middle' type='submit'
+                      <Button block color='primary' size='middle' type='submit' fill='outline'
                         onClick={() => {
                           setFormData((formData) => ({ ...formData, popupVisible: false }));
                           setFormData((formData) => ({ ...formData, checkAgreeMent: true }));
