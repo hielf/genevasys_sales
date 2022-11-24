@@ -108,17 +108,15 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
     color='primary'
     size='middle'
     type='submit'
-    fill={ (step === 4 && formData.checkAgreeMent === false) ? 'outline' : 'solid'}
+    fill={ (step === 4 && formData.checkAgreeMent === false) ? 'outline' : 'solid' }
     loading={ isLoading }
     onClick={() => {
       if (step === FormTitles.length - 1) {
         if (step === 4 && formData.promoteCode === null) {
           error("Promote Code required")
         } else if (step === 4 && formData.checkAgreeMent !== true) {
-          // error("Please check user agreement")
           setFormData((formData) => ({ ...formData, checkAgreeMent: false }));
           setFormData((formData) => ({ ...formData, popupVisible: true }));
-          // displayTerm();
         } else {
           console.log(formData);
           handleSubmit();
@@ -160,7 +158,7 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
           error("Postal Code required")
         } else if (step === 2 && formData.postalCode.trim().length !== 7) {
           error("Postal Code invalid")
-        } else if (step === 2 && formData.optionsSameAddress === 2 && formData.billingAddress.trim() === '') {
+        } else if (step === 2 && formData.billingAddress.trim() === '') {
           error("Billing address required")
         } else if (step === 3 && formData.cardFirstName.trim() === '') {
           error("First name required")

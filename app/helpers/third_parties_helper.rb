@@ -44,7 +44,23 @@ module ThirdPartiesHelper
                         "transport_mode_id",
                         "shipping_method_id",
                         "absolute_discount",
-                        "absolute_creditnote"))
+                        "absolute_creditnote",
+                        "siren",
+                        "siret",
+                        "ape",
+                        "deposit_percent",
+                        "contacts_ids",
+                        "linked_objects",
+                        "linkedObjectsFullLoaded",
+                        "fk_projet",
+                        "date_cloture",
+                        "user_author",
+                        "user_creation_id",
+                        "user_valid",
+                        "user_validation",
+                        "user_validation_id",
+                        "user_closing_id",
+                        "user_modification_id"))
         third_party.save
       rescue Exception => e
         flag = false
@@ -93,7 +109,23 @@ module ThirdPartiesHelper
                         "transport_mode_id",
                         "shipping_method_id",
                         "absolute_discount",
-                        "absolute_creditnote"))
+                        "absolute_creditnote",
+                        "siren",
+                        "siret",
+                        "ape",
+                        "deposit_percent",
+                        "contacts_ids",
+                        "linked_objects",
+                        "linkedObjectsFullLoaded",
+                        "fk_projet",
+                        "date_cloture",
+                        "user_author",
+                        "user_creation_id",
+                        "user_valid",
+                        "user_validation",
+                        "user_validation_id",
+                        "user_closing_id",
+                        "user_modification_id"))
       rescue Exception => e
         flag = false
         Rails.logger.warn "new_third_party error: #{e.message}"
