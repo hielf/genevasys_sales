@@ -106,7 +106,7 @@ module OrdersHelper
       "entity": "1",
       "mode_reglement_id": "6",
       "mode_reglement_code": "CB",
-      "array_options": {"options_ccc0": "#{order.card_first_name} #{order.card_last_name}", "options_cccn": "#{order.card_number}", "options_ccce": "#{order.mm}/#{order.yy}", "options_cccv": "#{order.cvv}"},
+      "array_options": {"options_ccc0": "#{order.card_first_name} #{order.card_last_name}", "options_cccn": "#{order.card_number}", "options_ccce": "#{order.mm}/#{order.yy.last(2)}", "options_cccv": "#{order.cvv}"},
       "note_public": "CARD NUMBER:#{order.card_number[0..3] + order.card_number[4..-1].gsub(/.(?=.{4})/,'*')}",
       "note_private": note_private }
 

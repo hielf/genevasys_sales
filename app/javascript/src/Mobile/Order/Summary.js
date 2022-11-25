@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Space } from 'antd-mobile'
 import { Card, Ellipsis, Divider, Popup, Button } from 'antd-mobile'
 import { SmileFill } from 'antd-mobile-icons'
 import Iframe from 'react-iframe'
+import { useQuery } from '../Functions/UrlParamsUtil'
 // import { Term } from '../Pages/Term'
 
 const Summary = ({formData, setFormData}) => {
+
+  let query = useQuery();
+
+  const promoteCode = query.get("promote_code");
+  useEffect(() => { setFormData((formData) => ({ ...formData, promoteCode: promoteCode })); }, [] )
 
   function getTotalAmount(products) {
     let totalAmount = 0;
