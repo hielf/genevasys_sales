@@ -113,6 +113,8 @@ module OrdersHelper
     # p params
     method = "/orders"
     status, order_id = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+
+    user = ApplicationController.helpers.current_user([])
     status, data = ApplicationController.helpers.add_order_contact(order_id, contact.ref, user) if status == 200
 
     return status, order_id

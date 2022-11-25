@@ -24,7 +24,7 @@ module DolibarrHelper
 
   # ApplicationController.helpers.current_user(args)
   def current_user(args)
-    (args.nil? || (args.class == Array && args.empty?)) ? User.find_by(user_name: 'jerry') : args[0]
+    (args.nil? || (args.class == Array && args.empty?)) ? User.find_by(user_name: 'online_sales') : args[0]
     # User.find_by(user_name: 'online_sales')
   end
 
