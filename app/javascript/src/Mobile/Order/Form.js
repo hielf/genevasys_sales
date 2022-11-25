@@ -5,6 +5,7 @@ import { Space, SafeArea, Grid } from 'antd-mobile'
 import HeaderTitle from '../Components/HeaderTitle'
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
+import { formDataInit } from '../Components/FormDataUtil'
 import ProductInfo from './ProductInfo'
 import ServiceInfo from './ServiceInfo'
 import CustomerInfo from './CustomerInfo'
@@ -13,53 +14,8 @@ import Summary from './Summary'
 
 function OrderForm() {
 
-  const [step, setStep] = useState(3);
-  const [formData, setFormData] = useState({
-    products: [],
-    productsDetail: [],
-    tvBoxQty: 0,
-    ipPhoneQty: 0,
-    ipPhonePortIn: 1,
-    ipPhonePortInNumber: "",
-    ipPhoneAddressOption: 1,
-    ipPhoneAddress: "",
-    installationTime: 1,
-    dateRequest: "",
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    contactPhone: "",
-    altPhone: "",
-    email: "",
-    installationAddress: "",
-    city: "VANCOUVER",
-    province: "BC",
-    postalCode: "",
-    optionsUnitType: 1,
-    buzz: "",
-    optionsSameAddress: 1,
-    billingAddress: "",
-    optionsCardType: 1,
-    cardFirstName: "",
-    cardLastName: "",
-    cardNumber: "",
-    mm: "",
-    yy: "",
-    cvv: "",
-    firstInitialPayment: "",
-    recurrentPayment: "",
-    cardRegistrationAddress: "",
-    checkAgreeMent: false,
-    promoteCode: "",
-    additionalRequirements: "",
-    productAs: [],
-    productBs: [],
-    productCs: [],
-    productDs: [],
-    tvBoxQtySelected: 0,
-    ipPhoneQtySelected: 0,
-    popupVisible: false,
-  });
+  const [step, setStep] = useState(0);
+  const [formData, setFormData] = useState(formDataInit);
 
   const FormTitles = ["Product", "Time", "Cust", "Bill", "Recap"];
 

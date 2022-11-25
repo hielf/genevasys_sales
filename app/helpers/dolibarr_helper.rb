@@ -25,6 +25,7 @@ module DolibarrHelper
   # ApplicationController.helpers.current_user(args)
   def current_user(args)
     (args.nil? || (args.class == Array && args.empty?)) ? User.find_by(user_name: 'jerry') : args[0]
+    # User.find_by(user_name: 'online_sales')
   end
 
   def generate_api_key(user)
@@ -112,7 +113,7 @@ module DolibarrHelper
       ApplicationController.helpers.set_user_access_token(user) if status == 401
       retry if ((retries += 1) < 3 && status == 401)
       p e.message
-      Rails.logger.warn "dolibarr_api_post error: #{e.message}"
+      Rails.logger.warn "dolibarr_api_post error: #{e.message} #{data}"
     end
 
     return status, data
