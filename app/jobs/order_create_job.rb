@@ -59,7 +59,7 @@ class OrderCreateJob < ApplicationJob
 
       flag, contact_id = ApplicationController.helpers.create_contact(contact_params, user) if third_party_id
 
-      ApplicationController.helpers.create_contact_user(contact_id, user) if flag == true
+      ApplicationController.helpers.create_contact_user(contact_id, User.find_by(user_name: 'jerry')) if flag == true
     rescue Exception => ex
       Rails.logger.warn ex.message
     ensure
