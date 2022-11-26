@@ -94,4 +94,13 @@ module ContactsHelper
     return flag
   end
 
+  # status, data = ApplicationController.helpers.set_contact_user_group(66, 7)
+  def set_contact_user_group(user_ref, group_id)
+    method = "/users/#{user_ref}/setGroup/#{group_id}"
+    params = {id: user_ref, group: group_id}
+    status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
+
+    return status, data
+  end
+
 end
