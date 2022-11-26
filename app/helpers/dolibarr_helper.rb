@@ -81,7 +81,7 @@ module DolibarrHelper
       ApplicationController.helpers.set_user_access_token(user) if status == 401
       retry if ((retries += 1) < 3 && status == 401)
       p e.message
-      Rails.logger.warn "dolibarr_api_get error: #{e.message}"
+      Rails.logger.warn "dolibarr_api_get #{method} #{params} error: #{e.message}"
     end
 
     return status, data
