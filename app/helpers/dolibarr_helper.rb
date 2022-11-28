@@ -216,6 +216,15 @@ module DolibarrHelper
     return status, data
   end
 
+  # status, data = ApplicationController.helpers.dolibarr_user(34)
+  def dolibarr_user(id)
+    method = "/users/#{id}"
+    params = {id: id}
+    status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
+
+    return status, data
+  end
+
   # status, data = ApplicationController.helpers.dolibarr_products
   def dolibarr_products
     method = "/products"

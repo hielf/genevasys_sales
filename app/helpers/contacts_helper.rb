@@ -87,11 +87,14 @@ module ContactsHelper
       params = {"login": login, "password": SecureRandom.urlsafe_base64(8)}
       method = "/contacts/#{contact_id}/createUser"
       status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
-
-      flag = true if status == 200
+      if status == 200
+        user_id = data
+        status, data = ApplicationController.helpers.dolibarr_user(user_id)
+        flag = ApplicationController.helpers.new_user(data) if status == 200
+      end
     end
 
-    return flag
+    return flag, user_id
   end
 
   # status, data = ApplicationController.helpers.set_contact_user_group(66, 7)
