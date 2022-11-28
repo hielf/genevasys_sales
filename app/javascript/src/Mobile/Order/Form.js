@@ -6,6 +6,7 @@ import HeaderTitle from '../Components/HeaderTitle'
 import NextButton from '../Components/NextButton'
 import PrevButton from '../Components/PreviousButton'
 import { formDataInit } from '../Components/FormDataUtil'
+import Bubble from '../Components/FloatingBubble'
 import ProductInfo from './ProductInfo'
 import ServiceInfo from './ServiceInfo'
 import CustomerInfo from './CustomerInfo'
@@ -43,15 +44,15 @@ function OrderForm() {
     } else if (step === 4) {
       return (
         <Summary formData={formData} setFormData={setFormData} />
-
       )
-    }//  else if (step === 5) {
-    //   return <Submit formData={formData} setFormData={setFormData} />;
-    // }
+    }  else if (step === 5) {
+      return <Submit formData={formData} setFormData={setFormData} />;
+    }
   };
 
   return (
     <>
+      { Bubble() }
       { HeaderTitleDisplay() }
       <div style={{ width: '100%', }}>
         <Space direction='vertical' style={ {padding: '0 5%', width: '90%', marginTop: 100, marginBottom: 120, '--gap': '24px'} }>
