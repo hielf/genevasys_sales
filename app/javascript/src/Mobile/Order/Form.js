@@ -42,9 +42,7 @@ function OrderForm() {
     }  else if (step === 3) {
       return <PaymentInfo formData={formData} setFormData={setFormData} />;
     } else if (step === 4) {
-      return (
-        <Summary formData={formData} setFormData={setFormData} />
-      )
+      return <Summary formData={formData} setFormData={setFormData} />;
     }  else if (step === 5) {
       return <Submit formData={formData} setFormData={setFormData} />;
     }
