@@ -116,7 +116,7 @@ module OrdersHelper
 
     user = ApplicationController.helpers.current_user([])
     status, data = ApplicationController.helpers.add_order_contact(order_id, contact.ref, user) if status == 200
-
+    status, data = ApplicationController.helpers.set_contact_user_group(order_id, contact_id, 'BILLING') if status == 200
     return status, order_id
   end
 

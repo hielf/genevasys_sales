@@ -106,4 +106,20 @@ module ContactsHelper
     return status, data
   end
 
+  # status, data = ApplicationController.helpers.set_contact_user_group(449, 174, 'BILLING')
+  def set_order_contact_type(order_id, contact_id, type)
+    flag = false
+    user = Order.find_by(id: order_id).user
+
+    if status == 404
+      params = {"id": order_id, "contactid": contact_id, "type": type}
+      method = "/orders/#{order_id}/contact/#{contact_id}/#{type}"
+      status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+
+      flag = true if status == 200
+    end
+
+    return flag, data
+  end
+
 end
