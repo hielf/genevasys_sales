@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_01_024339) do
+ActiveRecord::Schema.define(version: 2022_12_01_042531) do
 
   create_table "contacts", charset: "utf8mb3", force: :cascade do |t|
     t.integer "third_party_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2022_12_01_024339) do
     t.integer "retry_times", default: 0
     t.string "pdf_file"
     t.string "cust_user_ref"
+    t.string "order_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

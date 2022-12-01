@@ -65,7 +65,7 @@ module OrdersHelper
         "desc": desc }
     end
 
-    contact = Contact.find(contact_id)
+    # contact = Contact.find(contact_id)
     d = order.date_request
     t = case order.installation_time
     when 1
@@ -113,10 +113,14 @@ module OrdersHelper
     # p params
     method = "/orders"
     status, order_id = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+    
+    order.update(order_id: order_id)
 
     user = ApplicationController.helpers.current_user([])
     status, data = ApplicationController.helpers.add_order_contact(order_id, contact.ref, user) if status == 200
-    status, data = ApplicationController.helpers.set_order_contact_type(order_id, contact_id, 'BILLING') if status == 200
+
+    ApplicationController.helpers.set_order_contact_type(order_id, contact.ref, 'BILLING') if status == 200
+
     return status, order_id
   end
 

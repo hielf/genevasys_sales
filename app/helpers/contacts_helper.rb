@@ -109,7 +109,7 @@ module ContactsHelper
   # status, data = ApplicationController.helpers.set_order_contact_type(449, 174, 'BILLING')
   def set_order_contact_type(order_id, contact_id, type)
     flag = false
-    user = Order.find_by(id: order_id).user
+    user = Order.find_by(order_id: order_id).user
 
     if status == 404
       params = {"id": order_id, "contactid": contact_id, "type": type}
