@@ -106,7 +106,7 @@ module ContactsHelper
     return status, data
   end
 
-  # status, data = ApplicationController.helpers.set_contact_user_group(449, 174, 'BILLING')
+  # status, data = ApplicationController.helpers.set_order_contact_type(449, 174, 'BILLING')
   def set_order_contact_type(order_id, contact_id, type)
     flag = false
     user = Order.find_by(id: order_id).user
