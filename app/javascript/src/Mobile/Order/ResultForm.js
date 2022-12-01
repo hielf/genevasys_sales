@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Space, Result, Card, Footer } from 'antd-mobile'
+import { Space, Result, Card, Footer, Empty } from 'antd-mobile'
 import HeaderTitle from '../Components/HeaderTitle'
 import { apiGet } from '../Functions/ApiRequest'
 import { SmileOutline } from 'antd-mobile-icons'
 import QRCode from 'react-qr-code'
-import { CameraOutline } from 'antd-mobile-icons'
+import { CameraOutline, LoopOutline } from 'antd-mobile-icons'
 
 const ResultForm = () => {
   const componentRef = useRef();
@@ -26,17 +26,38 @@ const ResultForm = () => {
     setFormData(res.order);
   };
 
-  const qr_code = () => {
-    return (
-      <div style={{ height: "256px", margin: "0 auto", width: "256px", }}>
-          <QRCode
-          size={256}
-          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-          value={ 'http://127.0.0.1:3000/order/submit?id=93' }
-          viewBox={`0 0 256 256`}
-          />
-      </div>
-    )
+  const qr_code = (formData) => {
+    console.log("formData", formData);
+    if (Object.keys(formData).length === 0) {
+      return (
+        <div style={{ height: "256px", margin: "0 auto", width: "256px", textAlign: "center", }}>
+            <Empty
+              style={{ padding: '64px 0' }}
+              image={
+                <LoopOutline
+                  style={{
+                    color: 'var(--adm-color-light)',
+                    fontSize: 48,
+                  }}
+                />
+              }
+              description='Loading..'
+            />
+        </div>
+      )
+    } else {
+      let url = formData["cust_user_url"];
+      return (
+        <div style={{ height: "256px", margin: "0 auto", width: "256px", }}>
+            <QRCode
+            size={256}
+            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+            value={ url }
+            viewBox={`0 0 256 256`}
+            />
+        </div>
+      )
+    }
   };
 
   const title = () => {
@@ -65,7 +86,7 @@ const ResultForm = () => {
       <Space direction='vertical' style={{ padding: '5% 5%', width: '90%', }}>
         <Result
           status='success'
-          icon={ qr_code() }
+          icon={ qr_code(formData) }
           title={ title() }
           description={ description() }
         />
