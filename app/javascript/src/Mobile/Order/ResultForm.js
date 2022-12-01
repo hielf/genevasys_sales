@@ -74,8 +74,12 @@ const ResultForm = () => {
         </div>
       </Space>
       <div style={{ backgroundColor: "white", position: 'fixed', zIndex: 1, width: '100%', bottom: '0px', }}>
-        <Footer content='Customer Service: 778-786-3838'></Footer>
-        <Footer content='@ 2022 Geneva Systems All rights reserved'></Footer>
+        <Space direction='vertical' style={ {'--gap': '8px'} } block>
+          <span/>
+          <Footer content='Customer Service: 778-786-3838'></Footer>
+          <Footer content='@ 2022 Geneva Systems All rights reserved'></Footer>
+          <span/>
+        </Space>
       </div>
     </div>
   );

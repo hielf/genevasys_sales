@@ -137,3 +137,7 @@ body {
 .adm-result-description {
   color: var(--adm-color-primary);
 }
+
+.adm-footer-content {
+  margin: 0px;
+}
