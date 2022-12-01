@@ -113,7 +113,7 @@ module ContactsHelper
     begin
       user = ApplicationController.helpers.current_user([])
       if user
-        params = {"id": order_id, "contactid": contact_id, "type": type}
+        params = {"id": order_id.to_i, "contactid": contact_id.to_i, "type": type}
         method = "/orders/#{order_id}/contact/#{contact_id}/#{type}"
         status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
 
