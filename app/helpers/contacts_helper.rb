@@ -109,9 +109,9 @@ module ContactsHelper
   # status, data = ApplicationController.helpers.set_order_contact_type(449, 174, 'BILLING')
   def set_order_contact_type(order_id, contact_id, type)
     flag = false
-    
+
     begin
-      user = Order.find_by(order_id: order_id).user
+      user = ApplicationController.helpers.current_user([])
       if user
         params = {"id": order_id, "contactid": contact_id, "type": type}
         method = "/orders/#{order_id}/contact/#{contact_id}/#{type}"
