@@ -94,7 +94,7 @@ const ResultForm = () => {
           <CameraOutline /> take a ScreenShoot to save the QR Code
         </div>
       </Space>
-      <div style={{ backgroundColor: "white", position: 'absolute', zIndex: 1, width: '100%', bottom: '0px', }}>
+      <div style={{ backgroundColor: "white", position: 'fixed', zIndex: 1, width: '100%', bottom: '0px', }}>
         <Space direction='vertical' style={ {'--gap': '8px'} } block>
           <span/>
           <Footer content='Customer Service: 778-786-3838'></Footer>
