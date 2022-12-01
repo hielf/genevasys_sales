@@ -106,6 +106,8 @@ module DolibarrHelper
 
       if status == 200
         data = JSON.parse(response.body)
+      elsif (status > 300 && status < 400)
+        data = response.body
       else
         data = JSON.parse(response.body)["error"]
       end
