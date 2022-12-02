@@ -20,7 +20,7 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
       // console.log("res_ue:", res);
       if (res !== null) {
         history.push({
-          pathname: "/order/submit",
+          pathname: "/promote/submit",
           search: '?id=' + res.id
         });
       }

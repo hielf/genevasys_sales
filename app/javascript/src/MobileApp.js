@@ -7,8 +7,8 @@ import Term from './Mobile/Pages/Term'
 const MobileApp = () => {
   return (
     <Switch>
-      <Route exact path="/order/new" component={OrderForm}/>
-      <Route exact path="/order/submit" component={ResultForm}/>
+      <Route exact path="/promote/new" component={OrderForm}/>
+      <Route exact path="/promote/submit" component={ResultForm}/>
       <Route exact path="/terms" component={Term}/>
     </Switch>
   )
