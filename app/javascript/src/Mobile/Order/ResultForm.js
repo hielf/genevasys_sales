@@ -72,10 +72,10 @@ const ResultForm = () => {
     return (
       <>
         <p style={{ color: '#777777', fontFamily: "'Varela Round', sans-serif", }}>
-          You have earned 3 reward opportunities!
+          You have earned<span style={{ textDecoration: 'underline' }}> 5 </span>reward opportunities!
         </p>
         <p style={{ color: '#777777', fontFamily: "'Varela Round', sans-serif", fontSize: "var(--adm-font-size-4)" }}>
-          Send the QR code to new users to get $5 per month for 12 months after each registration succeeded.
+          Send the QR code to new users to get<span style={{ textDecoration: 'underline' }}> $5 per month</span> for 12 months after each registration succeeded.
         </p>
       </>
     )
