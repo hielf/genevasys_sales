@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Space, Result, Card, Footer, Empty } from 'antd-mobile'
+import { Space, Result, Card, Footer, Empty, Button, Toast } from 'antd-mobile'
 import HeaderTitle from '../Components/HeaderTitle'
 import { apiGet } from '../Functions/ApiRequest'
 import { SmileOutline } from 'antd-mobile-icons'
@@ -24,6 +24,16 @@ const ResultForm = () => {
   const getData = async () => {
     const res = await apiGet('orders/' + id, []);
     setFormData(res.order);
+  };
+
+  const copy = (url) => {
+    navigator.clipboard.writeText(url);
+
+    Toast.show({
+      icon: 'success',
+      content: "Link Copied",
+      duration: '3000',
+    })
   };
 
   const qr_code = (formData) => {
@@ -75,7 +85,7 @@ const ResultForm = () => {
           You have earned<span style={{ textDecoration: 'underline' }}> 5 </span>reward opportunities!
         </p>
         <p style={{ color: '#777777', fontFamily: "'Varela Round', sans-serif", fontSize: "var(--adm-font-size-4)" }}>
-          Send the QR code to new users to get<span style={{ textDecoration: 'underline' }}> $5 per month</span> for 12 months after each registration succeeded.
+          Send the QR code to new users or <a onClick={() => { copy(formData["cust_user_url"]) }} style={{ fontSize: 'var(--adm-font-size-4)', fontFamily: "'Varela Round', sans-serif", }}>copy link</a> to get<span style={{ textDecoration: 'underline' }}> $5 per month</span> for 12 months after each registration succeeded.
         </p>
       </>
     )
