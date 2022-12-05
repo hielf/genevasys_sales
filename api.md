@@ -1,3 +1,14 @@
+# SMTP SERVER
+
+***
+
+## Internal Server info
+* SMTP: 10.1.0.104
+* port: 25
+* sender : no-reply@genevasys.com
+
+***
+
 # REST API
 
 ***
@@ -6,7 +17,7 @@
 
 ***
 
-## How to request 
+## How to request
 * Method: POST
 * Need:
 
