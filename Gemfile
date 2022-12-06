@@ -8,12 +8,14 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 6.1.7'
 gem 'mysql2'
 # gem 'pg'
 
+gem "rack", ">= 2.2.3.1"
+
 # Use Puma as the app server
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 4.3.12'
 gem 'god'
 # Use SCSS for stylesheets
 # gem 'sassc-rails'
@@ -58,7 +60,7 @@ group :development do
   gem 'capistrano-rvm', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma', require: false
+  gem 'capistrano3-puma', "~> 5.2.0", require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -86,3 +88,4 @@ gem 'faraday'
 gem 'net-smtp', require: false
 gem 'net-imap', require: false
 gem 'net-pop', require: false
+gem "browser"

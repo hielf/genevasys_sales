@@ -6,10 +6,12 @@ json.data do
     json.array! @bundles do |bundle|
       json.id             bundle["id"]
       json.value          bundle["product_id"]
-      json.label          bundle['label']
+      json.label          bundle['label'].gsub(bundle['bundle_tag'], "").strip
       json.description    ActionView::Base.full_sanitizer.sanitize(bundle['description'])
       json.price          bundle['price'].to_f
       json.tag            bundle['tag']
+      json.bundle_tag     bundle['bundle_tag']
+      json.promotion_price bundle['promotion_price']
     end
   end
   json.internets do
@@ -20,6 +22,7 @@ json.data do
       json.description    ActionView::Base.full_sanitizer.sanitize(internet['description'])
       json.price          internet['price'].to_f
       json.tag            internet['tag']
+      json.promotion_price internet['promotion_price']
     end
   end
   json.tv_box do
@@ -30,6 +33,7 @@ json.data do
       json.description    ActionView::Base.full_sanitizer.sanitize(tv_box['description'])
       json.price          tv_box['price'].to_f
       json.tag            tv_box['tag']
+      json.promotion_price tv_box['promotion_price']
     end
   end
   json.ip_phone do
@@ -40,6 +44,7 @@ json.data do
       json.description    ActionView::Base.full_sanitizer.sanitize(ip_phone['description'])
       json.price          ip_phone['price'].to_f
       json.tag            ip_phone['tag']
+      json.promotion_price ip_phone['promotion_price']
     end
   end
   json.fee do
@@ -50,6 +55,7 @@ json.data do
       json.description    ActionView::Base.full_sanitizer.sanitize(fee['description'])
       json.price          fee['price'].to_f
       json.tag            fee['tag']
+      json.promotion_price fee['promotion_price']
     end
   end
   json.rebate do
@@ -60,6 +66,7 @@ json.data do
       json.description    ActionView::Base.full_sanitizer.sanitize(rebate['description'])
       json.price          rebate['price'].to_f
       json.tag            rebate['tag']
+      json.promotion_price rebate['promotion_price']
     end
   end
 end

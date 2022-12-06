@@ -17,7 +17,8 @@
 !/log/.keep
 !/tmp/.keep
 
-/node_modules
+/node_modules/*
+!/node_modules/antd-mobile/
 /yarn-error.log
 
 .byebug_history
@@ -51,8 +52,8 @@ lib/python/market_shape/result.json
 
 /public/packs
 /public/packs-test
-/node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
 .ruby-gemset
+/public/assets/packs

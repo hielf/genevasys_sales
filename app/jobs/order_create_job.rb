@@ -59,7 +59,10 @@ class OrderCreateJob < ApplicationJob
 
       flag, contact_id = ApplicationController.helpers.create_contact(contact_params, user) if third_party_id
 
-      ApplicationController.helpers.create_contact_user(contact_id, user) if flag == true
+      if flag == true
+        flag, @user_ref = ApplicationController.helpers.create_contact_user(contact_id, User.find_by(user_name: 'online_sales'))
+        ApplicationController.helpers.set_contact_user_group(@user_ref, 7) if flag
+      end
     rescue Exception => ex
       Rails.logger.warn ex.message
     ensure
@@ -77,6 +80,7 @@ class OrderCreateJob < ApplicationJob
   def around_check
     if @status == 200 && @flag == true
       @order.pdf_file = @pdf_file
+      @order.cust_user_ref = @user_ref
       @order.submit
     else
       @order.unsuccess

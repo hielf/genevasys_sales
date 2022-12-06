@@ -1,0 +1,143 @@
+/* .ant-btn-primary {
+    background-color: #277d31;
+} */
+@import 'https://unpkg.com/antd-mobile@5.25.1/bundle/css-vars-patch.css';
+@import 'https://unpkg.com/antd-mobile@5.25.1/bundle/style.css';
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Oswald:wght@300;400&family=Roboto:wght@300&family=Varela+Round&display=swap');
+
+body {
+  touch-action: pan-x pan-y;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+}
+
+/* .container::-webkit-scrollbar {
+  display: none;
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+} */
+
+:root {
+  --adm-font-size-1: 11px;
+  --adm-font-size-2: 12px;
+  --adm-font-size-3: 13px;
+  --adm-font-size-4: 14px;
+  --adm-font-size-5: 15px;
+  --adm-font-size-6: 16px;
+  --adm-font-size-7: 17px;
+  --adm-font-size-8: 18px;
+  --adm-font-size-9: 19px;
+  --adm-font-size-10: 20px;
+  --adm-color-primary: #277d31;
+  --adm-color-text: #277d31;
+  --adm-color-weak: #fff;
+}
+
+:root:root {
+  --adm-button-border-radius: 8px;
+  --line-to-next-color: white;
+  /* .adm-step-status-process .adm-step-title */
+}
+
+.adm-step .adm-step-indicator .adm-step-icon-container {
+  /* color: white; */
+  background: #277d31;
+}
+
+.adm-step-status-finish {
+  color: #ff6800;
+  --icon-color: #ff6800;
+  --line-to-next-color: #ff6800;
+  font-weight: 300;
+}
+
+.adm-step-status-process .adm-step-title {
+  color: #ff6800;
+  font-weight: 300;
+}
+
+.adm-steps-horizontal .adm-step .adm-step-indicator:after {
+  height: 2px;
+}
+
+.adm-step-icon-dot {
+  height: 6px;
+  width: 6px;
+}
+
+.adm-step-status-wait {
+  --icon-color: white;
+  font-weight: 300;
+}
+
+.adm-step-status-process {
+  --icon-color: #ff6800;
+  font-weight: 300;
+}
+
+.adm-badge-content {
+  font-size: var(--adm-font-size-5);
+  line-height: 15px;
+  padding: 2px 6px;
+}
+
+.adm-radio.adm-radio-checked .adm-radio-icon {
+  border-color: #e95223;
+  background-color: #e95223;
+}
+
+.adm-input-element {
+  padding: 4px;
+  /* outline: solid;
+  outline-width: thin;
+  outline-color: #eeeeee; */
+  /* font-size: var(--adm-font-size-8); */
+  min-height: 2.5em;
+  border-radius: var(--adm-radius-m);
+  /* -webkit-border-radius: var(--adm-radius-m);
+  -khtml-border-radius: var(--adm-radius-m);
+  -moz-border-radius: var(--adm-radius-m); */
+  border: 1px solid #eeeeee;
+}
+
+.adm-form {
+  width: 100%;
+  /* ---border-inner: 0; */
+}
+
+.adm-form-item.adm-form-item-vertical .adm-form-item-label {
+  font-size: var(--adm-font-size-4);
+}
+
+.adm-number-keyboard-header-close-button {
+  color: black;
+}
+
+.adm-card-header:not(:last-child) {
+  border-bottom: solid .5px #c0c0c0;
+}
+
+.adm-floating-bubble-button {
+  box-shadow: 0px 0px 5px var(--adm-color-primary);
+}
+
+.adm-result-icon {
+  width: 256px;
+  height: 256px;
+  padding: initial;
+}
+
+.adm-result-description {
+  color: var(--adm-color-primary);
+}
+
+.adm-footer-content {
+  margin: 0px;
+}

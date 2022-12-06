@@ -2,12 +2,21 @@ class Product < ApplicationRecord
   validates_lengths_from_database
   attribute :level, :integer, default: -> { 0 }
 
+  has_many :product_rels, :primary_key => :product_id, :foreign_key => :upper_product_id
+  has_many :lower_products, :through => :product_rels
+
+  # scope :valid_lowers, lambda {|id| joins(:product_rels).joins(:lower_products).where('products.id = ? AND product_rels.start_date <= ? AND product_rels.end_date >= ?', id, Date.today, Date.today) }
+
   def level
     description.gsub(/[^0-9]/, '').to_i
   end
 
   def as_json(options = {})
     super(methods: [:level])
+  end
+
+  def valid_lower_products
+    self.lower_products.where("product_rels.start_date <= ? AND product_rels.end_date >= ?", Date.today, Date.today)
   end
 end
 

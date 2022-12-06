@@ -87,11 +87,44 @@ module ContactsHelper
       params = {"login": login, "password": SecureRandom.urlsafe_base64(8)}
       method = "/contacts/#{contact_id}/createUser"
       status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
-
-      flag = true if status == 200
+      if status == 200
+        user_id = data
+        status, data = ApplicationController.helpers.dolibarr_user(user_id)
+        flag = ApplicationController.helpers.new_user(data) if status == 200
+      end
     end
 
-    return flag
+    return flag, user_id
+  end
+
+  # status, data = ApplicationController.helpers.set_contact_user_group(66, 7)
+  def set_contact_user_group(user_ref, group_id)
+    method = "/users/#{user_ref}/setGroup/#{group_id}"
+    params = {id: user_ref, group: group_id}
+    status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
+
+    return status, data
+  end
+
+  # status, data = ApplicationController.helpers.set_order_contact_type(449, 174, 'CUSTOMER')
+  def set_order_contact_type(order_id, contact_id, type)
+    flag = false
+
+    begin
+      user = ApplicationController.helpers.current_user([])
+      if user
+        params = {"id": order_id.to_i, "contactid": contact_id.to_i, "type": type}
+        method = "/orders/#{order_id}/contact/#{contact_id}/#{type}"
+        status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+
+        flag = true if status == 200
+      end
+    rescue Exception => ex
+      Rails.logger.warn "error set_order_contact_type: #{ex.message}"
+    end
+
+
+    return flag, data
   end
 
 end

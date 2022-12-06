@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import OrderForm from './Order/Form'
-import ResultForm from './Order/ResultForm'
-import Term from './Pages/Term'
+import OrderForm from './Desktop/Order/Form'
+import ResultForm from './Desktop/Order/ResultForm'
+import Term from './Desktop/Pages/Term'
 // import './App.css';
 import { ConfigProvider } from 'antd';
 
@@ -21,7 +21,6 @@ const App = () => {
       <Route exact path="/order/new" component={OrderForm}/>
       <Route exact path="/order/submit" component={ResultForm}/>
       <Route exact path="/terms" component={Term}/>
-      {/*<Route exact path='/order/:productId' component={Order}/>*/}
     </Switch>
   )
 }

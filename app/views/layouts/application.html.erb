@@ -6,9 +6,15 @@
     <link rel="icon" href="/images/favicon.ico">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'react' %>
+    <% p "is #{browser.name} on #{browser.platform.name} #{browser.platform.version}" %>
+    <% if (browser.device.mobile? || browser.device.tablet?) %>
+      <%= javascript_pack_tag 'applicationMobile', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'mobile' %>
+      <!-- <script src="../../js/inobounce.js"></script> -->
+    <% else %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'react' %>
+    <% end %>
   </head>
 
   <body>

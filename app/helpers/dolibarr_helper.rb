@@ -24,7 +24,8 @@ module DolibarrHelper
 
   # ApplicationController.helpers.current_user(args)
   def current_user(args)
-    (args.nil? || (args.class == Array && args.empty?)) ? User.find_by(user_name: 'admin') : args[0]
+    (args.nil? || (args.class == Array && args.empty?)) ? User.find_by(user_name: 'online_sales') : args[0]
+    # User.find_by(user_name: 'online_sales')
   end
 
   def generate_api_key(user)
@@ -80,7 +81,7 @@ module DolibarrHelper
       ApplicationController.helpers.set_user_access_token(user) if status == 401
       retry if ((retries += 1) < 3 && status == 401)
       p e.message
-      Rails.logger.warn "dolibarr_api_get error: #{e.message}"
+      Rails.logger.warn "dolibarr_api_get #{method} #{params} error: #{e.message}"
     end
 
     return status, data
@@ -105,6 +106,8 @@ module DolibarrHelper
 
       if status == 200
         data = JSON.parse(response.body)
+      elsif (status > 300 && status < 400)
+        data = response.body
       else
         data = JSON.parse(response.body)["error"]
       end
@@ -112,7 +115,7 @@ module DolibarrHelper
       ApplicationController.helpers.set_user_access_token(user) if status == 401
       retry if ((retries += 1) < 3 && status == 401)
       p e.message
-      Rails.logger.warn "dolibarr_api_post error: #{e.message}"
+      Rails.logger.warn "dolibarr_api_post #{method} error: #{e.message} #{params}"
     end
 
     return status, data
@@ -210,6 +213,15 @@ module DolibarrHelper
   # status, data = ApplicationController.helpers.dolibarr_users
   def dolibarr_users(params)
     method = "/users"
+    status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
+
+    return status, data
+  end
+
+  # status, data = ApplicationController.helpers.dolibarr_user(34)
+  def dolibarr_user(id)
+    method = "/users/#{id}"
+    params = {id: id}
     status, data = ApplicationController.helpers.dolibarr_api_get(method, params)
 
     return status, data

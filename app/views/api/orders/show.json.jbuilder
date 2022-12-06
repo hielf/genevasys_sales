@@ -43,5 +43,6 @@ json.data do
     json.additionalRequirements           @order.additional_requirements
     json.pdf_file                         @pdf_url
     json.status                           @order.status
+    json.cust_user_url                    @cust_user_url
   end
 end

@@ -22,6 +22,9 @@ class Api::OrdersController < Api::ApplicationController
     # end
     @order = Order.find_by(id: params[:id])
     @pdf_url = "#{request.protocol}#{request.host}:#{request.port}/api/orders/order_pdf?file=#{@order.pdf_file}"
+    cust_user = User.find_by(ref: @order.cust_user_ref)
+    promote_code = !cust_user.nil? ? cust_user.promote_code : ApplicationController.helpers.current_user([]).promote_code
+    @cust_user_url = "#{request.protocol}#{request.host}:#{request.port}/promote/new?promote_code=#{promote_code}"
   end
 
   def order_pdf
