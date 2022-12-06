@@ -1,0 +1,15 @@
+[Unit]
+Description=Puma Rails Server
+After=network.target
+
+[Service]
+Type=simple
+User=deploy
+WorkingDirectory=/var/www/genevasys_sales/current
+ExecStart=cd /var/www/genevasys_sales/current && RAILS_ENV=production bundle exec puma -C /var/www/genevasys_sales/shared/puma.rb
+ExecStop=cd /var/www/genevasys_sales/current && RAILS_ENV=production bundle exec pumactl -S /var/www/genevasys_sales/shared/tmp/pids/puma.state stop
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
