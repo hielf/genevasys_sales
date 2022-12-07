@@ -14,17 +14,6 @@
     },
     "applicationMobile": {
       "js": [
-<<<<<<< HEAD
-        "/assets/packs/js/react-a777dd1a7162e8e03961.js"
-      ],
-      "js.map": [
-        "/assets/packs/js/react-a777dd1a7162e8e03961.js.map"
-      ]
-    }
-  },
-  "react.js": "/assets/packs/js/react-a777dd1a7162e8e03961.js",
-  "react.js.map": "/assets/packs/js/react-a777dd1a7162e8e03961.js.map"
-=======
         "/assets/packs/js/applicationMobile-deb3eb48b6db1a88d995.js"
       ],
       "js.map": [
@@ -33,24 +22,23 @@
     },
     "mobile": {
       "js": [
-        "/assets/packs/js/mobile-56b71cd57255b7497cd7.js"
+        "/assets/packs/js/mobile-9b2c8b6e74bdca0c4198.js"
       ],
       "js.map": [
-        "/assets/packs/js/mobile-56b71cd57255b7497cd7.js.map"
+        "/assets/packs/js/mobile-9b2c8b6e74bdca0c4198.js.map"
       ]
     },
     "react": {
       "js": [
-        "/assets/packs/js/react-6050e7a2537c1c986e42.js"
+        "/assets/packs/js/react-fc69c06651a3a6f0feef.js"
       ],
       "js.map": [
-        "/assets/packs/js/react-6050e7a2537c1c986e42.js.map"
+        "/assets/packs/js/react-fc69c06651a3a6f0feef.js.map"
       ]
     }
   },
-  "mobile.js": "/assets/packs/js/mobile-56b71cd57255b7497cd7.js",
-  "mobile.js.map": "/assets/packs/js/mobile-56b71cd57255b7497cd7.js.map",
-  "react.js": "/assets/packs/js/react-6050e7a2537c1c986e42.js",
-  "react.js.map": "/assets/packs/js/react-6050e7a2537c1c986e42.js.map"
->>>>>>> mobile
+  "mobile.js": "/assets/packs/js/mobile-9b2c8b6e74bdca0c4198.js",
+  "mobile.js.map": "/assets/packs/js/mobile-9b2c8b6e74bdca0c4198.js.map",
+  "react.js": "/assets/packs/js/react-fc69c06651a3a6f0feef.js",
+  "react.js.map": "/assets/packs/js/react-fc69c06651a3a6f0feef.js.map"
 }
