@@ -88,7 +88,7 @@ const ProductInfo = ({formData, setFormData}) => {
                     {
                       list[p].map(d => {
                         return (
-                          <Badge key={ d.value } color='#ff6800' content={ d.bundle_tag } style={{ '--right': '97%', }} bordered>
+                          <Badge key={ d.value } color='#ff6800' content={ d.bundle_tag } style={{ '--right': '97%', fontFamily: "'Varela Round', sans-serif", }} bordered>
                             <Radio value={d.value} block style={{ borderStyle: "solid", borderWidth: "0.5px", borderColor: "#ccc", borderRadius: "10px", padding: "8px" }}>
                               <Grid columns={8} gap={8}>
                                 <Grid.Item span={8}>
