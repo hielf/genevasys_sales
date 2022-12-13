@@ -21,7 +21,7 @@ class Api::ProductsController < Api::ApplicationController
       hash["promotion_price"] = promotion_price
       @bundles << hash
     end
-    @bundles = @bundles.sort_by { |k| k["level"] }.reverse!
+    @bundles = @bundles.sort_by { |k| k["level"] }
 
     @internets = Array.new
     products.where("ref LIKE ?", 'B%').each do |product|

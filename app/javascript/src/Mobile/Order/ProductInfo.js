@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { apiGet } from '../Functions/ApiRequest'
 import { Space, Grid, Divider } from 'antd-mobile'
 import { Radio, Badge } from 'antd-mobile'
+import { CheckOutline } from 'antd-mobile-icons'
 
 const ProductInfo = ({formData, setFormData}) => {
 
@@ -14,6 +15,20 @@ const ProductInfo = ({formData, setFormData}) => {
   const getList = async () => {
     const res = await apiGet('products?for_customer=1', []);
     setList(res);
+  };
+
+  const descriptionSanitize = (description) => {
+    let descriptions = description.split("\r\n")
+
+    return (
+      <Space direction='vertical' style={ {'--gap': '6px', fontSize: "14px", color: "#8f8f8f", } }>
+        { descriptions.map(d => {
+          return (
+            <p key={ d } style={{ margin: '0px', fontFamily: "'Varela Round', sans-serif", }}><CheckOutline style={{ fontSize: "10px", }} /> { d }</p>
+          )
+        }) }
+      </Space>
+    )
   };
 
   const onChange1 = (values) => {
@@ -73,23 +88,24 @@ const ProductInfo = ({formData, setFormData}) => {
                     {
                       list[p].map(d => {
                         return (
-                          <Badge key={ d.value } color='#ff6800' content={ d.bundle_tag } style={{ '--right': '97%', }} bordered>
-                            <Radio value={d.value} style={{ borderStyle: "solid", borderWidth: "0.5px", borderColor: "#ccc", borderRadius: "10px", padding: "8px" }} block>
-                              <Grid columns={4} gap={8}>
-                                <Grid.Item span={3}>
+                          <Badge key={ d.value } color='#ff6800' content={ d.bundle_tag } style={{ '--right': '97%', fontFamily: "'Varela Round', sans-serif", }} bordered>
+                            <Radio value={d.value} block style={{ borderStyle: "solid", borderWidth: "0.5px", borderColor: "#ccc", borderRadius: "10px", padding: "8px" }}>
+                              <Grid columns={8} gap={8}>
+                                <Grid.Item span={8}>
+                                  <p style={{ width: "80vw", marginTop: "8px", marginBottom: "0px", fontFamily: "'Oswald', sans-serif", }}>{d.label}</p>
+                                </Grid.Item>
+                                <Grid.Item span={5}>
                                   <Grid columns={5} gap={3}>
                                     <Grid.Item span={5}>
-                                      <span>{d.label}</span>
-                                    </Grid.Item>
-                                    <Grid.Item span={5}>
-                                      <span style={{ fontSize: "14px", color: "#8f8f8f" }}>{ d.description }</span>
+                                      { descriptionSanitize(d.description) }
                                     </Grid.Item>
                                   </Grid>
                                 </Grid.Item>
-                                <Grid.Item span={1} style={{ alignSelf: "center" }}>
-                                  <span style={{ fontSize: "24px", color: "#ff6800" }}>{ d.promotion_price }</span>
+                                <Grid.Item span={3} style={{ alignSelf: "center", textAlign: "right", }}>
+                                  <span style={{ fontSize: "14px", fontFamily: "'Varela Round', sans-serif", color: "#ff6800" }}>$</span>
+                                  <span style={{ fontSize: "24px", fontFamily: "'Oswald', sans-serif", color: "#ff6800" }}>{ d.promotion_price }</span>
                                   <br/>
-                                  <span style={{ fontSize: "14px", textDecoration:"line-through", color: "#8f8f8f", textDecorationColor: "#a1a1a1", textDecorationThickness: "0.5px",}}>{ d.price }</span>
+                                  <span style={{ fontSize: "14px", fontFamily: "'Oswald', sans-serif", textDecoration:"line-through", color: "#8f8f8f", textDecorationColor: "#a1a1a1", textDecorationThickness: "0.5px",}}>{ d.price }</span>
                                 </Grid.Item>
                               </Grid>
                             </Radio>

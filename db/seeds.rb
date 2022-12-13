@@ -15,3 +15,8 @@
 
 Product.find_by(product_id: "76").update(customer_purchase_available: true)
 Product.find_by(product_id: "78").update(customer_purchase_available: true)
+Product.find_by(product_id: "8").update(customer_purchase_available: true)
+Product.find_by(product_id: "19").update(customer_purchase_available: true)
+Product.find_by(product_id: "17").update(customer_purchase_available: true)
+
+ProductRel.create(upper_product_id: '17', lower_product_id: '33', start_date: Date.today, end_date: Date.parse('20230228'))
