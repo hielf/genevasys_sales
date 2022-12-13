@@ -91,7 +91,7 @@ const ProductInfo = ({formData, setFormData}) => {
                             <Radio value={d.value} block style={{ borderStyle: "solid", borderWidth: "0.5px", borderColor: "#ccc", borderRadius: "10px", padding: "8px" }}>
                               <Grid columns={8} gap={8}>
                                 <Grid.Item span={8}>
-                                  <p style={{ width: "100vh", marginTop: "8px", marginBottom: "0px", fontFamily: "'Oswald', sans-serif", }}>{d.label}</p>
+                                  <p style={{ width: "80vw", marginTop: "8px", marginBottom: "0px", fontFamily: "'Oswald', sans-serif", }}>{d.label}</p>
                                 </Grid.Item>
                                 <Grid.Item span={5}>
                                   <Grid columns={5} gap={3}>
