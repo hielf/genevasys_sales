@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { apiGet } from '../Functions/ApiRequest'
 import { Space, Grid, Divider } from 'antd-mobile'
 import { Radio, Badge } from 'antd-mobile'
+import { CheckOutline } from 'antd-mobile-icons'
 
 const ProductInfo = ({formData, setFormData}) => {
 
@@ -23,7 +24,7 @@ const ProductInfo = ({formData, setFormData}) => {
       <Space direction='vertical' style={ {'--gap': '6px', fontSize: "14px", color: "#8f8f8f", } }>
         { descriptions.map(d => {
           return (
-            <p key={ d } style={{ margin: '0px', fontFamily: "'Varela Round', sans-serif", }}>* { d }</p>
+            <p key={ d } style={{ margin: '0px', fontFamily: "'Varela Round', sans-serif", }}><CheckOutline style={{ fontSize: "10px", }} /> { d }</p>
           )
         }) }
       </Space>
