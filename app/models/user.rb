@@ -26,6 +26,10 @@ class User < ApplicationRecord
     return log.op_type, log.op_message
   end
 
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
+
   # def had_subscribtion?(package)
   #   subscribtions.find_by(package_type: package.package_type)
   # end
