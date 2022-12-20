@@ -5,9 +5,19 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.welcome.subject
   #
-  def welcome
-    @greeting = "Hi"
+  # def welcome
+  #   @greeting = "Hi"
+  #
+  #   mail to: "hielf@qq.com"
+  # end
 
-    mail to: "to@example.org"
+  # default :from => 'no-reply@genevasys.com'
+
+  def welcome(user)
+    @user = user
+    mail(
+      :to => @user.email,
+      :subject => 'Welcome to Geneva System!'
+    )
   end
 end

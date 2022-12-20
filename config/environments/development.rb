@@ -33,6 +33,10 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = {host:'localhost', port: 3000}
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: '10.1.0.104',
+                                         port: 25, }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
