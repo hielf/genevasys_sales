@@ -1,5 +1,5 @@
 class Api::OrdersController < Api::ApplicationController
-  skip_before_action :authenticate_user!, only: [:submit, :test, :show, :order_pdf]
+  skip_before_action :authenticate_user!, only: [:submit, :test, :show, :order_pdf, :order_user]
 
   def test
     code = params[:promoteCode] ? params[:promoteCode] : "0"
@@ -23,6 +23,13 @@ class Api::OrdersController < Api::ApplicationController
     @order = Order.find_by(id: params[:id])
     @pdf_url = "#{request.protocol}#{request.host}:#{request.port}/api/orders/order_pdf?file=#{@order.pdf_file}"
     cust_user = User.find_by(ref: @order.cust_user_ref)
+    promote_code = !cust_user.nil? ? cust_user.promote_code : ApplicationController.helpers.current_user([]).promote_code
+    @cust_user_url = "#{request.protocol}#{request.host}:#{request.port}/promote/new?promote_code=#{promote_code}"
+  end
+
+  def order_user
+    p params
+    cust_user = User.find_by(ref: params[:user_ref])
     promote_code = !cust_user.nil? ? cust_user.promote_code : ApplicationController.helpers.current_user([]).promote_code
     @cust_user_url = "#{request.protocol}#{request.host}:#{request.port}/promote/new?promote_code=#{promote_code}"
   end
@@ -82,7 +89,9 @@ class Api::OrdersController < Api::ApplicationController
 
         if order.save
           OrderCreateJob.perform_now order.id
-          result = [0, 'success', order]
+
+          new_order = Order.find_by(id: order.id)
+          result = [0, 'success', new_order]
         end
       rescue Exception => ex
         result= [1, ex.message, nil]

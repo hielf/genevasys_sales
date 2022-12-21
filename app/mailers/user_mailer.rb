@@ -13,8 +13,13 @@ class UserMailer < ApplicationMailer
 
   # default :from => 'no-reply@genevasys.com'
 
-  def welcome(user)
-    @user = user
+  def welcome(*args)
+    if !args[0].nil? && args[0].class == "User"
+      @user = user
+    else
+      @user = User.first
+    end
+
     mail(
       :to => @user.email,
       :subject => 'Welcome to Geneva System!'
