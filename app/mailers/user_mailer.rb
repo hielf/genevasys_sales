@@ -16,8 +16,12 @@ class UserMailer < ApplicationMailer
   def welcome(*args)
     if !args[0].nil? && args[0].class.to_s == "User"
       @user = args[0]
+    else
+      @user = User.last
     end
 
+    @cust_user_url = "#{ENV['SYS_HOST']}promote/submit?user_ref=#{@user.ref}"
+    
     mail(
       :to => @user.email,
       :subject => 'Welcome to Geneva System!'
