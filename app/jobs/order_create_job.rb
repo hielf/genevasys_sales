@@ -82,6 +82,8 @@ class OrderCreateJob < ApplicationJob
       @order.pdf_file = @pdf_file
       @order.cust_user_ref = @user_ref
       @order.submit
+
+      UserMailerJob.perform_later @user_ref
     else
       @order.unsuccess
       if @order.retry_times < 3
