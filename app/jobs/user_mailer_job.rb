@@ -7,7 +7,7 @@ class UserMailerJob < ApplicationJob
     user = User.find_by(ref: @user_ref)
 
     begin
-      user.send_welcome_email
+      UserMailer.welcome(user).deliver_now
     rescue Exception => ex
       Rails.logger.warn "User Mailer Job error #{ex.message}"
     end

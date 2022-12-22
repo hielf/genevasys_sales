@@ -14,10 +14,8 @@ class UserMailer < ApplicationMailer
   # default :from => 'no-reply@genevasys.com'
 
   def welcome(*args)
-    if !args[0].nil? && args[0].class == "User"
-      @user = user
-    else
-      @user = User.first
+    if !args[0].nil? && args[0].class.to_s == "User"
+      @user = args[0]
     end
 
     mail(
