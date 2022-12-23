@@ -21,7 +21,9 @@ class UserMailer < ApplicationMailer
     end
 
     @cust_user_url = "#{ENV['SYS_HOST']}promote/submit?user_ref=#{@user.ref}"
-    
+
+    attachments.inline['promote.jpg'] = File.read('./public/images/promote.jpg')
+
     mail(
       :to => @user.email,
       :subject => 'Welcome to Geneva System!'
