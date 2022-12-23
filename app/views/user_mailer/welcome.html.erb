@@ -1,20 +1,19 @@
 <h3>Congratulations / 恭喜您🎉 <%= @user.firstname %>,</h3>
 
-<div style="display:flex; align-items: center;">
-  <div style="padding: 10px 10px 10px 0px; border-right: 2px solid #d1d1d1;">
-    <p>Thank you for choosing Geneva System Ltd., we are processing your order and will call you through 778-786-3838</p>
-    <p>感謝您選擇Geneva System Ltd.的服務，我們已收到您的訂單並開始處理，請留意和接聽來自我們客服778-786-3838的電話</p>
 
-    <p>Please get your QR Code by clicking the button.</p>
-    <p>請點擊按鈕領取您的推廣二維碼</p>
+<div style="padding: 10px 0px 10px 0px; border-bottom: 2px solid #d1d1d1;">
+  <p>
+    Thank you for your continued support and trust, we are offering you a special offer where you can share the exclusive QR code with your friends to receive the offer below. For more information, please refer to our website <%= link_to("https://www.genevasys.com/events", "https://www.genevasys.com/events") %>
+  </p>
+  <div style="max-width:100%; height:auto;">
+    <%= image_tag attachments['promote.jpg'].url %>
   </div>
-  <div style="width: 30vw; padding: 10px;">
-    <a href=<%= @cust_user_url %> class="button">Click</a>
-  </div>
+  <p>
+    感謝您長期支持與信任，我們特別向您提供一個優惠活動，您可以向好友分享專屬的二維碼來獲得下面優惠。詳情可以參見我們的官網<%= link_to("https://www.genevasys.com/events", "https://www.genevasys.com/events") %>
+  </p>
 </div>
-
-<div style="max-width:100%; height:auto;">
-  <%= image_tag attachments['promote.jpg'].url %>
+<div style="padding: 10px; text-align: center;">
+  <a href=<%= @cust_user_url %> class="button">CLICK</a>
 </div>
 
 <p>Yours Best,</p>
