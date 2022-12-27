@@ -8,7 +8,7 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 server 'crm.genevasys.com', port: 8026, roles: [:web, :app, :db], user: "deploy", ssh_options: {user: "deploy"}, primary: true
-set :branch, "main"
+set :branch, "Action-Mailer"
 
 # role-based syntax
 # ==================

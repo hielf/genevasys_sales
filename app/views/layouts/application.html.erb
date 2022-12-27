@@ -7,7 +7,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <% p "is #{browser.name} on #{browser.platform.name} #{browser.platform.version}" %>
-    <% if (browser.device.mobile? || browser.device.tablet?) %>
+    <% if (browser.device.mobile? || browser.device.tablet? || request.path.include?("/promote")) %>
       <%= javascript_pack_tag 'applicationMobile', 'data-turbolinks-track': 'reload' %>
       <%= javascript_pack_tag 'mobile' %>
       <!-- <script src="../../js/inobounce.js"></script> -->

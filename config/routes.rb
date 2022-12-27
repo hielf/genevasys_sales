@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         post :notify
         post :test
         get :order_pdf
+        get :order_user
       end
     end
     # match '*path', to: 'root#route_not_found', via: :all

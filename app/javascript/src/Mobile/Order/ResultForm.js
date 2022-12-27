@@ -15,14 +15,14 @@ const ResultForm = () => {
 
   const [formData, setFormData] = useState({});
 
-  const id = window.location.search.split("=")[1]
+  const ref = window.location.search.split("=")[1]
 
   useEffect(() => {
     getData();
   }, []);
 
   const getData = async () => {
-    const res = await apiGet('orders/' + id, []);
+    const res = await apiGet('orders/order_user?user_ref=' + ref, []);
     setFormData(res.order);
   };
 
@@ -82,10 +82,10 @@ const ResultForm = () => {
     return (
       <>
         <p style={{ color: '#777777', fontFamily: "'Varela Round', sans-serif", }}>
-          You have earned<span style={{ textDecoration: 'underline' }}> 5 </span>reward opportunities!
+          You can get<span style={{ textDecoration: 'underline' }}> ca$25 </span>of reward per month!
         </p>
         <p style={{ color: '#777777', fontFamily: "'Varela Round', sans-serif", fontSize: "var(--adm-font-size-4)" }}>
-          Send the QR code to new users or <a onClick={() => { copy(formData["cust_user_url"]) }} style={{ fontSize: 'var(--adm-font-size-4)', fontFamily: "'Varela Round', sans-serif", }}>copy link</a> to get<span style={{ textDecoration: 'underline' }}> $5 per month</span> for 12 months after each registration succeeded.
+          Send the QR code to new users or <a onClick={() => { copy(formData["cust_user_url"]) }} style={{ fontSize: 'var(--adm-font-size-4)', fontFamily: "'Varela Round', sans-serif", }}>copy link</a> to get<span style={{ textDecoration: 'underline' }}> ca$5 per month</span> for 12 months after each registration succeeded.
         </p>
       </>
     )

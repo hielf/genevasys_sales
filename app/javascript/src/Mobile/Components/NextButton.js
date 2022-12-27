@@ -21,7 +21,7 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
       if (res !== null) {
         history.push({
           pathname: "/promote/submit",
-          search: '?id=' + res.id
+          search: '?user_ref=' + res.cust_user_ref
         });
       }
     }
@@ -85,7 +85,7 @@ const NextButton = ({ step, setStep, FormTitles, formData, setFormData }) => {
           },
         },
       );
-      // console.log(data);
+      // console.log("data:", data);
       // console.log(JSON.stringify(data));
       // console.log(JSON.stringify(data, null, 4));
       setRes(data.data);
