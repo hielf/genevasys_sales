@@ -78,7 +78,7 @@ module ContactsHelper
   def create_contact_user(contact_id, user)
     flag = false
     contact = Contact.find_by(ref: contact_id)
-    login = "#{contact.firstname}_#{contact.ref}"
+    login = "#{contact.firstname}_#{contact.ref}".gsub(" ", "")
 
     params = {limit: 1, sqlfilters: "t.login='#{login}'"}
     status, data = ApplicationController.helpers.dolibarr_users(params)
