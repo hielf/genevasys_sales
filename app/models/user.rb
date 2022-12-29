@@ -26,6 +26,10 @@ class User < ApplicationRecord
     return log.op_type, log.op_message
   end
 
+  def add_lower_user
+    update(lower_users_count: lower_users_count + 1) if lower_users_count < 5
+  end
+
   # def had_subscribtion?(package)
   #   subscribtions.find_by(package_type: package.package_type)
   # end
