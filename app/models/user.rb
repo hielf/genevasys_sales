@@ -30,6 +30,10 @@ class User < ApplicationRecord
     update(lower_users_count: lower_users_count + 1) if lower_users_count < 5
   end
 
+  def minus_lower_user
+    update(lower_users_count: lower_users_count - 1) if lower_users_count > 0
+  end
+
   # def had_subscribtion?(package)
   #   subscribtions.find_by(package_type: package.package_type)
   # end

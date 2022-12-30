@@ -162,4 +162,37 @@ module OrdersHelper
     return flag, pdf_file
   end
 
+  def order_status_change(order)
+    status, data = ApplicationController.helpers.get_order(order.order_id) if !order.order_id.nil?
+    if status == 200
+      order_status = data["status"].to_i
+      case order_status
+      when 1..5 then
+        order.validation
+      when -1 then
+        order.cancel
+      end
+    end
+
+    return order.status, order.promote_code
+  end
+
+  def order_sync
+    orders = Order.where(status: "submitted")
+
+    orders.last(10).each do |order|
+      order_status, promote_code = ApplicationController.helpers.order_status_change(order)
+      upper_user = User.find_by(promote_code: promote_code)
+
+      if order_status == "validated"
+        # upper user invoice add
+        upper_user.add_lower_user
+      end
+
+      if order_status == "canceled"
+        upper_user.minus_lower_user
+      end
+    end
+  end
+
 end

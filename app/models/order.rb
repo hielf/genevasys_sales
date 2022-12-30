@@ -12,6 +12,12 @@ class Order < ApplicationRecord
     event :retry do
       transition :'failed' => :'initial'
     end
+    event :validation do
+      transition :'submitted' => :'validated'
+    end
+    event :cancel do
+      transition any => :'canceled'
+    end
 
     after_transition any => :failed  do |order, transition|
       order.retry_times = order.retry_times + 1
