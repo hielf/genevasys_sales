@@ -178,9 +178,9 @@ module OrdersHelper
   end
 
   def order_sync
-    orders = Order.where(status: "submitted")
+    orders = Order.where(status: "submitted", created_at: 15.days.ago..Time.now)
 
-    orders.last(10).each do |order|
+    orders.each do |order|
       order_status, promote_code = ApplicationController.helpers.order_status_change(order)
       upper_user = User.find_by(promote_code: promote_code)
 
@@ -193,6 +193,10 @@ module OrdersHelper
         upper_user.minus_lower_user
       end
     end
+  end
+
+  def invoice_add
+    
   end
 
 end
