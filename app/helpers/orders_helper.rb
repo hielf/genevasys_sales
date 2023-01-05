@@ -195,8 +195,10 @@ module OrdersHelper
     end
   end
 
-  def invoice_add
-    
+  def invoice_add(order_id, user)
+    method = "/invoices"
+    params = {}
+    status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
   end
 
 end
