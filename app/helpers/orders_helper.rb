@@ -195,10 +195,23 @@ module OrdersHelper
     end
   end
 
+  # user = ApplicationController.helpers.current_user([])
+  # status, data = ApplicationController.helpers.invoice_add(438, user)
   def invoice_add(order_id, user)
-    method = "/invoices"
-    params = {}
-    status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+    status = 400
+    data = {}
+
+    order = Order.find_by(order_id: order_id)
+    order_user = order.user
+    user_third_party = ThirdParty.find_by(email: order_user.email)
+
+    if user_third_party
+      method = "/invoices"
+      params = {socid: user_third_party.ref, total_ht: "5.0", note_public: "New Customer ORDER-REF:#{order.pdf_file.gsub(".pdf", "")} Reward", note_private: "New User: #{order.first_name} #{order.contact_phone}"}
+      status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+    end
+
+    return status, data
   end
 
 end
