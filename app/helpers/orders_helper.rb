@@ -196,10 +196,10 @@ module OrdersHelper
   end
 
   # user = ApplicationController.helpers.current_user([])
-  # status, data = ApplicationController.helpers.invoice_add(438, user)
+  # status, data = ApplicationController.helpers.invoice_add(463, user)
   def invoice_add(order_id, user)
     status = 400
-    data = {}
+    invoice_id = nil
 
     order = Order.find_by(order_id: order_id)
     order_user = order.user
@@ -207,11 +207,39 @@ module OrdersHelper
 
     if user_third_party
       method = "/invoices"
-      params = {socid: user_third_party.ref, total_ht: "5.0", note_public: "New Customer ORDER-REF:#{order.pdf_file.gsub(".pdf", "")} Reward", note_private: "New User: #{order.first_name} #{order.contact_phone}"}
-      status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+      params = {socid: user_third_party.ref, note_public: "New Customer ORDER-REF:#{order.pdf_file.gsub(".pdf", "")} Reward", note_private: "New User: #{order.first_name} #{order.contact_phone}"}
+      status, invoice_id = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+
+      if status == 200
+        method = "/invoices/#{invoice_id}/lines"
+        params = {
+          desc: "New Customer ORDER-REF:#{order.pdf_file.gsub(".pdf", "")} Reward",
+          rang: "-1",
+          pa_ht: "0",
+          marque_tx: "100",
+          situation_percent: "100",
+          multicurrency_subprice: "-5",
+          multicurrency_total_ht: "-5",
+          multicurrency_total_tva: "0",
+          multicurrency_total_ttc: "-5",
+          product_type: "0",
+          qty: "1",
+          subprice: "-5",
+          vat_src_code: "N",
+          total_ht: "-5",
+          total_tva: "0",
+          total_localtax1: "0",
+          total_localtax2: "0",
+          total_ttc: "-5",
+          info_bits: "2",
+          description: "New Customer ORDER-REF:#{order.pdf_file.gsub(".pdf", "")} Reward",
+          price: "-5",
+        }
+        status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+      end
     end
 
-    return status, data
+    return status, invoice_id
   end
 
 end
