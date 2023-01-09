@@ -211,6 +211,7 @@ module OrdersHelper
       status, invoice_id = ApplicationController.helpers.dolibarr_api_post(method, params, user)
 
       if status == 200
+        reward_price = ENV["REWARD_PRICE"]
         method = "/invoices/#{invoice_id}/lines"
         params = {
           desc: "New Customer ORDER-REF:#{order.pdf_file.gsub(".pdf", "")} Reward",
@@ -218,22 +219,22 @@ module OrdersHelper
           pa_ht: "0",
           marque_tx: "100",
           situation_percent: "100",
-          multicurrency_subprice: "-5",
-          multicurrency_total_ht: "-5",
+          multicurrency_subprice: reward_price,
+          multicurrency_total_ht: reward_price,
           multicurrency_total_tva: "0",
-          multicurrency_total_ttc: "-5",
+          multicurrency_total_ttc: reward_price,
           product_type: "0",
           qty: "1",
-          subprice: "-5",
+          subprice: reward_price,
           vat_src_code: "N",
-          total_ht: "-5",
+          total_ht: reward_price,
           total_tva: "0",
           total_localtax1: "0",
           total_localtax2: "0",
-          total_ttc: "-5",
+          total_ttc: reward_price,
           info_bits: "2",
           description: "New Customer ORDER-REF:#{order.pdf_file.gsub(".pdf", "")} Reward",
-          price: "-5",
+          price: reward_price,
         }
         status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
       end
