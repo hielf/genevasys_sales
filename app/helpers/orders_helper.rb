@@ -187,11 +187,13 @@ module OrdersHelper
 
       if order_status == "validated"
         # upper user invoice add
-        upper_user.add_lower_user
+        reward_available = upper_user.add_lower_user
 
         # add invoice
-        user = ApplicationController.helpers.current_user([])
-        status, data = ApplicationController.helpers.invoice_add(order.order_id, user)
+        if reward_available
+          user = ApplicationController.helpers.current_user([])
+          status, data = ApplicationController.helpers.invoice_add(order.order_id, user)
+        end
       end
 
       if order_status == "canceled"
