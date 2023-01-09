@@ -177,6 +177,7 @@ module OrdersHelper
     return order.status, order.promote_code
   end
 
+  # ApplicationController.helpers.order_sync
   def order_sync
     orders = Order.where(status: "submitted", created_at: 15.days.ago..Time.now)
 
@@ -187,6 +188,10 @@ module OrdersHelper
       if order_status == "validated"
         # upper user invoice add
         upper_user.add_lower_user
+
+        # add invoice
+        user = ApplicationController.helpers.current_user([])
+        status, data = ApplicationController.helpers.invoice_add(order.order_id, user)
       end
 
       if order_status == "canceled"

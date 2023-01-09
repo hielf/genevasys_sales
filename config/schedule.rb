@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 15.minutes do
+every 30.minutes do
   rake "sync_task:users"
   rake "sync_task:products"
   rake "sync_task:third_parties"

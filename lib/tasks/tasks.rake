@@ -14,4 +14,8 @@ namespace :sync_task do
   task :contacts => :environment do
     ApplicationController.helpers.init_contacts
   end
+
+  task :orders => :environment do
+    ApplicationController.helpers.order_sync
+  end
 end
