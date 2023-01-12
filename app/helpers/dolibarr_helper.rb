@@ -108,8 +108,10 @@ module DolibarrHelper
         data = JSON.parse(response.body)
       elsif (status > 300 && status < 400)
         data = response.body
+        Rails.logger.warn "dolibarr_api_post #{method} error: #{data} #{params}"
       else
         data = JSON.parse(response.body)["error"]
+        Rails.logger.warn "dolibarr_api_post #{method} error: #{data} #{params}"
       end
     rescue Exception => e
       ApplicationController.helpers.set_user_access_token(user) if status == 401
