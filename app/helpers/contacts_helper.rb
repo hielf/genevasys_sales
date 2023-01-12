@@ -91,6 +91,12 @@ module ContactsHelper
         user_id = data
         status, data = ApplicationController.helpers.dolibarr_user(user_id)
         flag = ApplicationController.helpers.new_user(data) if status == 200
+      else
+        user_exist = User.find_by(email: contact.mail)
+        if user_exist
+          user_id = user_exist.ref
+          flag = true
+        end
       end
     end
 
