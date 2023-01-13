@@ -24,6 +24,7 @@ every 30.minutes do
   rake "sync_task:products"
   rake "sync_task:third_parties"
   rake "sync_task:contacts"
+  rake "sync_task:orders"
 end
 
 
