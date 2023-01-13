@@ -22,7 +22,7 @@ Product.find_by(product_id: "17").update(customer_purchase_available: true)
 ProductRel.create(upper_product_id: '17', lower_product_id: '33', start_date: Date.today, end_date: Date.parse('20230228'))
 
 
-# user = User.find_by(user_name: 'online_sales')
+# user = User.find_by(user_name: ENV['CRM_OPER'])
 #
 # ThirdParty.where.not(email: nil).each do |tp|
 #   if Contact.find_by(email: tp.email).nil?
@@ -46,7 +46,7 @@ ProductRel.create(upper_product_id: '17', lower_product_id: '33', start_date: Da
 #      flag, contact_id = ApplicationController.helpers.create_contact(contact_params, user)
 #
 #      if flag == true
-#        flag, @user_ref = ApplicationController.helpers.create_contact_user(contact_id, User.find_by(user_name: 'online_sales'))
+#        flag, @user_ref = ApplicationController.helpers.create_contact_user(contact_id, User.find_by(user_name: ENV['CRM_OPER']))
 #        ApplicationController.helpers.set_contact_user_group(@user_ref, 7) if flag
 #      end
 #   else

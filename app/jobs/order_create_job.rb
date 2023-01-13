@@ -60,7 +60,7 @@ class OrderCreateJob < ApplicationJob
       flag, contact_id = ApplicationController.helpers.create_contact(contact_params, user) if third_party_id
 
       if flag == true
-        flag, @user_ref = ApplicationController.helpers.create_contact_user(contact_id, User.find_by(user_name: 'online_sales'))
+        flag, @user_ref = ApplicationController.helpers.create_contact_user(contact_id, User.find_by(user_name: ENV['CRM_OPER']))
         ApplicationController.helpers.set_contact_user_group(@user_ref, 7) if flag
       end
     rescue Exception => ex
