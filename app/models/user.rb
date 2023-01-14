@@ -27,11 +27,15 @@ class User < ApplicationRecord
   end
 
   def add_lower_user
-    update(lower_users_count: lower_users_count + 1) if lower_users_count < 5
+    if employee == "0"
+      update(lower_users_count: lower_users_count + 1) if lower_users_count < 5
+    end
   end
 
   def minus_lower_user
-    update(lower_users_count: lower_users_count - 1) if lower_users_count > 0
+    if employee == "0"
+      update(lower_users_count: lower_users_count - 1) if lower_users_count > 0
+    end
   end
 
   # def had_subscribtion?(package)
