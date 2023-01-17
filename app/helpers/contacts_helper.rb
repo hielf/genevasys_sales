@@ -129,7 +129,6 @@ module ContactsHelper
       Rails.logger.warn "error set_order_contact_type: #{ex.message}"
     end
 
-
     return flag, data
   end
 
