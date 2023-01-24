@@ -8,6 +8,10 @@ class UserMailerJob < ApplicationJob
 
     begin
       UserMailer.welcome(user).deliver_now
+
+      type = "EMAIL_SEND"
+      message = "Welcome email send successfully."
+      user.op(type, message)
     rescue Exception => ex
       Rails.logger.warn "User Mailer Job error #{ex.message}"
     end
