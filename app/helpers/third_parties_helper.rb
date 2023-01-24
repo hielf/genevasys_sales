@@ -178,4 +178,21 @@ module ThirdPartiesHelper
     return flag, third_party_id
   end
 
+  def send_third_party_ticket(third_party, user)
+    third_party = ThirdParty.last
+    user = User.find_by(user_name: ENV['CRM_OPER'])
+    method = "/tickets"
+    params = {
+      fk_soc: third_party.ref,
+      subject: "test_subject#{Time.now}",
+      message: "test_message#{Time.now}",
+      type_code: "OTHER",
+      category_code: "ACC",
+      severity_code: "NORMAL"
+    }
+    status, data = ApplicationController.helpers.dolibarr_api_post(method, params, user)
+
+    return status, data
+  end
+
 end
