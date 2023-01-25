@@ -179,6 +179,7 @@ module OrdersHelper
 
   # ApplicationController.helpers.order_sync
   def order_sync
+    # STEP 1: submitted to validated
     orders = Order.where(status: "submitted", created_at: 15.days.ago..Time.now)
 
     orders.each do |order|
@@ -195,11 +196,35 @@ module OrdersHelper
           status, data = ApplicationController.helpers.invoice_add(order.order_id, user)
         end
       end
+    end
 
-      if order_status == "canceled"
-        upper_user.minus_lower_user
+    # STEP 2: validated to canceled
+    orders = Order.where(status: "validated")
+
+    orders.each do |order|
+      if order.user.employee == "0"
+        order_status, promote_code = ApplicationController.helpers.order_status_change(order)
+        upper_user = User.find_by(promote_code: promote_code)
+
+        if order_status == "canceled"
+          should_remove_reward = upper_user.minus_lower_user
+
+          if should_remove_reward
+            user = ApplicationController.helpers.current_user([])
+            email = order.user.email
+
+            if !email.nil? && !email.empty?
+              third_party = ThirdParty.find_by(email: email)
+              cust_user = User.find_by(ref: order.cust_user_ref)
+              subject = "1笔客户奖励需要取消"
+              message = "下级客户#{cust_user.firstname} #{cust_user.lastname} (#{cust_user.email})订单Canceled，请取消#{upper_user.email}次月的现金奖励"
+              ApplicationController.helpers.send_third_party_ticket(third_party, user, subject, message)
+            end
+          end
+        end
       end
     end
+
   end
 
   # user = ApplicationController.helpers.current_user([])
